@@ -20,7 +20,7 @@ typedef struct s_command_table
 typedef struct s_command
 {
     char	*cmd;
-	char	*path;
+	char	*path; //NULL if its a builtin
     char    *parameters;
 	int		infile; //default stdin
 	int		outfile; //default stdout
@@ -38,6 +38,25 @@ typedef struct s_token
 
 /******************************************************************************
  *                             ENUMERATIONS                                   *
+ *****************************************************************************/
+
+typedef enum e_type
+{
+	LITERAL,
+    LESS,
+    GREATER,
+    LESS_LESS,
+    GREATER_GREATER,
+	PIPE,
+	WHITESPACE,
+	SIMPLE_QUOTE,
+	DOUBLE_QUOTE,
+    AND,
+    OR,
+}	t_type;
+
+/******************************************************************************
+ *                                 MACROS                                     *
  *****************************************************************************/
 
 
