@@ -12,7 +12,7 @@
 
 typedef struct s_command_table 
 {
-    t_list *commands;
+    struct s_command *commands;
     char	**env;
 	pid_t	pid;
 }   t_command_table;
