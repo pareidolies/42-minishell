@@ -27,7 +27,7 @@ int	exe_command(char **commandfull)
 	/*maintenant qu'on a le path, on peut executer*/
 }
 
-environment_path(char *command, char *path_var)
+char *environment_path(char *command, char *path_var)
 {
 	char	*cmd_path;
 	char	**paths;

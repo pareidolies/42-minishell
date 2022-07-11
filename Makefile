@@ -1,4 +1,4 @@
-SRCS			=  testmain.c \
+SRCS			=  exec/testmain.c \
 
 BONUS			= 
 
@@ -26,13 +26,13 @@ INCS			= includes
 
 RM		 		= rm -f
 
-CC				= cc -Wall -Wextra -Werror
+CC				= cc -Wall -Wextra -Werror 
 
 all:			${NAME}
 
 $(NAME):		${OBJS}
 			$(MAKE) $(PATH_LIBFT)
-			$(CC) -I $(INCS) $(SRCS_PATH) $(LIBRARY) -o $(NAME)
+			$(CC) -I $(INCS) $(SRCS_PATH) $(LIBRARY) -o $(NAME) -lreadline
 
 clean:
 			${RM} ${OBJS} ${OBJS_BONUS}

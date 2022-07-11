@@ -21,7 +21,8 @@ typedef struct s_command
 {
     char	*cmd;
 	char	*path; //NULL if its a builtin
-    char    *parameters;
+    char    **options;
+    char    **parameters;
 	int		infile; //default stdin
 	int		outfile; //default stdout
     struct s_command *next;
@@ -72,7 +73,7 @@ int g_exit_status;
 
 //testmain.c
 int	exe_command(char **commandfull);
-environment_path(char *command, char *path_var);
+char    *environment_path(char *command, char *path_var);
 char	*absolute_relative_path(char *command);
 
 
