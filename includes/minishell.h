@@ -5,6 +5,7 @@
 # include "../libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
 /******************************************************************************
  *                               STRUCTURES                                   *
@@ -76,8 +77,17 @@ int	exe_command(char **commandfull);
 char    *environment_path(char *command, char *path_var);
 char	*absolute_relative_path(char *command);
 
+//main_parser.c
 
 
+
+//token_handler.c
+void    print_tokens(t_token *token);
+t_token *add_token(t_token *list, char *str, int flag);
+t_token *create_token(char *str, int flag);
+
+//tokenization.c
+int	analyze_quotes(char *str);
 
 
 #endif

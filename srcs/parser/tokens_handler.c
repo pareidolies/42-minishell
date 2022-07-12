@@ -2,7 +2,7 @@
 
 t_token *create_token(char *str, int flag)
 {
-    t_token node;
+    t_token *node;
 
     node = malloc(sizeof(t_token));
     if (!node)
@@ -18,7 +18,6 @@ t_token *add_token(t_token *list, char *str, int flag)
 {
     t_token *current;
     t_token *node;
-    int     i;
 
     current = list;
     node = create_token(str, flag);
@@ -31,19 +30,19 @@ t_token *add_token(t_token *list, char *str, int flag)
     return (list);
 }
 
-void    print_tokens(t_token *token)
+void    print_tokens(t_token *node)
 {
     int i;
 
     i = 0;
-    while (token)
+    while (node)
     {
         printf("********\n");
-        printf("id : %d\n");
-        printf("str : %s\n");
-        printf("flag : %i\n");
+        printf("id : %d\n", i);
+        printf("str : %s\n", node->token);
+        printf("flag : %i\n", node->flag);
         printf("********\n");
-        token = token->next;
+        node = node->next;
         i++;
     }
 }
