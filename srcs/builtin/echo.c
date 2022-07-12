@@ -14,18 +14,6 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
-int	nb_param(char **params)
-{
-	int	i;
-
-	i = 0;
-	while (params[i] != NULL)
-	{
-		i++;
-	}
-	return (i);
-}
-
 /*Supposant que la commande est stockée avec ses arguments dans un tableau de char */
 /*params[0] = nom commande*/
 int	ft_echo(char **params)
