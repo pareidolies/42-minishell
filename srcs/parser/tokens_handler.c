@@ -27,10 +27,10 @@ void    add_token(t_token *first, char *str, int size)
     current = first;
     new = create_token(str, size);
     printf("new : %s\n", new->token);
-    //while (current->next != NULL)
-    //   current = current->next;
-    //current->next = new;
-    //new->prev = current;
+    while (current->next != NULL)
+       current = current->next;
+    current->next = new;
+    new->prev = current;
 }
 
 void    print_tokens(t_token *node)
