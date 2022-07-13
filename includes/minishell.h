@@ -47,12 +47,12 @@ typedef enum e_type
 	LITERAL,
     LESS,
     GREATER,
-    LESS_LESS,
-    GREATER_GREATER,
+    D_LESS,
+    D_GREATER,
 	PIPE,
 	WHITESPACE,
-	SIMPLE_QUOTE,
-	DOUBLE_QUOTE,
+	S_QUOTE,
+	D_QUOTE,
     AND,
     OR,
 }	t_type;
@@ -61,6 +61,12 @@ typedef enum e_type
  *                                 MACROS                                     *
  *****************************************************************************/
 
+# define S_QUOTE '\''
+# define D_QUOTE '\"'
+# define SPACE ' '
+# define LESS '<'
+# define GREATER '>'
+# define PIPE '|'
 
 /******************************************************************************
  *                            GLOBAL VARIABLE                                 *

@@ -24,3 +24,58 @@ int	analyze_quotes(char *str)
 		error = 0;
 	return (error);
 }
+
+int	get_token_size(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == PIPE)
+			return (1);
+		if ((str[i] == LESS && str[i + 1] == LESS)
+			|| (str[i] == GREATER && str[i + 1] == GREATER))
+			return (2);
+		if (str[i] == LESS || str[i] == GREATER)
+			return (1);
+		if (str[i] == S_QUOTE)
+		{
+			while (str[i] != S_QUOTE)
+				i++;
+		}
+		else if (str[i] == D_QUOTE)
+		{
+			while (str[i] != D_QUOTE)
+				i++;
+		}
+		else
+		{
+			while (str[i] != SPACE && str[i] !=PIPE && str[i] != GREATER && str[i] != LESS)
+				i++;
+		}
+	}
+	return (i);
+}
+
+t_token	*tokenization(char *str)
+{
+	t_token	*list;
+	int		i;
+	int		size;
+
+	if (!str)
+		return (NULL);
+	list = NULL;
+	i = 0;
+	while (str[i])
+	{
+		while (str[i] && str[i] == ' ')
+			i++;
+		size = get_token_size(&str[i]);
+		copy_token(&str[i], size);
+		//handling malloc error
+		i += size;
+	}
+	return (list);
+}
