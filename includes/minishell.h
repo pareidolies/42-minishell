@@ -62,7 +62,7 @@ typedef enum e_type
  *****************************************************************************/
 
 # define S_QUOTE '\''
-# define D_QUOTE '\"'
+# define D_QUOTE '"'
 # define SPACE ' '
 # define LESS '<'
 # define GREATER '>'

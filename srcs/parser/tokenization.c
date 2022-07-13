@@ -44,17 +44,23 @@ int	get_token_size(char *str)
 			return (1);
 		if (str[i] == S_QUOTE)
 		{
+			i++;
 			while (str[i] && str[i] != S_QUOTE)
 				i++;
+			printf("i : %d\n", i);
+			return (i + 1);
 		}
-		else if (str[i] == D_QUOTE)
+		if (str[i] == D_QUOTE)
 		{
+			i++;
 			while (str[i] && str[i] != D_QUOTE)
 				i++;
+			printf("i : %d\n", i);
+			return (i + 1);
 		}
 		else
 		{
-			while (str[i] && (str[i] != SPACE) && (str[i] != PIPE) && (str[i] != GREATER) && (str[i] != LESS))
+			while (str[i] && (str[i] != SPACE) && (str[i] != PIPE) && (str[i] != GREATER) && (str[i] != LESS) && (str[i] != S_QUOTE) && (str[i] != D_QUOTE))
 				i++;
 			return (i);
 		}
@@ -77,6 +83,8 @@ t_token	*tokenization(char *str)
 		while (str[i] && str[i] == ' ')
 			i++;
 		size = get_token_size(&str[i]);
+		if (size == 0)
+			break;
 		printf("size : %d\n", size);
 		if (!list)
 			list = create_token(&str[i], size);
