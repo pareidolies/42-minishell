@@ -11,7 +11,10 @@ int main(int argc, char **argv)
 	printf("str : %s\n", str);
 	error = analyze_quotes(str);
 	if (error)
+	{
 		printf("Error: Wrong number of quotes\n");
+		return (0);
+	}
 	list = tokenization(str);
 	print_tokens(list);
 	return (0);

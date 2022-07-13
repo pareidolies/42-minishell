@@ -2,27 +2,39 @@
 
 int	analyze_quotes(char *str)
 {
-	int	error;
 	int	s_quotes_nbr;
 	int	d_quotes_nbr;
+	int	is_in_s_quotes;
+	int	is_in_d_quotes;
 	int	i;
 
 	s_quotes_nbr = 0;
 	d_quotes_nbr = 0;
+	is_in_s_quotes = 0;
+	is_in_d_quotes = 0;
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '\'')
-			s_quotes_nbr++;
-		if (str[i] == '\"')
-			d_quotes_nbr++;
+		if (str[i] == S_QUOTE)
+		{
+			if (!is_in_d_quotes)
+				s_quotes_nbr++;
+			is_in_s_quotes = (is_in_s_quotes == 0);
+		}
+		if (str[i] == D_QUOTE)
+		{
+			if (!is_in_s_quotes)
+				d_quotes_nbr++;
+			is_in_d_quotes = (is_in_d_quotes == 0);
+		}
 		i++;
 	}
+	printf("s_quote : %d\n", s_quotes_nbr);
+	printf("d_quote : %d\n", d_quotes_nbr);
 	if (s_quotes_nbr % 2 != 0 || d_quotes_nbr % 2 != 0)
-		error = 1;
+		return (1);
 	else
-		error = 0;
-	return (error);
+		return (0);
 }
 
 int	get_token_size(char *str)
