@@ -4,28 +4,31 @@ int	analyze_quotes(char *str)
 {
 	int	s_quotes_nbr;
 	int	d_quotes_nbr;
-	int	is_in_s_quotes;
-	int	is_in_d_quotes;
+
 	int	i;
 
 	s_quotes_nbr = 0;
 	d_quotes_nbr = 0;
-	is_in_s_quotes = 0;
-	is_in_d_quotes = 0;
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == S_QUOTE)
+		if (str[i] && str[i] == S_QUOTE)
 		{
-			if (!is_in_d_quotes)
+			i++;
+			s_quotes_nbr++;
+			while (str[i] && str[i] != S_QUOTE)
+				i++;
+			if (str[i] && str[i] == S_QUOTE)
 				s_quotes_nbr++;
-			is_in_s_quotes = (is_in_s_quotes == 0);
 		}
-		if (str[i] == D_QUOTE)
+		if (str[i] && str[i] == D_QUOTE)
 		{
-			if (!is_in_s_quotes)
+			i++;
+			d_quotes_nbr++;
+			while (str[i] && str[i] != D_QUOTE)
+				i++;
+			if (str[i] && str[i] == D_QUOTE)
 				d_quotes_nbr++;
-			is_in_d_quotes = (is_in_d_quotes == 0);
 		}
 		i++;
 	}
