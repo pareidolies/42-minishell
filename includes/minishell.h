@@ -89,11 +89,13 @@ char	*absolute_relative_path(char *command);
 
 //token_handler.c
 void    print_tokens(t_token *token);
-t_token *add_token(t_token *list, char *str, int flag);
+void add_token(t_token *list, char *str, int flag);
 t_token *create_token(char *str, int flag);
 
 //tokenization.c
 int	analyze_quotes(char *str);
+int	get_token_size(char *str);
+t_token	*tokenization(char *str);
 
 
 #endif

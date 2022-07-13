@@ -34,7 +34,7 @@ all:			${NAME}
 
 $(NAME):		${OBJS}
 			$(MAKE) $(PATH_LIBFT)
-			$(CC) -I $(INCS) $(SRCS_PATH) $(LIBRARY) -o $(NAME) -lreadline
+			$(CC) -I $(INCS) $(SRCS_PATH) $(LIBRARY) -o $(NAME) -lreadline -fsanitize=address -g3
 
 clean:
 			${RM} ${OBJS} ${OBJS_BONUS}

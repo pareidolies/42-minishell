@@ -1,6 +1,6 @@
 #include "../../includes/minishell.h"
 
-t_token *create_token(char *str, int flag)
+t_token *create_token(char *str, int size)
 {
     t_token *node;
 
@@ -9,32 +9,36 @@ t_token *create_token(char *str, int flag)
         return (NULL);
     node->prev = NULL;
     node->next = NULL;
-    node->token = str;
-    node->flag = flag;
+    node->token = malloc((size + 1) * sizeof(char));
+    if (!(node->token))
+		return (NULL);
+	node->token[size] = '\0';
+	while (size--)
+		node->token[size] = str[size];
+    node->flag = 0;
     return (node);
 }
 
-t_token *add_token(t_token *list, char *str, int flag)
+void    add_token(t_token *first, char *str, int size)
 {
     t_token *current;
-    t_token *node;
+    t_token *new;
 
-    current = list;
-    node = create_token(str, flag);
-    if (list == NULL)
-        return (node);
-    while (current->next != NULL)
-        current = current->next;
-    current->next = node;
-    node->next = NULL;
-    return (list);
+    current = first;
+    new = create_token(str, size);
+    printf("new : %s\n", new->token);
+    //while (current->next != NULL)
+    //   current = current->next;
+    //current->next = new;
+    //new->prev = current;
 }
 
 void    print_tokens(t_token *node)
 {
     int i;
-
     i = 0;
+
+    printf("---- PRINT TOKENS ----\n");
     while (node)
     {
         printf("********\n");

@@ -34,28 +34,32 @@ int	get_token_size(char *str)
 	{
 		if (str[i] == PIPE)
 			return (1);
-		if ((str[i] == LESS && str[i + 1] == LESS)
-			|| (str[i] == GREATER && str[i + 1] == GREATER))
-			return (2);
+		if (str[i + 1])
+		{
+			if ((str[i] == LESS && str[i + 1] == LESS)
+				|| (str[i] == GREATER && str[i + 1] == GREATER))
+				return (2);
+		}
 		if (str[i] == LESS || str[i] == GREATER)
 			return (1);
 		if (str[i] == S_QUOTE)
 		{
-			while (str[i] != S_QUOTE)
+			while (str[i] && str[i] != S_QUOTE)
 				i++;
 		}
 		else if (str[i] == D_QUOTE)
 		{
-			while (str[i] != D_QUOTE)
+			while (str[i] && str[i] != D_QUOTE)
 				i++;
 		}
 		else
 		{
-			while (str[i] != SPACE && str[i] !=PIPE && str[i] != GREATER && str[i] != LESS)
+			while (str[i] && (str[i] != SPACE) && (str[i] != PIPE) && (str[i] != GREATER) && (str[i] != LESS))
 				i++;
+			return (i);
 		}
 	}
-	return (i);
+	return (0);
 }
 
 t_token	*tokenization(char *str)
@@ -73,7 +77,14 @@ t_token	*tokenization(char *str)
 		while (str[i] && str[i] == ' ')
 			i++;
 		size = get_token_size(&str[i]);
-		copy_token(&str[i], size);
+		printf("size : %d\n", size);
+		if (!list)
+			list = create_token(&str[i], size);
+		else
+		{
+			add_token(list, &str[i], size);
+			printf("hello\n");
+		}
 		//handling malloc error
 		i += size;
 	}

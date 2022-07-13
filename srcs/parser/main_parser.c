@@ -4,6 +4,7 @@ int main(int argc, char **argv)
 {
 	char *str;
 	int	error;
+	t_token	*list;
 
 	(void) argc;
 	str = argv[1];
@@ -11,5 +12,7 @@ int main(int argc, char **argv)
 	error = analyze_quotes(str);
 	if (error)
 		printf("Error: Wrong number of quotes\n");
+	list = tokenization(str);
+	print_tokens(list);
 	return (0);
 }
