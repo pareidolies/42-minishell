@@ -1,11 +1,14 @@
 #include "../../includes/minishell.h"
 
-void main_parser(char *str)
+void main_parser(char *str, t_env *envlist)
 {
 	int	error;
 	t_token	*list;
-	t_commande	*command;
+	t_command	*command;
+	char	*env;
 
+	env = ft_getenv(str, envlist);
+	printf("ENV : %s\n", env);
 	error = analyze_quotes(str);
 	if (error)
 	{
@@ -17,7 +20,7 @@ void main_parser(char *str)
 	analyze_tokens_type(list);
 	analyze_literals_type(list);
 	analyze_tokens_to_expand(list);
-	//expand_tokens
+	expand_tokens(list, envlist);
 	trim_tokens(list);
 	print_tokens(list);
 	command = create_commands(list);

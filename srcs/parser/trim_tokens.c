@@ -7,7 +7,7 @@ void    trim_tokens(t_token *list)
     current = list;
     while (current != NULL)
     {
-        current->trimmed_token = ft_strtrim(current->token, "\"'");
+        current->trimmed_token = ft_strtrim(current->expanded_token, "\"'");
         current = current->next;
     }
 }

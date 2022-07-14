@@ -3,6 +3,7 @@ SRCS			=	parser/main_parser.c \
 					parser/tokenization.c \
 					parser/expander.c \
 					parser/trim_tokens.c \
+					parser/parser.c \
 					exec/testmain.c \
 					exec/exec_utils.c
 
