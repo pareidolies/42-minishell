@@ -43,6 +43,7 @@ void    print_tokens(t_token *node)
         printf("********\n");
         printf("id : %d\n", i);
         printf("str : %s\n", node->token);
+        printf("len : %d\n", (int)ft_strlen(node->token));
         printf("type : %i\n", (int)node->type);
         printf("********\n");
         node = node->next;

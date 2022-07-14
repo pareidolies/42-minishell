@@ -122,13 +122,13 @@ void	analyze_tokens_type(t_token *list)
 	{
 		if (ft_strncmp(current->token, STR_LESS, ft_strlen(current->token)) == 0)
 			current->type = T_LESS;
-		if (ft_strncmp(current->token, STR_D_LESS, ft_strlen(current->token)) == 0)
+		else if (ft_strncmp(current->token, STR_D_LESS, ft_strlen(current->token)) == 0)
 			current->type = T_D_LESS;
-		if (ft_strncmp(current->token, STR_GREATER, ft_strlen(current->token)) == 0)
+		else if (ft_strncmp(current->token, STR_GREATER, ft_strlen(current->token)) == 0)
 			current->type = T_GREATER;
-		if (ft_strncmp(current->token, STR_D_GREATER, ft_strlen(current->token)) == 0)
+		else if (ft_strncmp(current->token, STR_D_GREATER, ft_strlen(current->token)) == 0)
 			current->type = T_D_GREATER;
-		if (ft_strncmp(current->token, STR_PIPE, ft_strlen(current->token)) == 0)
+		else if (ft_strncmp(current->token, STR_PIPE, ft_strlen(current->token)) == 0)
 			current->type = T_PIPE;
 		else
 			current->type = T_LITERAL;
