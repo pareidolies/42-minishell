@@ -39,15 +39,15 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (res);
 }
 
-/*
-#include <stdio.h>
-int main()
-{
-	char* str;
 
-	str = ft_substr("coucou ca va ?", 7, 6);
-	printf("%s\n", str);
+// #include <stdio.h>
+// int main()
+// {
+// 	char* str;
 
-	return 0;
-}
-*/
+// 	str = ft_substr("MYVAR=", 6, 6 - 5 - 1);
+// 	printf("%s\n", str);
+
+// 	return 0;
+// }
+

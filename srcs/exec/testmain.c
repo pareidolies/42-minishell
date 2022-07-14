@@ -8,17 +8,22 @@
 #include <readline/history.h>
 
 /*test affichage du prompt et recup de la ligne*/
-int main(void)
+/*pour l'instant, le prog quitte si on tape "aurevoir" */
+/*PAS ENCORE DE NETTOYAGE COMPLET DONC LEAKS*/
+int main(int argc, char **argv, char **envp)
 {
 	char	*result;
+	t_env	*envlist;
 	int		flag;
 	
-	// result = getenv("PWD");
-	// printf("PWD = [%s]\n", result);
-	// flag = pathconf("testmain.c", _PC_PATH_MAX);
-	// printf("flag = %d\n", flag);
-	// printf("OLDPWD = [%s]\n", getenv("OLDPWD"));
 	flag = 0;
+	if (argc != 1 || argv[1] != NULL)
+		return(1);
+	
+	/*Une seule fois, on crée la liste d'env en dupliquant envp*/
+	/*liste peut être modifiée une ou + fois par ligne de cmd*/
+	envlist = ft_list_env(envp);
+
 	while (flag != 1) 
 	{
 		result = readline("minishell>> ");
@@ -30,5 +35,6 @@ int main(void)
 		free(result);
 	}
 	clear_history();
+	ft_clean_list(envlist);
 	return (0);
 }

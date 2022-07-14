@@ -53,12 +53,18 @@ typedef enum e_type
 /******************************************************************************
  *                               STRUCTURES                                   *
  *****************************************************************************/
+typedef struct	s_env
+{
+	char			*key;
+	char			*value;
+	struct s_env	*next;
+}				t_env;
 
 typedef struct s_command_table 
 {
-    struct s_command *commands;
-    char	**env;
-	pid_t	pid;
+    struct s_command    *commands;
+    struct s_env        *env;
+	pid_t	            pid;
 }   t_command_table;
 
 typedef struct s_command
@@ -121,5 +127,12 @@ void    analyze_tokens_to_expand(t_token *list);
 
 //trim_tokens.c
 void    trim_tokens(t_token *list);
+//exec_utils.c
+t_env	*ft_list_env(char **envp); //pour dupliquer env au début du prog
+t_env	*ft_new_var(char *keyvalue);
+void	ft_lstaddback(t_env **alst, t_env *new);
+void	ft_clean_list(t_env	*envlist);
+
+char    *ft_getenv(char *key, t_env *envlist); //pour expander
 
 #endif
