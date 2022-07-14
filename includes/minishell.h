@@ -78,6 +78,7 @@ typedef struct s_token
 {
     char    *token;
     t_type     type;
+    int         to_expand;
     struct s_token *next;
     struct s_token *prev;
 }   t_token;
@@ -98,8 +99,7 @@ char    *environment_path(char *command, char *path_var);
 char	*absolute_relative_path(char *command);
 
 //main_parser.c
-
-
+void main_parser(char *str);
 
 //token_handler.c
 void    print_tokens(t_token *token);
@@ -113,5 +113,9 @@ t_token	*tokenization(char *str);
 void	analyze_tokens_type(t_token *list);
 void	analyze_literals_type(t_token *list);
 void main_parser(char *str);
+
+//expander.c
+int there_is_a_dollar(char *str);
+void    analyze_tokens_to_expand(t_token *list);
 
 #endif
