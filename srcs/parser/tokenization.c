@@ -135,3 +135,22 @@ void	analyze_tokens_type(t_token *list)
 		current = current->next;
 	}
 }
+
+void	analyze_literals_type(t_token *list)
+{
+	t_token	*current;
+
+	current = list;
+	while (current->next != NULL)
+	{
+		if (current->type == T_LESS && current->next->type == T_LITERAL)
+			current->next->type = T_INPUT;
+		else if (current->type == T_D_LESS)
+			current->next->type = T_DELIMITER;
+		else if (current->type == T_GREATER)
+			current->next->type = T_OUTPUT;
+		else if (current->type == T_D_GREATER)
+			current->next->type = T_APPEND;
+		current = current->next;
+	}
+}

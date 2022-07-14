@@ -19,6 +19,7 @@ int main(int argc, char **argv)
 	list = tokenization(str);
 	//print_tokens(list);
 	analyze_tokens_type(list);
+	analyze_literals_type(list);
 	print_tokens(list);
 	return (0);
 }
