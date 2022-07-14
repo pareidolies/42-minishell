@@ -4,6 +4,7 @@ void main_parser(char *str)
 {
 	int	error;
 	t_token	*list;
+	t_commande	*command;
 
 	error = analyze_quotes(str);
 	if (error)
@@ -19,4 +20,5 @@ void main_parser(char *str)
 	//expand_tokens
 	trim_tokens(list);
 	print_tokens(list);
+	command = create_commands(list);
 }

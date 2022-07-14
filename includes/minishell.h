@@ -64,6 +64,7 @@ typedef struct s_command_table
 typedef struct s_command
 {
     char	*cmd;
+    char    *full_cmd;
 	char	*path; //NULL if its a builtin
     char    **options;
     char    **parameters;
