@@ -9,6 +9,7 @@ int main(int argc, char **argv)
 	(void) argc;
 	str = argv[1];
 	printf("str : %s\n", str);
+	printf("STRNCMP : %d\n", ft_strncmp("<<", STR_D_LESS, ft_strlen("<<")));
 	error = analyze_quotes(str);
 	if (error)
 	{
@@ -16,6 +17,8 @@ int main(int argc, char **argv)
 		return (0);
 	}
 	list = tokenization(str);
+	//print_tokens(list);
+	analyze_tokens_type(list);
 	print_tokens(list);
 	return (0);
 }

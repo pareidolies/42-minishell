@@ -15,7 +15,7 @@ t_token *create_token(char *str, int size)
 	node->token[size] = '\0';
 	while (size--)
 		node->token[size] = str[size];
-    node->flag = 0;
+    node->type = 0;
     return (node);
 }
 
@@ -26,7 +26,6 @@ void    add_token(t_token *first, char *str, int size)
 
     current = first;
     new = create_token(str, size);
-    printf("new : %s\n", new->token);
     while (current->next != NULL)
        current = current->next;
     current->next = new;
@@ -44,7 +43,7 @@ void    print_tokens(t_token *node)
         printf("********\n");
         printf("id : %d\n", i);
         printf("str : %s\n", node->token);
-        printf("flag : %i\n", node->flag);
+        printf("type : %i\n", (int)node->type);
         printf("********\n");
         node = node->next;
         i++;

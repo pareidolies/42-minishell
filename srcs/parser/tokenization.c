@@ -106,10 +106,32 @@ t_token	*tokenization(char *str)
 		else
 		{
 			add_token(list, &str[i], size);
-			printf("hello\n");
 		}
 		//handling malloc error
 		i += size;
 	}
 	return (list);
+}
+
+void	analyze_tokens_type(t_token *list)
+{
+	t_token	*current;
+
+	current = list;
+	while (current->next != NULL)
+	{
+		if (ft_strncmp(current->token, STR_LESS, ft_strlen(current->token)) == 0)
+			current->type = T_LESS;
+		if (ft_strncmp(current->token, STR_D_LESS, ft_strlen(current->token)) == 0)
+			current->type = T_D_LESS;
+		if (ft_strncmp(current->token, STR_GREATER, ft_strlen(current->token)) == 0)
+			current->type = T_GREATER;
+		if (ft_strncmp(current->token, STR_D_GREATER, ft_strlen(current->token)) == 0)
+			current->type = T_D_GREATER;
+		if (ft_strncmp(current->token, STR_PIPE, ft_strlen(current->token)) == 0)
+			current->type = T_PIPE;
+		else
+			current->type = T_LITERAL;
+		current = current->next;
+	}
 }

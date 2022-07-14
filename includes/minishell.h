@@ -8,6 +8,50 @@
 # include <stdio.h>
 
 /******************************************************************************
+ *                             ENUMERATIONS                                   *
+ *****************************************************************************/
+
+typedef enum e_type
+{
+	T_LITERAL,
+    T_LESS,
+    T_INPUT,
+    T_GREATER,
+    T_OUTPUT,
+    T_D_LESS,
+    T_DELIMITER,
+    T_D_GREATER,
+    T_APPEND,
+	T_PIPE,
+	T_WHITESPACE,
+	T_S_QUOTE,
+	T_D_QUOTE,
+    T_AND,
+    T_OR,
+}	t_type;
+
+/******************************************************************************
+ *                                 MACROS                                     *
+ *****************************************************************************/
+
+//Characters
+
+# define S_QUOTE '\''
+# define D_QUOTE '"'
+# define SPACE ' '
+# define LESS '<'
+# define GREATER '>'
+# define PIPE '|'
+
+//Strings
+
+# define STR_LESS "<"
+# define STR_D_LESS "<<"
+# define STR_GREATER ">"
+# define STR_D_GREATER ">>"
+# define STR_PIPE "|"
+
+/******************************************************************************
  *                               STRUCTURES                                   *
  *****************************************************************************/
 
@@ -33,40 +77,10 @@ typedef struct s_command
 typedef struct s_token
 {
     char    *token;
-    int     flag;
+    t_type     type;
     struct s_token *next;
     struct s_token *prev;
 }   t_token;
-
-/******************************************************************************
- *                             ENUMERATIONS                                   *
- *****************************************************************************/
-
-typedef enum e_type
-{
-	LITERAL,
-    LESS,
-    GREATER,
-    D_LESS,
-    D_GREATER,
-	PIPE,
-	WHITESPACE,
-	S_QUOTE,
-	D_QUOTE,
-    AND,
-    OR,
-}	t_type;
-
-/******************************************************************************
- *                                 MACROS                                     *
- *****************************************************************************/
-
-# define S_QUOTE '\''
-# define D_QUOTE '"'
-# define SPACE ' '
-# define LESS '<'
-# define GREATER '>'
-# define PIPE '|'
 
 /******************************************************************************
  *                            GLOBAL VARIABLE                                 *
@@ -96,6 +110,7 @@ t_token *create_token(char *str, int flag);
 int	analyze_quotes(char *str);
 int	get_token_size(char *str);
 t_token	*tokenization(char *str);
+void	analyze_tokens_type(t_token *list);
 
 
 #endif
