@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <limits.h>
 #include <unistd.h>
+#include <string.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 
@@ -20,13 +21,14 @@ int main(void)
 	flag = 0;
 	while (flag != 1) 
 	{
-	result = readline("minishell>> ");
-	printf("User said : [%s]\n", result);
-	add_history(result);
-	if (strcmp(result, "aurevoir") == 0)
-		flag = 1;
-	free(result);
+		result = readline("minishell>> ");
+		printf("User said : [%s]\n", result);
+		add_history(result);
+		main_parser(result);
+		if (strcmp(result, "aurevoir") == 0)
+			flag = 1;
+		free(result);
 	}
-	rl_clear_history();
+	clear_history();
 	return (0);
 }

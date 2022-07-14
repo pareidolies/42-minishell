@@ -112,6 +112,6 @@ int	get_token_size(char *str);
 t_token	*tokenization(char *str);
 void	analyze_tokens_type(t_token *list);
 void	analyze_literals_type(t_token *list);
-
+void main_parser(char *str);
 
 #endif

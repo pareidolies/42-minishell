@@ -1,6 +1,7 @@
 SRCS			=	parser/main_parser.c \
 					parser/tokens_handler.c \
 					parser/tokenization.c \
+					exec/testmain.c
 
 BONUS			= 
 
