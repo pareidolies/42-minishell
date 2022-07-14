@@ -11,6 +11,8 @@
  *                             ENUMERATIONS                                   *
  *****************************************************************************/
 
+//Tokens types
+
 typedef enum e_type
 {
 	T_LITERAL,
@@ -23,9 +25,6 @@ typedef enum e_type
     T_D_GREATER,
     T_APPEND,
 	T_PIPE,
-	T_WHITESPACE,
-	T_S_QUOTE,
-	T_D_QUOTE,
     T_AND,
     T_OR,
 }	t_type;
@@ -77,6 +76,7 @@ typedef struct s_command
 typedef struct s_token
 {
     char    *token;
+    char    *trimmed_token;
     t_type     type;
     int         to_expand;
     struct s_token *next;
@@ -117,5 +117,8 @@ void main_parser(char *str);
 //expander.c
 int there_is_a_dollar(char *str);
 void    analyze_tokens_to_expand(t_token *list);
+
+//trim_tokens.c
+void    trim_tokens(t_token *list);
 
 #endif

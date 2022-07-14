@@ -16,5 +16,7 @@ void main_parser(char *str)
 	analyze_tokens_type(list);
 	analyze_literals_type(list);
 	analyze_tokens_to_expand(list);
+	//expand_tokens
+	trim_tokens(list);
 	print_tokens(list);
 }
