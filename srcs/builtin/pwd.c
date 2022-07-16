@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
-#include "libft.h"
+#include "../../libft/libft.h"
+#include "../../includes/minishell.h"
 
 /*voir si expansion $VAR ici ou faite avant*/
 int	ft_pwd(char **params)
