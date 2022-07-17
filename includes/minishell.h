@@ -8,8 +8,8 @@
 # include <stdio.h>
 
 /******************************************************************************
- *                             ENUMERATIONS                                   *
- *****************************************************************************/
+*                              ENUMERATIONS                                   *
+******************************************************************************/
 
 //Tokens types
 
@@ -28,6 +28,24 @@ typedef enum e_type
     T_AND,
     T_OR,
 }	t_type;
+
+//Files
+
+typedef enum e_file
+{
+    INFILE,
+    OUTFILE,
+    ERROR,
+}   t_file;
+
+//Redirection modes
+
+typedef enum e_mode
+{
+    SIMPLE,
+    APPEND,
+    DELIMITER,
+}   t_mode;
 
 /******************************************************************************
  *                                 MACROS                                     *
@@ -50,15 +68,30 @@ typedef enum e_type
 # define STR_D_GREATER ">>"
 # define STR_PIPE "|"
 
+//Std
+
+# define STDIN 0
+# define STDOUT 1
+# define STDERR 2
+
 /******************************************************************************
  *                               STRUCTURES                                   *
  *****************************************************************************/
+
 typedef struct	s_env
 {
 	char			*key;
 	char			*value;
 	struct s_env	*next;
 }				t_env;
+
+typedef struct s_redirection
+{
+    char    *file;
+    t_type   mode;
+    struct s_redirection *next;
+    struct s_redirection *prev;
+}   t_redirection;
 
 typedef struct s_command_table 
 {
@@ -72,10 +105,9 @@ typedef struct s_command
     char	*cmd;
     char    *full_cmd;
 	char	*path; //NULL if its a builtin
-    char    **options;
-    char    **parameters;
-	int		infile; //default stdin
-	int		outfile; //default stdout
+    char    **options; //NULL it its not a builtin
+    char    **parameters; //NULL if its not a builtin
+	t_redirection   *redirection;
     struct s_command *next;
     struct s_command *prev;
 }   t_command;
