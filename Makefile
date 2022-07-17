@@ -4,8 +4,9 @@ SRCS			=	parser/main_parser.c \
 					parser/expander.c \
 					parser/trim_tokens.c \
 					parser/parser.c \
+					parser/commands_handler.c \
 					exec/testmain.c \
-					exec/exec_utils.c
+					exec/exec_utils.c \
 
 BONUS			= 
 
