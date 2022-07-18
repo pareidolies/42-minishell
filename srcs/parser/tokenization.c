@@ -63,7 +63,10 @@ int	get_token_size(char *str)
 			while (str[i] && str[i] != S_QUOTE)
 				i++;
 			printf("i : %d\n", i);
-			return (i + 1);
+			if (str[i + 1] && str[i + 1] != LESS && str[i + 1] != GREATER && str[i + 1] != PIPE)
+				return (i + 1 + get_token_size(&str[i + 1]));
+			else
+				return (i + 1);
 		}
 		if (str[i] == D_QUOTE)
 		{
@@ -71,7 +74,10 @@ int	get_token_size(char *str)
 			while (str[i] && str[i] != D_QUOTE)
 				i++;
 			printf("i : %d\n", i);
-			return (i + 1);
+			if (str[i + 1] && str[i + 1] != LESS && str[i + 1] != GREATER && str[i + 1] != PIPE)
+				return (i + 1 + get_token_size(&str[i + 1]));
+			else
+				return (i + 1);
 		}
 		else
 		{
