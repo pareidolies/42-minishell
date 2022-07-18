@@ -23,5 +23,5 @@ void main_parser(char *str, t_env *envlist)
 	expand_tokens(list, envlist);
 	trim_tokens(list);
 	print_tokens(list);
-	command = create_commands(list);
+	command = convert_tokens_to_commands(list);
 }

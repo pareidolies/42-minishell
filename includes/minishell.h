@@ -16,6 +16,7 @@
 typedef enum e_type
 {
 	T_LITERAL,
+    T_CMD,
     T_LESS,
     T_INPUT,
     T_GREATER,
@@ -108,6 +109,7 @@ typedef struct s_command
     char    **options; //NULL it its not a builtin
     char    **parameters; //NULL if its not a builtin
 	t_redirection   *redirection;
+    int     cmd_found;
     struct s_command *next;
     struct s_command *prev;
 }   t_command;

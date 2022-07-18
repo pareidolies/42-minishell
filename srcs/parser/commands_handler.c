@@ -2,8 +2,8 @@
 
 t_command *create_command(char *str, int size)
 {
-    t_command *node;
-
+    t_command   *node;
+    
     node = malloc(sizeof(t_command));
     if (!node)
         return (NULL);
@@ -18,16 +18,22 @@ t_command *create_command(char *str, int size)
     node->path = NULL;
     node->options = NULL;
     node->parameters = NULL;
+    node->cmd_found = 0;
     return (node);
 }
 
-void    add_command(t_command *first, char *str, int size)
+void    add_command(t_token *list, t_command *first, char *str, int size)
 {
-    t_command *current;
-    t_command *new;
+    t_command   *current;
+    t_command   *new;
+    t_token     *token;
 
+    token = list;
+    while (token && token->type != T_LITERAL)
+        token = token->next;
+    token->type = T_CMD;
     current = first;
-    new = create_command(str, size);
+    new = create_command(token->trimmed_token, ft_strlen(token->trimmed_token));
     while (current->next != NULL)
        current = current->next;
     current->next = new;

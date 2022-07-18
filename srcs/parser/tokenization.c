@@ -118,7 +118,7 @@ void	analyze_tokens_type(t_token *list)
 	t_token	*current;
 
 	current = list;
-	while (current->next != NULL)
+	while (current != NULL)
 	{
 		if (ft_strncmp(current->token, STR_LESS, ft_strlen(current->token)) == 0)
 			current->type = T_LESS;
