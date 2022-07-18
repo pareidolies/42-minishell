@@ -80,7 +80,7 @@ void	ft_clean_list(t_env	*envlist)
 	}
 }
 
-char *ft_getenv(char *key, t_env *envlist)
+char	*ft_getenv(char *key, t_env *envlist)
 {
 	while (envlist != NULL)
 	{
@@ -89,6 +89,17 @@ char *ft_getenv(char *key, t_env *envlist)
 		envlist = envlist->next;
 	}
 	printf("Variable [%s] not in the environment.\n", key);
+	return (NULL);
+}
+
+t_env	*ft_getenv_var(char *key, t_env *envlist)
+{
+	while (envlist != NULL)
+	{
+		if (ft_strncmp(envlist->key, key, ft_strlen(key) + 1) == 0)
+			return (envlist);
+		envlist = envlist->next;
+	}
 	return (NULL);
 }
 
