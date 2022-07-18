@@ -47,8 +47,8 @@ void    print_command(t_command *node)
         printf("********\n");
         printf("id : %d\n", i);
         printf("command : %s\n", node->cmd);
-        /*printf("full command : %s\n", node->full_cmd);
-        printf("path : %s\n", node->path);
+        printf("full command : %s\n", node->full_cmd);
+        /*printf("path : %s\n", node->path);
         printf("options : XX\n");
         printf("parameters : XX\n");
         printf(" redirections : XX\n");*/

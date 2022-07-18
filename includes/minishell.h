@@ -68,6 +68,7 @@ typedef enum e_mode
 # define STR_GREATER ">"
 # define STR_D_GREATER ">>"
 # define STR_PIPE "|"
+# define STR_SPACE " "
 
 //Std
 
