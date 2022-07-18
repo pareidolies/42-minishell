@@ -1,11 +1,10 @@
 #include "../../includes/minishell.h"
 
-void        fill_command(t_token *list)
+/*void        fill_command(t_token *list)
 {
     t_token *current;
 
     current = list;
-
     while (current && current->type != T_LITERAL)
     {
 
@@ -19,7 +18,7 @@ void        fill_command(t_token *list)
         else
             add_command(current->token)
     }
-}
+}*/
 
 t_command   *convert_tokens_to_commands(t_token *list)
 {
@@ -27,20 +26,16 @@ t_command   *convert_tokens_to_commands(t_token *list)
     t_token     *current;
 
     current = list;
-    while (current)
+    result = create_command(current);
+    //fill_command(current);
+    while (current->next)
     {
-        if ((ft_strncmp(current->token, STR_PIPE, ft_strlen(current->token)) == 0) && current->next)
+        if ((ft_strncmp(current->next->token, STR_PIPE, ft_strlen(current->next->token)) == 0))
         {
-            result = create_command(current->next);
-            fill_command(current->next, result);
+            add_command(current->next, result);
+            //fill_command(current->next, result);
         }
-        else if ((ft_strncmp(current->token, STR_PIPE, ft_strlen(current->token)) == 0) && !current->next)
-        {
-            printf("error: pipe and nothing after");
-            exit (1);
-        }
-        else
-            current = current->next;
+        current = current->next;
     }
     return (result);
 }

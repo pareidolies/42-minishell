@@ -109,7 +109,6 @@ typedef struct s_command
     char    **options; //NULL it its not a builtin
     char    **parameters; //NULL if its not a builtin
 	t_redirection   *redirection;
-    int     cmd_found;
     struct s_command *next;
     struct s_command *prev;
 }   t_command;
@@ -164,7 +163,12 @@ void    expand_tokens(t_token *list, t_env *envlist);
 void    trim_tokens(t_token *list);
 
 //parser.c
-t_command   *create_commands(t_token *list);
+t_command   *convert_tokens_to_commands(t_token *list);
+
+//commands_handler.c
+void    print_command(t_command *node);
+void    add_command(t_token *list, t_command *first);
+t_command *create_command(t_token *list);
 
 //exec_utils.c
 t_env	*ft_list_env(char **envp); //pour dupliquer env au début du prog
