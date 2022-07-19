@@ -171,6 +171,9 @@ void    print_command(t_command *node);
 void    add_command(t_token *list, t_command *first);
 t_command *create_command(t_token *list);
 
+//check_tokens.c
+void    check_tokens(t_token *list);
+
 //exec_utils.c
 t_env	*ft_list_env(char **envp); //pour dupliquer env au début du prog
 t_env	*ft_new_var(char *keyvalue);

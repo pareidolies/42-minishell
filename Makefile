@@ -5,6 +5,7 @@ SRCS			=	parser/main_parser.c \
 					parser/trim_tokens.c \
 					parser/parser.c \
 					parser/commands_handler.c \
+					parser/check_tokens.c \
 					exec/testmain.c \
 					exec/exec_utils.c \
 
