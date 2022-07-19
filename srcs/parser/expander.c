@@ -1,5 +1,7 @@
 #include "../../includes/minishell.h"
 
+/* If many variables to expand : ft_split ($) */
+
 int there_is_a_dollar(char *str)
 {
     int i;
