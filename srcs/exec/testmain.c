@@ -1,4 +1,5 @@
 #include "../../includes/minishell.h"
+#include "../../libft/libft.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
@@ -15,6 +16,7 @@ int main(int argc, char **argv, char **envp)
 	char	*result;
 	t_env	*envlist;
 	int		flag;
+	char	**params;
 	
 	flag = 0;
 	if (argc != 1 || argv[1] != NULL)
@@ -29,7 +31,9 @@ int main(int argc, char **argv, char **envp)
 		result = readline("minishell>> ");
 		printf("User said : [%s]\n", result);
 		add_history(result);
-		main_parser(result);
+		//main_parser(result);
+		params = ft_split(result, ' ');
+		ft_cd(params, envlist);
 		if (strcmp(result, "aurevoir") == 0)
 			flag = 1;
 		free(result);

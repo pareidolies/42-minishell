@@ -1,10 +1,12 @@
-SRCS			=	parser/main_parser.c \
-					parser/tokens_handler.c \
-					parser/tokenization.c \
-					parser/expander.c \
-					parser/trim_tokens.c \
+SRCS			=	#parser/main_parser.c \
+					#parser/tokens_handler.c \
+					#parser/tokenization.c \
+					#parser/expander.c \
+					#parser/trim_tokens.c \#
 					exec/testmain.c \
-					exec/exec_utils.c
+					exec/exec_utils.c \
+					builtin/cd.c 
+
 
 BONUS			= 
 

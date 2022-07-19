@@ -134,5 +134,5 @@ void	ft_lstaddback(t_env **alst, t_env *new);
 void	ft_clean_list(t_env	*envlist);
 
 char    *ft_getenv(char *key, t_env *envlist); //pour expander
-
+int ft_cd(char **params, t_env *envlist);
 #endif

@@ -1,4 +1,6 @@
 #include <unistd.h>
+#include <sys/types.h>
+#include <dirent.h>
 #include "../../libft/libft.h"
 #include "builtin.h"
 #include "../../includes/minishell.h"
@@ -6,44 +8,65 @@
 int ft_cd(char **params, t_env *envlist)
 {
 	char	*current;
-	char	*tmp;
-	char	*path;
+	DIR		*directory;
+	// char	*tmp;
+	// char	*path;
 
 	if (nb_param(params) != 1)
-		return (cd_others(params))
+		return (cd_others(params, envlist));
 	current = getcwd(NULL, 0);
 	if (current == NULL)
 	{
-		perror(cd (getcwd) );
+		perror("cd (getcwd) ");
 		return (1); /*GESTION ERREUR*/
 	}
 	printf("current : [%s]\n", current);
-	if (params[0][0] == '/') //chemin absolu
-		path = params[0];
-	else if (ft_strchr(params[0], '/') != NULL) //chemin relatif
+	// if (params[0][0] == '/') //chemin absolu
+	// 	path = params[0];
+	// else if (ft_strchr(params[0], '/') != NULL) //chemin relatif
+	// {
+	// 	tmp = ft_strjoin(current, "/");
+	// 	if (tmp == NULL)
+	// 		return (perror("cd "), 2);
+	// 	path = ft_strjoin(tmp, params[0]); //PWD + relatif = absolu
+	// 	if (path == NULL)
+	// 	{
+	// 		free(tmp);
+	// 		return (perror("cd "), 2);
+	// 	}
+	// 	free(tmp);
+	// }
+	
+	if (access(params[0], F_OK) == 0) //if it exists
 	{
-		tmp = ft_strjoin(current, "/");
-		if (tmp == NULL)
-			return (perror("cd "), 2);
-		path = ft_strjoin(tmp, params[0]); //PWD + relatif = absolu
-		if (path == NULL)
+		directory = opendir(params[0]);
+		if (directory != NULL) //if it is a openable directory
 		{
-			free(tmp);
-			return (perror("cd "), 2);
+			if (chdir(params[0]) == 0) //if we can change directory
+			{
+				update_env("OLDPWD", current, envlist);
+				free(current);
+				if ((current = getcwd(NULL, 0)) == NULL)
+				{
+					perror("cd (getcwd) ");
+					return (1); /*GESTION ERREUR*/
+				}
+				update_env("PWD", current, envlist);
+			}
+			else
+				perror("minishell: cd: ");/*GESTION ERREUR*/
+			closedir(directory);
 		}
-		free(tmp);
+		else
+			write(2, "Not a directory\n", 16);/*GESTION ERREUR*/
 	}
-	if (access(path, F_OK) == 0)
-	{
-		if (chdir(path) == 0)
-		{
-			update_env("OLDPWD", current, envlist);
-			update_env("PWD", path, envlist);/////////
-		}
-	}
+	else
+		write(2, "No such file or directory\n", 26);/*GESTION ERREUR*/
+	free(current);
+	return (0);
 }
 
-int	cd_others(t_command_table *table, char **params)
+int	cd_others(/*t_command_table *table, */char **params, t_env *envlist)
 {
 	char	*path;
 
@@ -54,7 +77,7 @@ int	cd_others(t_command_table *table, char **params)
 	}
 	if (nb_param(params) == 0)
 	{
-		path = ft_getenv("HOME", t_env);
+		path = ft_getenv("HOME", envlist);
 		if (path == NULL)
 		{
 			write(2, "cd : HOME not set\n", 18); /*GESTION ERREUR*/
@@ -62,8 +85,8 @@ int	cd_others(t_command_table *table, char **params)
 		}
 		if (chdir(path) == 0)
 		{
-			update_env("OLDPWD", ft_getenv("PWD"));
-			update_env("PWD", path);
+			update_env("OLDPWD", ft_getenv("PWD", envlist), envlist);
+			update_env("PWD", path, envlist);
 			return (0);
 		}
 		else
@@ -82,7 +105,7 @@ int	update_env(char *key, char *newvalue, t_env	*envlist)
 	var = ft_getenv_var(key, envlist);
 	if (var == NULL)
 	{
-		var = ft_new_var_split(key, value);
+		var = ft_new_var_split(key, newvalue);
 		if (var == NULL) /*GESTION ERREUR*/
 			return (perror("update_env (ft_new_var_split) "), 1);
 		ft_lstaddback(&envlist, var);
@@ -97,7 +120,7 @@ int	update_env(char *key, char *newvalue, t_env	*envlist)
 	return (0);
 }
 
-t_env	*ft_new_var_split(char *key, char *value, t_env **envlist)
+t_env	*ft_new_var_split(char *key, char *value)
 {
 	t_env	*var;
 
@@ -114,18 +137,18 @@ t_env	*ft_new_var_split(char *key, char *value, t_env **envlist)
 	return (var);
 }
 
-int	update_env(char *key_pwd, char *newpwd)
-{
-	char	*oldpwd;
-	char	*pwd;
-	int		i;
+// int	update_env(char *key_pwd, char *newpwd)
+// {
+// 	char	*oldpwd;
+// 	char	*pwd;
+// 	int		i;
 
-	i = 0;
-	pwd = ft_getenv("PWD");
-	oldpwd = ft_getenv("OLDPWD");
-	if (oldpwd == NULL)
-	{
+// 	i = 0;
+// 	pwd = ft_getenv("PWD");
+// 	oldpwd = ft_getenv("OLDPWD");
+// 	if (oldpwd == NULL)
+// 	{
 
-	}
-	while ()
-}
+// 	}
+// 	while ()
+// }
