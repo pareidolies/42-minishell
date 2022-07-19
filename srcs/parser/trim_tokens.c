@@ -21,6 +21,7 @@ char    *withdraw_quotes(char   *str)
                 i++;
             result = ft_strjoin(result, ft_substr(str, start + 1, i - start - 1));
             printf("RES 1 : %s\n", result);
+            i++;
         }
         else if (str[i] == D_QUOTE)
         {
@@ -29,15 +30,16 @@ char    *withdraw_quotes(char   *str)
                 i++;
             result = ft_strjoin(result, ft_substr(str, start + 1, i - start - 1));
             printf("RES 2 : %s\n", result);
+            i++;
         }
         else
         {
             while (str[i] && str[i] != S_QUOTE && str[i] != D_QUOTE)
                 i++;
-            result = ft_strjoin(result, ft_substr(str, start, i - start - 1));
+            result = ft_strjoin(result, ft_substr(str, start, i - start));
             printf("RES 3 : %s\n", result);
         }
-        i++;
+        //i++;
     }
     return (result);
 }
