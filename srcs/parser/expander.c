@@ -53,6 +53,35 @@ int     get_expanded_token_size(char *str)
     return (i - start - 1);
 }
 
+char    *create_expanded_token(char *str)
+{
+    char    *result;
+    int     i;
+    char    *before;
+    char    *after;
+    char    *key;
+    char    *expanded_key;
+
+    i = 0;
+    while (there_is_a_dollar(&str[i]))
+    {
+        start = get_expanded_token_start(&str[i]);
+        size = get_expanded_token_size(&str[i]);
+        key = ft_substr(current->token, start, size);
+        expanded_key = ft_getenv(key, envlist);
+        before = ft_substr(current->token, 0, start - 1);
+        after = ft_substr(current->token, start + size, ft_strlen(current->token) - start - size);
+        current->expanded_token = ft_strjoin(before, expanded_key);
+        current->expanded_token = ft_strjoin(current->expanded_token, after);
+        free(key);
+        free(expanded_key);
+        free(before);
+        free(after);
+        i++;
+    }
+    return (result);
+}
+
 void    expand_tokens(t_token *list, t_env *envlist)
 {
     t_token *current;
