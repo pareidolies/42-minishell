@@ -33,7 +33,8 @@ int main(int argc, char **argv, char **envp)
 		add_history(result);
 		//main_parser(result);
 		params = ft_split(result, ' ');
-		ft_cd(params, envlist);
+		//ft_cd(params, envlist);
+		//ft_env(params, envlist);
 		if (strcmp(result, "aurevoir") == 0)
 			flag = 1;
 		free(result);

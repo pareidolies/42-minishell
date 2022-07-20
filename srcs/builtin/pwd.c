@@ -10,6 +10,11 @@ int	ft_pwd(char **params)
 	int		len;
 
 	/* /!\ verif des arguments est différente entre bash et zsh*/
+	// if (nb_param(params) != 0)
+    // {
+    //     write(2, "pwd : too many arguments\n", 25);/*GESTION ERREUR*/
+    //     return (1);
+    // }
 	path = getcwd(NULL, 0);
 	if (path == NULL)
 	{

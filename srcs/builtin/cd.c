@@ -9,8 +9,6 @@ int ft_cd(char **params, t_env *envlist)
 {
 	char	*current;
 	DIR		*directory;
-	// char	*tmp;
-	// char	*path;
 
 	if (nb_param(params) != 1)
 		return (cd_others(params, envlist));
@@ -21,22 +19,6 @@ int ft_cd(char **params, t_env *envlist)
 		return (1); /*GESTION ERREUR*/
 	}
 	printf("current : [%s]\n", current);
-	// if (params[0][0] == '/') //chemin absolu
-	// 	path = params[0];
-	// else if (ft_strchr(params[0], '/') != NULL) //chemin relatif
-	// {
-	// 	tmp = ft_strjoin(current, "/");
-	// 	if (tmp == NULL)
-	// 		return (perror("cd "), 2);
-	// 	path = ft_strjoin(tmp, params[0]); //PWD + relatif = absolu
-	// 	if (path == NULL)
-	// 	{
-	// 		free(tmp);
-	// 		return (perror("cd "), 2);
-	// 	}
-	// 	free(tmp);
-	// }
-	
 	if (access(params[0], F_OK) == 0) //if it exists
 	{
 		directory = opendir(params[0]);
@@ -65,6 +47,27 @@ int ft_cd(char **params, t_env *envlist)
 	free(current);
 	return (0);
 }
+
+/*début de code pour recup le chemin si besoin*/
+	// char	*tmp;
+	// char	*path;
+
+	// if (params[0][0] == '/') //chemin absolu
+	// 	path = params[0];
+	// else if (ft_strchr(params[0], '/') != NULL) //chemin relatif
+	// {
+	// 	tmp = ft_strjoin(current, "/");
+	// 	if (tmp == NULL)
+	// 		return (perror("cd "), 2);
+	// 	path = ft_strjoin(tmp, params[0]); //PWD + relatif = absolu
+	// 	if (path == NULL)
+	// 	{
+	// 		free(tmp);
+	// 		return (perror("cd "), 2);
+	// 	}
+	// 	free(tmp);
+	// }
+	
 
 int	cd_others(/*t_command_table *table, */char **params, t_env *envlist)
 {

@@ -71,7 +71,7 @@ typedef struct s_command
 {
     char	*cmd;
     char    *full_cmd;
-	char	*path; //NULL if its a builtin
+	char	*path; //NULL if its a builtin - "builtin" maybe
     char    **options;
     char    **parameters;
 	int		infile; //default stdin
@@ -94,7 +94,7 @@ typedef struct s_token
  *                            GLOBAL VARIABLE                                 *
  *****************************************************************************/
 
-int g_exit_status;
+//int g_exit_status;
 
 /******************************************************************************
  *                               FUNCTIONS                                    *
@@ -135,4 +135,6 @@ void	ft_clean_list(t_env	*envlist);
 
 char    *ft_getenv(char *key, t_env *envlist); //pour expander
 int ft_cd(char **params, t_env *envlist);
+int ft_env(char **params, t_env *envlist);
+
 #endif
