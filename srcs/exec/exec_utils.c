@@ -88,8 +88,8 @@ char *ft_getenv(char *key, t_env *envlist)
 			return (envlist->value);
 		envlist = envlist->next;
 	}
-	printf("Variable [%s] not in the environment.\n", key);
-	return (NULL);
+	//printf("Variable [%s] not in the environment.\n", key);
+	return ("");
 }
 
 /*usage : ./a.out KEY */

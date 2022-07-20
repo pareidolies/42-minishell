@@ -43,9 +43,9 @@ typedef enum e_file
 
 typedef enum e_mode
 {
-    SIMPLE,
-    APPEND,
-    DELIMITER,
+    TRUNC, //0
+    APPEND, //1
+    DELIMITER, //2
 }   t_mode;
 
 /******************************************************************************
@@ -129,7 +129,7 @@ typedef struct s_token
  *                            GLOBAL VARIABLE                                 *
  *****************************************************************************/
 
-int g_exit_status;
+//int g_exit_status;
 
 /******************************************************************************
  *                               FUNCTIONS                                    *
