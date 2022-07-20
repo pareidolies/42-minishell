@@ -45,10 +45,10 @@ int     get_expanded_token_size(char *str)
     int start;
 
     i = 0;
-    while (str[i] != '$')
+    while (str[i] && str[i] != '$')
         i++;
     start = i;
-    while (str[i] != SPACE && str[i] != S_QUOTE && str[i] != D_QUOTE)
+    while (str[i] && str[i] != SPACE && str[i] != S_QUOTE && str[i] != D_QUOTE)
         i++;
     return (i - start - 1);
 }
