@@ -13,7 +13,8 @@ int ft_env(char **params, t_env *envlist)
 	var = envlist;
 	while (var != NULL)
 	{
-		printf("%s=%s\n", var->key, var->value);
+		if (var->value != NULL)
+			printf("%s=%s\n", var->key, var->value);
 		var = var->next;
 	}
 	return (0);

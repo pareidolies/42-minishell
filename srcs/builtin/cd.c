@@ -115,10 +115,13 @@ int	update_env(char *key, char *newvalue, t_env	*envlist)
 	}
 	else
 	{
-		free(var->value);
-		var->value = ft_strdup(newvalue);
-		if (var->value == NULL)
-			return (perror("update_env "), 1);
+		if (newvalue != NULL)
+		{
+			free(var->value);
+			var->value = ft_strdup(newvalue);
+			if (var->value == NULL)
+				return (perror("update_env "), 1);
+		}
 	}
 	return (0);
 }
@@ -133,9 +136,14 @@ t_env	*ft_new_var_split(char *key, char *value)
 	var->key = ft_strdup(key);
 	if (var->key == NULL)
 		return (perror("ft_new_var_split "), NULL);
-	var->value = ft_strdup(value);
-	if (var->value == NULL)
-		return (perror("ft_new_var_split "), NULL);
+	if (value != NULL)
+	{
+		var->value = ft_strdup(value);
+		if (var->value == NULL)
+			return (perror("ft_new_var_split "), NULL);
+	}
+	else
+		var->value = NULL;
 	var->next = NULL;
 	return (var);
 }
