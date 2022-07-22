@@ -81,7 +81,7 @@ int	cd_others(/*t_command_table *table, */char **params, t_env *envlist)
 	if (nb_param(params) == 0)
 	{
 		path = ft_getenv("HOME", envlist);
-		if (path == NULL)
+		if (path[0] == '\0')
 		{
 			write(2, "cd : HOME not set\n", 18); /*GESTION ERREUR*/
 			return (1);
@@ -147,19 +147,3 @@ t_env	*ft_new_var_split(char *key, char *value)
 	var->next = NULL;
 	return (var);
 }
-
-// int	update_env(char *key_pwd, char *newpwd)
-// {
-// 	char	*oldpwd;
-// 	char	*pwd;
-// 	int		i;
-
-// 	i = 0;
-// 	pwd = ft_getenv("PWD");
-// 	oldpwd = ft_getenv("OLDPWD");
-// 	if (oldpwd == NULL)
-// 	{
-
-// 	}
-// 	while ()
-// }
