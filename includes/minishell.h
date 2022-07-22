@@ -60,6 +60,7 @@ typedef enum e_mode
 # define LESS '<'
 # define GREATER '>'
 # define PIPE '|'
+# define DOLLAR '$'
 
 //Strings
 

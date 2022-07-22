@@ -34,9 +34,9 @@ int     get_expanded_token_start(char *str)
     int i;
 
     i = 0;
-    while (str[i] != '$')
+    while (str[i] && str[i] != '$')
         i++;
-    return (i + 1);
+    return (i);
 }
 
 int     get_expanded_token_size(char *str)
@@ -53,59 +53,98 @@ int     get_expanded_token_size(char *str)
     return (i - start - 1);
 }
 
-char    *create_expanded_token(char *str)
+/*char    *create_expanded_token(char *str, t_env *envlist)
 {
+    int     size;
+    int     start;
     char    *result;
     int     i;
+    int     j;
     char    *before;
     char    *after;
     char    *key;
     char    *expanded_key;
+    int     beginning;
 
     i = 0;
-    while (there_is_a_dollar(&str[i]))
+    j = 0;
+    beginning = 0;
+    while (str[i] && there_is_a_dollar(&str[i]))
     {
         start = get_expanded_token_start(&str[i]);
         size = get_expanded_token_size(&str[i]);
-        key = ft_substr(current->token, start, size);
-        expanded_key = ft_getenv(key, envlist);
-        before = ft_substr(current->token, 0, start - 1);
-        after = ft_substr(current->token, start + size, ft_strlen(current->token) - start - size);
-        current->expanded_token = ft_strjoin(before, expanded_key);
-        current->expanded_token = ft_strjoin(current->expanded_token, after);
+        printf("start : %d / size = %d\n", start, size);
+        key = ft_substr(&str[i], start, size);
+        printf("key : %s\n", key);
+        expanded_key = ft_getenv(ft_substr(&str[i], start, size), envlist);
+        if (beginning == 0)
+        {
+            before = ft_substr(&str[i], 0, start - 1);
+            beginning = 42;
+            printf("beginning = 0");
+        }
+        else if (beginning == 42)
+        {
+            before = ft_strdup(result);
+            printf("beginning = 1");
+        }
+        printf("before : %s\n", before);
+        after = ft_substr(&str[i], start + size, ft_strlen(&str[i]) - start - size);
+        result = ft_strjoin(before, expanded_key);
+        result = ft_strjoin(result, after);
+        printf("result : %s\n", result);
         free(key);
         free(expanded_key);
         free(before);
         free(after);
-        i++;
+        i = i + start + size;
     }
+    return (result);
+}*/
+
+char    *get_expanded_key(char *str, int size, t_env *envlist)
+{
+    printf("substr : %s\n", ft_substr(str, 0, size));
+    return(ft_getenv(ft_substr(str, 0, size), envlist));    
+}
+
+char    *create_expanded_token(char *str, t_env *envlist)
+{
+    char    *result;
+    int     i;
+    int     size;
+    int     before_dollar;
+
+    (void) envlist;
+    i = 0;
+    while(str[i] && str[i] != DOLLAR)
+        i++;
+    result = ft_substr(str, 0, i);
+    printf("*result* step 1 : %s\n", result);
+    //while(str[i])
+    //{
+        i++;
+        size = get_expanded_token_size(&str[i]);
+        result = ft_strjoin(result, get_expanded_key(&str[i], size, envlist));
+        printf("*result* step 2 : %s\n", result);
+        i = i + size;
+        before_dollar = get_expanded_token_start(&str[i]);
+        //result = ft_strjoin(result, ft_substr(&str[i], 0, before_dollar));
+        //printf("*result* step 3 : %s\n", result);
+        //i = i + before_dollar;
+    //}
     return (result);
 }
 
 void    expand_tokens(t_token *list, t_env *envlist)
 {
     t_token *current;
-    int start;
-    int size;
-    char    *key;
-    char    *expanded_key;
-    char    *before;
-    char    *after;
 
     current = list;
     while (current != NULL)
     {
         if (current->to_expand)
-        {
-            start = get_expanded_token_start(current->token);
-            size = get_expanded_token_size(current->token);
-            key = ft_substr(current->token, start, size);
-            expanded_key = ft_getenv(key, envlist);
-            before = ft_substr(current->token, 0, start - 1);
-            after = ft_substr(current->token, start + size, ft_strlen(current->token) - start - size);
-            current->expanded_token = ft_strjoin(before, expanded_key);
-            current->expanded_token = ft_strjoin(current->expanded_token, after);
-        }
+            current->expanded_token = create_expanded_token(current->token, envlist);
         else
             current->expanded_token = current->token;
         current = current->next;
