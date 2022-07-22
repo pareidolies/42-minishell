@@ -82,13 +82,14 @@ void	ft_clean_list(t_env	*envlist)
 
 char *ft_getenv(char *key, t_env *envlist)
 {
+	if (ft_strncmp(key, "?", 2) == 0)
+		return(g_exit_status);
 	while (envlist != NULL)
 	{
 		if (ft_strncmp(envlist->key, key, ft_strlen(key) + 1) == 0)
 			return (envlist->value);
 		envlist = envlist->next;
 	}
-	//printf("Variable [%s] not in the environment.\n", key);
 	return ("");
 }
 
