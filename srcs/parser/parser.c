@@ -17,6 +17,13 @@ void        fill_command(t_token *list, t_command *cell)
             node->full_cmd = ft_strjoin(node->full_cmd, STR_SPACE);
             node->full_cmd = ft_strjoin(node->full_cmd, current->trimmed_token);
         }
+        else if (current->type == T_LESS || current->type == T_GREATER || current->type == T_D_LESS || current->type == T_D_GREATER)
+        {
+            if (!node->redirection)
+                node->redirection = create_redirection(current->next);
+            else
+                add_redirection(current->next, node->redirection);
+        }
         current = current->next;
     }
 }

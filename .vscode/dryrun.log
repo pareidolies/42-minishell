@@ -1,0 +1,68 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory `/Users/user/Documents/42/42-minishell'
+cc -Wall -Wextra -Werror -fsanitize=address    -c -o srcs/parser/main_parser.o srcs/parser/main_parser.c
+ 
+cc -Wall -Wextra -Werror -fsanitize=address    -c -o srcs/parser/tokens_handler.o srcs/parser/tokens_handler.c
+cc -Wall -Wextra -Werror -fsanitize=address    -c -o srcs/parser/tokenization.o srcs/parser/tokenization.c
+cc -Wall -Wextra -Werror -fsanitize=address    -c -o srcs/parser/expander.o srcs/parser/expander.c
+cc -Wall -Wextra -Werror -fsanitize=address    -c -o srcs/parser/trim_tokens.o srcs/parser/trim_tokens.c
+ 
+cc -Wall -Wextra -Werror -fsanitize=address    -c -o srcs/parser/parser.o srcs/parser/parser.c
+cc -Wall -Wextra -Werror -fsanitize=address    -c -o srcs/parser/commands_handler.o srcs/parser/commands_handler.c
+cc -Wall -Wextra -Werror -fsanitize=address    -c -o srcs/parser/check_tokens.o srcs/parser/check_tokens.c
+ 
+cc -Wall -Wextra -Werror -fsanitize=address    -c -o srcs/parser/redirections.o srcs/parser/redirections.c
+ 
+cc -Wall -Wextra -Werror -fsanitize=address    -c -o srcs/exec/testmain.o srcs/exec/testmain.c
+cc -Wall -Wextra -Werror -fsanitize=address    -c -o srcs/exec/exec_utils.o srcs/exec/exec_utils.c
+ 
+/Library/Developer/CommandLineTools/usr/bin/make -C libft --no-print-directory
+ 
+cc    -c -o ft_atoi.o ft_atoi.c
+ 
+cc    -c -o ft_bzero.o ft_bzero.c
+cc    -c -o ft_calloc.o ft_calloc.c
+cc    -c -o ft_isalnum.o ft_isalnum.c
+ 
+cc    -c -o ft_isalpha.o ft_isalpha.c
+cc    -c -o ft_isascii.o ft_isascii.c
+cc    -c -o ft_isdigit.o ft_isdigit.c
+cc    -c -o ft_isprint.o ft_isprint.c
+ 
+cc    -c -o ft_memchr.o ft_memchr.c
+ 
+cc    -c -o ft_memcmp.o ft_memcmp.c
+cc    -c -o ft_memcpy.o ft_memcpy.c
+cc    -c -o ft_memmove.o ft_memmove.c
+cc    -c -o ft_memset.o ft_memset.c
+cc    -c -o ft_strchr.o ft_strchr.c
+ 
+cc    -c -o ft_strdup.o ft_strdup.c
+cc    -c -o ft_strlcat.o ft_strlcat.c
+cc    -c -o ft_strlcpy.o ft_strlcpy.c
+cc    -c -o ft_strlen.o ft_strlen.c
+cc    -c -o ft_strncmp.o ft_strncmp.c
+cc    -c -o ft_strnstr.o ft_strnstr.c
+cc    -c -o ft_strrchr.o ft_strrchr.c
+ 
+cc    -c -o ft_tolower.o ft_tolower.c
+cc    -c -o ft_toupper.o ft_toupper.c
+cc    -c -o ft_substr.o ft_substr.c
+cc    -c -o ft_strjoin.o ft_strjoin.c
+cc    -c -o ft_strtrim.o ft_strtrim.c
+ 
+cc    -c -o ft_split.o ft_split.c
+cc    -c -o ft_itoa.o ft_itoa.c
+cc    -c -o ft_strmapi.o ft_strmapi.c
+ 
+cc    -c -o ft_striteri.o ft_striteri.c
+cc    -c -o ft_putchar_fd.o ft_putchar_fd.c
+cc    -c -o ft_putstr_fd.o ft_putstr_fd.c
+cc    -c -o ft_putendl_fd.o ft_putendl_fd.c
+cc    -c -o ft_putnbr_fd.o ft_putnbr_fd.c
+ar rcs libft.a ft_atoi.o ft_bzero.o ft_calloc.o ft_isalnum.o ft_isalpha.o ft_isascii.o ft_isdigit.o ft_isprint.o ft_memchr.o ft_memcmp.o ft_memcpy.o ft_memmove.o ft_memset.o ft_strchr.o ft_strdup.o ft_strlcat.o ft_strlcpy.o ft_strlen.o ft_strncmp.o ft_strnstr.o ft_strrchr.o ft_tolower.o ft_toupper.o ft_substr.o ft_strjoin.o ft_strtrim.o ft_split.o ft_itoa.o ft_strmapi.o ft_striteri.o ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o
+ 
+cc -Wall -Wextra -Werror -fsanitize=address -I includes srcs/parser/main_parser.c srcs/parser/tokens_handler.c srcs/parser/tokenization.c srcs/parser/expander.c srcs/parser/trim_tokens.c srcs/parser/parser.c srcs/parser/commands_handler.c srcs/parser/check_tokens.c srcs/parser/redirections.c srcs/exec/testmain.c srcs/exec/exec_utils.c ./libft/libft.a -o minishell -lreadline
+ 
+make: Leaving directory `/Users/user/Documents/42/42-minishell'
+ 

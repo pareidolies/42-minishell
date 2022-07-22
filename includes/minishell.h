@@ -32,20 +32,21 @@ typedef enum e_type
 
 //Files
 
-typedef enum e_file
+/*typedef enum e_file
 {
     INFILE,
     OUTFILE,
     ERROR,
-}   t_file;
+}   t_file;*/
 
 //Redirection modes
 
 typedef enum e_mode
 {
-    TRUNC, //0
-    APPEND, //1
-    DELIMITER, //2
+    TRUNC, //0 '>'
+    APPEND, //1 '>>'
+    INFILE, //2 '<'
+    DELIMITER, //3 '<<'
 }   t_mode;
 
 /******************************************************************************
@@ -90,13 +91,13 @@ typedef struct	s_env
 
 typedef struct s_redirection
 {
-    char    *file;
-    t_type   mode;
+    char    *str;
+    t_mode   mode;
     struct s_redirection *next;
     struct s_redirection *prev;
 }   t_redirection;
 
-typedef struct s_command_table 
+typedef struct s_command_table
 {
     struct s_command    *commands;
     struct s_env        *env;
@@ -107,9 +108,9 @@ typedef struct s_command
 {
     char	*cmd;
     char    *full_cmd;
-	char	*path; //NULL if its a builtin
-    char    **options; //NULL it its not a builtin
-    char    **parameters; //NULL if its not a builtin
+	char	*path; //"builtin" if its a builtin
+    //char    **options; //NULL it its not a builtin
+    //char    **parameters; //NULL if its not a builtin
 	t_redirection   *redirection;
     struct s_command *next;
     struct s_command *prev;
@@ -174,6 +175,10 @@ t_command *create_command(t_token *list);
 
 //check_tokens.c
 void    check_tokens(t_token *list);
+
+//redirections.c
+void    add_redirection(t_token *list, t_redirection *first);
+t_redirection *create_redirection(t_token *list);
 
 //exec_utils.c
 t_env	*ft_list_env(char **envp); //pour dupliquer env au début du prog

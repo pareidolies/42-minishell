@@ -17,9 +17,8 @@ t_command *create_command(t_token *list)
     result->cmd = ft_strdup(current->trimmed_token);
     if (!(result->cmd))
 		return (NULL);
+    result->redirection = NULL;
     result->path = NULL;
-    result->options = NULL;
-    result->parameters = NULL;
     return (result);
 }
 
@@ -48,6 +47,8 @@ void    print_command(t_command *node)
         printf("id : %d\n", i);
         printf("command : %s\n", node->cmd);
         printf("full command : %s\n", node->full_cmd);
+        if (node->redirection)
+            printf("redirection : %s\n", node->redirection->str);
         /*printf("path : %s\n", node->path);
         printf("options : XX\n");
         printf("parameters : XX\n");
