@@ -44,19 +44,25 @@ t_env	*ft_new_var(char *keyvalue)
 	return (var);
 }
 
+/*head contient $? et sa valeur g_exit_status*/
 t_env	*ft_list_env(char **envp)
 {
 	t_env	*var;
 	t_env	*head;
 	int		i;
 
-	i = 1;
 	var = NULL;
-	if (envp == NULL || envp[0] == NULL)
-		return (NULL);
-	head = ft_new_var(envp[0]);
+	head = malloc(sizeof(t_env));
 	if (head == NULL)
-		return(NULL); //faire fonction clean_exit !!
+		return (perror("ft_list_end "), NULL); /*GESTION ERREUR MALLOC*/
+	head->key = ft_strdup("?");
+	head->value = ft_strdup("0");
+	head->next = NULL;
+	if (head->key == NULL || head->value == NULL)
+		return (perror("ft_list_end "), NULL); /*GESTION ERREUR MALLOC*/
+	if (envp == NULL || envp[0] == NULL)
+		return (head); //voir variables présentes au démarrage
+	i = 0;
 	while (envp[i] != NULL)
 	{
 		var = ft_new_var(envp[i]); /*create a new node and fill it*/
@@ -81,11 +87,22 @@ void	ft_clean_list(t_env	*envlist)
 }
 
 //g_exit_status est un int, et la fonction retourne un char*
+//SOLVED : $? est maintenant gérée comme une variable d'env normale 
 
 char *ft_getenv(char *key, t_env *envlist)
 {
-	/*if (ft_strncmp(key, "?", 2) == 0)
-		return(g_exit_status);*/
+	// char	*status;
+
+	// if (ft_strncmp(key, "?", 2) == 0)
+	// {
+	// 	status = ft_itoa(g_exit_status);
+	// 	if (status == NULL)
+	// 	{
+	// 		perror("ft_getenv "); /*GESTION ERREUR MALLOC*/
+	// 		return (1);
+	// 	}
+	// 	return(status);
+	// }
 	while (envlist != NULL)
 	{
 		if (ft_strncmp(envlist->key, key, ft_strlen(key) + 1) == 0)
@@ -93,6 +110,22 @@ char *ft_getenv(char *key, t_env *envlist)
 		envlist = envlist->next;
 	}
 	return ("");
+}
+
+void	ft_update_status(int code, t_env *envlist)
+{
+	char	*newvalue;
+
+	if (code == g_exit_status)
+		return ;
+	newvalue = ft_itoa(code);
+	if (newvalue == NULL)
+	{
+		perror("ft_update_status "); /*GESTION ERREUR MALLOC*/
+		return (1);
+	}
+	update_env("?", newvalue, envlist);
+	g_exit_status = code;
 }
 
 /*usage : ./a.out KEY */
