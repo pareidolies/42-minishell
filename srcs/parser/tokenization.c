@@ -83,7 +83,13 @@ int	get_token_size(char *str)
 		{
 			while (str[i] && (str[i] != SPACE) && (str[i] != PIPE) && (str[i] != GREATER) && (str[i] != LESS) && (str[i] != S_QUOTE) && (str[i] != D_QUOTE))
 				i++;
-			return (i);
+			if (str[i] && (str[i] == S_QUOTE || str[i] == D_QUOTE))
+			{
+				printf("HERE\n");
+				return (i + 1 + get_token_size(&str[i + 1]));
+			}
+			else
+				return (i);
 		}
 	}
 	return (0);
