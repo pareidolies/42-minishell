@@ -44,64 +44,19 @@ int     get_expanded_token_size(char *str)
     int i;
 
     i = 0;
-    while (str[i] && str[i] != DOLLAR && str[i] != S_QUOTE && str[i] != D_QUOTE)
+    while (str[i] && str[i] != DOLLAR && str[i] != S_QUOTE && str[i] != D_QUOTE && str[i] != SPACE)
+    {
+        if (str[i] == QUESTION)
+            return (1);
         i++;
+    }
     return (i);
 }
-
-/*char    *create_expanded_token(char *str, t_env *envlist)
-{
-    int     size;
-    int     start;
-    char    *result;
-    int     i;
-    int     j;
-    char    *before;
-    char    *after;
-    char    *key;
-    char    *expanded_key;
-    int     beginning;
-
-    i = 0;
-    j = 0;
-    beginning = 0;
-    while (str[i] && there_is_a_dollar(&str[i]))
-    {
-        start = get_expanded_token_start(&str[i]);
-        size = get_expanded_token_size(&str[i]);
-        printf("start : %d / size = %d\n", start, size);
-        key = ft_substr(&str[i], start, size);
-        printf("key : %s\n", key);
-        expanded_key = ft_getenv(ft_substr(&str[i], start, size), envlist);
-        if (beginning == 0)
-        {
-            before = ft_substr(&str[i], 0, start - 1);
-            beginning = 42;
-            printf("beginning = 0");
-        }
-        else if (beginning == 42)
-        {
-            before = ft_strdup(result);
-            printf("beginning = 1");
-        }
-        printf("before : %s\n", before);
-        after = ft_substr(&str[i], start + size, ft_strlen(&str[i]) - start - size);
-        result = ft_strjoin(before, expanded_key);
-        result = ft_strjoin(result, after);
-        printf("result : %s\n", result);
-        free(key);
-        free(expanded_key);
-        free(before);
-        free(after);
-        i = i + start + size;
-    }
-    return (result);
-}*/
 
 char    *get_expanded_key(char *str, int size, t_env *envlist)
 {
     //printf("substr : %s\n", ft_substr(str, 0, size));
-    return(ft_getenv(ft_substr(str, 0, size), envlist));    
+    return(ft_getenv(ft_substr(str, 0, size), envlist));
 }
 
 char    *create_expanded_token(char *str, t_env *envlist)
@@ -120,6 +75,7 @@ char    *create_expanded_token(char *str, t_env *envlist)
     {
         i++;
         size = get_expanded_token_size(&str[i]);
+        printf("size : %d\n", size);
         if (size == 0)
             break;
         result = ft_strjoin(result, get_expanded_key(&str[i], size, envlist));
