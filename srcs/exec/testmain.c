@@ -35,10 +35,11 @@ int main(int argc, char **argv, char **envp)
 	{
 		result = readline("minishell>> ");
 		printf("User said : [%s]\n", result);
+		if (ft_strncmp(result, "exit", 5) == 0)
+			flag = 1;
 		add_history(result);
 		commands = main_parser(result, envlist);
-		if (strcmp(result, "aurevoir") == 0)
-			flag = 1;
+		ft_exec(commands, envlist);
 		free(result);
 	}
 	clear_history();
