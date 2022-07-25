@@ -20,6 +20,7 @@ int main(int argc, char **argv, char **envp)
 	char	*result;
 	t_env	*envlist;
 	int		flag;
+	t_command *commands;
 	//char	**params;
 	
 	flag = 0;
@@ -35,7 +36,7 @@ int main(int argc, char **argv, char **envp)
 		result = readline("minishell>> ");
 		printf("User said : [%s]\n", result);
 		add_history(result);
-		main_parser(result, envlist);
+		commands = main_parser(result, envlist);
 		if (strcmp(result, "aurevoir") == 0)
 			flag = 1;
 		free(result);

@@ -142,7 +142,7 @@ typedef struct s_token
 
 
 //main_parser.c
-void main_parser(char *str, t_env *envlist);
+t_command *main_parser(char *str, t_env *envlist);
 
 //token_handler.c
 void    print_tokens(t_token *token);

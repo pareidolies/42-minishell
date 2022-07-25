@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void main_parser(char *str, t_env *envlist)
+t_command *main_parser(char *str, t_env *envlist)
 {
 	int	error;
 	t_token	*list;
@@ -13,7 +13,7 @@ void main_parser(char *str, t_env *envlist)
 	if (error)
 	{
 		printf("Error: Wrong number of quotes\n");
-		return;
+		return(NULL);
 	}
 	list = tokenization(str);
 	//print_tokens(list);
@@ -26,4 +26,5 @@ void main_parser(char *str, t_env *envlist)
 	print_tokens(list);
 	command = convert_tokens_to_commands(list, envlist);
 	print_command(command);
+	return (command);
 }
