@@ -165,7 +165,7 @@ void    expand_tokens(t_token *list, t_env *envlist);
 void    trim_tokens(t_token *list);
 
 //parser.c
-t_command   *convert_tokens_to_commands(t_token *list);
+t_command   *convert_tokens_to_commands(t_token *list, t_env *envlist);
 
 //commands_handler.c
 void    print_command(t_command *node);

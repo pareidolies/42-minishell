@@ -64,8 +64,8 @@ void    print_command(t_command *node)
             printf("--> arg %d : %s\n", j, node->args[j]);
             j++;
         }
-        /*printf("path : %s\n", node->path);
-        printf("options : XX\n");
+        printf("path : %s\n", node->path);
+        /*printf("options : XX\n");
         printf("parameters : XX\n");
         printf(" redirections : XX\n");*/
         printf("********\n");
