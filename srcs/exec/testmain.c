@@ -8,7 +8,9 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-int g_exit_status = 0;
+/*Defining and initializing global variable*/
+/*only once in the program*/
+int g_exit_status = 0; 
 
 /*test affichage du prompt et recup de la ligne*/
 /*pour l'instant, le prog quitte si on tape "aurevoir" */

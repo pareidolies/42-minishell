@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*Declaring global variable*/
+/*As often as needed*/
 extern int g_exit_status;
 
 void	ft_lstaddback(t_env **alst, t_env *new)
@@ -94,18 +96,6 @@ void	ft_clean_list(t_env	*envlist)
 
 char *ft_getenv(char *key, t_env *envlist)
 {
-	// char	*status;
-
-	// if (ft_strncmp(key, "?", 2) == 0)
-	// {
-	// 	status = ft_itoa(g_exit_status);
-	// 	if (status == NULL)
-	// 	{
-	// 		perror("ft_getenv "); /*GESTION ERREUR MALLOC*/
-	// 		return (1);
-	// 	}
-	// 	return(status);
-	// }
 	while (envlist != NULL)
 	{
 		if (ft_strncmp(envlist->key, key, ft_strlen(key) + 1) == 0)

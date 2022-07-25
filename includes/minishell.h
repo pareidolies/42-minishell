@@ -16,37 +16,37 @@
 typedef enum e_type
 {
 	T_LITERAL,
-    T_CMD,
-    T_LESS,
-    T_INPUT,
-    T_GREATER,
-    T_OUTPUT,
-    T_D_LESS,
-    T_DELIMITER,
-    T_D_GREATER,
-    T_APPEND,
+	T_CMD,
+	T_LESS,
+	T_INPUT,
+	T_GREATER,
+	T_OUTPUT,
+	T_D_LESS,
+	T_DELIMITER,
+	T_D_GREATER,
+	T_APPEND,
 	T_PIPE,
-    T_AND,
-    T_OR,
+	T_AND,
+	T_OR,
 }	t_type;
 
 //Files
 
 /*typedef enum e_file
 {
-    INFILE,
-    OUTFILE,
-    ERROR,
+	INFILE,
+	OUTFILE,
+	ERROR,
 }   t_file;*/
 
 //Redirection modes
 
 typedef enum e_mode
 {
-    TRUNC, //0 '>'
-    APPEND, //1 '>>'
-    INFILE, //2 '<'
-    DELIMITER, //3 '<<'
+	TRUNC, //0 '>'
+	APPEND, //1 '>>'
+	INFILE, //2 '<'
+	DELIMITER, //3 '<<'
 }   t_mode;
 
 /******************************************************************************
@@ -91,40 +91,40 @@ typedef struct	s_env
 
 typedef struct s_redirection
 {
-    char    *str;
-    t_mode   mode;
-    struct s_redirection *next;
-    struct s_redirection *prev;
+	char    *str;
+	t_mode   mode;
+	struct s_redirection *next;
+	struct s_redirection *prev;
 }   t_redirection;
 
 typedef struct s_command_table
 {
-    struct s_command    *commands;
-    struct s_env        *env;
+	struct s_command    *commands;
+	struct s_env        *env;
 	pid_t	            pid;
 }   t_command_table;
 
 typedef struct s_command
 {
-    char	*cmd;
-    char    *full_cmd;
+	char	*cmd;
+	char    *full_cmd;
 	char	*path; //"builtin" if its a builtin
-    //char    **options; //NULL it its not a builtin
-    //char    **parameters; //NULL if its not a builtin
+	//char    **options; //NULL it its not a builtin
+	//char    **parameters; //NULL if its not a builtin
 	t_redirection   *redirection;
-    struct s_command *next;
-    struct s_command *prev;
+	struct s_command *next;
+	struct s_command *prev;
 }   t_command;
 
 typedef struct s_token
 {
-    char    *token;
-    char    *trimmed_token;
-    char    *expanded_token;
-    t_type     type;
-    int         to_expand;
-    struct s_token *next;
-    struct s_token *prev;
+	char    *token;
+	char    *trimmed_token;
+	char    *expanded_token;
+	t_type     type;
+	int         to_expand;
+	struct s_token *next;
+	struct s_token *prev;
 }   t_token;
 
 /******************************************************************************
@@ -138,9 +138,7 @@ typedef struct s_token
  *****************************************************************************/
 
 //testmain.c
-int	exe_command(char **commandfull);
-char    *environment_path(char *command, char *path_var);
-char	*absolute_relative_path(char *command);
+
 
 //main_parser.c
 void main_parser(char *str, t_env *envlist);
@@ -186,8 +184,15 @@ t_env	*ft_new_var(char *keyvalue);
 void	ft_lstaddback(t_env **alst, t_env *new);
 void	ft_clean_list(t_env	*envlist);
 
+//builtins
 char    *ft_getenv(char *key, t_env *envlist); //pour expander
 int ft_cd(char **params, t_env *envlist);
 int ft_env(char **params, t_env *envlist);
+
+//get_path.c
+char    *get_command_path(char *command, t_env *envlist);
+char    *environment_path(char *command, char *path_var);
+char	*absolute_relative_path(char *command);
+void	ft_free_tab(char **tab);
 
 #endif
