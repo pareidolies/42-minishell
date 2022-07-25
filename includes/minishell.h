@@ -109,6 +109,7 @@ typedef struct s_command
 	char	*cmd;
 	char    *full_cmd;
 	char	*path; //"builtin" if its a builtin
+	char	**args;
 	//char    **options; //NULL it its not a builtin
 	//char    **parameters; //NULL if its not a builtin
 	t_redirection   *redirection;

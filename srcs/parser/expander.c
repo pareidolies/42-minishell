@@ -100,7 +100,7 @@ int     get_expanded_token_size(char *str)
 
 char    *get_expanded_key(char *str, int size, t_env *envlist)
 {
-    printf("substr : %s\n", ft_substr(str, 0, size));
+    //printf("substr : %s\n", ft_substr(str, 0, size));
     return(ft_getenv(ft_substr(str, 0, size), envlist));    
 }
 
@@ -115,7 +115,7 @@ char    *create_expanded_token(char *str, t_env *envlist)
     while(str[i] && str[i] != DOLLAR)
         i++;
     result = ft_substr(str, 0, i);
-    printf("*result* step 1 : %s\n", result);
+    //printf("*result* step 1 : %s\n", result);
     while(str[i])
     {
         i++;
@@ -123,12 +123,12 @@ char    *create_expanded_token(char *str, t_env *envlist)
         if (size == 0)
             break;
         result = ft_strjoin(result, get_expanded_key(&str[i], size, envlist));
-        printf("*result* step 2 : %s\n", result);
+        //printf("*result* step 2 : %s\n", result);
         i = i + size;
         before_dollar = get_expanded_token_start(&str[i]);
-        printf("before dollar : %d\n", before_dollar);
+        //printf("before dollar : %d\n", before_dollar);
         result = ft_strjoin(result, ft_substr(&str[i], 0, before_dollar));
-        printf("*result* step 3 : %s\n", result);
+        //printf("*result* step 3 : %s\n", result);
         i = i + before_dollar;
     }
     return (result);

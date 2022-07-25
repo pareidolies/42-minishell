@@ -26,6 +26,8 @@ void        fill_command(t_token *list, t_command *cell)
         }
         current = current->next;
     }
+    //printf("NODE->FULL_CMD : %s\n", node->full_cmd);
+    node->args = ft_split(node->full_cmd, SPACE);
 }
 
 t_command   *convert_tokens_to_commands(t_token *list)

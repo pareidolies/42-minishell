@@ -32,8 +32,8 @@ int	analyze_quotes(char *str)
 		}
 		i++;
 	}
-	printf("s_quote : %d\n", s_quotes_nbr);
-	printf("d_quote : %d\n", d_quotes_nbr);
+	//printf("s_quote : %d\n", s_quotes_nbr);
+	//printf("d_quote : %d\n", d_quotes_nbr);
 	if (s_quotes_nbr % 2 != 0 || d_quotes_nbr % 2 != 0)
 		return (1);
 	else
@@ -73,7 +73,7 @@ int	get_token_size(char *str)
 			i++;
 			while (str[i] && str[i] != D_QUOTE)
 				i++;
-			printf("i : %d\n", i);
+			//printf("i : %d\n", i);
 			if (str[i + 1] && str[i + 1] != LESS && str[i + 1] != GREATER && str[i + 1] != PIPE)
 				return (i + 1 + get_token_size(&str[i + 1]));
 			else
@@ -85,7 +85,7 @@ int	get_token_size(char *str)
 				i++;
 			if (str[i] && (str[i] == S_QUOTE || str[i] == D_QUOTE))
 			{
-				printf("HERE\n");
+				//printf("HERE\n");
 				return (i + 1 + get_token_size(&str[i + 1]));
 			}
 			else
@@ -112,7 +112,7 @@ t_token	*tokenization(char *str)
 		size = get_token_size(&str[i]);
 		if (size == 0)
 			break;
-		printf("size : %d\n", size);
+		//printf("size : %d\n", size);
 		if (!list)
 			list = create_token(&str[i], size);
 		else

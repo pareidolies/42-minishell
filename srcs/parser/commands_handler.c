@@ -38,10 +38,12 @@ void    add_command(t_token *list, t_command *first)
 void    print_command(t_command *node)
 {
     int i;
+    int j;
+
     i = 0;
     t_redirection *current;
 
-    printf("---- PRINT COMMANDS ----\n");
+    printf("\n\n\n---- PRINT COMMANDS ----\n");
     while (node)
     {
         printf("********\n");
@@ -54,6 +56,13 @@ void    print_command(t_command *node)
             printf("redirection content : %s\n", current->str);
             printf("redirection mode : %d\n", (int)current->mode);
             current = current->next;
+        }
+        j = 0;
+        printf("--> details of the final arguments :\n");
+        while (node->args[j])
+        {
+            printf("--> arg %d : %s\n", j, node->args[j]);
+            j++;
         }
         /*printf("path : %s\n", node->path);
         printf("options : XX\n");

@@ -38,7 +38,7 @@ void    print_tokens(t_token *node)
     int i;
     i = 0;
 
-    printf("---- PRINT TOKENS ----\n");
+    printf("\n\n\n---- PRINT TOKENS ----\n");
     while (node)
     {
         printf("********\n");

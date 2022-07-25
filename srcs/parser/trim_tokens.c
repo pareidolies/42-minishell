@@ -8,7 +8,7 @@ char    *withdraw_quotes(char   *str)
     char    *result;
     int     start;
 
-    printf("STR : %s\n", str);
+    //printf("STR : %s\n", str);
     result = ft_strdup("");
     i = 0;
     while (str[i])
@@ -20,7 +20,7 @@ char    *withdraw_quotes(char   *str)
             while(str[i] && str[i] != S_QUOTE)
                 i++;
             result = ft_strjoin(result, ft_substr(str, start + 1, i - start - 1));
-            printf("RES 1 : %s\n", result);
+            //printf("RES 1 : %s\n", result);
             i++;
         }
         else if (str[i] == D_QUOTE)
@@ -29,7 +29,7 @@ char    *withdraw_quotes(char   *str)
             while(str[i] && str[i] != D_QUOTE)
                 i++;
             result = ft_strjoin(result, ft_substr(str, start + 1, i - start - 1));
-            printf("RES 2 : %s\n", result);
+            //printf("RES 2 : %s\n", result);
             i++;
         }
         else
@@ -37,7 +37,7 @@ char    *withdraw_quotes(char   *str)
             while (str[i] && str[i] != S_QUOTE && str[i] != D_QUOTE)
                 i++;
             result = ft_strjoin(result, ft_substr(str, start, i - start));
-            printf("RES 3 : %s\n", result);
+            //printf("RES 3 : %s\n", result);
         }
         //i++;
     }
