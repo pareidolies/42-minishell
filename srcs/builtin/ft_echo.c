@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "builtin.h"
-#include "../../libft/libft.h"
-#include "../../includes/minishell.h"
+#include "libft.h"
+#include "minishell.h"
 
 int	is_valid_option(char *str)
 {
@@ -58,13 +58,13 @@ int	ft_echo(char **params)
 	return (0);
 }
 
-int main(int argc, char **argv)
-{
-	char	**params;
+// int main(int argc, char **argv)
+// {
+// 	char	**params;
 
-	if (argc < 1)
-		return (1);
-	params = argv;
-	ft_echo(params);
-	return (0);
-}
+// 	if (argc < 1)
+// 		return (1);
+// 	params = argv;
+// 	ft_echo(params);
+// 	return (0);
+// }

@@ -1,5 +1,5 @@
-#include "../../includes/minishell.h"
-#include "../../libft/libft.h"
+#include "minishell.h"
+#include "libft.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
@@ -7,6 +7,8 @@
 #include <string.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+
+int g_exit_status = 0;
 
 /*test affichage du prompt et recup de la ligne*/
 /*pour l'instant, le prog quitte si on tape "aurevoir" */
@@ -16,7 +18,7 @@ int main(int argc, char **argv, char **envp)
 	char	*result;
 	t_env	*envlist;
 	int		flag;
-	char	**params;
+	//char	**params;
 	
 	flag = 0;
 	if (argc != 1 || argv[1] != NULL)

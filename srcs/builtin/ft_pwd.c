@@ -1,20 +1,21 @@
 #include <stdio.h>
 #include <unistd.h>
-#include "../../libft/libft.h"
-#include "../../includes/minishell.h"
+#include "libft.h"
+#include "minishell.h"
+#include "builtin.h"
 
 /*voir si expansion $VAR ici ou faite avant*/
 int	ft_pwd(char **params)
 {
-	char	*path;
-	int		len;
+	char		*path;
+	size_t		len;
 
 	/* /!\ verif des arguments est différente entre bash et zsh*/
-	// if (nb_param(params) != 0)
-    // {
-    //     write(2, "pwd : too many arguments\n", 25);/*GESTION ERREUR*/
-    //     return (1);
-    // }
+	if (nb_param(params) != 0)
+    {
+        write(2, "pwd : too many arguments\n", 25);/*GESTION ERREUR*/
+        return (1);
+    }
 	path = getcwd(NULL, 0);
 	if (path == NULL)
 	{

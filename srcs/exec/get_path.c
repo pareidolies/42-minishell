@@ -4,28 +4,28 @@
 
 /*Une fois que le parser nous a permis de recup un tableau de string*/
 /*constitué de la commande et ses argument :*/
-int	exe_command(char **commandfull)
-{
-	char	*path_var;
-	char	*path;
+// int	exe_command(char **commandfull)
+// {
+// 	char	*path_var;
+// 	char	*path;
 
-	/*savoir si on a déjà un chemin ou si on doit aller le chercher dans l'env*/
-	if (commandfull[0] contient un '/')
-		path = absolute_relative_path(commandfull[0]);
-	else
-	{
-		path_var = ft_getenv("PATH", envlist);
-		if (path_var[0] == '\0')
-		{
-			perror("getenv error "); /*GESTION ERREUR*/
-			return (1);
-		}
-		path = environment_path(commandfull[0], path_var);
-	}
-	if (path == NULL)
-		this is la mierda, trucs a gerer
-	/*maintenant qu'on a le path, on peut executer*/
-}
+// 	/*savoir si on a déjà un chemin ou si on doit aller le chercher dans l'env*/
+// 	if (commandfull[0] contient un '/')
+// 		path = absolute_relative_path(commandfull[0]);
+// 	else
+// 	{
+// 		path_var = ft_getenv("PATH", envlist);
+// 		if (path_var[0] == '\0')
+// 		{
+// 			perror("getenv error "); /*GESTION ERREUR*/
+// 			return (1);
+// 		}
+// 		path = environment_path(commandfull[0], path_var);
+// 	}
+// 	if (path == NULL)
+// 		this is la mierda, trucs a gerer
+// 	/*maintenant qu'on a le path, on peut executer*/
+// }
 
 char *environment_path(char *command, char *path_var)
 {

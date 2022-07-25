@@ -1,7 +1,10 @@
-#include "../../includes/minishell.h"
-#include "../../libft/libft.h"
+#include "minishell.h"
+#include "builtin.h"
+#include "libft.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+extern int g_exit_status;
 
 void	ft_lstaddback(t_env **alst, t_env *new)
 {
@@ -112,12 +115,12 @@ char *ft_getenv(char *key, t_env *envlist)
 	return ("");
 }
 
-void	ft_update_status(int code, t_env *envlist)
+int	ft_update_status(int code, t_env *envlist)
 {
 	char	*newvalue;
 
 	if (code == g_exit_status)
-		return ;
+		return (0);
 	newvalue = ft_itoa(code);
 	if (newvalue == NULL)
 	{
@@ -126,6 +129,7 @@ void	ft_update_status(int code, t_env *envlist)
 	}
 	update_env("?", newvalue, envlist);
 	g_exit_status = code;
+	return (0);
 }
 
 t_env	*ft_getenv_var(char *key, t_env *envlist)

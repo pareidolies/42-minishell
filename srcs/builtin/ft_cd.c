@@ -1,9 +1,9 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <dirent.h>
-#include "../../libft/libft.h"
+#include "libft.h"
 #include "builtin.h"
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 int ft_cd(char **params, t_env *envlist)
 {
