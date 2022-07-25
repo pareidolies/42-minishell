@@ -62,6 +62,7 @@ typedef enum e_mode
 # define GREATER '>'
 # define PIPE '|'
 # define DOLLAR '$'
+# define QUESTION '?'
 
 //Strings
 
