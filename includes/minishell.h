@@ -180,6 +180,9 @@ void    check_tokens(t_token *list);
 void    add_redirection(t_token *list, t_redirection *first);
 t_redirection *create_redirection(t_token *list);
 
+//free_tokens.c
+void    free_tokens(t_token *list);
+
 //exec_utils.c
 t_env	*ft_list_env(char **envp); //pour dupliquer env au début du prog
 t_env	*ft_new_var(char *keyvalue);
