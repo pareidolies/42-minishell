@@ -39,6 +39,7 @@ void    print_command(t_command *node)
 {
     int i;
     i = 0;
+    t_redirection *current;
 
     printf("---- PRINT COMMANDS ----\n");
     while (node)
@@ -47,8 +48,13 @@ void    print_command(t_command *node)
         printf("id : %d\n", i);
         printf("command : %s\n", node->cmd);
         printf("full command : %s\n", node->full_cmd);
-        if (node->redirection)
-            printf("redirection : %s\n", node->redirection->str);
+        current = node->redirection;
+        while (current)
+        {
+            printf("redirection content : %s\n", current->str);
+            printf("redirection mode : %d\n", (int)current->mode);
+            current = current->next;
+        }
         /*printf("path : %s\n", node->path);
         printf("options : XX\n");
         printf("parameters : XX\n");
