@@ -128,6 +128,17 @@ void	ft_update_status(int code, t_env *envlist)
 	g_exit_status = code;
 }
 
+t_env	*ft_getenv_var(char *key, t_env *envlist)
+{
+	while (envlist != NULL)
+	{
+		if (ft_strncmp(envlist->key, key, ft_strlen(key) + 1) == 0)
+			return (envlist);
+		envlist = envlist->next;
+	}
+	return (NULL);
+}
+
 /*usage : ./a.out KEY */
 // int main(int argc, char **argv, char **envp)
 // {

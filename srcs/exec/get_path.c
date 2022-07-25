@@ -14,8 +14,8 @@ int	exe_command(char **commandfull)
 		path = absolute_relative_path(commandfull[0]);
 	else
 	{
-		path_var = getenv("PATH");
-		if (path_var == NULL)
+		path_var = ft_getenv("PATH", envlist);
+		if (path_var[0] == '\0')
 		{
 			perror("getenv error "); /*GESTION ERREUR*/
 			return (1);
