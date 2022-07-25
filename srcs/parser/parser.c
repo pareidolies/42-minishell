@@ -1,4 +1,4 @@
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 void        fill_command(t_token *list, t_command *cell)
 {

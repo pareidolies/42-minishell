@@ -1,4 +1,4 @@
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 void main_parser(char *str, t_env *envlist)
 {

@@ -1,4 +1,4 @@
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 /* If many variables to expand : ft_split ($) */
 

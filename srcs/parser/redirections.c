@@ -1,4 +1,4 @@
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 t_redirection *create_redirection(t_token *list)
 {
