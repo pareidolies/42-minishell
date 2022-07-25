@@ -44,7 +44,7 @@ int     get_expanded_token_size(char *str)
     int i;
 
     i = 0;
-    while (str[i] && str[i] != DOLLAR && str[i] != S_QUOTE && str[i] != D_QUOTE)
+    while (str[i] && str[i] != DOLLAR && str[i] != S_QUOTE && str[i] != D_QUOTE && str[i] != SPACE)
     {
         if (str[i] == QUESTION)
             return (1);
@@ -105,7 +105,7 @@ int     get_expanded_token_size(char *str)
 char    *get_expanded_key(char *str, int size, t_env *envlist)
 {
     //printf("substr : %s\n", ft_substr(str, 0, size));
-    return(ft_getenv(ft_substr(str, 0, size), envlist));    
+    return(ft_getenv(ft_substr(str, 0, size), envlist));
 }
 
 char    *create_expanded_token(char *str, t_env *envlist)
@@ -124,6 +124,7 @@ char    *create_expanded_token(char *str, t_env *envlist)
     {
         i++;
         size = get_expanded_token_size(&str[i]);
+        printf("size : %d\n", size);
         if (size == 0)
             break;
         result = ft_strjoin(result, get_expanded_key(&str[i], size, envlist));
