@@ -22,6 +22,7 @@ t_redirection *create_redirection(t_token *list)
     result->str = ft_strdup(current->trimmed_token);
     if (!(result->str))
 		return (NULL);
+    result->fd = -1;
     return (result);
 }
 
