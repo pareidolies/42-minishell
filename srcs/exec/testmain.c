@@ -39,7 +39,7 @@ int main(int argc, char **argv, char **envp)
 			flag = 1;
 		add_history(result);
 		commands = main_parser(result, envlist);
-		ft_exec(commands, envlist);
+		//ft_exec(commands, envlist);
 		free(result);
 	}
 	clear_history();
