@@ -20,12 +20,13 @@ int ft_exec(t_command *commands, t_env *envlist)
 	pid
 }
 
-int	exec_no_pipeline(t_command *commands, t_env *envlist)
+int	exec_no_pipeline(t_command *current_cmd, t_env *envlist)
 {
 	int	pid;
 	int error;
+	int	fdinout[2];
 
-	if (ft_strncmp(commands->path, "builtin", 8) != 0) //pas un builtin
+	if (ft_strncmp(current_cmd->path, "builtin", 8) != 0) //pas un builtin
 	{
 		pid = fork();
 		if (pid < 0)
@@ -40,21 +41,31 @@ int	exec_no_pipeline(t_command *commands, t_env *envlist)
 	}
 	else //cas des builtin
 	{
-		redir_open(commands, envlist);
-		error = which_builtin(commands->args, envlist);
+		redir_open(current_cmd, envlist, &fdinout);
+		ft_dup(current_cmd, envlist, &fdinout);
+		error = which_builtin(current_cmd->args, envlist);
 	}
 	return (error);
 }
 
-redir_open(t_command *commands, t_env *envlist)
+ft_dup(t_command *current_cmd, t_env *envlist, int fd[2])
+{
+	if (fd[0] == -1) //pas de redir IN
+	{
+		if (current_cmd->prev != NULL) // pipe entrant
+			dup2()
+	}
+}
+
+int redir_open(t_command *current_cmd, t_env *envlist, int fd[2])
 {
 	int				fdin;
 	int				fdout;
 	t_redirection	*redir;
 
-	fdin = 0;
-	fdout = 1;
-	redir = commands->redirection;
+	fdin = -1;
+	fdout = -1;
+	redir = current_cmd->redirection;
 	while (redir != NULL)
 	{
 		if (redir->mode == TRUNC || redir->mode == APPEND) //OUT
@@ -91,6 +102,8 @@ redir_open(t_command *commands, t_env *envlist)
 		}
 		redir = redir->next;
 	}
+	fd[0] = fdin;
+	fd[1] = fdout;
 }
 
 int	which_builtin(char **args, t_env *envlist)

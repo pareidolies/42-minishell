@@ -92,18 +92,20 @@ typedef struct	s_env
 
 typedef struct s_redirection
 {
-	char    *str;
-	t_mode   mode;
+	char	*str;
+	t_mode	mode;
+	int		fd;
 	struct s_redirection *next;
 	struct s_redirection *prev;
 }   t_redirection;
 
-typedef struct s_command_table
+typedef struct s_data
 {
 	struct s_command    *commands;
 	struct s_env        *env;
-	pid_t	            pid;
-}   t_command_table;
+	int					*pipes;
+	pid_t	            *pid;
+}   t_data;
 
 typedef struct s_command
 {
@@ -111,8 +113,6 @@ typedef struct s_command
 	char    *full_cmd;
 	char	*path; //"builtin" if its a builtin
 	char	**args;
-	//char    **options; //NULL it its not a builtin
-	//char    **parameters; //NULL if its not a builtin
 	t_redirection   *redirection;
 	struct s_command *next;
 	struct s_command *prev;
