@@ -30,10 +30,10 @@ int	ft_echo(char **params)
 	int		i;
 
 	option = 0;
-	i = 1;//=0
-	if (nb_param(params) == 1)//==0
+	i = 1;
+	if (nb_param(params) == 1)
 		write(1, "\n", 1);
-	else if (nb_param(params) == 2/*==1*/ && is_valid_option(params[1]) == 0)
+	else if (nb_param(params) == 2 && is_valid_option(params[1]) == 0)
 		return (0);
 	else
 	{
