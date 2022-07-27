@@ -9,6 +9,7 @@ SRCS			=	parser/main_parser.c \
 					parser/redirections.c \
 					parser/free_tokens.c \
 					exec/testmain.c \
+					exec/ft_exec.c \
 					exec/exec_utils.c \
 					exec/get_path.c \
 					builtin/builtin_utils.c \

@@ -192,12 +192,24 @@ void	ft_clean_list(t_env	*envlist);
 //builtins
 char    *ft_getenv(char *key, t_env *envlist); //pour expander
 int ft_cd(char **params, t_env *envlist);
+int	ft_echo(char **params);
 int ft_env(char **params, t_env *envlist);
+int	ft_export(char **params, t_env *envlist);
+int	ft_unset(char **params, t_env *envlist);
+int	ft_pwd(char **params);
+
 
 //get_path.c
 char    *get_command_path(char *command, t_env *envlist);
 char    *environment_path(char *command, char *path_var);
 char	*absolute_relative_path(char *command);
 void	ft_free_tab(char **tab);
+
+//ft_exec.c
+int	exec_no_pipeline(t_command *current_cmd, t_env *envlist);
+int redir_open(t_command *current_cmd, int fd[2]);
+int	which_builtin(char **args, t_env *envlist);
+int	*open_pipes(t_command *commands);
+int	ft_close_all(int *fd, int nb);
 
 #endif
