@@ -3,7 +3,7 @@
 void    check_tokens(t_token    *list)
 {
     t_token *current;
-
+    
     current = list;
     while (current)
     {

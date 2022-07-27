@@ -1,68 +1,116 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/user/Documents/42/42-minishell'
-cc -Wall -Wextra -Werror -fsanitize=address    -c -o srcs/parser/main_parser.o srcs/parser/main_parser.c
+echo " [..] | Compiling libft..."
+make -s -C libft
+echo " [OK] | Done."
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/parser/main_parser.c -o objs/parser/main_parser.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/parser/tokens_handler.c -o objs/parser/tokens_handler.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/parser/tokenization.c -o objs/parser/tokenization.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/parser/expander.c -o objs/parser/expander.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/parser/trim_tokens.c -o objs/parser/trim_tokens.o
  
-cc -Wall -Wextra -Werror -fsanitize=address    -c -o srcs/parser/tokens_handler.o srcs/parser/tokens_handler.c
-cc -Wall -Wextra -Werror -fsanitize=address    -c -o srcs/parser/tokenization.o srcs/parser/tokenization.c
-cc -Wall -Wextra -Werror -fsanitize=address    -c -o srcs/parser/expander.o srcs/parser/expander.c
-cc -Wall -Wextra -Werror -fsanitize=address    -c -o srcs/parser/trim_tokens.o srcs/parser/trim_tokens.c
- 
-cc -Wall -Wextra -Werror -fsanitize=address    -c -o srcs/parser/parser.o srcs/parser/parser.c
-cc -Wall -Wextra -Werror -fsanitize=address    -c -o srcs/parser/commands_handler.o srcs/parser/commands_handler.c
-cc -Wall -Wextra -Werror -fsanitize=address    -c -o srcs/parser/check_tokens.o srcs/parser/check_tokens.c
- 
-cc -Wall -Wextra -Werror -fsanitize=address    -c -o srcs/parser/redirections.o srcs/parser/redirections.c
- 
-cc -Wall -Wextra -Werror -fsanitize=address    -c -o srcs/exec/testmain.o srcs/exec/testmain.c
-cc -Wall -Wextra -Werror -fsanitize=address    -c -o srcs/exec/exec_utils.o srcs/exec/exec_utils.c
- 
-/Library/Developer/CommandLineTools/usr/bin/make -C libft --no-print-directory
- 
-cc    -c -o ft_atoi.o ft_atoi.c
- 
-cc    -c -o ft_bzero.o ft_bzero.c
-cc    -c -o ft_calloc.o ft_calloc.c
-cc    -c -o ft_isalnum.o ft_isalnum.c
- 
-cc    -c -o ft_isalpha.o ft_isalpha.c
-cc    -c -o ft_isascii.o ft_isascii.c
-cc    -c -o ft_isdigit.o ft_isdigit.c
-cc    -c -o ft_isprint.o ft_isprint.c
- 
-cc    -c -o ft_memchr.o ft_memchr.c
- 
-cc    -c -o ft_memcmp.o ft_memcmp.c
-cc    -c -o ft_memcpy.o ft_memcpy.c
-cc    -c -o ft_memmove.o ft_memmove.c
-cc    -c -o ft_memset.o ft_memset.c
-cc    -c -o ft_strchr.o ft_strchr.c
- 
-cc    -c -o ft_strdup.o ft_strdup.c
-cc    -c -o ft_strlcat.o ft_strlcat.c
-cc    -c -o ft_strlcpy.o ft_strlcpy.c
-cc    -c -o ft_strlen.o ft_strlen.c
-cc    -c -o ft_strncmp.o ft_strncmp.c
-cc    -c -o ft_strnstr.o ft_strnstr.c
-cc    -c -o ft_strrchr.o ft_strrchr.c
- 
-cc    -c -o ft_tolower.o ft_tolower.c
-cc    -c -o ft_toupper.o ft_toupper.c
-cc    -c -o ft_substr.o ft_substr.c
-cc    -c -o ft_strjoin.o ft_strjoin.c
-cc    -c -o ft_strtrim.o ft_strtrim.c
- 
-cc    -c -o ft_split.o ft_split.c
-cc    -c -o ft_itoa.o ft_itoa.c
-cc    -c -o ft_strmapi.o ft_strmapi.c
- 
-cc    -c -o ft_striteri.o ft_striteri.c
-cc    -c -o ft_putchar_fd.o ft_putchar_fd.c
-cc    -c -o ft_putstr_fd.o ft_putstr_fd.c
-cc    -c -o ft_putendl_fd.o ft_putendl_fd.c
-cc    -c -o ft_putnbr_fd.o ft_putnbr_fd.c
-ar rcs libft.a ft_atoi.o ft_bzero.o ft_calloc.o ft_isalnum.o ft_isalpha.o ft_isascii.o ft_isdigit.o ft_isprint.o ft_memchr.o ft_memcmp.o ft_memcpy.o ft_memmove.o ft_memset.o ft_strchr.o ft_strdup.o ft_strlcat.o ft_strlcpy.o ft_strlen.o ft_strncmp.o ft_strnstr.o ft_strrchr.o ft_tolower.o ft_toupper.o ft_substr.o ft_strjoin.o ft_strtrim.o ft_split.o ft_itoa.o ft_strmapi.o ft_striteri.o ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o
- 
-cc -Wall -Wextra -Werror -fsanitize=address -I includes srcs/parser/main_parser.c srcs/parser/tokens_handler.c srcs/parser/tokenization.c srcs/parser/expander.c srcs/parser/trim_tokens.c srcs/parser/parser.c srcs/parser/commands_handler.c srcs/parser/check_tokens.c srcs/parser/redirections.c srcs/exec/testmain.c srcs/exec/exec_utils.c ./libft/libft.a -o minishell -lreadline
- 
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/parser/parser.c -o objs/parser/parser.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/parser/commands_handler.c -o objs/parser/commands_handler.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/parser/check_tokens.c -o objs/parser/check_tokens.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/parser/redirections.c -o objs/parser/redirections.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/parser/free_tokens.c -o objs/parser/free_tokens.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/parser/magic_malloc.c -o objs/parser/magic_malloc.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/exec/testmain.c -o objs/exec/testmain.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/exec/exec_utils.c -o objs/exec/exec_utils.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/exec/get_path.c -o objs/exec/get_path.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/builtin/builtin_utils.c -o objs/builtin/builtin_utils.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/builtin/ft_cd.c -o objs/builtin/ft_cd.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/builtin/ft_echo.c -o objs/builtin/ft_echo.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/builtin/ft_env.c -o objs/builtin/ft_env.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/builtin/ft_export.c -o objs/builtin/ft_export.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/builtin/ft_pwd.c -o objs/builtin/ft_pwd.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/builtin/ft_unset.c -o objs/builtin/ft_unset.o
+echo "Created object files."
+cc -Wall -Wextra -Werror objs/parser/main_parser.o objs/parser/tokens_handler.o objs/parser/tokenization.o objs/parser/expander.o objs/parser/trim_tokens.o objs/parser/parser.o objs/parser/commands_handler.o objs/parser/check_tokens.o objs/parser/redirections.o objs/parser/free_tokens.o objs/parser/magic_malloc.o objs/exec/testmain.o objs/exec/exec_utils.o objs/exec/get_path.o objs/builtin/builtin_utils.o objs/builtin/ft_cd.o objs/builtin/ft_echo.o objs/builtin/ft_env.o objs/builtin/ft_export.o objs/builtin/ft_pwd.o objs/builtin/ft_unset.o -o minishell -L./libft -lft -lreadline
+echo "Minishell is ready!"
 make: Leaving directory `/Users/user/Documents/42/42-minishell'
  

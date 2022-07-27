@@ -79,6 +79,13 @@ typedef enum e_mode
 # define STDOUT 1
 # define STDERR 2
 
+//Malloc
+
+# define FREE 0
+# define QUIT 1
+# define MALLOC 2
+# define ADD 3
+
 /******************************************************************************
  *                               STRUCTURES                                   *
  *****************************************************************************/
@@ -128,6 +135,13 @@ typedef struct s_token
 	struct s_token *next;
 	struct s_token *prev;
 }   t_token;
+
+typedef struct s_malloc
+{
+	void			*addr;
+	struct s_malloc	*next;
+	struct s_malloc	*prev;
+}	t_malloc;
 
 /******************************************************************************
  *                            GLOBAL VARIABLE                                 *
@@ -182,6 +196,9 @@ t_redirection *create_redirection(t_token *list);
 
 //free_tokens.c
 void    free_tokens(t_token *list);
+
+//magic_malloc.c
+void    *magic_malloc(int choice, size_t size, void *addr);
 
 //exec_utils.c
 t_env	*ft_list_env(char **envp); //pour dupliquer env au début du prog
