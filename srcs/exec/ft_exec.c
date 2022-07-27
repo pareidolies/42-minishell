@@ -28,6 +28,8 @@ int	exec_no_pipeline(t_command *current_cmd, t_env *envlist)
 	int	fdinout[2];
 
 	error = 0;
+	if (current_cmd->path == NULL)
+		return (0);
 	if (ft_strncmp(current_cmd->path, "builtin", 8) != 0) //pas un builtin
 	{
 		pid = fork();

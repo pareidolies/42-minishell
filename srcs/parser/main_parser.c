@@ -23,7 +23,7 @@ t_command *main_parser(char *str, t_env *envlist)
 	analyze_tokens_to_expand(list);
 	expand_tokens(list, envlist);
 	trim_tokens(list);
-	print_tokens(list);
+	//print_tokens(list);
 	command = convert_tokens_to_commands(list, envlist);
 	//free_tokens(list); //this free creates a segfault
 	print_command(command);

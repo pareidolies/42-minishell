@@ -43,7 +43,7 @@ void    print_command(t_command *node)
     i = 0;
     t_redirection *current;
 
-    printf("\n\n\n---- PRINT COMMANDS ----\n");
+    printf("\n---- PRINT COMMANDS ----\n");
     while (node)
     {
         printf("********\n");
