@@ -1,44 +1,61 @@
 #include "minishell.h"
 #include "builtin.h"
 
+/*In manual : "When no arguments are given, the results are unspecified." */
+/*We then choose to treat this case as a syntax error. */
 int	ft_export(char **params, t_env *envlist)
 {
 	int		i;
 	char	*eq_position;
 	char	*key;
 
-	if (nb_param(params) < 1)
+	if (nb_param(params) < 2)
 	{
 		write(2, "export : Too few arguments\n", 27);
 		return (1);
 	}
 	i = 1;
+	
 	while (params[i] != NULL)
 	{
-		eq_position = ft_strchr(params[i], '=');
-		if (eq_position == NULL) //export VARIABLE
+		if (params[i][0] == '-')
 		{
-			if (valid_identifier(params[i]) == 0)
-				update_env(params[i], NULL, envlist);
-			else
-			{
-				write(2, "export : Not a valid identifier\n", 31); /*GESTION ERREUR*/
-				//exit status = 1
-			}
+			write(2, "export : Invalid option\n", 24); /*GESTION ERREUR*/
+			//exit status = 2
 		}
-		else 
+		else
 		{
-			key = find_name(params[i]);
-			if (valid_identifier(key) == 0 && eq_position[1] == '\0') //export VARIABLE=
-				update_env(key, "", envlist);
-			else if (valid_identifier(key) == 0) //export VARIABLE=value
-				update_env(key, eq_position + 1, envlist);
-			else
+			eq_position = ft_strchr(params[i], '=');
+			if (eq_position == NULL) //export VARIABLE
 			{
-				write(2, "export : Not a valid identifier\n", 31); /*GESTION ERREUR*/
+				if (valid_identifier(params[i]) == 0)
+					update_env(params[i], NULL, envlist);
+				else
+				{
+					write(2, "export : Not a valid identifier\n", 32); /*GESTION ERREUR*/
+					//exit status = 1
+				}
+			}
+			else if (eq_position == params[i])
+			{
+				write(2, "export : Not a valid identifier\n", 32); /*GESTION ERREUR*/
 				//exit status = 1
 			}
-			free(key);
+			else
+			{
+				key = find_name(params[i]);
+				//printf("key = %s\n", key);
+				if (valid_identifier(key) == 0 && eq_position[1] == '\0') //export VARIABLE=
+					update_env(key, "", envlist);
+				else if (valid_identifier(key) == 0) //export VARIABLE=value
+					update_env(key, eq_position + 1, envlist);
+				else
+				{
+					write(2, "export : Not a valid identifier\n", 32); /*GESTION ERREUR*/
+					//exit status = 1
+				}
+				free(key);
+			}
 		}
 		i++;
 	}
@@ -70,7 +87,7 @@ int	valid_identifier(char *name)
 		return (1);
 	while (name[i] != '\0')
 	{
-		if (ft_isalnum(name[i]) == 1 && name[i] != '_')
+		if (ft_isalnum(name[i]) == 0 && name[i] != '_')
 			return (1);
 		i++;
 	}
