@@ -1,4 +1,5 @@
-#include "../../includes/minishell.h"
+#include "minishell.h"
+//#include "../../includes/minishell.h"
 
 t_malloc	*add_one_malloc_element(t_malloc **first, t_malloc *new)
 {
@@ -107,7 +108,7 @@ void    *magic_malloc(int choice, size_t size, void *addr)
 	return (NULL);
 }
 
-int main()
+/*int main()
 {
 	char *str;
 	char *str2;
@@ -135,4 +136,4 @@ int main()
 		i++;
 	}
 	magic_malloc(QUIT, 0, NULL);
-}
+}*/
