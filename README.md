@@ -32,7 +32,7 @@ General problems :
 
 ECHO : 
 - echo " bonjour " ==> attendu: - bonjour -, obtenu -bonjour-
-- <span style="color:green">OK</span>
+-  <p style="color:red;">Red paragraph text</p>
 (90) echo $ ==> attendu: $, obtenu: (empty)
 - (92) echo $?$ ==> attendu: 0$, obtenu: 0
 - (99) echo login is [$USER] ==> 
