@@ -14,10 +14,20 @@ int	ft_unset(char **params, t_env *envlist)
 	i = 1;
 	while (params[i] != NULL)
 	{
-		var = ft_getenv_var(params[i], envlist);
-		if (var != NULL)
+		if (params[i][0] == '-')
 		{
-			ft_delenv(var, envlist);
+			write(2, "unset : Invalid option\n", 23); /*GESTION ERREUR*/
+			//exit status = 2
+		}
+		else if (valid_identifier(params[i]) != 0)
+			write(2, "unset : Not a valid identifier\n", 31); /*GESTION ERREUR*/
+		else
+		{
+			var = ft_getenv_var(params[i], envlist);
+			if (var != NULL)
+			{
+				ft_delenv(var, envlist);
+			}
 		}
 		i++;
 	}

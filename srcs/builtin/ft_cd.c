@@ -10,7 +10,7 @@ int ft_cd(char **params, t_env *envlist)
 	char	*current;
 	DIR		*directory;
 
-	if (nb_param(params) != 1)
+	if (nb_param(params) != 2)
 		return (cd_others(params, envlist));
 	current = getcwd(NULL, 0);
 	if (current == NULL)
@@ -18,13 +18,13 @@ int ft_cd(char **params, t_env *envlist)
 		perror("cd (getcwd) ");
 		return (1); /*GESTION ERREUR*/
 	}
-	printf("current : [%s]\n", current);
-	if (access(params[0], F_OK) == 0) //if it exists
+	//printf("current : [%s]\n", current);
+	if (access(params[1], F_OK) == 0) //if it exists
 	{
-		directory = opendir(params[0]);
+		directory = opendir(params[1]);
 		if (directory != NULL) //if it is a openable directory
 		{
-			if (chdir(params[0]) == 0) //if we can change directory
+			if (chdir(params[1]) == 0) //if we can change directory
 			{
 				update_env("OLDPWD", current, envlist);
 				free(current);
@@ -72,15 +72,22 @@ int ft_cd(char **params, t_env *envlist)
 int	cd_others(/*t_command_table *table, */char **params, t_env *envlist)
 {
 	char	*path;
+	char	*current;
 
-	if (nb_param(params) > 1)
+	if (nb_param(params) > 2)
 	{
 		write(2, "cd : too many arguments\n", 24); /*GESTION ERREUR*/
 		return (1);
 	}
-	if (nb_param(params) == 0)
+	if (nb_param(params) == 1)
 	{
 		path = ft_getenv("HOME", envlist);
+		current = getcwd(NULL, 0);
+		if (current == NULL)
+		{
+			perror("cd (getcwd) ");
+			return (1); /*GESTION ERREUR*/
+		}
 		if (path[0] == '\0')
 		{
 			write(2, "cd : HOME not set\n", 18); /*GESTION ERREUR*/
@@ -88,7 +95,7 @@ int	cd_others(/*t_command_table *table, */char **params, t_env *envlist)
 		}
 		if (chdir(path) == 0)
 		{
-			update_env("OLDPWD", ft_getenv("PWD", envlist), envlist);
+			update_env("OLDPWD", current, envlist);
 			update_env("PWD", path, envlist);
 			return (0);
 		}

@@ -5,9 +5,9 @@ t_command *main_parser(char *str, t_env *envlist)
 	int	error;
 	t_token	*list;
 	t_command	*command;
-	char	*env;
+	// char	*env;
 
-	env = ft_getenv(str, envlist);
+	// env = ft_getenv(str, envlist);
 	//printf("ENV : %s\n", env);
 	error = analyze_quotes(str);
 	if (error)
