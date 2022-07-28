@@ -215,6 +215,7 @@ int ft_env(char **params, t_env *envlist);
 int	ft_export(char **params, t_env *envlist);
 int	ft_unset(char **params, t_env *envlist);
 int	ft_pwd(char **params);
+void ft_exit(void);
 
 
 //get_path.c

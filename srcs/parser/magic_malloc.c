@@ -1,6 +1,8 @@
 #include "minishell.h"
 //#include "../../includes/minishell.h"
 
+/*ajouter un cas où on retourne juste au prompt*/
+
 t_malloc	*add_one_malloc_element(t_malloc **first, t_malloc *new)
 {
 	t_malloc	*head;
