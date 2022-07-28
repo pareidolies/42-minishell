@@ -69,10 +69,11 @@ int ft_cd(char **params, t_env *envlist)
 	// }
 	
 
-int	cd_others(/*t_command_table *table, */char **params, t_env *envlist)
+int	cd_others(char **params, t_env *envlist)
 {
 	char	*path;
 	char	*current;
+	t_env	*var;
 
 	if (nb_param(params) > 2)
 	{
@@ -81,17 +82,21 @@ int	cd_others(/*t_command_table *table, */char **params, t_env *envlist)
 	}
 	if (nb_param(params) == 1)
 	{
-		path = ft_getenv("HOME", envlist);
+		var = ft_getenv_var("HOME", envlist);
+		if (var == NULL || var->value == NULL)
+		{
+			write(2, "cd : HOME not set\n", 18); /*GESTION ERREUR*/
+			return (1);
+		}
+		if (var->value[0] == '\0')
+			path = ".";
+		else
+			path = var->value;
 		current = getcwd(NULL, 0);
 		if (current == NULL)
 		{
 			perror("cd (getcwd) ");
 			return (1); /*GESTION ERREUR*/
-		}
-		if (path[0] == '\0')
-		{
-			write(2, "cd : HOME not set\n", 18); /*GESTION ERREUR*/
-			return (1);
 		}
 		if (chdir(path) == 0)
 		{
