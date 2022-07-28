@@ -23,18 +23,25 @@ void        fill_command(t_token *list, t_command *cell, t_env *envlist)
 {
     t_token *current;
     t_command   *node;
+    char        *tmp;
+    int         i;
 
     node = cell;
     while (node->next != NULL)
         node = node->next;
     node->full_cmd = ft_strdup(node->cmd);
+    magic_malloc(ADD, 0, node->full_cmd);
     current = list;
     while (current && current->type != T_PIPE)
     {
         if (current->type == T_LITERAL)
         {
-            node->full_cmd = ft_strjoin(node->full_cmd, STR_SPACE);
-            node->full_cmd = ft_strjoin(node->full_cmd, current->trimmed_token);
+            tmp = ft_strjoin(node->full_cmd, STR_SPACE);
+            magic_malloc(ADD, 0, tmp);
+            magic_malloc(FREE, 0, node->full_cmd);
+            node->full_cmd = ft_strjoin(tmp, current->trimmed_token);
+            magic_malloc(ADD, 0, node->full_cmd);
+            magic_malloc(FREE, 0, tmp);
         }
         else if (current->type == T_LESS || current->type == T_GREATER || current->type == T_D_LESS || current->type == T_D_GREATER)
         {
@@ -47,8 +54,17 @@ void        fill_command(t_token *list, t_command *cell, t_env *envlist)
     }
     //printf("NODE->FULL_CMD : %s\n", node->full_cmd);
     node->args = ft_split(node->full_cmd, SPACE);
+    i = 0;
+    while (node->args[i])
+    {
+        magic_malloc(ADD, 0, node->args[i]);
+        i++;
+    }
     if (is_builtin(node->cmd))
+    {
         node->path = ft_strdup("builtin");
+        magic_malloc(ADD, 0, node->path);
+    }
     else
         node->path = get_command_path(node->cmd, envlist);
 }

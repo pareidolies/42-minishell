@@ -48,6 +48,8 @@ void	free_all_and_quit(t_malloc *first)
 	exit (EXIT_FAILURE);
 }
 
+/* Tres important : si l'element n'a pas ete malloc, current == NULL et donc on sort*/
+
 void	free_one_element(t_malloc **first, void *addr)
 {
 	t_malloc	*current;
@@ -55,6 +57,8 @@ void	free_one_element(t_malloc **first, void *addr)
 	current = *first;
 	while (current && current->addr != addr)
 		current = current->next;
+	if (current == NULL)
+		return;
 	if (current == (*first))
 	{
 		if (current->next == NULL)
@@ -101,12 +105,18 @@ void    *magic_malloc(int choice, size_t size, void *addr)
 				free_all_and_quit(first);
 		}
 		if (choice == ADD)
+		{
+			if (!addr)
+				free_all_and_quit(first);
 			node->addr = addr;
+		}
 		first = add_one_malloc_element(&first, node);
 		return (node->addr);
 	}
 	return (NULL);
 }
+
+/*main pour tester magic malloc sur des cas simples*/
 
 /*int main()
 {

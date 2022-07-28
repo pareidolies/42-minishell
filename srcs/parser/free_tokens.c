@@ -1,21 +1,57 @@
 #include "minishell.h"
 
-void    free_tokens(t_token *list)
+void    free_redirections(t_redirection *list)
 {
-    t_token *current;
+    t_redirection *current;
+    t_redirection *tmp;
 
     current = list;
     while (current)
     {
-        free(current->token);
-        current->token = NULL;
-        free(current->trimmed_token);
-        current->trimmed_token = NULL;
-        if (current->expanded_token)
+        magic_malloc(FREE, 0, current->str);
+        tmp = current->next;
+        magic_malloc(FREE, 0, current);
+        current = tmp;
+    }
+}
+
+void    free_commands(t_command *list)
+{
+    t_command *current;
+    t_command *tmp;
+    int i;
+
+    current = list;
+    while (current)
+    {
+        magic_malloc(FREE, 0, current->cmd);
+        magic_malloc(FREE, 0, current->full_cmd);
+        magic_malloc(FREE, 0, current->path);
+        i = 0;
+        while(current->args[i])
         {
-            free(current->expanded_token);
-            current->expanded_token = NULL;
+            magic_malloc(FREE, 0, current->args[i]);
+            i++;
         }
-        current = current->next;
+        free_redirections(current->redirection);
+        tmp = current->next;
+        current = tmp;
+    }
+}
+
+void    free_tokens(t_token *list)
+{
+    t_token *current;
+    t_token *tmp;
+
+    current = list;
+    while (current)
+    {
+        magic_malloc(FREE, 0, current->token);
+        magic_malloc(FREE, 0, current->trimmed_token);
+        magic_malloc(FREE, 0, current->expanded_token);
+        tmp = current->next;
+        magic_malloc(FREE, 0, current);
+        current = tmp;
     }
 }

@@ -40,7 +40,8 @@ int main(int argc, char **argv, char **envp)
 		add_history(result);
 		commands = main_parser(result, envlist);
 		//ft_exec(commands, envlist);
-		exec_no_pipeline(commands, envlist);
+		//exec_no_pipeline(commands, envlist);
+		free_commands(commands);
 		free(result);
 	}
 	clear_history();

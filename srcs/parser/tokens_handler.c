@@ -4,19 +4,19 @@ t_token *create_token(char *str, int size)
 {
     t_token *node;
 
-    node = malloc(sizeof(t_token));
-    if (!node)
-        return (NULL);
+    //node = malloc(sizeof(t_token));
+    node = magic_malloc(MALLOC, sizeof(t_token), NULL);
     node->prev = NULL;
     node->next = NULL;
-    node->token = malloc((size + 1) * sizeof(char));
-    if (!(node->token))
-		return (NULL);
+    //node->token = malloc((size + 1) * sizeof(char));
+    node->token = magic_malloc(MALLOC, (size + 1) * sizeof(char), NULL);
 	node->token[size] = '\0';
 	while (size--)
 		node->token[size] = str[size];
     node->type = 0;
     node->to_expand = 0;
+    node->trimmed_token = NULL;
+    node->expanded_token = NULL;
     return (node);
 }
 

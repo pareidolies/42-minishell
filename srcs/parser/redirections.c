@@ -5,9 +5,7 @@ t_redirection *create_redirection(t_token *list)
     t_redirection   *result;
     t_token         *current;
     
-    result = malloc(sizeof(t_redirection));
-    if (!result)
-        return (NULL);
+    result = magic_malloc(MALLOC, sizeof(t_redirection), NULL);
     current = list;
     result->prev = NULL;
     result->next = NULL;
@@ -20,8 +18,7 @@ t_redirection *create_redirection(t_token *list)
     else if (current->type == T_APPEND)
         result->mode = APPEND;
     result->str = ft_strdup(current->trimmed_token);
-    if (!(result->str))
-		return (NULL);
+    magic_malloc(ADD, 0, result->str);
     result->fd = -1;
     return (result);
 }

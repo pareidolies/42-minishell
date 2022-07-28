@@ -196,6 +196,7 @@ t_redirection *create_redirection(t_token *list);
 
 //free_tokens.c
 void    free_tokens(t_token *list);
+void    free_commands(t_command *list);
 
 //magic_malloc.c
 void    *magic_malloc(int choice, size_t size, void *addr);

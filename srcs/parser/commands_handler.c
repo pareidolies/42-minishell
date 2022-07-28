@@ -5,9 +5,10 @@ t_command *create_command(t_token *list)
     t_command   *result;
     t_token     *current;
     
-    result = malloc(sizeof(t_command));
+    /*result = malloc(sizeof(t_command));
     if (!result)
-        return (NULL);
+        return (NULL);*/
+    result = magic_malloc(MALLOC, sizeof(t_command), NULL);
     current = list;
     while (current->next && current->type != T_LITERAL)
         current = current->next;
@@ -15,6 +16,7 @@ t_command *create_command(t_token *list)
     result->prev = NULL;
     result->next = NULL;
     result->cmd = ft_strdup(current->trimmed_token);
+    magic_malloc(ADD, 0, result->cmd);
     if (!(result->cmd))
 		return (NULL);
     result->redirection = NULL;
