@@ -47,6 +47,6 @@ magic_malloc(ADD, 0, result);
 * FREE : Si tu souhaites free un seul element, il faut utiliser cette ligne (par exemple pour free tmp) (en indiquant seulement l'element a free) :
 magic_malloc(FREE, 0, tmp);
 
-*QUIT : Si tu souhaites free tout ce que tu as malloc depuis le debut de ton programme et quitter, c'est cette ligne :
+* QUIT : Si tu souhaites free tout ce que tu as malloc depuis le debut de ton programme et quitter, c'est cette ligne :
 magic_malloc(QUIT, 0, NULL);
 
