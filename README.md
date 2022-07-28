@@ -32,8 +32,7 @@ General problems :
 
 ECHO : 
 - echo " bonjour " ==> attendu: - bonjour -, obtenu -bonjour-
--  <p style="color:red;">Red paragraph text</p>
-(90) echo $ ==> attendu: $, obtenu: (empty)
+- (90 : OK) echo $ ==> attendu: $, obtenu: (empty)
 - (92) echo $?$ ==> attendu: 0$, obtenu: 0
 - (99) echo login is [$USER] ==> 
     attendu: login is [lmurtin]
