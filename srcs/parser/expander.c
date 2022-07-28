@@ -34,8 +34,12 @@ int     get_expanded_token_start(char *str)
     int i;
 
     i = 0;
-    while (str[i] && str[i] != DOLLAR)
+    while (str[i])
+    {
+        if (str[i] == DOLLAR && str[i + 1] && str[i + 1] != S_QUOTE && str[i + 1] != D_QUOTE && str[i + 1] != SPACE && str[i + 1] != '=')
+            break;
         i++;
+    }
     return (i);
 }
 
@@ -48,7 +52,7 @@ int     get_expanded_token_size(char *str)
         return (1);
     if (ft_isdigit(str[i]))
         return (1);
-    while (str[i] && str[i] != DOLLAR && str[i] != S_QUOTE && str[i] != D_QUOTE && str[i] != SPACE && str[i] != ']' && str[i] != '%')
+    while (str[i] && str[i] != DOLLAR && str[i] != S_QUOTE && str[i] != D_QUOTE && str[i] != SPACE && str[i] != ']' && str[i] != '%' && str[i] != '=')
     {
         if (str[i] == QUESTION)
             return (1);
@@ -80,8 +84,12 @@ char    *create_expanded_token(char *str, t_env *envlist)
     char    *substring;
 
     i = 0;
-    while (str[i] && str[i] != DOLLAR)
+    while (str[i])
+    {
+        if (str[i] == DOLLAR && str[i + 1] && str[i + 1] != S_QUOTE && str[i + 1] != D_QUOTE && str[i + 1] != SPACE && str[i + 1] != '=')
+            break;
         i++;
+    }
     result = ft_substr(str, 0, i);
     magic_malloc(ADD, 0, result);
     //printf("*result* step 1 : %s\n", result);

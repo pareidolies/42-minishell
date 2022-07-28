@@ -44,7 +44,7 @@ ECHO :
 - (105 : OK) echo $HOME% ==> attendu: /mnt/nfs/homes/lmurtin%
                         obtenu: (empty)
 - (131 : OK) echo "$""" ==> attendu: $, obtenu: (empty)
-- (133/135 : OK) echo $"HOME" et echo $""HOME et echo $''HOME ==> 
+- (133/135) echo $"HOME" et echo $""HOME et echo $''HOME ==> 
     attendu: HOME, obtenu: (empty)
 - (143 : OK) echo ''$HOME ==> attendu: /mnt/nfs/homes/lmurtin
                     obtenu: $HOME
@@ -53,7 +53,7 @@ ECHO :
 EXPORT :
 - (218) export "" ==> attendu: "Not a valid identifier"
                         obtenu: "Too few arguments" (la commande export ne recoit pas la chaine vide en tant qu'argument)
-- (267) export TEST$USER=bonjour (+ env) ==>
+- (267 : OK) export TEST$USER=bonjour (+ env) ==>
     attendu: TESTlmurtin=bonjour
     obtenu: TEST
 - (272 + 280) même pb que précédent: export $USER=bonjour (+env) ==>
