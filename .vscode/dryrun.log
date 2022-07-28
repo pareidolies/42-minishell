@@ -1,4 +1,4 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/user/Documents/42/42-minishell'
 echo " [..] | Compiling libft..."
 make -s -C libft
@@ -28,7 +28,6 @@ cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/parser/expander.c -o o
 [ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
 [ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
 cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/parser/trim_tokens.c -o objs/parser/trim_tokens.o
- 
 [ ! -d objs ] && mkdir -p  objs || true
 [ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
 [ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
@@ -53,17 +52,22 @@ cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/parser/redirections.c 
 [ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
 [ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
 [ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
-cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/parser/free_tokens.c -o objs/parser/free_tokens.o
-[ ! -d objs ] && mkdir -p  objs || true
-[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
-[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
-[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
 cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/parser/magic_malloc.c -o objs/parser/magic_malloc.o
 [ ! -d objs ] && mkdir -p  objs || true
 [ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
 [ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
 [ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/parser/free_tokens.c -o objs/parser/free_tokens.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
 cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/exec/testmain.c -o objs/exec/testmain.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/exec/ft_exec.c -o objs/exec/ft_exec.o
 [ ! -d objs ] && mkdir -p  objs || true
 [ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
 [ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
@@ -110,7 +114,7 @@ cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/builtin/ft_pwd.c -o ob
 [ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
 cc -Wall -Wextra -Werror -c -I ./includes -I ./libft srcs/builtin/ft_unset.c -o objs/builtin/ft_unset.o
 echo "Created object files."
-cc -Wall -Wextra -Werror objs/parser/main_parser.o objs/parser/tokens_handler.o objs/parser/tokenization.o objs/parser/expander.o objs/parser/trim_tokens.o objs/parser/parser.o objs/parser/commands_handler.o objs/parser/check_tokens.o objs/parser/redirections.o objs/parser/free_tokens.o objs/parser/magic_malloc.o objs/exec/testmain.o objs/exec/exec_utils.o objs/exec/get_path.o objs/builtin/builtin_utils.o objs/builtin/ft_cd.o objs/builtin/ft_echo.o objs/builtin/ft_env.o objs/builtin/ft_export.o objs/builtin/ft_pwd.o objs/builtin/ft_unset.o -o minishell -L./libft -lft -lreadline
+cc -Wall -Wextra -Werror objs/parser/main_parser.o objs/parser/tokens_handler.o objs/parser/tokenization.o objs/parser/expander.o objs/parser/trim_tokens.o objs/parser/parser.o objs/parser/commands_handler.o objs/parser/check_tokens.o objs/parser/redirections.o objs/parser/magic_malloc.o objs/parser/free_tokens.o objs/exec/testmain.o objs/exec/ft_exec.o objs/exec/exec_utils.o objs/exec/get_path.o objs/builtin/builtin_utils.o objs/builtin/ft_cd.o objs/builtin/ft_echo.o objs/builtin/ft_env.o objs/builtin/ft_export.o objs/builtin/ft_pwd.o objs/builtin/ft_unset.o -o minishell -L./libft -lft -lreadline
 echo "Minishell is ready!"
 make: Leaving directory `/Users/user/Documents/42/42-minishell'
  
