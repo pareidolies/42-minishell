@@ -46,6 +46,8 @@ int     get_expanded_token_size(char *str)
     i = 0;
     if (!str[i])
         return (1);
+    if (ft_isdigit(str[i]))
+        return (1);
     while (str[i] && str[i] != DOLLAR && str[i] != S_QUOTE && str[i] != D_QUOTE && str[i] != SPACE && str[i] != ']')
     {
         if (str[i] == QUESTION)
@@ -104,7 +106,6 @@ char    *create_expanded_token(char *str, t_env *envlist)
         i = i + size;
         before_dollar = get_expanded_token_start(&str[i]);
         //printf("before dollar : %d\n", before_dollar);
-        /*gerer substr ICI*/
         substring = ft_substr(&str[i], 0, before_dollar);
         magic_malloc(ADD, 0, substring);
         result = ft_strjoin(tmp, substring);

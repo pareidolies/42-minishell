@@ -40,7 +40,7 @@ ECHO :
 - (101 : OK) echo non existing variable [$TOTO] ==> 
     attendu: non existing variable []
     obtenu: non existing variable [
-- (104) echo $9HOME ==> attendu: HOME, obtenu: (empty)
+- (104 : OK) echo $9HOME ==> attendu: HOME, obtenu: (empty)
 - (105) echo $HOME% ==> attendu: /mnt/nfs/homes/lmurtin%
                         obtenu: (empty)
 - (131) echo "$""" ==> attendu: $, obtenu: (empty)
