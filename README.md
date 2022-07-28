@@ -33,11 +33,11 @@ General problems :
 ECHO : 
 - echo " bonjour " ==> attendu: - bonjour -, obtenu -bonjour-
 - (90 : OK) echo $ ==> attendu: $, obtenu: (empty)
-- (92) echo $?$ ==> attendu: 0$, obtenu: 0
-- (99) echo login is [$USER] ==> 
+- (92 : OK) echo $?$ ==> attendu: 0$, obtenu: 0
+- (99 : OK) echo login is [$USER] ==> 
     attendu: login is [lmurtin]
     obtenu: login is [
-- (101) echo non existing variable [$TOTO] ==> 
+- (101 : OK) echo non existing variable [$TOTO] ==> 
     attendu: non existing variable []
     obtenu: non existing variable [
 - (104) echo $9HOME ==> attendu: HOME, obtenu: (empty)

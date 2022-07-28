@@ -46,7 +46,7 @@ int     get_expanded_token_size(char *str)
     i = 0;
     if (!str[i])
         return (1);
-    while (str[i] && str[i] != DOLLAR && str[i] != S_QUOTE && str[i] != D_QUOTE && str[i] != SPACE)
+    while (str[i] && str[i] != DOLLAR && str[i] != S_QUOTE && str[i] != D_QUOTE && str[i] != SPACE && str[i] != ']')
     {
         if (str[i] == QUESTION)
             return (1);
