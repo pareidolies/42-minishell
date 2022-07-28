@@ -73,6 +73,7 @@ char    *create_expanded_token(char *str, t_env *envlist)
     int     size;
     int     before_dollar;
     char    *tmp;
+    char    *substring;
 
     i = 0;
     while(str[i] && str[i] != DOLLAR)
@@ -94,9 +95,13 @@ char    *create_expanded_token(char *str, t_env *envlist)
         i = i + size;
         before_dollar = get_expanded_token_start(&str[i]);
         //printf("before dollar : %d\n", before_dollar);
-        result = ft_strjoin(tmp, ft_substr(&str[i], 0, before_dollar));
+        /*gerer substr ICI*/
+        substring = ft_substr(&str[i], 0, before_dollar);
+        magic_malloc(ADD, 0, substring);
+        result = ft_strjoin(tmp, substring);
         magic_malloc(ADD, 0, result);
         magic_malloc(FREE, 0, tmp);
+        magic_malloc(FREE, 0, substring);
         //printf("*result* step 3 : %s\n", result);
         i = i + before_dollar;
     }
