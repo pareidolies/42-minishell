@@ -41,12 +41,12 @@ ECHO :
     attendu: non existing variable []
     obtenu: non existing variable [
 - (104 : OK) echo $9HOME ==> attendu: HOME, obtenu: (empty)
-- (105) echo $HOME% ==> attendu: /mnt/nfs/homes/lmurtin%
+- (105 : OK) echo $HOME% ==> attendu: /mnt/nfs/homes/lmurtin%
                         obtenu: (empty)
-- (131) echo "$""" ==> attendu: $, obtenu: (empty)
-- (133/135) echo $"HOME" et echo $""HOME et echo $''HOME ==> 
+- (131 : OK) echo "$""" ==> attendu: $, obtenu: (empty)
+- (133/135 : OK) echo $"HOME" et echo $""HOME et echo $''HOME ==> 
     attendu: HOME, obtenu: (empty)
-- (143) echo ''$HOME ==> attendu: /mnt/nfs/homes/lmurtin
+- (143 : OK) echo ''$HOME ==> attendu: /mnt/nfs/homes/lmurtin
                     obtenu: $HOME
 - (145 à 151) echo $ suivi de diverse combinaisons de lettres et quotes => obtenu: (empty) pour diverses attendus
 

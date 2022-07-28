@@ -34,7 +34,7 @@ int     get_expanded_token_start(char *str)
     int i;
 
     i = 0;
-    while (str[i] && str[i] != '$')
+    while (str[i] && str[i] != DOLLAR)
         i++;
     return (i);
 }
@@ -48,7 +48,7 @@ int     get_expanded_token_size(char *str)
         return (1);
     if (ft_isdigit(str[i]))
         return (1);
-    while (str[i] && str[i] != DOLLAR && str[i] != S_QUOTE && str[i] != D_QUOTE && str[i] != SPACE && str[i] != ']')
+    while (str[i] && str[i] != DOLLAR && str[i] != S_QUOTE && str[i] != D_QUOTE && str[i] != SPACE && str[i] != ']' && str[i] != '%')
     {
         if (str[i] == QUESTION)
             return (1);
@@ -80,7 +80,7 @@ char    *create_expanded_token(char *str, t_env *envlist)
     char    *substring;
 
     i = 0;
-    while(str[i] && str[i] != DOLLAR)
+    while (str[i] && str[i] != DOLLAR)
         i++;
     result = ft_substr(str, 0, i);
     magic_malloc(ADD, 0, result);
@@ -90,14 +90,14 @@ char    *create_expanded_token(char *str, t_env *envlist)
         i++;
         size = get_expanded_token_size(&str[i]);
         //printf("size : %d\n", size);
-        if (!str[i])
+        /*if (!str[i])
         {
             tmp = ft_strjoin(result, "$");
             magic_malloc(ADD, 0, tmp);
             magic_malloc(FREE, 0, result);
             return (tmp);
-        }
-        if (size == 0)
+        }*/
+        if (!str[i])
             break;
         tmp = ft_strjoin(result, get_expanded_key(&str[i], size, envlist));
         magic_malloc(ADD, 0, tmp);
