@@ -1,3 +1,9 @@
+# Comment ignorer leaks de readline :
+
+1. Compiler normalement.
+2. Au lieu d'appeler `valgrind ./minishell`, il faut exécuter leakscheck.sh.
+3. Enjoy :D
+
 # Tutoriel Magic Malloc
 
 * MALLOC : Si tu souhaites effectuer un malloc, cela tient en une ligne (il faut juste indiquer la size) :

@@ -40,7 +40,6 @@ int	exec_no_pipeline(t_command *current_cmd, t_env *envlist)
 		}
 		if (pid == 0)
 		{
-			// do the thing
 			printf("I do the thing\n");
 			exit(0);
 		}
