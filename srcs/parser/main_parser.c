@@ -25,7 +25,7 @@ t_command *main_parser(char *str, t_env *envlist)
 	analyze_literals_type(list);
 	analyze_tokens_to_expand(list);
 	expand_tokens(list, envlist);
-	trim_tokens(list);
+	//trim_tokens(list);
 	//print_tokens(list);
 	command = convert_tokens_to_commands(list, envlist);
 	free_tokens(list);

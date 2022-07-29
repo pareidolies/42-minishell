@@ -178,6 +178,7 @@ void    expand_tokens(t_token *list, t_env *envlist);
 
 //trim_tokens.c
 void    trim_tokens(t_token *list);
+char    *withdraw_quotes(char   *str);
 
 //parser.c
 t_command   *convert_tokens_to_commands(t_token *list, t_env *envlist);

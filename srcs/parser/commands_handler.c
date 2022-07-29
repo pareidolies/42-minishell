@@ -4,6 +4,7 @@ t_command *create_command(t_token *list)
 {
     t_command   *result;
     t_token     *current;
+    char        *tmp;
     
     /*result = malloc(sizeof(t_command));
     if (!result)
@@ -15,8 +16,11 @@ t_command *create_command(t_token *list)
     current->type = T_CMD;
     result->prev = NULL;
     result->next = NULL;
-    result->cmd = ft_strdup(current->trimmed_token);
+    tmp = ft_strdup(current->expanded_token);
+    magic_malloc(ADD, 0, tmp);
+    result->cmd = withdraw_quotes(tmp);
     magic_malloc(ADD, 0, result->cmd);
+    magic_malloc(FREE, 0, tmp);
     if (!(result->cmd))
 		return (NULL);
     result->redirection = NULL;

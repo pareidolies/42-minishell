@@ -38,8 +38,8 @@ void        fill_command(t_token *list, t_command *cell, t_env *envlist)
         {
             tmp = ft_strjoin(node->full_cmd, STR_SPACE);
             magic_malloc(ADD, 0, tmp);
-            magic_malloc(FREE, 0, node->full_cmd);
-            node->full_cmd = ft_strjoin(tmp, current->trimmed_token);
+            magic_malloc(ADD, 0, tmp);
+            node->full_cmd = ft_strjoin(tmp, current->expanded_token);
             magic_malloc(ADD, 0, node->full_cmd);
             magic_malloc(FREE, 0, tmp);
         }
@@ -58,6 +58,12 @@ void        fill_command(t_token *list, t_command *cell, t_env *envlist)
     while (node->args[i])
     {
         magic_malloc(ADD, 0, node->args[i]);
+        tmp = withdraw_quotes(node->args[i]);
+        magic_malloc(ADD, 0, tmp);
+        magic_malloc(FREE, 0, node->args[i]);
+        node->args[i] = ft_strdup(tmp);
+        magic_malloc(ADD, 0, node->args[i]);
+        magic_malloc(FREE, 0, tmp);
         i++;
     }
     if (is_builtin(node->cmd))
