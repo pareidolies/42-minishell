@@ -20,7 +20,8 @@ t_command *main_parser(char *str, t_env *envlist)
 	list = tokenization(str);
 	//print_tokens(list);
 	analyze_tokens_type(list);
-	check_tokens(list);
+	if (!check_tokens(list))
+		return (NULL);
 	analyze_literals_type(list);
 	analyze_tokens_to_expand(list);
 	expand_tokens(list, envlist);

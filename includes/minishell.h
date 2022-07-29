@@ -188,7 +188,7 @@ void    add_command(t_token *list, t_command *first);
 t_command *create_command(t_token *list);
 
 //check_tokens.c
-void    check_tokens(t_token *list);
+int    check_tokens(t_token *list);
 
 //redirections.c
 void    add_redirection(t_token *list, t_redirection *first);
