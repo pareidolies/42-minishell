@@ -49,6 +49,7 @@ int	exec_no_pipeline(t_command *current_cmd, t_env *envlist)
 			ft_child(current_cmd, envlist);
 			exit(0);
 		}
+		waitpid(pid, &wstatus, 0);
 	}
 	else //cas des builtin
 	{
@@ -56,7 +57,6 @@ int	exec_no_pipeline(t_command *current_cmd, t_env *envlist)
 		//ft_dup(current_cmd, envlist, &fdinout);
 		error = which_builtin(current_cmd->args, envlist);
 	}
-	waitpid(pid, &wstatus, 0);
 	return (error);
 }
 
