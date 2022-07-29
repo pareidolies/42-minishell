@@ -9,6 +9,8 @@ t_command *main_parser(char *str, t_env *envlist)
 
 	// env = ft_getenv(str, envlist);
 	//printf("ENV : %s\n", env);
+	if (!str)
+		return (NULL);
 	error = analyze_quotes(str);
 	if (error)
 	{
@@ -18,11 +20,12 @@ t_command *main_parser(char *str, t_env *envlist)
 	list = tokenization(str);
 	//print_tokens(list);
 	analyze_tokens_type(list);
-	check_tokens(list);
+	if (!check_tokens(list))
+		return (NULL);
 	analyze_literals_type(list);
 	analyze_tokens_to_expand(list);
 	expand_tokens(list, envlist);
-	trim_tokens(list);
+	//trim_tokens(list);
 	//print_tokens(list);
 	command = convert_tokens_to_commands(list, envlist);
 	free_tokens(list);

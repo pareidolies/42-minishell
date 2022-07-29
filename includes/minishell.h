@@ -178,6 +178,7 @@ void    expand_tokens(t_token *list, t_env *envlist);
 
 //trim_tokens.c
 void    trim_tokens(t_token *list);
+char    *withdraw_quotes(char   *str);
 
 //parser.c
 t_command   *convert_tokens_to_commands(t_token *list, t_env *envlist);
@@ -188,7 +189,7 @@ void    add_command(t_token *list, t_command *first);
 t_command *create_command(t_token *list);
 
 //check_tokens.c
-void    check_tokens(t_token *list);
+int    check_tokens(t_token *list);
 
 //redirections.c
 void    add_redirection(t_token *list, t_redirection *first);
