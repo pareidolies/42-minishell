@@ -43,10 +43,15 @@ int main(int argc, char **argv, char **envp)
 				flag = 1;
 			add_history(result);
 			commands = main_parser(result, envlist);
-			//ft_exec(commands, envlist);
-			exec_no_pipeline(commands, envlist);
-			free_commands(commands);
-			free(result);
+			if (!commands)
+				free(result);
+			else
+			{
+				//ft_exec(commands, envlist);
+				exec_no_pipeline(commands, envlist);
+				free_commands(commands);
+				free(result);
+			}
 		}
 	}
 	clear_history();
