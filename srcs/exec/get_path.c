@@ -28,7 +28,7 @@ char	*get_command_path(char *command, t_env *envlist)
 		path_var = ft_getenv("PATH", envlist);
 		if (path_var[0] == '\0')
 		{
-			perror("getenv error "); /*GESTION ERREUR*/
+			perror("getenv : PATH is not set "); /*GESTION ERREUR*/
 			return (NULL);
 		}
 		path = environment_path(command, path_var);
@@ -46,8 +46,7 @@ char *environment_path(char *command, char *path_var)
 	char	*tmp;
 
 	paths = ft_split(path_var, ':');
-	if (paths == NULL)
-		return (NULL); /*GESTION ERREUR*/
+	magic_malloc(ADD, 0, paths);
 	i = 0;
 	while (paths[i] != NULL)
 	{
@@ -77,7 +76,7 @@ char	*absolute_relative_path(char *command)
 			return (command);
 		else
 		{
-			perror("Command absolute path "); /*GESTION ERREUR*/
+			//perror("Command absolute path "); /*GESTION ERREUR*/
 			return (NULL);
 		}
 	}
@@ -88,7 +87,7 @@ char	*absolute_relative_path(char *command)
 			return (cmd_path);
 		else
 		{
-			perror("Command relative path "); /*GESTION ERREUR*/
+			//perror("Command relative path "); /*GESTION ERREUR*/
 			return (free(cmd_path), NULL);
 		} 
 	}

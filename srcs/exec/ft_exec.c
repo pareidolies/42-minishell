@@ -1,5 +1,7 @@
 #include "minishell.h"
 #include <fcntl.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 // int ft_exec(t_command *commands, t_env *envlist)
 // {
@@ -25,7 +27,8 @@ int	exec_no_pipeline(t_command *current_cmd, t_env *envlist)
 {
 	int	pid;
 	int error;
-	int	fdinout[2];
+	int wstatus;
+	//int	fdinout[2];
 
 	error = 0;
 	if (current_cmd->path == NULL)
@@ -40,16 +43,17 @@ int	exec_no_pipeline(t_command *current_cmd, t_env *envlist)
 		}
 		if (pid == 0)
 		{
-			printf("I do the thing\n");
+			ft_child(current_cmd, envlist);
 			exit(0);
 		}
 	}
 	else //cas des builtin
 	{
-		redir_open(current_cmd, fdinout);
+		//redir_open(current_cmd, fdinout);
 		//ft_dup(current_cmd, envlist, &fdinout);
 		error = which_builtin(current_cmd->args, envlist);
 	}
+	waitpid(pid, &wstatus, 0);
 	return (error);
 }
 

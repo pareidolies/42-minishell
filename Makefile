@@ -13,6 +13,7 @@ SRCS			=	parser/main_parser.c \
 					exec/ft_exec.c \
 					exec/exec_utils.c \
 					exec/get_path.c \
+					exec/child.c \
 					builtin/builtin_utils.c \
 					builtin/ft_cd.c \
 					builtin/ft_echo.c \

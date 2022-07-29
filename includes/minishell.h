@@ -231,4 +231,7 @@ int	which_builtin(char **args, t_env *envlist);
 int	*open_pipes(t_command *commands);
 int	ft_close_all(int *fd, int nb);
 
+int	ft_child(t_command *cmd, t_env *envlist);
+char	**ft_convertlist(t_env *envlist);
+
 #endif
