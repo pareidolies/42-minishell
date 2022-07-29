@@ -32,7 +32,10 @@ int	exec_no_pipeline(t_command *current_cmd, t_env *envlist)
 
 	error = 0;
 	if (current_cmd->path == NULL)
+	{
+		write(2, "Command not found\n", 18); /*GESTION ERREUR*/
 		return (0);
+	}
 	if (ft_strncmp(current_cmd->path, "builtin", 8) != 0) //pas un builtin
 	{
 		pid = fork();

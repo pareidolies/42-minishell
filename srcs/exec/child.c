@@ -6,11 +6,11 @@ int	ft_child(t_command *cmd, t_env *envlist)
 	char **envtab;
 
 	envtab = ft_convertlist(envlist);
-	if (cmd->path == NULL)
-	{
-		write(2, "Command not found\n", 18);
-		magic_malloc(QUIT, 0, NULL);
-	}
+	// if (cmd->path == NULL)
+	// {
+	// 	write(2, "Command not found\n", 18);
+	// 	magic_malloc(QUIT, 0, NULL);
+	// }
 	if (execve(cmd->path, cmd->args, envtab) == -1)
 		perror("Program didn't execute properly.\n");
 	magic_malloc(QUIT, 0, NULL);
