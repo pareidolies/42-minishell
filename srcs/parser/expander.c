@@ -2,6 +2,8 @@
 
 /* If many variables to expand : ft_split ($) */
 
+//useless now
+
 int there_is_a_dollar(char *str)
 {
     int i;
@@ -16,6 +18,8 @@ int there_is_a_dollar(char *str)
     return (0);
 }
 
+//useless now
+
 void    analyze_tokens_to_expand(t_token *list)
 {
     t_token *current;
@@ -29,14 +33,14 @@ void    analyze_tokens_to_expand(t_token *list)
     }
 }
 
-int     get_expanded_token_start(char *str)
+int     get_expanded_token_start(char *str, char *initial, int pos)
 {
     int i;
 
     i = 0;
     while (str[i])
     {
-        if (str[i] == DOLLAR && str[i + 1] && str[i + 1] != S_QUOTE && str[i + 1] != D_QUOTE && str[i + 1] != SPACE && str[i + 1] != '=')
+        if (str[i] == DOLLAR && !is_in_quote(initial, pos) && str[i + 1] && str[i + 1] != SPACE && str[i + 1] != '=')
             break;
         i++;
     }
@@ -50,6 +54,8 @@ int     get_expanded_token_size(char *str)
     i = 0;
     if (!str[i])
         return (1);
+    if (str[i] == S_QUOTE || str[i] == D_QUOTE)
+        return (0);
     if (ft_isdigit(str[i]))
         return (1);
     while (str[i] && str[i] != DOLLAR && str[i] != S_QUOTE && str[i] != D_QUOTE && str[i] != SPACE && str[i] != ']' && str[i] != '%' && str[i] != '=')
@@ -86,7 +92,7 @@ char    *create_expanded_token(char *str, t_env *envlist)
     i = 0;
     while (str[i])
     {
-        if (str[i] == DOLLAR && str[i + 1] && str[i + 1] != S_QUOTE && str[i + 1] != D_QUOTE && str[i + 1] != SPACE && str[i + 1] != '=')
+        if (str[i] == DOLLAR && !is_in_quote(str, i) && str[i + 1] && str[i + 1] != SPACE && str[i + 1] != '=')
             break;
         i++;
     }
@@ -112,7 +118,7 @@ char    *create_expanded_token(char *str, t_env *envlist)
         magic_malloc(FREE, 0, result);
         //printf("*result* step 2 : %s\n", result);
         i = i + size;
-        before_dollar = get_expanded_token_start(&str[i]);
+        before_dollar = get_expanded_token_start(&str[i], str, i);
         //printf("before dollar : %d\n", before_dollar);
         substring = ft_substr(&str[i], 0, before_dollar);
         magic_malloc(ADD, 0, substring);

@@ -50,11 +50,11 @@ ECHO :
 - (105 : OK) echo $HOME% ==> attendu: /mnt/nfs/homes/lmurtin%
                         obtenu: (empty)
 - (131 : OK) echo "$""" ==> attendu: $, obtenu: (empty)
-- (133/135) echo $"HOME" et echo $""HOME et echo $''HOME ==> 
+- (133/135 : OK) echo $"HOME" et echo $""HOME et echo $''HOME ==> 
     attendu: HOME, obtenu: (empty)
 - (143 : OK) echo ''$HOME ==> attendu: /mnt/nfs/homes/lmurtin
                     obtenu: $HOME
-- (145 à 151) echo $ suivi de diverse combinaisons de lettres et quotes => obtenu: (empty) pour diverses attendus
+- (145 à 151 : OK) echo $ suivi de diverse combinaisons de lettres et quotes => obtenu: (empty) pour diverses attendus
 
 EXPORT :
 - (218) export "" ==> attendu: "Not a valid identifier"

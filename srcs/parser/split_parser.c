@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int		is_in_quote(const char *str, int pos)
+int		is_in_quote(char *str, int pos)
 {
 	int	i;
 	int	result;
@@ -32,7 +32,7 @@ int		is_in_quote(const char *str, int pos)
 	return (result);
 }
 
-static	int	ft_taillemot2(const char *str, char c)
+static	int	ft_taillemot2(char *str, char c)
 {
 	int	i;
 
@@ -46,7 +46,7 @@ static	int	ft_taillemot2(const char *str, char c)
 	return (i);
 }
 
-static	int	ft_nbrmots2(const char *str, char c)
+static	int	ft_nbrmots2(char *str, char c)
 {
 	int	i;
 	int	j;
@@ -66,7 +66,7 @@ static	int	ft_nbrmots2(const char *str, char c)
 	return (mots);
 }
 
-static	char	*ft_cpymot2(const char *src, int n)
+static	char	*ft_cpymot2(char *src, int n)
 {
 	char	*dest;
 
@@ -79,7 +79,7 @@ static	char	*ft_cpymot2(const char *src, int n)
 	return (dest);
 }
 
-char	**ft_boucle2(int tailletab, char const *str, char c, char **res)
+char	**ft_boucle2(int tailletab, char *str, char c, char **res)
 {
 	int	i;
 	int	j;
@@ -108,7 +108,7 @@ char	**ft_boucle2(int tailletab, char const *str, char c, char **res)
 	return (res);
 }
 
-char	**split_parser(char const *str, char c)
+char	**split_parser(char *str, char c)
 {
 	char	**res;
 	int		tailletab;
