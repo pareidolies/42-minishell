@@ -26,6 +26,7 @@ t_command *create_command(t_token *list)
 		return (NULL);
     result->redirection = NULL;
     result->path = NULL;
+    result->index = 0;
     return (result);
 }
 

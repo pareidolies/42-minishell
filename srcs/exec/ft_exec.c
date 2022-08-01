@@ -41,6 +41,8 @@ t_data	*ft_init_data(t_command *commands, t_env *envlist)
 	}
 	mini->nb_fd_pipes = (nb_fd - 1) * 2; //nbre de pipes x 2
 	mini->nb_pid = nb_fd;
+	mini->std_in = dup(STDIN_FILENO);
+	mini->std_out = dup(STDOUT_FILENO);
 	return (mini);
 }
 
@@ -77,7 +79,7 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 		redir_open(current_cmd, fdinout);
 		dup_close_in(mini, current_cmd, fdinout);
 		error = which_builtin(current_cmd->args, envlist);
-		redir_close(current_cmd);
+		redir_close(mini, current_cmd, 1);
 	}
 	return (error);
 }

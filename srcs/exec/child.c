@@ -12,7 +12,7 @@ int	ft_child(t_data *mini, t_command *cmd, t_env *envlist)
 	if (execve(cmd->path, cmd->args, envtab) == -1)
 		perror("Program didn't execute properly.\n");
 	/*Tout ce qui suit est appelé uniquement en cas d'erreur de execve*/
-	redir_close(cmd);
+	redir_close(mini, cmd, 0);
 	magic_malloc(QUIT, 0, NULL);
 	//ft_free_tab(envtab);
 	return (1);

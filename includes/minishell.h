@@ -112,6 +112,8 @@ typedef struct s_data
 	struct s_env        *envlist;
 	int					nb_fd_pipes;
 	int					nb_pid;
+	int					std_in;
+	int					std_out;
 	int					*pipes;
 	pid_t	            *pid;
 }   t_data;
@@ -240,7 +242,7 @@ int	which_builtin(char **args, t_env *envlist);
 
 //redir_and_pipes.c
 int redir_open(t_command *current_cmd, int fd[2]);
-int redir_close(t_command *current_cmd);
+int redir_close(t_data *mini, t_command *current_cmd, int flag);
 int	*open_pipes(t_data *mini);
 int	ft_close_all(int *fd, int nb);
 

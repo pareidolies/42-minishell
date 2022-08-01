@@ -49,7 +49,7 @@ void    free_tokens(t_token *list)
     {
         magic_malloc(FREE, 0, current->token);
         magic_malloc(FREE, 0, current->trimmed_token);
-        magic_malloc(FREE, 0, current->expanded_token);
+        //magic_malloc(FREE, 0, current->expanded_token);
         tmp = current->next;
         magic_malloc(FREE, 0, current);
         current = tmp;

@@ -48,8 +48,8 @@ int main(int argc, char **argv, char **envp)
 				free(result);
 			else
 			{
-				//ft_exec(commands, envlist);
-				exec_no_pipeline(commands, envlist);
+				ft_exec(commands, envlist);
+				//exec_no_pipeline(commands, envlist);
 				free(result);
 				free_commands(commands);
 			}

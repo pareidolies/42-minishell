@@ -55,7 +55,7 @@ int redir_open(t_command *current_cmd, int fd[2])
 }
 
 /*Ferme tous les fichiers impliqués dans des redirections*/
-int redir_close(t_command *current_cmd, int flag)
+int redir_close(t_data *mini, t_command *current_cmd, int flag)
 {
 	t_redirection	*redir;
 
@@ -68,7 +68,8 @@ int redir_close(t_command *current_cmd, int flag)
 	}
     if (flag == 1)
     {
-        
+        dup2(mini->std_in, STDIN_FILENO);
+        dup2(mini->std_out, STDOUT_FILENO);
     }
 	return (0);
 }
