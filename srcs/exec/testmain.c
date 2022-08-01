@@ -51,6 +51,7 @@ int main(int argc, char **argv, char **envp)
 				//ft_exec(commands, envlist);
 				//exec_no_pipeline(commands, envlist);
 				free(result);
+				free_commands(commands);
 			}
 		}
 		count++;
