@@ -13,7 +13,7 @@ void	ft_free_tab(char **tab)
 		magic_malloc(FREE, 0, tab[i]);
 		i++;
 	}
-	free(tab);
+	magic_malloc(FREE, 0, tab);
 }
 
 char	*get_command_path(char *command, t_env *envlist)

@@ -21,6 +21,7 @@ int main(int argc, char **argv, char **envp)
 	t_env	*envlist;
 	int		flag;
 	t_command *commands;
+	int		count = 0;
 	//char	**params;
 	
 	flag = 0;
@@ -50,9 +51,11 @@ int main(int argc, char **argv, char **envp)
 				//ft_exec(commands, envlist);
 				//exec_no_pipeline(commands, envlist);
 				free(result);
-				break;
 			}
 		}
+		count++;
+		if (count == 4)
+			break;
 	}
 	clear_history();
 	ft_clean_list(envlist);
