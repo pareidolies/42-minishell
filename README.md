@@ -57,24 +57,24 @@ ECHO :
 - (145 à 151 : OK) echo $ suivi de diverse combinaisons de lettres et quotes => obtenu: (empty) pour diverses attendus
 
 EXPORT :
-- (218) export "" ==> attendu: "Not a valid identifier"
+- (218 : OK a reverifier avec toi) export "" ==> attendu: "Not a valid identifier"
                         obtenu: "Too few arguments" (la commande export ne recoit pas la chaine vide en tant qu'argument)
 - (267 : OK) export TEST$USER=bonjour (+ env) ==>
     attendu: TESTlmurtin=bonjour
     obtenu: TEST
-- (272 + 280) même pb que précédent: export $USER=bonjour (+env) ==>
+- (272 + 280 : OK) même pb que précédent: export $USER=bonjour (+env) ==>
     attendu: lmurtin=bonjour
     obtenu: "Too few arguments" (cause probable : l'expander ne s'arrête pas au `=`)
-- (274) export TEST="       -n bonjour     " (+ echo $TEST) ==>
+- (274 : OK) export TEST="       -n bonjour     " (+ echo $TEST) ==>
     attendu: bonjourminishell>
     obtenu: "Invalid option" (export recoit séparément le contenu entre double quotes)
-- (275) export HOLA="bonjour   "/ (+ echo $HOLA) ==>
+- (275 : OK) export HOLA="bonjour   "/ (+ echo $HOLA) ==>
     attendu: bonjour /
     obtenu: "/ not a valid identifier"
-- (276) export TEST='"' (+ echo " $TEST ") ==>
+- (276 : OK a reverifier avec toi) export TEST='"' (+ echo " $TEST ") ==>
     attendu:  " (avec espace avant et après)
     obtenu: (empty) (variable TEST bien set à " mais impossible de l'afficher)
-- (278) export "" TEST=test ==>
+- (278 : OK a reverifier avec toi) export "" TEST=test ==>
     attendu: " '"' not a valid identifier" + TEST=test
     obtenu: TEST=test (export recoit une chaine vide au lieu des quotes et ne détecte donc pas de symbole invalide)
 - (310) export A=1 B=2 C=3 D=4 E=5 F=6 G=7 H=8

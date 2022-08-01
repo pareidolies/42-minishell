@@ -40,7 +40,7 @@ int     get_expanded_token_start(char *str, char *initial, int pos)
     i = 0;
     while (str[i])
     {
-        if (str[i] == DOLLAR && !is_in_quote(initial, pos) && str[i + 1] && str[i + 1] != SPACE && str[i + 1] != '=')
+        if (str[i] == DOLLAR && str[i + 1] && (!is_in_quote(initial, pos) || ft_isalpha(str[i + 1])) && str[i + 1] != SPACE && str[i + 1] != '=')
             break;
         i++;
     }
@@ -92,7 +92,7 @@ char    *create_expanded_token(char *str, t_env *envlist)
     i = 0;
     while (str[i])
     {
-        if (str[i] == DOLLAR && !is_in_quote(str, i) && str[i + 1] && str[i + 1] != SPACE && str[i + 1] != '=')
+        if (str[i] == DOLLAR && str[i + 1] && (!is_in_quote(str, i) || ft_isalpha(str[i + 1])) && str[i + 1] != SPACE && str[i + 1] != '=')
             break;
         i++;
     }
