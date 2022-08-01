@@ -40,7 +40,7 @@ INC		= -I ./includes -I ./libft
 CC		= cc
 RM		= rm -rf
 
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -g
 
 LIBFLAGS	= -L./libft -lft -lreadline
 

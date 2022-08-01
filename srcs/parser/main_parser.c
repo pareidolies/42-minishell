@@ -28,7 +28,8 @@ t_command *main_parser(char *str, t_env *envlist)
 	//trim_tokens(list);
 	//print_tokens(list);
 	command = convert_tokens_to_commands(list, envlist);
-	free_tokens(list);
+	//free_tokens(list);
 	print_command(command);
 	return (command);
 }
+

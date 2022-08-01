@@ -30,7 +30,7 @@ t_env	*ft_new_var(char *keyvalue)
 	int		j;
 	
 	i = 0;
-	var = malloc(sizeof(t_env));
+	var = magic_malloc(MALLOC, sizeof(t_env), NULL);
 	if (var == NULL)
 		return (perror("ft_new_var "), NULL); /*GESTION D'ERREUR*/
 	while(keyvalue[i] != '\0')
@@ -40,9 +40,11 @@ t_env	*ft_new_var(char *keyvalue)
 		i++; 
 	}
 	var->key = ft_substr(keyvalue, 0, j);
+	magic_malloc(ADD, 0, var->key);
 	if (var->key == NULL)
 		return (perror("ft_new_var "), NULL);
 	var->value = ft_substr(keyvalue, j + 1, i - (j + 1));
+	magic_malloc(ADD, 0, var->value);
 	if (var->value == NULL)
 		return (perror("ft_new_var "), NULL);
 	var->next = NULL;
@@ -57,11 +59,13 @@ t_env	*ft_list_env(char **envp)
 	int		i;
 
 	var = NULL;
-	head = malloc(sizeof(t_env));
+	head = magic_malloc(MALLOC, sizeof(t_env), NULL);
 	if (head == NULL)
 		return (perror("ft_list_end "), NULL); /*GESTION ERREUR MALLOC*/
 	head->key = ft_strdup("?");
+	magic_malloc(ADD, 0, head->key);
 	head->value = ft_strdup("0");
+	magic_malloc(ADD, 0, head->value);
 	head->next = NULL;
 	if (head->key == NULL || head->value == NULL)
 		return (perror("ft_list_end "), NULL); /*GESTION ERREUR MALLOC*/
@@ -83,10 +87,10 @@ void	ft_clean_list(t_env	*envlist)
 
 	while (envlist != NULL)
 	{
-		free(envlist->key);
-		free(envlist->value);
+		magic_malloc(FREE, 0, envlist->key);
+		magic_malloc(FREE, 0, envlist->value);
 		tmp = envlist->next;
-		free(envlist);
+		magic_malloc(FREE, 0, envlist);
 		envlist = tmp;
 	}
 }

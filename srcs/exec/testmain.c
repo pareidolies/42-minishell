@@ -48,13 +48,14 @@ int main(int argc, char **argv, char **envp)
 			else
 			{
 				//ft_exec(commands, envlist);
-				exec_no_pipeline(commands, envlist);
-				free_commands(commands);
+				//exec_no_pipeline(commands, envlist);
 				free(result);
+				break;
 			}
 		}
 	}
 	clear_history();
 	ft_clean_list(envlist);
+	magic_malloc(QUIT, 0, NULL);
 	return (0);
 }

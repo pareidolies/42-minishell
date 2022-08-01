@@ -10,7 +10,7 @@ void	ft_free_tab(char **tab)
 	i = 0;
 	while(tab[i] != NULL)
 	{
-		free(tab[i]);
+		magic_malloc(FREE, 0, tab[i]);
 		i++;
 	}
 	free(tab);
@@ -48,18 +48,26 @@ char *environment_path(char *command, char *path_var)
 	paths = ft_split(path_var, ':');
 	magic_malloc(ADD, 0, paths);
 	i = 0;
+	while (paths[i])
+	{
+		magic_malloc(ADD, 0, paths[i]);
+		i++;
+	}
+	i = 0;
 	while (paths[i] != NULL)
 	{
 		tmp = paths[i];
 		paths[i] = ft_strjoin(paths[i], "/");
-		free(tmp);
+		magic_malloc(ADD, 0, paths[i]);
+		magic_malloc(FREE, 0, tmp);
 		cmd_path = ft_strjoin(paths[i], command);
+		magic_malloc(ADD, 0, cmd_path);
 		if (access(cmd_path, F_OK | X_OK) == 0)
 		{
 			ft_free_tab(paths);
 			return (cmd_path);
 		}
-		free(cmd_path);
+		magic_malloc(FREE, 0, cmd_path);
 		i++;
 	}
 	ft_free_tab(paths);
@@ -83,12 +91,14 @@ char	*absolute_relative_path(char *command)
 	else
 	{
 		cmd_path = ft_strjoin("./", command);
+		magic_malloc(ADD, 0, cmd_path);
 		if (access(cmd_path, F_OK | X_OK) == 0)
 			return (cmd_path);
 		else
 		{
 			//perror("Command relative path "); /*GESTION ERREUR*/
-			return (free(cmd_path), NULL);
+			magic_malloc(FREE, 0, cmd_path);
+			return (NULL);
 		} 
 	}
 }
