@@ -202,6 +202,9 @@ void    free_commands(t_command *list);
 //magic_malloc.c
 void    *magic_malloc(int choice, size_t size, void *addr);
 
+//split_parser.c
+char	**split_parser(char const *str, char c);
+
 //exec_utils.c
 t_env	*ft_list_env(char **envp); //pour dupliquer env au début du prog
 t_env	*ft_new_var(char *keyvalue);
