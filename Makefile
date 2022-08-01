@@ -11,6 +11,8 @@ SRCS			=	parser/main_parser.c \
 					parser/free_tokens.c \
 					exec/testmain.c \
 					exec/ft_exec.c \
+					exec/redir_and_pipes.c \
+					exec/handle_fd.c \
 					exec/exec_utils.c \
 					exec/get_path.c \
 					exec/child.c \

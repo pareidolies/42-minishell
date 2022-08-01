@@ -109,7 +109,9 @@ typedef struct s_redirection
 typedef struct s_data
 {
 	struct s_command    *commands;
-	struct s_env        *env;
+	struct s_env        *envlist;
+	int					nb_fd_pipes;
+	int					nb_pid;
 	int					*pipes;
 	pid_t	            *pid;
 }   t_data;
@@ -120,6 +122,7 @@ typedef struct s_command
 	char    *full_cmd;
 	char	*path; //"builtin" if its a builtin
 	char	**args;
+	int		index;
 	t_redirection   *redirection;
 	struct s_command *next;
 	struct s_command *prev;
@@ -226,13 +229,23 @@ char	*absolute_relative_path(char *command);
 void	ft_free_tab(char **tab);
 
 //ft_exec.c
-int	exec_no_pipeline(t_command *current_cmd, t_env *envlist);
-int redir_open(t_command *current_cmd, int fd[2]);
+int ft_exec(t_command *commands, t_env *envlist);
+t_data	*ft_init_data(t_command *commands, t_env *envlist);
+int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist);
 int	which_builtin(char **args, t_env *envlist);
-int	*open_pipes(t_command *commands);
+
+//redir_and_pipes.c
+int redir_open(t_command *current_cmd, int fd[2]);
+int redir_close(t_command *current_cmd);
+int	*open_pipes(t_data *mini);
 int	ft_close_all(int *fd, int nb);
 
-int	ft_child(t_command *cmd, t_env *envlist);
+//handle_fd.c
+int	dup_close_in(t_data *mini, t_command *current_cmd, int fd[2]);
+int	dup_close_out(t_data *mini, t_command *current_cmd, int fd[2]);
+
+//child.c
+int	ft_child(t_data *mini, t_command *cmd, t_env *envlist);
 char	**ft_convertlist(t_env *envlist);
 
 #endif

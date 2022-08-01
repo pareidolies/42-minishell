@@ -1,18 +1,18 @@
 #include "minishell.h"
 #include <unistd.h>
 
-int	ft_child(t_command *cmd, t_env *envlist)
+int	ft_child(t_data *mini, t_command *cmd, t_env *envlist)
 {
 	char **envtab;
+	int	fdinout[2];
 
 	envtab = ft_convertlist(envlist);
-	// if (cmd->path == NULL)
-	// {
-	// 	write(2, "Command not found\n", 18);
-	// 	magic_malloc(QUIT, 0, NULL);
-	// }
+	redir_open(cmd, fdinout);
+	dup_close_in(mini, cmd, fdinout);
 	if (execve(cmd->path, cmd->args, envtab) == -1)
 		perror("Program didn't execute properly.\n");
+	/*Tout ce qui suit est appelé uniquement en cas d'erreur de execve*/
+	redir_close(cmd);
 	magic_malloc(QUIT, 0, NULL);
 	//ft_free_tab(envtab);
 	return (1);
