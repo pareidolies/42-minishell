@@ -33,6 +33,76 @@ void    analyze_tokens_to_expand(t_token *list)
     }
 }
 
+int		is_in_d_quote(char *str, int pos)
+{
+	int	i;
+	int	result;
+
+	result = 0;
+	i = 0;
+	while (str[i] && i < pos)
+	{
+		if (str[i] == S_QUOTE)
+		{
+			if (result == 0)
+				result = 1;
+			else if (result == 1)
+				result = 0;
+			else if (result == 2)
+				result = 2;
+		}
+		if (str[i] == D_QUOTE)
+		{
+			if (result == 0)
+				result = 2;
+			else if (result == 2)
+				result = 0;
+			else if (result == 1)
+				result = 1;
+		}
+		i++;
+	}
+    if (result == 2)
+        return (2);
+    else
+	    return (0);
+}
+
+int		is_in_s_quote(char *str, int pos)
+{
+	int	i;
+	int	result;
+
+	result = 0;
+	i = 0;
+	while (str[i] && i < pos)
+	{
+		if (str[i] == S_QUOTE)
+		{
+			if (result == 0)
+				result = 1;
+			else if (result == 1)
+				result = 0;
+			else if (result == 2)
+				result = 2;
+		}
+		if (str[i] == D_QUOTE)
+		{
+			if (result == 0)
+				result = 2;
+			else if (result == 2)
+				result = 0;
+			else if (result == 1)
+				result = 1;
+		}
+		i++;
+	}
+    if (result == 1)
+        return (1);
+    else
+	    return (0);
+}
+
 int     get_expanded_token_start(char *str, char *initial, int pos)
 {
     int i;
@@ -40,7 +110,7 @@ int     get_expanded_token_start(char *str, char *initial, int pos)
     i = 0;
     while (str[i])
     {
-        if (str[i] == DOLLAR && str[i + 1] && (!is_in_quote(initial, pos) || ft_isalpha(str[i + 1])) && str[i + 1] != SPACE && str[i + 1] != '=')
+        if (str[i] == DOLLAR && !is_in_s_quote(initial, pos) && str[i + 1] && (!is_in_d_quote(initial, pos) || ft_isalpha(str[i + 1])) && str[i + 1] != SPACE && str[i + 1] != '=')
             break;
         i++;
     }
@@ -92,7 +162,7 @@ char    *create_expanded_token(char *str, t_env *envlist)
     i = 0;
     while (str[i])
     {
-        if (str[i] == DOLLAR && str[i + 1] && (!is_in_quote(str, i) || ft_isalpha(str[i + 1])) && str[i + 1] != SPACE && str[i + 1] != '=')
+        if (str[i] == DOLLAR && !is_in_s_quote(str, i) && str[i + 1] && (!is_in_d_quote(str, i) || ft_isalpha(str[i + 1])) && str[i + 1] != SPACE && str[i + 1] != '=')
             break;
         i++;
     }
