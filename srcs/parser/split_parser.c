@@ -39,7 +39,7 @@ static	int	ft_taillemot2(const char *str, char c)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == c && is_in_quote(str, i))
+		if (str[i] == c && !is_in_quote(str, i))
 			break;
 		i++;
 	}
