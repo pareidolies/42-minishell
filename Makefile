@@ -9,6 +9,7 @@ SRCS			=	parser/main_parser.c \
 					parser/redirections.c \
 					parser/magic_malloc.c \
 					parser/free_tokens.c \
+					parser/split_parser.c \
 					exec/testmain.c \
 					exec/ft_exec.c \
 					exec/redir_and_pipes.c \
@@ -42,7 +43,7 @@ INC		= -I ./includes -I ./libft
 CC		= cc
 RM		= rm -rf
 
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -g
 
 LIBFLAGS	= -L./libft -lft -lreadline
 

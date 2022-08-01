@@ -86,7 +86,7 @@ int	get_token_size(char *str)
 			if (str[i] && (str[i] == S_QUOTE || str[i] == D_QUOTE))
 			{
 				//printf("HERE\n");
-				return (i + 1 + get_token_size(&str[i + 1]));
+				return (i + get_token_size(&str[i]));
 			}
 			else
 				return (i);

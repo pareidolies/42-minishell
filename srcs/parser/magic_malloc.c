@@ -82,8 +82,11 @@ void	free_one_element(t_malloc **first, void *addr)
 	else if (!current->next)
 		current->prev->next = NULL;
 	ft_free(current);
-	//free(addr);
-	//addr = NULL;
+	/*if (addr)
+	{
+		free(addr);
+		addr = NULL;
+	}*/
 }
 
 void    *magic_malloc(int choice, size_t size, void *addr)

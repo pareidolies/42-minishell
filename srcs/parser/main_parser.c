@@ -32,3 +32,4 @@ t_command *main_parser(char *str, t_env *envlist)
 	print_command(command);
 	return (command);
 }
+

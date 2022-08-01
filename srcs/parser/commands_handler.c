@@ -20,6 +20,7 @@ t_command *create_command(t_token *list)
     magic_malloc(ADD, 0, tmp);
     result->cmd = withdraw_quotes(tmp);
     magic_malloc(ADD, 0, result->cmd);
+    magic_malloc(FREE, 0, current->expanded_token);
     magic_malloc(FREE, 0, tmp);
     if (!(result->cmd))
 		return (NULL);
