@@ -13,37 +13,40 @@ int redir_open(t_command *current_cmd, int fd[2])
 	fdin = -1;
 	fdout = -1;
 	redir = current_cmd->redirection;
+	printf("VERIF DES REDIRECTIONS\n");
 	while (redir != NULL)
 	{
 		if (redir->mode == TRUNC || redir->mode == APPEND) //OUT
 		{
+			printf("REDIR SORTANTE\n");
 			if (redir->mode == TRUNC)
 			{
 				redir->fd = open(redir->str, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 				if (redir->fd < 0)
-					return (1); /*GESTION ERREUR*/
+					return (perror("redir_open "), 1); /*GESTION ERREUR*/
 			}
 			else if (redir->mode == APPEND)
 			{
 				redir->fd = open(redir->str, O_WRONLY | O_CREAT | O_APPEND, 0666);
 				if (redir->fd < 0)
-					return (1); /*GESTION ERREUR*/
+					return (perror("redir_open "), 1); /*GESTION ERREUR*/
 			}
 			fdout = redir->fd;
 		}
 		else if (redir->mode == INFILE || redir->mode == DELIMITER) //IN
 		{
+			printf("REDIR ENTRANTE\n");
 			if (redir->mode == INFILE)
 			{
 				redir->fd = open(redir->str, O_RDONLY);
 				if (redir->fd < 0)
-					return (1); /*GESTION ERREUR*/
+					return (perror("redir_open "), 1); /*GESTION ERREUR*/
 			}
 			else if (redir->mode == DELIMITER)
 			{
 				redir->fd = open("/tmp/crustacestmp", O_RDONLY);
 				if (redir->fd < 0)
-					return (1); /*GESTION ERREUR*/
+					return (perror("redir_open "), 1); /*GESTION ERREUR*/
 			}
 			fdin = redir->fd;
 		}
@@ -62,8 +65,11 @@ int redir_close(t_data *mini, t_command *current_cmd, int flag)
 	redir = current_cmd->redirection;
 	while (redir != NULL)
 	{
-		if (close(redir->fd) == -1)
-			perror("redir_close "); /*GESTION ERREUR*/
+		if (redir->fd != -1)
+		{
+			if (close(redir->fd) == -1)
+				perror("redir_close "); /*GESTION ERREUR*/
+		}
 		redir = redir->next;
 	}
     if (flag == 1)

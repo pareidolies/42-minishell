@@ -7,7 +7,8 @@ int	ft_child(t_data *mini, t_command *cmd, t_env *envlist)
 	int	fdinout[2];
 
 	envtab = ft_convertlist(envlist);
-	redir_open(cmd, fdinout);
+	if (redir_open(cmd, fdinout) == 1)
+		return (1);
 	dup_close_in(mini, cmd, fdinout);
 	if (execve(cmd->path, cmd->args, envtab) == -1)
 		perror("Program didn't execute properly.\n");

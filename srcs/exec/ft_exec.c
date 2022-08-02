@@ -69,16 +69,19 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 		}
 		if (pid == 0)
 		{
-			ft_child(mini, current_cmd, envlist);
-			exit(0);
+			if (ft_child(mini, current_cmd, envlist) != 0) /*GESTION ERREUR*/
+				magic_malloc(QUIT, 0, NULL);
+			//exit(0);
 		}
 		waitpid(pid, &wstatus, 0);
 	}
 	else //cas des builtin
 	{
-		redir_open(current_cmd, fdinout);
-		dup_close_in(mini, current_cmd, fdinout);
-		error = which_builtin(current_cmd->args, envlist);
+		if (redir_open(current_cmd, fdinout) == 0)
+		{
+			dup_close_in(mini, current_cmd, fdinout);
+			error = which_builtin(current_cmd->args, envlist);
+		}
 		redir_close(mini, current_cmd, 1);
 	}
 	return (error);
