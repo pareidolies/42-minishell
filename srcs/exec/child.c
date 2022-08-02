@@ -5,12 +5,28 @@ int	ft_child(t_data *mini, t_command *cmd, t_env *envlist)
 {
 	char **envtab;
 	int	fdinout[2];
+	int	error;
 
-	envtab = ft_convertlist(envlist);
+	//printf("ft_child, index #%d : pid child = %d\n", cmd->index, mini->pid[cmd->index]);
+	if (cmd->path == NULL)
+	{
+		write(2, "Command not found\n", 18); /*GESTION ERREUR*/
+		return (1);
+	}
 	if (redir_open(cmd, fdinout) == 1)
 		return (1);
-	printf("IN CHILD, fdinout[0] = %d et fdinout[1] = %d\n", fdinout[0], fdinout[1]);
+	//printf("IN CHILD, fdinout[0] = %d et fdinout[1] = %d\n", fdinout[0], fdinout[1]);
 	dup_close_in(mini, cmd, fdinout);
+	if (ft_strncmp(cmd->path, "builtin", 8) == 0)
+	{
+		error = which_builtin(cmd->args, envlist);
+		redir_close(mini, cmd, 1);
+		close(mini->std_in);
+		close(mini->std_out);
+		magic_malloc(QUIT, 0, NULL);
+		return (error);
+	}
+	envtab = ft_convertlist(envlist);
 	if (execve(cmd->path, cmd->args, envtab) == -1)
 		perror("Program didn't execute properly.\n");
 	/*Tout ce qui suit est appelé uniquement en cas d'erreur de execve*/

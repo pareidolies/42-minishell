@@ -36,6 +36,8 @@ pid_t   ft_fork(t_data *mini, t_command *cmd)
         error = ft_child(mini, cmd, mini->envlist);
         if (error != 0)
             exit(1); /*GESTION ERREUR*/
+        else
+            exit(0);
     }
     return (pid);
 }

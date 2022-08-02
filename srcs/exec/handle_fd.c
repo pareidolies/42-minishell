@@ -7,7 +7,8 @@ int	dup_close_in(t_data *mini, t_command *current_cmd, int fd[2])
     int i;
 
     i = current_cmd->index;
-	printf("i = %d : fd[0] = %d\n", i, fd[0]);
+	printf("DUPING ACCORDING TO REDIR/PIPE\n");
+	printf("commande numero %d : fd[0] = %d (no redir if -1)\n", i, fd[0]);
 	if (fd[0] != -1) //redir IN
 	{
 		if (dup2(fd[0], STDIN_FILENO) != STDIN_FILENO)
@@ -35,7 +36,7 @@ int	dup_close_out(t_data *mini, t_command *current_cmd, int fd[2])
     int i;
 
     i = current_cmd->index;
-	printf("i = %d : fd[1] = %d\n", i, fd[1]);
+	printf("commande numero %d : fd[1] = %d (no redir if -1)\n", i, fd[1]);
 	if (fd[1] != -1) //redir OUT
 	{
 		if (dup2(fd[1], STDOUT_FILENO) != STDOUT_FILENO)
@@ -48,7 +49,6 @@ int	dup_close_out(t_data *mini, t_command *current_cmd, int fd[2])
 	{
 		if (current_cmd->next != NULL) // pipe sortant
 		{
-			printf("fd = %d\n", mini->pipes[(i * 2) + 1]);
 			if (dup2(mini->pipes[(i * 2) + 1], STDOUT_FILENO) != STDOUT_FILENO)
 			{
 				perror("dup_close_out 2 ");

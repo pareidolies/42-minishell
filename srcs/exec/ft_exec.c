@@ -32,6 +32,7 @@ int ft_exec(t_command *commands, t_env *envlist)
 	}	
 	else
 	{
+		printf("COMMANDE SEULE\n");
 		mini->pipes = NULL;
 		mini->pid = NULL;
 		exec_no_pipeline(mini, mini->commands, mini->envlist);
