@@ -90,6 +90,7 @@ int	*open_pipes(t_data *mini)
 	nb_fd = mini->nb_fd_pipes;
 	fd = magic_malloc(MALLOC, sizeof(int) * nb_fd, NULL);
 	i = 0;
+	printf("OPENING PIPES\n");
 	while (i < nb_fd)
 	{
 		if (pipe(pip) < 0)
@@ -102,6 +103,12 @@ int	*open_pipes(t_data *mini)
 		fd[i] = pip[0];
 		fd[i + 1] = pip[1];
 		i += 2;
+	}
+	i = 0;
+	while (i < nb_fd)
+	{
+		printf("fd[%d] : %d\n", i, fd[i]);
+		i++;
 	}
 	return (fd);
 }

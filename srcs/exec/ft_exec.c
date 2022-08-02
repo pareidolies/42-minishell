@@ -6,14 +6,29 @@
 int ft_exec(t_command *commands, t_env *envlist)
 {
 	t_data	*mini;
-	// int	*fd;
-	// int	*pid;
+	int		wstatus;
+	pid_t	wpid;
+	int		i;
 
 	mini = ft_init_data(commands, envlist);
+	i = 0;
 	if (mini->nb_pid > 1) //si au moins 2 commandes
 	{
+		printf("COMMANDES MULTIPLES\n");
 		mini->pipes = open_pipes(mini);
-		//mini->pid = multi_fork(mini);
+		mini->pid = multi_fork(mini);
+		ft_close_all(mini->pipes, mini->nb_fd_pipes);
+		while (i < mini->nb_pid)
+		{
+			wpid = wait(&wstatus);
+			if (wpid == mini->pid[mini->nb_pid - 1])
+			{
+				//recup retour d'exec avec WIFEXITED et WEXITSTATUS
+				printf("RECUP CODE ERREUR FINAL\n");
+			}
+			i++;
+		}
+		unlink("/tmp/crustacestmp");
 	}	
 	else
 	{
@@ -21,6 +36,8 @@ int ft_exec(t_command *commands, t_env *envlist)
 		mini->pid = NULL;
 		exec_no_pipeline(mini, mini->commands, mini->envlist);
 	}
+	close(mini->std_in);
+	close(mini->std_out);
 	return (0);
 }
 
@@ -43,15 +60,16 @@ t_data	*ft_init_data(t_command *commands, t_env *envlist)
 	mini->nb_pid = nb_fd;
 	mini->std_in = dup(STDIN_FILENO);
 	mini->std_out = dup(STDOUT_FILENO);
+	printf("stdin = %d et stdout = %d\n", mini->std_in, mini->std_out);
 	return (mini);
 }
 
 int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 {
-	int	pid;
-	int error;
-	int wstatus;
-	int	fdinout[2];
+	pid_t	pid;
+	int 	error;
+	int 	wstatus;
+	int		fdinout[2];
 
 	error = 0;
 	if (current_cmd->path == NULL)
@@ -61,18 +79,18 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 	}
 	if (ft_strncmp(current_cmd->path, "builtin", 8) != 0) //pas un builtin
 	{
-		pid = fork();
-		if (pid < 0)
-		{
-			perror("Fork : ");
-			return (2);
-		}
-		if (pid == 0)
-		{
-			if (ft_child(mini, current_cmd, envlist) != 0) /*GESTION ERREUR*/
-				magic_malloc(QUIT, 0, NULL);
-			//exit(0);
-		}
+		pid = ft_fork(mini, current_cmd);
+		// if (pid < 0)
+		// {
+		// 	perror("Fork : ");
+		// 	return (2);
+		// }
+		// if (pid == 0)
+		// {
+		// 	if (ft_child(mini, current_cmd, envlist) != 0) /*GESTION ERREUR*/
+		// 		magic_malloc(QUIT, 0, NULL);
+		// 	//exit(0);
+		// }
 		waitpid(pid, &wstatus, 0);
 	}
 	else //cas des builtin

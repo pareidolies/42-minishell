@@ -240,6 +240,10 @@ t_data	*ft_init_data(t_command *commands, t_env *envlist);
 int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist);
 int	which_builtin(char **args, t_env *envlist);
 
+//ft_fork.c
+pid_t   *multi_fork(t_data *mini);
+pid_t   ft_fork(t_data *mini, t_command *cmd);
+
 //redir_and_pipes.c
 int redir_open(t_command *current_cmd, int fd[2]);
 int redir_close(t_data *mini, t_command *current_cmd, int flag);

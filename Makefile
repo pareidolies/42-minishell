@@ -12,6 +12,7 @@ SRCS			=	parser/main_parser.c \
 					parser/split_parser.c \
 					exec/testmain.c \
 					exec/ft_exec.c \
+					exec/ft_fork.c \
 					exec/redir_and_pipes.c \
 					exec/handle_fd.c \
 					exec/exec_utils.c \

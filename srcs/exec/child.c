@@ -9,6 +9,7 @@ int	ft_child(t_data *mini, t_command *cmd, t_env *envlist)
 	envtab = ft_convertlist(envlist);
 	if (redir_open(cmd, fdinout) == 1)
 		return (1);
+	printf("IN CHILD, fdinout[0] = %d et fdinout[1] = %d\n", fdinout[0], fdinout[1]);
 	dup_close_in(mini, cmd, fdinout);
 	if (execve(cmd->path, cmd->args, envtab) == -1)
 		perror("Program didn't execute properly.\n");
@@ -33,7 +34,7 @@ char	**ft_convertlist(t_env *envlist)
 		i++;
 		var = var->next;
 	}
-	envtab = magic_malloc(MALLOC, sizeof(char *) * i, NULL);
+	envtab = magic_malloc(MALLOC, sizeof(char *) * (i + 1), NULL);
 	i = 0;
 	var = envlist;
 	while (var != NULL)
