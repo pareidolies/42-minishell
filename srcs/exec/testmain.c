@@ -36,6 +36,7 @@ int main(int argc, char **argv, char **envp)
 	{
 		result = readline("minishell>> ");
 		printf("User said : [%s]\n", result);
+		printf("size : %ld\n", ft_strlen(result));
 		if (!result[0])
 			free(result);
 		else
