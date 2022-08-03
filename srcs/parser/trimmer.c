@@ -109,7 +109,7 @@ char    *withdraw_quotes(char   *str)
     return (result);
 }*/
 
-void    trim_commands(t_command *list)
+/*void    trim_commands(t_command *list)
 {
     t_command *current;
     int i;
@@ -120,4 +120,4 @@ void    trim_commands(t_command *list)
         current->trimmed_token = withdraw_quotes(current->expanded_token);
         current = current->next;
     }
-}
+}*/

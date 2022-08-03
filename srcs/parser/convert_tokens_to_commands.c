@@ -52,7 +52,7 @@ void        fill_command(t_token *list, t_command *cell, t_env *envlist)
         }
         current = current->next;
     }
-    printf("NODE->FULL_CMD : %s\n", node->full_cmd);
+    //printf("NODE->FULL_CMD : %s\n", node->full_cmd);
     node->args = split_parser(node->full_cmd, SPACE);
     magic_malloc(ADD, 0, node->args);
     i = 0;

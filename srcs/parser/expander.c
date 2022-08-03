@@ -4,7 +4,7 @@
 
 //useless now
 
-int there_is_a_dollar(char *str)
+/*int there_is_a_dollar(char *str)
 {
     int i;
 
@@ -31,7 +31,7 @@ void    analyze_tokens_to_expand(t_token *list)
             current->to_expand = 1;
         current = current->next;
     }
-}
+}*/
 
 int		is_in_d_quote(char *str, int pos)
 {
@@ -202,7 +202,7 @@ char    *create_expanded_token(char *str, t_env *envlist)
     return (result);
 }
 
-void    expand_tokens(t_token *list, t_env *envlist)
+void    expander(t_token *list, t_env *envlist)
 {
     t_token *current;
 

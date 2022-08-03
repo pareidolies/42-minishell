@@ -91,6 +91,14 @@ typedef enum e_mode
 
 # define BUFFER_SIZE 10
 
+//Errors
+
+# define QUOTES_ERROR 1
+
+//Error messages
+
+# define QUOTES_ERR_MSSG "Error: Wrong number of quotes\n"
+
 /******************************************************************************
  *                               STRUCTURES                                   *
  *****************************************************************************/
@@ -167,7 +175,7 @@ typedef struct s_malloc
 
 
 //main_parser.c
-t_command	*main_parser(char *str, t_env *envlist);
+t_command	*parse_input(char *str, t_env *envlist);
 
 //token_handler.c
 void	print_tokens(t_token *token);
@@ -175,16 +183,16 @@ void	add_token(t_token *list, char *str, int flag);
 t_token	*create_token(char *str, int flag);
 
 //tokenization.c
-int		analyze_quotes(char *str);
+int		check_quotes(char *str);
 int		get_token_size(char *str);
-t_token	*tokenization(char *str);
+t_token	*convert_input_to_tokens(char *str);
 void	analyze_tokens_type(t_token *list);
 void	analyze_literals_type(t_token *list);
 
 //expander.c
 int		there_is_a_dollar(char *str);
 void	analyze_tokens_to_expand(t_token *list);
-void	expand_tokens(t_token *list, t_env *envlist);
+void	expander(t_token *list, t_env *envlist);
 
 //trim_tokens.c
 void	trim_tokens(t_token *list);
@@ -278,5 +286,8 @@ int	dup_close_out(t_data *mini, t_command *current_cmd, int fd[2]);
 //child.c
 int		ft_child(t_data *mini, t_command *cmd, t_env *envlist);
 char	**ft_convertlist(t_env *envlist);
+
+//print_messages.c
+int print_errors(int error);
 
 #endif
