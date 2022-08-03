@@ -1,5 +1,6 @@
 #include "minishell.h"
-#include "builtin.h"
+
+/* Return values OK */
 
 int ft_env(char **params, t_env *envlist)
 {

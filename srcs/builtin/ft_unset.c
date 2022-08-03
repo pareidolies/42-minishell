@@ -1,5 +1,4 @@
 #include "minishell.h"
-#include "builtin.h"
 
 int	ft_unset(char **params, t_env *envlist)
 {
@@ -32,17 +31,4 @@ int	ft_unset(char **params, t_env *envlist)
 		i++;
 	}
 	return (0);
-}
-
-void	ft_delenv(t_env *var, t_env *envlist)
-{
-	t_env	*tmp;
-
-	tmp = envlist;
-	while (tmp->next != var)
-		tmp = tmp->next;
-	tmp->next = var->next;
-	free(var->key);
-	free(var->value);
-	free(var);
 }

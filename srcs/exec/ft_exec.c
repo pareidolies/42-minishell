@@ -13,7 +13,6 @@ int ft_exec(t_command *commands, t_env *envlist)
 	mini = ft_init_data(commands, envlist);
 	i = 0;
 	ft_heredoc(mini);
-	//printf("coucou\n");
 	if (mini->nb_pid > 1) //si au moins 2 commandes
 	{
 		printf("COMMANDES MULTIPLES\n");
@@ -83,17 +82,6 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 	if (ft_strncmp(current_cmd->path, "builtin", 8) != 0) //pas un builtin
 	{
 		pid = ft_fork(mini, current_cmd);
-		// if (pid < 0)
-		// {
-		// 	perror("Fork : ");
-		// 	return (2);
-		// }
-		// if (pid == 0)
-		// {
-		// 	if (ft_child(mini, current_cmd, envlist) != 0) /*GESTION ERREUR*/
-		// 		magic_malloc(QUIT, 0, NULL);
-		// 	//exit(0);
-		// }
 		waitpid(pid, &wstatus, 0);
 	}
 	else //cas des builtin
@@ -102,6 +90,7 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 		{
 			dup_close_in(mini, current_cmd, fdinout);
 			error = which_builtin(current_cmd->args, envlist);
+			ft_update_status(error, envlist);
 		}
 		redir_close(mini, current_cmd, 1);
 	}

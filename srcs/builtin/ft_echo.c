@@ -1,7 +1,8 @@
 #include <stdio.h>
-#include "builtin.h"
 #include "libft.h"
 #include "minishell.h"
+
+/* Return values OK */
 
 int	is_valid_option(char *str)
 {
@@ -22,7 +23,6 @@ int	is_valid_option(char *str)
 		return (1);
 }
 
-/*Supposant que la commande est stockée avec ses arguments dans un tableau de char */
 /*params[0] = nom commande*/
 int	ft_echo(char **params)
 {
@@ -57,14 +57,3 @@ int	ft_echo(char **params)
 	}
 	return (0);
 }
-
-// int main(int argc, char **argv)
-// {
-// 	char	**params;
-
-// 	if (argc < 1)
-// 		return (1);
-// 	params = argv;
-// 	ft_echo(params);
-// 	return (0);
-// }

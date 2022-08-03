@@ -1,5 +1,4 @@
 #include "minishell.h"
-#include "builtin.h"
 
 /*In manual : "When no arguments are given, the results are unspecified." */
 /*We then choose to treat this case as a syntax error. */
@@ -44,7 +43,6 @@ int	ft_export(char **params, t_env *envlist)
 			else
 			{
 				key = find_name(params[i]);
-				//printf("key = %s\n", key);
 				if (valid_identifier(key) == 0 && eq_position[1] == '\0') //export VARIABLE=
 					update_env(key, "", envlist);
 				else if (valid_identifier(key) == 0) //export VARIABLE=value

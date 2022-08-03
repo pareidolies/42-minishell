@@ -2,13 +2,15 @@
 #include <sys/types.h>
 #include <dirent.h>
 #include "libft.h"
-#include "builtin.h"
 #include "minishell.h"
+
+/* Return values EN COURS */
 
 int ft_cd(char **params, t_env *envlist)
 {
 	char	*current;
 	DIR		*directory;
+	int		error;
 
 	if (nb_param(params) != 2)
 		return (cd_others(params, envlist));
@@ -16,9 +18,9 @@ int ft_cd(char **params, t_env *envlist)
 	if (current == NULL)
 	{
 		perror("cd (getcwd) ");
-		return (1); /*GESTION ERREUR*/
+		error = errno;
+		return (error); /*GESTION ERREUR*/
 	}
-	//printf("current : [%s]\n", current);
 	if (access(params[1], F_OK) == 0) //if it exists
 	{
 		directory = opendir(params[1]);
@@ -31,48 +33,35 @@ int ft_cd(char **params, t_env *envlist)
 				if ((current = getcwd(NULL, 0)) == NULL)
 				{
 					perror("cd (getcwd) ");
-					return (1); /*GESTION ERREUR*/
+					error = errno;
+					return (error); /*GESTION ERREUR*/
 				}
 				update_env("PWD", current, envlist);
 			}
 			else
-				perror("minishell: cd: ");/*GESTION ERREUR*/
+			{
+				perror("cd: ");/*GESTION ERREUR*/
+				error = errno;
+				return (error);
+			}
 			closedir(directory);
 		}
 		else
 			write(2, "Not a directory\n", 16);/*GESTION ERREUR*/
+			return (1)
 	}
 	else
 		write(2, "No such file or directory\n", 26);/*GESTION ERREUR*/
+		return (1);
 	free(current);
 	return (0);
-}
-
-/*début de code pour recup le chemin si besoin*/
-	// char	*tmp;
-	// char	*path;
-
-	// if (params[0][0] == '/') //chemin absolu
-	// 	path = params[0];
-	// else if (ft_strchr(params[0], '/') != NULL) //chemin relatif
-	// {
-	// 	tmp = ft_strjoin(current, "/");
-	// 	if (tmp == NULL)
-	// 		return (perror("cd "), 2);
-	// 	path = ft_strjoin(tmp, params[0]); //PWD + relatif = absolu
-	// 	if (path == NULL)
-	// 	{
-	// 		free(tmp);
-	// 		return (perror("cd "), 2);
-	// 	}
-	// 	free(tmp);
-	// }
-	
+}	
 
 int	cd_others(char **params, t_env *envlist)
 {
 	char	*path;
 	char	*current;
+	int		error;
 	t_env	*var;
 
 	if (nb_param(params) > 2)
@@ -96,7 +85,8 @@ int	cd_others(char **params, t_env *envlist)
 		if (current == NULL)
 		{
 			perror("cd (getcwd) ");
-			return (1); /*GESTION ERREUR*/
+			error = errno;
+			return (error); /*GESTION ERREUR*/
 		}
 		if (chdir(path) == 0)
 		{
@@ -107,7 +97,8 @@ int	cd_others(char **params, t_env *envlist)
 		else
 		{
 			perror("cd "); /*GESTION ERREUR*/
-			return (2);
+			error = errno;
+			return (error);
 		}
 	}
 	return (0);

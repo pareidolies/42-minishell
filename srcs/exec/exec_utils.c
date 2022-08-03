@@ -109,23 +109,6 @@ char *ft_getenv(char *key, t_env *envlist)
 	return ("");
 }
 
-int	ft_update_status(int code, t_env *envlist)
-{
-	char	*newvalue;
-
-	if (code == g_exit_status)
-		return (0);
-	newvalue = ft_itoa(code);
-	if (newvalue == NULL)
-	{
-		perror("ft_update_status "); /*GESTION ERREUR MALLOC*/
-		return (1);
-	}
-	update_env("?", newvalue, envlist);
-	g_exit_status = code;
-	return (0);
-}
-
 t_env	*ft_getenv_var(char *key, t_env *envlist)
 {
 	while (envlist != NULL)

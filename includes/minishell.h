@@ -6,6 +6,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <errno.h>
 
 /******************************************************************************
 *                              ENUMERATIONS                                   *
@@ -222,11 +223,19 @@ void	ft_lstaddback(t_env **alst, t_env *new);
 void	ft_clean_list(t_env	*envlist);
 
 //builtins
-char	*ft_getenv(char *key, t_env *envlist); //pour expander
+char	*ft_getenv(char *key, t_env *envlist);
+int		update_env(char *key, char *newvalue, t_env	*envlist);
+void	ft_delenv(t_env *var, t_env *envlist);
+t_env	*ft_new_var_split(char *key, char *value);
+t_env	*ft_getenv_var(char *key, t_env *envlist);
+int		nb_param(char **params);
 int		ft_cd(char **params, t_env *envlist);
+int		cd_others(char **params, t_env *envlist);
 int		ft_echo(char **params);
 int		ft_env(char **params, t_env *envlist);
 int		ft_export(char **params, t_env *envlist);
+char	*find_name(char *str);
+int		valid_identifier(char *name);
 int		ft_unset(char **params, t_env *envlist);
 int		ft_pwd(char **params);
 void	ft_exit(void);
