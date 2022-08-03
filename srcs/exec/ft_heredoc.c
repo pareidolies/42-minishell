@@ -1,6 +1,5 @@
 #include "minishell.h"
 #include "libft.h"
-#include "get_next_line.h"
 #include <fcntl.h>
 
 int	ft_heredoc(t_data *mini)
@@ -39,7 +38,7 @@ int	open_heretmp(t_command *cmd, int flag)
 	index = ft_itoa(cmd->index);
 	magic_malloc(ADD, 0, index);
 	pathname = ft_strjoin("/tmp/crustacestmp", index);
-	printf("pathname = %s\n", pathname);
+	//printf("pathname = %s\n", pathname);
 	magic_malloc(ADD, 0, pathname);
 	if (flag == 1)
 		fdtmp = open(pathname, O_CREAT | O_WRONLY | O_TRUNC, 0664);
@@ -47,7 +46,7 @@ int	open_heretmp(t_command *cmd, int flag)
 		fdtmp = open(pathname, O_RDONLY);
 	magic_malloc(FREE, 0, index);
 	magic_malloc(FREE, 0, pathname);
-	printf("tmp est ouvert\n");
+	//printf("tmp est ouvert\n");
 	return (fdtmp);
 }
 
@@ -66,7 +65,10 @@ void	ft_tempfile(char *str, int fd, int fdtmp)
 			write(1, "> ", 2);
 		line = get_next_line(fd);
 		if (line == NULL)
+		{
+			printf("je sors\n");
 			break ;
+		}
 		if (ft_strncmp(line, limiter, ft_strlen(limiter) + 1) == 0)
 		{
 			stop = 1;
