@@ -44,7 +44,8 @@ int redir_open(t_command *current_cmd, int fd[2])
 			}
 			else if (redir->mode == DELIMITER)
 			{
-				redir->fd = open("/tmp/crustacestmp", O_RDONLY);
+				redir->fd = open_heretmp(current_cmd, 0);
+				printf("fd = %d\n", redir->fd);
 				if (redir->fd < 0)
 					return (perror("redir_open "), 1); /*GESTION ERREUR*/
 			}

@@ -55,7 +55,7 @@ int main(int argc, char **argv, char **envp)
 			}
 		}
 		count++;
-		if (count == 10)
+		if (count == 4)
 			break;
 	}
 	clear_history();

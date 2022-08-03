@@ -86,6 +86,10 @@ typedef enum e_mode
 # define MALLOC 2
 # define ADD 3
 
+//GNL
+
+# define BUFFER_SIZE 10
+
 /******************************************************************************
  *                               STRUCTURES                                   *
  *****************************************************************************/
@@ -162,50 +166,50 @@ typedef struct s_malloc
 
 
 //main_parser.c
-t_command *main_parser(char *str, t_env *envlist);
+t_command	*main_parser(char *str, t_env *envlist);
 
 //token_handler.c
-void    print_tokens(t_token *token);
-void add_token(t_token *list, char *str, int flag);
-t_token *create_token(char *str, int flag);
+void	print_tokens(t_token *token);
+void	add_token(t_token *list, char *str, int flag);
+t_token	*create_token(char *str, int flag);
 
 //tokenization.c
-int	analyze_quotes(char *str);
-int	get_token_size(char *str);
+int		analyze_quotes(char *str);
+int		get_token_size(char *str);
 t_token	*tokenization(char *str);
 void	analyze_tokens_type(t_token *list);
 void	analyze_literals_type(t_token *list);
 
 //expander.c
-int there_is_a_dollar(char *str);
-void    analyze_tokens_to_expand(t_token *list);
-void    expand_tokens(t_token *list, t_env *envlist);
+int		there_is_a_dollar(char *str);
+void	analyze_tokens_to_expand(t_token *list);
+void	expand_tokens(t_token *list, t_env *envlist);
 
 //trim_tokens.c
-void    trim_tokens(t_token *list);
-char    *withdraw_quotes(char   *str);
+void	trim_tokens(t_token *list);
+char	*withdraw_quotes(char   *str);
 
 //parser.c
-t_command   *convert_tokens_to_commands(t_token *list, t_env *envlist);
+t_command	*convert_tokens_to_commands(t_token *list, t_env *envlist);
 
 //commands_handler.c
-void    print_command(t_command *node);
-void    add_command(t_token *list, t_command *first);
-t_command *create_command(t_token *list);
+void		print_command(t_command *node);
+void		add_command(t_token *list, t_command *first);
+t_command	*create_command(t_token *list);
 
 //check_tokens.c
-int    check_tokens(t_token *list);
+int	check_tokens(t_token *list);
 
 //redirections.c
-void    add_redirection(t_token *list, t_redirection *first);
-t_redirection *create_redirection(t_token *list);
+void			add_redirection(t_token *list, t_redirection *first);
+t_redirection	*create_redirection(t_token *list);
 
 //free_tokens.c
-void    free_tokens(t_token *list);
-void    free_commands(t_command *list);
+void	free_tokens(t_token *list);
+void	free_commands(t_command *list);
 
 //magic_malloc.c
-void    *magic_malloc(int choice, size_t size, void *addr);
+void	*magic_malloc(int choice, size_t size, void *addr);
 
 //split_parser.c
 int		is_in_quote(char *str, int pos);
@@ -218,31 +222,39 @@ void	ft_lstaddback(t_env **alst, t_env *new);
 void	ft_clean_list(t_env	*envlist);
 
 //builtins
-char    *ft_getenv(char *key, t_env *envlist); //pour expander
-int ft_cd(char **params, t_env *envlist);
-int	ft_echo(char **params);
-int ft_env(char **params, t_env *envlist);
-int	ft_export(char **params, t_env *envlist);
-int	ft_unset(char **params, t_env *envlist);
-int	ft_pwd(char **params);
-void ft_exit(void);
+char	*ft_getenv(char *key, t_env *envlist); //pour expander
+int		ft_cd(char **params, t_env *envlist);
+int		ft_echo(char **params);
+int		ft_env(char **params, t_env *envlist);
+int		ft_export(char **params, t_env *envlist);
+int		ft_unset(char **params, t_env *envlist);
+int		ft_pwd(char **params);
+void	ft_exit(void);
 
 
 //get_path.c
-char    *get_command_path(char *command, t_env *envlist);
-char    *environment_path(char *command, char *path_var);
+char	*get_command_path(char *command, t_env *envlist);
+char	*environment_path(char *command, char *path_var);
 char	*absolute_relative_path(char *command);
 void	ft_free_tab(char **tab);
 
 //ft_exec.c
-int ft_exec(t_command *commands, t_env *envlist);
+int 	ft_exec(t_command *commands, t_env *envlist);
 t_data	*ft_init_data(t_command *commands, t_env *envlist);
-int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist);
-int	which_builtin(char **args, t_env *envlist);
+int		exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist);
+int		which_builtin(char **args, t_env *envlist);
 
 //ft_fork.c
 pid_t   *multi_fork(t_data *mini);
 pid_t   ft_fork(t_data *mini, t_command *cmd);
+
+//ft_heredoc.c
+int		ft_heredoc(t_data *mini);
+int		open_heretmp(t_command *cmd, int flag);
+void	ft_tempfile(char *str, int fd, int fdtmp);
+
+//gnl.c
+char	*get_next_line(int fd);
 
 //redir_and_pipes.c
 int redir_open(t_command *current_cmd, int fd[2]);
@@ -255,7 +267,7 @@ int	dup_close_in(t_data *mini, t_command *current_cmd, int fd[2]);
 int	dup_close_out(t_data *mini, t_command *current_cmd, int fd[2]);
 
 //child.c
-int	ft_child(t_data *mini, t_command *cmd, t_env *envlist);
+int		ft_child(t_data *mini, t_command *cmd, t_env *envlist);
 char	**ft_convertlist(t_env *envlist);
 
 #endif
