@@ -1,15 +1,16 @@
-SRCS			=	parser/main_parser.c \
+SRCS			=	parser/parse_input.c \
 					parser/tokens_handler.c \
-					parser/tokenization.c \
+					parser/convert_input_to_tokens.c \
 					parser/expander.c \
-					parser/trim_tokens.c \
-					parser/parser.c \
+					parser/trimmer.c \
+					parser/convert_tokens_to_commands.c \
 					parser/commands_handler.c \
 					parser/check_tokens.c \
-					parser/redirections.c \
 					parser/magic_malloc.c \
-					parser/free_tokens.c \
+					parser/free_parser.c \
 					parser/split_parser.c \
+					parser/check_quotes.c \
+					parser/redirections_handler.c \
 					exec/testmain.c \
 					exec/ft_exec.c \
 					exec/ft_heredoc.c \
@@ -27,6 +28,7 @@ SRCS			=	parser/main_parser.c \
 					builtin/ft_export.c \
 					builtin/ft_pwd.c \
 					builtin/ft_unset.c \
+					parser/print_messages.c \
 
 SRCDIR = srcs
 

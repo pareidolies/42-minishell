@@ -36,7 +36,6 @@ int main(int argc, char **argv, char **envp)
 	{
 		result = readline("minishell>> ");
 		printf("User said : [%s]\n", result);
-		printf("size : %ld\n", ft_strlen(result));
 		if (!result[0])
 			free(result);
 		else
@@ -44,7 +43,7 @@ int main(int argc, char **argv, char **envp)
 			if (ft_strncmp(result, "exit", 5) == 0)
 				flag = 1;
 			add_history(result);
-			commands = main_parser(result, envlist);
+			commands = parse_input(result, envlist);
 			if (!commands)
 				free(result);
 			else

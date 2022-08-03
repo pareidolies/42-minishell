@@ -1,46 +1,5 @@
 #include "minishell.h"
 
-int	analyze_quotes(char *str)
-{
-	int	s_quotes_nbr;
-	int	d_quotes_nbr;
-
-	int	i;
-
-	s_quotes_nbr = 0;
-	d_quotes_nbr = 0;
-	i = 0;
-	printf("size 2 : %ld\n", ft_strlen(str));
-	while (i <  (int)ft_strlen(str))
-	{
-		if (str[i] && str[i] == S_QUOTE)
-		{
-			i++;
-			s_quotes_nbr++;
-			while (i < (int)ft_strlen(str) && str[i] != S_QUOTE)
-				i++;
-			if (str[i] && str[i] == S_QUOTE)
-				s_quotes_nbr++;
-		}
-		if (str[i] && str[i] == D_QUOTE)
-		{
-			i++;
-			d_quotes_nbr++;
-			while (i < (int)ft_strlen(str) && str[i] != D_QUOTE)
-				i++;
-			if (str[i] && str[i] == D_QUOTE)
-				d_quotes_nbr++;
-		}
-		i++;
-	}
-	//printf("s_quote : %d\n", s_quotes_nbr);
-	//printf("d_quote : %d\n", d_quotes_nbr);
-	if (s_quotes_nbr % 2 != 0 || d_quotes_nbr % 2 != 0)
-		return (1);
-	else
-		return (0);
-}
-
 int	get_token_size(char *str)
 {
 	int	i;
@@ -74,7 +33,6 @@ int	get_token_size(char *str)
 			i++;
 			while (str[i] && str[i] != D_QUOTE)
 				i++;
-			//printf("i : %d\n", i);
 			if (str[i + 1] && str[i + 1] != LESS && str[i + 1] != GREATER && str[i + 1] != PIPE)
 				return (i + 1 + get_token_size(&str[i + 1]));
 			else
@@ -86,7 +44,6 @@ int	get_token_size(char *str)
 				i++;
 			if (str[i] && (str[i] == S_QUOTE || str[i] == D_QUOTE))
 			{
-				//printf("HERE\n");
 				return (i + get_token_size(&str[i]));
 			}
 			else
@@ -96,7 +53,7 @@ int	get_token_size(char *str)
 	return (0);
 }
 
-t_token	*tokenization(char *str)
+t_token	*convert_input_to_tokens(char *str)
 {
 	t_token	*list;
 	int		i;
