@@ -6,7 +6,7 @@ static void	ft_read(int fd, char *buf, char **str)
 	int		r;
 	char	*tmp;
 
-	printf("in ft_read\n");
+	//printf("in ft_read\n");
 	if (!*str || !ft_strchr(*str, '\n'))
 	{
 		r = read(fd, buf, BUFFER_SIZE);
@@ -66,10 +66,10 @@ char	*get_next_line(int fd)
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (NULL);
-	printf("str = [%s]\n", str);
+	//printf("str = [%s]\n", str);
 	if (BUFFER_SIZE < 1 || fd < 0 || read(fd, buf, 0) < 0)
 	{
-		printf("coucou\n");
+		//printf("coucou\n");
 		free(buf);
 		return (NULL);
 	}

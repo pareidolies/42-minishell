@@ -66,7 +66,7 @@ void	ft_tempfile(char *str, int fd, int fdtmp)
 		line = get_next_line(fd);
 		if (line == NULL)
 		{
-			printf("je sors\n");
+			//printf("je sors\n");
 			break ;
 		}
 		if (ft_strncmp(line, limiter, ft_strlen(limiter) + 1) == 0)
