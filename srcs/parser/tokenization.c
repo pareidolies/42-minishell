@@ -10,13 +10,14 @@ int	analyze_quotes(char *str)
 	s_quotes_nbr = 0;
 	d_quotes_nbr = 0;
 	i = 0;
-	while (str[i])
+	printf("size 2 : %ld\n", ft_strlen(str));
+	while (i <  (int)ft_strlen(str))
 	{
 		if (str[i] && str[i] == S_QUOTE)
 		{
 			i++;
 			s_quotes_nbr++;
-			while (str[i] && str[i] != S_QUOTE)
+			while (i < (int)ft_strlen(str) && str[i] != S_QUOTE)
 				i++;
 			if (str[i] && str[i] == S_QUOTE)
 				s_quotes_nbr++;
@@ -25,7 +26,7 @@ int	analyze_quotes(char *str)
 		{
 			i++;
 			d_quotes_nbr++;
-			while (str[i] && str[i] != D_QUOTE)
+			while (i < (int)ft_strlen(str) && str[i] != D_QUOTE)
 				i++;
 			if (str[i] && str[i] == D_QUOTE)
 				d_quotes_nbr++;
