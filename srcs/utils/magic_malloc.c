@@ -46,7 +46,7 @@ void	ft_free(t_malloc *node)
 	node = NULL;
 }
 
-void	free_all_and_quit(t_malloc *first)
+void	free_all_and_quit(t_malloc *first, int error)
 {
 	t_malloc	*tmp;
 
@@ -56,7 +56,7 @@ void	free_all_and_quit(t_malloc *first)
 		first = first->next;
 		ft_free(tmp);
 	}
-	exit (EXIT_FAILURE);
+	exit (error);
 }
 
 /* Tres important : si l'element n'a pas ete malloc,
@@ -98,23 +98,23 @@ void	*magic_malloc(int choice, size_t size, void *addr)
 
 	if (choice == FREE)
 		free_one_element(&first, addr);
-	else if (choice == QUIT)
-		free_all_and_quit(first);
+	else if (choice >= 0 && choice <= 255)
+		free_all_and_quit(first, choice);
 	else if (choice == MALLOC || choice == ADD)
 	{
 		node = malloc(sizeof(*node));
 		if (!node)
-			free_all_and_quit(first);
+			free_all_and_quit(first, MALLOC_ERROR);
 		if (choice == MALLOC)
 		{
 			node->addr = malloc(size);
 			if (!node->addr)
-				free_all_and_quit(first);
+				free_all_and_quit(first, MALLOC_ERROR);
 		}
 		if (choice == ADD)
 		{
 			if (!addr)
-				free_all_and_quit(first);
+				free_all_and_quit(first, MALLOC_ERROR);
 			node->addr = addr;
 		}
 		first = add_one_malloc_element(&first, node);

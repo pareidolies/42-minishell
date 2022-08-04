@@ -96,9 +96,7 @@ t_token	*convert_input_to_tokens(char *str)
 		if (!list)
 			list = create_token(&str[i], size);
 		else
-		{
 			add_token(list, &str[i], size);
-		}
 		i += size;
 	}
 	return (list);

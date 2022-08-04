@@ -112,7 +112,7 @@ int	get_expanded_token_size(char *str)
 		return (1);
 	while (str[i] && str[i] != DOLLAR && str[i] != S_QUOTE
 		&& str[i] != D_QUOTE && str[i] != SPACE
-		&& str[i] != ']' && str[i] != '%' && str[i] != '=')
+		&& str[i] != ']' && str[i] != '%' && str[i] != '=') //ajouter caracteres speciaux
 	{
 		if (str[i] == QUESTION)
 			return (1);

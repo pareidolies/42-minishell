@@ -82,10 +82,10 @@ typedef enum e_mode
 
 //Malloc
 
-# define FREE 0
-# define QUIT 1
-# define MALLOC 2
-# define ADD 3
+# define FREE 4597
+# define MALLOC 4598
+# define ADD 4599
+# define QUIT 0 //A CHANGER
 
 //GNL
 
@@ -95,6 +95,7 @@ typedef enum e_mode
 
 # define QUOTES_ERROR 1
 # define TOKENS_ERROR 2
+# define MALLOC_ERROR 3
 
 //Error messages
 
@@ -148,7 +149,6 @@ typedef struct s_command
 typedef struct s_token
 {
 	char    *token;
-	char    *trimmed_token;
 	char    *expanded_token;
 	t_type     type;
 	int         to_expand;

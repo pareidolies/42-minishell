@@ -25,7 +25,6 @@ t_token	*create_token(char *str, int size)
 		node->token[size] = str[size];
 	node->type = 0;
 	node->to_expand = 0;
-	node->trimmed_token = NULL;
 	node->expanded_token = NULL;
 	return (node);
 }
@@ -58,7 +57,6 @@ void	print_tokens(t_token *node)
 		printf("type : %i\n", (int)node->type);
 		printf("to expand : %d\n", node->to_expand);
 		printf("expanded token: %s\n", node->expanded_token);
-		printf("trimmed token : %s\n", node->trimmed_token);
 		printf("********\n");
 		node = node->next;
 		i++;

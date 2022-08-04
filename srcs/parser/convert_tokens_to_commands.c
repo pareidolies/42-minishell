@@ -79,7 +79,7 @@ void	fill_command(t_token *list, t_command *cell, t_env *envlist)
 		magic_malloc(FREE, 0, tmp);
 		i++;
 	}
-	if (is_builtin(node->cmd))
+	if (is_builtin(node->args[0]))
 	{
 		node->path = ft_strdup("builtin");
 		magic_malloc(ADD, 0, node->path);
