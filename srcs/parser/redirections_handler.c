@@ -6,7 +6,7 @@
 /*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 12:58:36 by smostefa          #+#    #+#             */
-/*   Updated: 2022/08/04 12:59:30 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/08/04 13:11:53 by smostefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 t_redirection	*create_redirection(t_token *list)
 {
 	t_redirection	*result;
-	t_token		*current;
-	char		*tmp;
+	t_token			*current;
+	char			*tmp;
 
 	result = magic_malloc(MALLOC, sizeof(t_redirection), NULL);
 	current = list;

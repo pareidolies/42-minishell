@@ -6,7 +6,7 @@
 /*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 12:02:30 by smostefa          #+#    #+#             */
-/*   Updated: 2022/08/04 12:05:37 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/08/04 13:14:37 by smostefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ void	add_command(t_token *list, t_command *first)
 
 void	print_command(t_command *node)
 {
-	int		i;
-	int		j;
-	t_redirection		*current;
+	int				i;
+	int				j;
+	t_redirection	*current;
 
 	i = 0;
 	printf("\n---- PRINT COMMANDS ----\n");

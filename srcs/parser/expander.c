@@ -6,7 +6,7 @@
 /*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 12:24:37 by smostefa          #+#    #+#             */
-/*   Updated: 2022/08/04 12:54:20 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/08/04 13:10:08 by smostefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,9 +136,9 @@ char	*get_expanded_key(char *str, int size, t_env *envlist)
 char	*create_expanded_token(char *str, t_env *envlist)
 {
 	char	*result;
-	int	i;
-	int	size;
-	int	before_dollar;
+	int		i;
+	int		size;
+	int		before_dollar;
 	char	*tmp;
 	char	*substring;
 
@@ -183,7 +183,8 @@ void	expander(t_token *list, t_env *envlist)
 	current = list;
 	while (current != NULL)
 	{
-		current->expanded_token = create_expanded_token(current->token, envlist);
+		current->expanded_token = create_expanded_token(current->token, \
+		envlist);
 		current = current->next;
 	}
 }

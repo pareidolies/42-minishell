@@ -6,7 +6,7 @@
 /*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 12:13:31 by smostefa          #+#    #+#             */
-/*   Updated: 2022/08/04 12:15:39 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/08/04 13:08:14 by smostefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,19 +100,21 @@ t_token	*convert_input_to_tokens(char *str)
 void	analyze_tokens_type(t_token *list)
 {
 	t_token	*current;
+	int		len;
 
+	len = ft_strlen(current->token);
 	current = list;
 	while (current != NULL)
 	{
-		if (ft_strncmp(current->token, STR_LESS, ft_strlen(current->token)) == 0)
+		if (ft_strncmp(current->token, STR_LESS, len) == 0)
 			current->type = T_LESS;
-		else if (ft_strncmp(current->token, STR_D_LESS, ft_strlen(current->token)) == 0)
+		else if (ft_strncmp(current->token, STR_D_LESS, len) == 0)
 			current->type = T_D_LESS;
-		else if (ft_strncmp(current->token, STR_GREATER, ft_strlen(current->token)) == 0)
+		else if (ft_strncmp(current->token, STR_GREATER, len) == 0)
 			current->type = T_GREATER;
-		else if (ft_strncmp(current->token, STR_D_GREATER, ft_strlen(current->token)) == 0)
+		else if (ft_strncmp(current->token, STR_D_GREATER, len) == 0)
 			current->type = T_D_GREATER;
-		else if (ft_strncmp(current->token, STR_PIPE, ft_strlen(current->token)) == 0)
+		else if (ft_strncmp(current->token, STR_PIPE, len) == 0)
 			current->type = T_PIPE;
 		else
 			current->type = T_LITERAL;

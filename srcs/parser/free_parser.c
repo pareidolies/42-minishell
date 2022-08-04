@@ -6,7 +6,7 @@
 /*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 12:54:41 by smostefa          #+#    #+#             */
-/*   Updated: 2022/08/04 12:55:32 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/08/04 13:12:23 by smostefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	free_commands(t_command *list)
 {
 	t_command	*current;
 	t_command	*tmp;
-	int		i;
+	int			i;
 
 	current = list;
 	while (current)

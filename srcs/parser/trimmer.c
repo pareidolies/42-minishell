@@ -6,7 +6,7 @@
 /*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:03:03 by smostefa          #+#    #+#             */
-/*   Updated: 2022/08/04 13:03:56 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/08/04 13:15:07 by smostefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*withdraw_quotes(char *str)
 {
-	int	i;
+	int		i;
 	char	*result;
-	int	start;
+	int		start;
 	char	*tmp;
 	char	*substring;
 

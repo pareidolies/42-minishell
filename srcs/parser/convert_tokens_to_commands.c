@@ -6,7 +6,7 @@
 /*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 12:15:58 by smostefa          #+#    #+#             */
-/*   Updated: 2022/08/04 12:24:01 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/08/04 13:13:02 by smostefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	fill_command(t_token *list, t_command *cell, t_env *envlist)
 	t_token		*current;
 	t_command	*node;
 	char		*tmp;
-	int		i;
+	int			i;
 
 	node = cell;
 	while (node->next != NULL)
@@ -91,7 +91,7 @@ void	fill_command(t_token *list, t_command *cell, t_env *envlist)
 t_command	*convert_tokens_to_commands(t_token *list, t_env *envlist)
 {
 	t_command	*result;
-	t_token	*current;
+	t_token		*current;
 
 	current = list;
 	result = create_command(current);

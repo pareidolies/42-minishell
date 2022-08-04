@@ -6,7 +6,7 @@
 /*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 12:55:46 by smostefa          #+#    #+#             */
-/*   Updated: 2022/08/04 12:57:04 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/08/04 13:10:58 by smostefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void	free_all_and_quit(t_malloc *first)
 	exit (EXIT_FAILURE);
 }
 
-/* Tres important : si l'element n'a pas ete malloc, current == NULL et donc on sort*/
+/* Tres important : si l'element n'a pas ete malloc,
+current == NULL et donc on sort*/
 
 void	free_one_element(t_malloc **first, void *addr)
 {
@@ -95,8 +96,8 @@ void	free_one_element(t_malloc **first, void *addr)
 
 void	*magic_malloc(int choice, size_t size, void *addr)
 {
-	static t_malloc		*first;
-	t_malloc	*node;
+	static t_malloc	*first;
+	t_malloc		*node;
 
 	if (choice == FREE)
 		free_one_element(&first, addr);
