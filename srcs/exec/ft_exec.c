@@ -29,6 +29,7 @@ int ft_exec(t_command *commands, t_env *envlist)
 					error = WEXITSTATUS(wstatus); //returns exit status of the child
 				if (WIFSIGNALED(wstatus))
 					error = WTERMSIG(wstatus); //returns number of the signal 
+				ft_update_status(error, envlist);
 				printf("RECUP CODE ERREUR FINAL\n");
 			}
 			i++;
@@ -40,7 +41,8 @@ int ft_exec(t_command *commands, t_env *envlist)
 		printf("COMMANDE SEULE\n");
 		mini->pipes = NULL;
 		mini->pid = NULL;
-		exec_no_pipeline(mini, mini->commands, mini->envlist);
+		error = exec_no_pipeline(mini, mini->commands, mini->envlist);
+		ft_update_status(error, envlist);
 	}
 	close(mini->std_in);
 	close(mini->std_out);
@@ -66,7 +68,7 @@ t_data	*ft_init_data(t_command *commands, t_env *envlist)
 	mini->nb_pid = nb_fd;
 	mini->std_in = dup(STDIN_FILENO);
 	mini->std_out = dup(STDOUT_FILENO);
-	printf("stdin = %d et stdout = %d\n", mini->std_in, mini->std_out);
+	//printf("stdin = %d et stdout = %d\n", mini->std_in, mini->std_out);
 	return (mini);
 }
 
@@ -81,7 +83,7 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 	if (current_cmd->path == NULL)
 	{
 		write(2, "Command not found\n", 18); /*GESTION ERREUR*/
-		return (0);
+		return (127);
 	}
 	if (ft_strncmp(current_cmd->path, "builtin", 8) != 0) //pas un builtin
 	{
@@ -101,7 +103,7 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 		}
 		redir_close(mini, current_cmd, 1);
 	}
-	//ft_update_status(error, envlist);
+	ft_update_status(error, envlist);
 	return (error);
 }
 
