@@ -10,7 +10,7 @@ t_command *parse_input(char *str, t_env *envlist)
 	tokens = convert_input_to_tokens(str);
 	//print_tokens(list);
 	analyze_tokens_type(tokens);
-	if (!check_tokens(tokens))
+	if (check_tokens(tokens))
 		return (NULL);
 	analyze_literals_type(tokens);
 	expander(tokens, envlist);
