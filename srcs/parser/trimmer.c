@@ -61,7 +61,7 @@ char    *withdraw_quotes(char   *str)
         //i++;
     }
     result = ft_strdup(tmp);
-    magic_malloc(ADD, 0, result);
+    //magic_malloc(ADD, 0, result);
     magic_malloc(FREE, 0, tmp);
     //printf("\n\nFINAL RESULT : %s\n", result);
     return (result);
