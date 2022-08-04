@@ -248,7 +248,7 @@ char	*find_name(char *str);
 int		valid_identifier(char *name);
 int		ft_unset(char **params, t_env *envlist);
 int		ft_pwd(char **params);
-void	ft_exit(void);
+int		ft_exit(char **params, t_env *envlist);
 
 
 //get_path.c

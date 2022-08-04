@@ -121,7 +121,7 @@ int	which_builtin(char **args, t_env *envlist)
 		return (ft_unset(args, envlist));
 	else if (ft_strncmp(args[0], "pwd", 4) == 0)
 		return (ft_pwd(args));
-	// else if (ft_strncmp(args[0], "exit", 5) == 0)
-	// 	return (ft_exit(args, envlist));
+	else if (ft_strncmp(args[0], "exit", 5) == 0)
+		return (ft_exit(args, envlist));
 	return (0);
 }

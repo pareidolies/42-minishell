@@ -28,13 +28,13 @@ long long	ft_atoll(const char *str)
 	return (nb);
 }
 
-int ft_exit(char **params)
+int ft_exit(char **params, t_env *envlist)
 {
 	long long	value;
 	int			code;
 	int			i;
 
-	if (nb_param(params) > 1)
+	if (nb_param(params) > 2)
 	{
 		write(2, "exit : Too many arguments\n", 26);
 		return (1);
@@ -52,12 +52,16 @@ int ft_exit(char **params)
 			i++;
 		}	
 		value = ft_atoll(params[1]);
+		//printf("%lld\n", value);
+		if (value > 255)
+			write(2, "exit: numeric argument required2\n", 32);
 		code = value % 256;
 	}
 	else
 	{
-		code = ft_getenv("?");
+		code = ft_atoi(ft_getenv("?", envlist));
 	}
 	printf("exit\n");
 	magic_malloc(code, 0, NULL);
+	return (0);
 }

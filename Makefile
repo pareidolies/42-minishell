@@ -28,6 +28,7 @@ SRCS			=	parser/parse_input.c \
 					builtin/ft_export.c \
 					builtin/ft_pwd.c \
 					builtin/ft_unset.c \
+					builtin/ft_exit.c \
 					utils/print_messages.c \
 					utils/magic_malloc.c \
 
