@@ -85,7 +85,7 @@ void	fill_command(t_token *list, t_command *cell, t_env *envlist)
 		magic_malloc(ADD, 0, node->path);
 	}
 	else
-		node->path = get_command_path(node->cmd, envlist);
+		node->path = get_command_path(node->args[0], envlist);
 }
 
 t_command	*convert_tokens_to_commands(t_token *list, t_env *envlist)
