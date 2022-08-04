@@ -6,7 +6,6 @@ SRCS			=	parser/parse_input.c \
 					parser/convert_tokens_to_commands.c \
 					parser/commands_handler.c \
 					parser/check_tokens.c \
-					parser/magic_malloc.c \
 					parser/free_parser.c \
 					parser/splitter.c \
 					parser/check_quotes.c \
@@ -29,7 +28,8 @@ SRCS			=	parser/parse_input.c \
 					builtin/ft_export.c \
 					builtin/ft_pwd.c \
 					builtin/ft_unset.c \
-					parser/print_messages.c \
+					utils/print_messages.c \
+					utils/magic_malloc.c \
 
 SRCDIR = srcs
 
@@ -63,6 +63,7 @@ ${OBJDIR}/%.o : ${SRCDIR}/%.c
 		@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
 		@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
 		@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
+		@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
 		@$(CC) $(CFLAGS) -c ${INC} $< -o $@
 
 ${LFT}:
