@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_quotes.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/04 11:43:36 by smostefa          #+#    #+#             */
+/*   Updated: 2022/08/04 11:43:38 by smostefa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int	check_quotes(char *str)
@@ -9,7 +21,7 @@ int	check_quotes(char *str)
 	s_quotes_nbr = 0;
 	d_quotes_nbr = 0;
 	i = 0;
-	while (i <  (int)ft_strlen(str))
+	while (i < (int)ft_strlen(str))
 	{
 		if (str[i] && str[i] == S_QUOTE)
 		{

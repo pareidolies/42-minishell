@@ -94,10 +94,12 @@ typedef enum e_mode
 //Errors
 
 # define QUOTES_ERROR 1
+# define TOKENS_ERROR 2
 
 //Error messages
 
 # define QUOTES_ERR_MSSG "Error: Wrong number of quotes\n"
+# define TOKENS_ERR_MSSG "Error: Redirections or pipe in a row\n"
 
 /******************************************************************************
  *                               STRUCTURES                                   *
