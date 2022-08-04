@@ -47,12 +47,16 @@ int ft_cd(char **params, t_env *envlist)
 			closedir(directory);
 		}
 		else
+		{
 			write(2, "Not a directory\n", 16);/*GESTION ERREUR*/
-			return (1)
+			return (1);
+		}
 	}
 	else
+	{
 		write(2, "No such file or directory\n", 26);/*GESTION ERREUR*/
 		return (1);
+	}
 	free(current);
 	return (0);
 }	

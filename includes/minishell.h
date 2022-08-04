@@ -165,7 +165,7 @@ typedef struct s_malloc
  *                            GLOBAL VARIABLE                                 *
  *****************************************************************************/
 
-//int g_exit_status;
+extern int g_exit_status;
 
 /******************************************************************************
  *                               FUNCTIONS                                    *
@@ -289,5 +289,8 @@ char	**ft_convertlist(t_env *envlist);
 
 //print_messages.c
 int print_errors(int error);
+
+//error.c
+int	ft_update_status(int code, t_env *envlist);
 
 #endif

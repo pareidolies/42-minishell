@@ -9,6 +9,7 @@ int ft_exec(t_command *commands, t_env *envlist)
 	int		wstatus;
 	pid_t	wpid;
 	int		i;
+	int		error;
 
 	mini = ft_init_data(commands, envlist);
 	i = 0;
@@ -24,7 +25,10 @@ int ft_exec(t_command *commands, t_env *envlist)
 			wpid = wait(&wstatus);
 			if (wpid == mini->pid[mini->nb_pid - 1])
 			{
-				//recup retour d'exec avec WIFEXITED et WEXITSTATUS
+				if (WIFEXITED(wstatus))
+					error = WEXITSTATUS(wstatus); //returns exit status of the child
+				if (WIFSIGNALED(wstatus))
+					error = WTERMSIG(wstatus); //returns number of the signal 
 				printf("RECUP CODE ERREUR FINAL\n");
 			}
 			i++;
@@ -83,6 +87,10 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 	{
 		pid = ft_fork(mini, current_cmd);
 		waitpid(pid, &wstatus, 0);
+		if (WIFEXITED(wstatus))
+			error = WEXITSTATUS(wstatus); //returns exit status of the child
+		if (WIFSIGNALED(wstatus))
+			error = WTERMSIG(wstatus); //returns number of the signal that caused the child to terminate
 	}
 	else //cas des builtin
 	{
@@ -90,10 +98,10 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 		{
 			dup_close_in(mini, current_cmd, fdinout);
 			error = which_builtin(current_cmd->args, envlist);
-			ft_update_status(error, envlist);
 		}
 		redir_close(mini, current_cmd, 1);
 	}
+	//ft_update_status(error, envlist);
 	return (error);
 }
 

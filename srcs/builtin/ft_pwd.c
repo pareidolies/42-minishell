@@ -8,7 +8,6 @@
 int	ft_pwd(char **params)
 {
 	char		*path;
-	size_t		len;
 	int			error;
 
 	if (nb_param(params) > 1 && params[1][0] == '-')
