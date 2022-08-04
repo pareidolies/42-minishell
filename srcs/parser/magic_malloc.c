@@ -74,10 +74,7 @@ void	free_one_element(t_malloc **first, void *addr)
 	if (current == (*first))
 	{
 		if (current->next == NULL)
-		{
-			ft_free(current);
-			return ;
-		}
+			return (ft_free(current));
 		else
 		{
 			(*first) = current->next;

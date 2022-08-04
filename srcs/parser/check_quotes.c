@@ -44,10 +44,6 @@ int	check_quotes(char *str)
 		i++;
 	}
 	if (s_quotes_nbr % 2 != 0 || d_quotes_nbr % 2 != 0)
-	{
-		print_errors(QUOTES_ERROR);
-		return (QUOTES_ERROR);
-	}
-	else
-		return (0);
+		return (print_errors(QUOTES_ERROR));
+	return (0);
 }
