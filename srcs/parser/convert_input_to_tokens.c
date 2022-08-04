@@ -12,6 +12,15 @@
 
 #include "minishell.h"
 
+int	is_pipe_or_redir_or_quote(char c)
+{
+	if ((c == SPACE) || (c == PIPE)
+		|| (c == GREATER) || (c == LESS)
+		|| (c == S_QUOTE) || (c == D_QUOTE))
+		return (1);
+	return (0);
+}
+
 int	get_token_size(char *str)
 {
 	int	i;
@@ -54,9 +63,7 @@ int	get_token_size(char *str)
 		}
 		else
 		{
-			while (str[i] && (str[i] != SPACE) && (str[i] != PIPE)
-				&& (str[i] != GREATER) && (str[i] != LESS)
-				&& (str[i] != S_QUOTE) && (str[i] != D_QUOTE))
+			while (str[i] && !is_pipe_or_redir_or_quote(str[i]))
 				i++;
 			if (str[i] && (str[i] == S_QUOTE || str[i] == D_QUOTE))
 			{
@@ -102,8 +109,8 @@ void	analyze_tokens_type(t_token *list)
 	t_token	*current;
 	int		len;
 
-	len = ft_strlen(current->token);
 	current = list;
+	len = ft_strlen(current->token);
 	while (current != NULL)
 	{
 		if (ft_strncmp(current->token, STR_LESS, len) == 0)
