@@ -6,7 +6,7 @@
 /*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 12:24:37 by smostefa          #+#    #+#             */
-/*   Updated: 2022/08/04 12:33:58 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/08/04 12:37:48 by smostefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	get_expanded_token_start(char *str, char *initial, int pos)
 	{
 		if (str[i] == DOLLAR && !is_in_s_quote(initial, pos)
 			&& str[i + 1] && (!is_in_d_quote(initial, pos)
-			|| ft_isalpha(str[i + 1])) && str[i + 1] != SPACE && str[i + 1] != '=')
+				|| ft_isalpha(str[i + 1])) && str[i + 1] != SPACE && str[i + 1] != '=')
 		break ;
 		i++;
 	}
