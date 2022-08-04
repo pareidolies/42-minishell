@@ -6,7 +6,7 @@
 /*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 12:24:37 by smostefa          #+#    #+#             */
-/*   Updated: 2022/08/04 12:37:48 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/08/04 12:54:20 by smostefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,9 @@ int	get_expanded_token_start(char *str, char *initial, int pos)
 	{
 		if (str[i] == DOLLAR && !is_in_s_quote(initial, pos)
 			&& str[i + 1] && (!is_in_d_quote(initial, pos)
-				|| ft_isalpha(str[i + 1])) && str[i + 1] != SPACE && str[i + 1] != '=')
-		break ;
+				|| ft_isalpha(str[i + 1]))
+			&& str[i + 1] != SPACE && str[i + 1] != '=')
+			break ;
 		i++;
 	}
 	return (i);
@@ -100,7 +101,7 @@ int	get_expanded_token_start(char *str, char *initial, int pos)
 
 int	get_expanded_token_size(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!str[i])
@@ -114,7 +115,7 @@ int	get_expanded_token_size(char *str)
 		&& str[i] != ']' && str[i] != '%' && str[i] != '=')
 	{
 		if (str[i] == QUESTION)
-		return (1);
+			return (1);
 		i++;
 	}
 	return (i);
@@ -122,19 +123,19 @@ int	get_expanded_token_size(char *str)
 
 char	*get_expanded_key(char *str, int size, t_env *envlist)
 {
-	char *key;
-	char *res;
+	char	*key;
+	char	*res;
 
 	key = ft_substr(str, 0, size);
 	magic_malloc(ADD, 0, key);
 	res = ft_getenv(key, envlist);
 	magic_malloc(FREE, 0, key);
-	return(res);
+	return (res);
 }
 
 char	*create_expanded_token(char *str, t_env *envlist)
 {
-	char 	*result;
+	char	*result;
 	int	i;
 	int	size;
 	int	before_dollar;
@@ -146,42 +147,31 @@ char	*create_expanded_token(char *str, t_env *envlist)
 	{
 		if (str[i] == DOLLAR && !is_in_s_quote(str, i)
 			&& str[i + 1] && (!is_in_d_quote(str, i)
-			|| ft_isalpha(str[i + 1]))
+				|| ft_isalpha(str[i + 1]))
 			&& str[i + 1] != SPACE && str[i + 1] != '=')
-		break ;
+			break ;
 		i++;
 	}
 	result = ft_substr(str, 0, i);
 	magic_malloc(ADD, 0, result);
-	while(str[i])
+	while (str[i])
 	{
 		i++;
 		size = get_expanded_token_size(&str[i]);
-        //printf("size : %d\n", size);
-        /*if (!str[i])
-        {
-            tmp = ft_strjoin(result, "$");
-            magic_malloc(ADD, 0, tmp);
-            magic_malloc(FREE, 0, result);
-            return (tmp);
-        }*/
-	if (!str[i])
-		break ;
-	tmp = ft_strjoin(result, get_expanded_key(&str[i], size, envlist));
-	magic_malloc(ADD, 0, tmp);
-	magic_malloc(FREE, 0, result);
-	//printf("*result* step 2 : %s\n", result);
-	i = i + size;
-	before_dollar = get_expanded_token_start(&str[i], str, i);
-	//printf("before dollar : %d\n", before_dollar);
-	substring = ft_substr(&str[i], 0, before_dollar);
-	magic_malloc(ADD, 0, substring);
-	result = ft_strjoin(tmp, substring);
-	magic_malloc(ADD, 0, result);
-	magic_malloc(FREE, 0, tmp);
-	magic_malloc(FREE, 0, substring);
-	//printf("*result* step 3 : %s\n", result);
-	i = i + before_dollar;
+		if (!str[i])
+			break ;
+		tmp = ft_strjoin(result, get_expanded_key(&str[i], size, envlist));
+		magic_malloc(ADD, 0, tmp);
+		magic_malloc(FREE, 0, result);
+		i = i + size;
+		before_dollar = get_expanded_token_start(&str[i], str, i);
+		substring = ft_substr(&str[i], 0, before_dollar);
+		magic_malloc(ADD, 0, substring);
+		result = ft_strjoin(tmp, substring);
+		magic_malloc(ADD, 0, result);
+		magic_malloc(FREE, 0, tmp);
+		magic_malloc(FREE, 0, substring);
+		i = i + before_dollar;
 	}
 	return (result);
 }
@@ -193,10 +183,7 @@ void	expander(t_token *list, t_env *envlist)
 	current = list;
 	while (current != NULL)
 	{
-        //if (current->to_expand)
 		current->expanded_token = create_expanded_token(current->token, envlist);
-        //else
-        //    current->expanded_token = current->token;
 		current = current->next;
 	}
 }

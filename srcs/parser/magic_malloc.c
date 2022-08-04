@@ -1,7 +1,16 @@
-#include "minishell.h"
-//#include "../../includes/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   magic_malloc.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/04 12:55:46 by smostefa          #+#    #+#             */
+/*   Updated: 2022/08/04 12:57:04 by smostefa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-/*ajouter un cas où on retourne juste au prompt*/
+#include "minishell.h"
 
 t_malloc	*add_one_malloc_element(t_malloc **first, t_malloc *new)
 {
@@ -60,13 +69,13 @@ void	free_one_element(t_malloc **first, void *addr)
 	while (current && current->addr != addr)
 		current = current->next;
 	if (current == NULL)
-		return;
+		return ;
 	if (current == (*first))
 	{
 		if (current->next == NULL)
 		{
 			ft_free(current);
-			return;
+			return ;
 		}
 		else
 		{
@@ -82,21 +91,16 @@ void	free_one_element(t_malloc **first, void *addr)
 	else if (!current->next)
 		current->prev->next = NULL;
 	ft_free(current);
-	/*if (addr)
-	{
-		free(addr);
-		addr = NULL;
-	}*/
 }
 
-void    *magic_malloc(int choice, size_t size, void *addr)
+void	*magic_malloc(int choice, size_t size, void *addr)
 {
-    static t_malloc	*first;
+	static t_malloc		*first;
 	t_malloc	*node;
 
 	if (choice == FREE)
 		free_one_element(&first, addr);
-    else if (choice == QUIT)
+	else if (choice == QUIT)
 		free_all_and_quit(first);
 	else if (choice == MALLOC || choice == ADD)
 	{

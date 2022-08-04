@@ -8,7 +8,7 @@ SRCS			=	parser/parse_input.c \
 					parser/check_tokens.c \
 					parser/magic_malloc.c \
 					parser/free_parser.c \
-					parser/split_parser.c \
+					parser/splitter.c \
 					parser/check_quotes.c \
 					parser/redirections_handler.c \
 					exec/testmain.c \

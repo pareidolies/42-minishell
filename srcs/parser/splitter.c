@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   splitter.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/04 13:00:41 by smostefa          #+#    #+#             */
+/*   Updated: 2022/08/04 13:01:29 by smostefa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int		is_in_quote(char *str, int pos)
+int	is_in_quote(char *str, int pos)
 {
 	int	i;
 	int	result;
@@ -40,7 +52,7 @@ static	int	ft_taillemot2(char *str, char c)
 	while (str[i])
 	{
 		if (str[i] == c && !is_in_quote(str, i))
-			break;
+			break ;
 		i++;
 	}
 	return (i);
