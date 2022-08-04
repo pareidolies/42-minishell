@@ -31,7 +31,8 @@ int ft_cd(char **params, t_env *envlist)
 			{
 				update_env("OLDPWD", current, envlist);
 				free(current);
-				if ((current = getcwd(NULL, 0)) == NULL)
+				current = getcwd(NULL, 0);
+				if (current == NULL)
 				{
 					perror("cd (getcwd) ");
 					error = errno;

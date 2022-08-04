@@ -24,9 +24,7 @@ int	ft_unset(char **params, t_env *envlist)
 		{
 			var = ft_getenv_var(params[i], envlist);
 			if (var != NULL)
-			{
 				ft_delenv(var, envlist);
-			}
 		}
 		i++;
 	}

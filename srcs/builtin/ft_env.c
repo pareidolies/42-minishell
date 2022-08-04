@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmurtin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/04 13:28:25 by lmurtin           #+#    #+#             */
+/*   Updated: 2022/08/04 13:28:45 by lmurtin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 /* Return values OK */
 
-int ft_env(char **params, t_env *envlist)
+int	ft_env(char **params, t_env *envlist)
 {
-	t_env   *var;
+	t_env	*var;
 
 	if (nb_param(params) > 1)
 	{
