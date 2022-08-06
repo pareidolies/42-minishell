@@ -87,6 +87,7 @@ int	get_expanded_token_start(char *str, char *initial, int pos)
 	int	i;
 
 	i = 0;
+	(void)pos;
 	while (str[i])
 	{
 		if (str[i] == DOLLAR && !is_in_s_quote(initial, pos)
@@ -95,6 +96,7 @@ int	get_expanded_token_start(char *str, char *initial, int pos)
 			&& str[i + 1] != SPACE && str[i + 1] != '=')
 			break ;
 		i++;
+		pos++;
 	}
 	return (i);
 }
