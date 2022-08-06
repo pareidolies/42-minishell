@@ -2,6 +2,22 @@
 
 * echo -n "blabla" >> file
 
+* $_
+
+* "$USER"$USER'$USER'
+
+* cat << ok << salut
+
+# Cas pour lesquels il faut faire attention
+
+* cat | cat | ls 
+
+* ctrl c avec un cat
+
+* export a+= (avec les concatenations)
+
+* absolute / relative path
+
 # Comment ignorer leaks de readline :
 
 1. Compiler normalement.
