@@ -1,3 +1,7 @@
+# (Derniers) cas qui ne fonctionnent pas
+
+* echo -n "blabla" >> file
+
 # Comment ignorer leaks de readline :
 
 1. Compiler normalement.
