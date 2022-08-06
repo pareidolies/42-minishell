@@ -54,6 +54,30 @@ typedef enum e_mode
  *                                 MACROS                                     *
  *****************************************************************************/
 
+//Ascii Art
+
+# define L1 "           _.---._                                     _          _ _      \n"  
+# define L2 "       .\'\"\".'/|\\`.\"\"\'.         _ __ ___  _ _ __  _ ___| |__   ___| | |     \n" 
+# define L3 "      :  .' / | \\ `.  :	      | '_ ` _ \\| | '_ \\| / __| '_ \\ / _ \\ | |	   \n"  
+# define L4 "      '.'  /  |  \\  `.'       | | | | | | | | | | \\__ \\ | | |  __/ | |     \n"  
+# define L5 "       `. /   |   \\ .'        |_| |_| |_|_|_| |_|_|___/_| |_|\\___|_|_|     \n" 
+# define L6 "         `-.__|__.-'                                                       \n\n" 
+# define L7 "					     	 	Welcome !  ° .	\n"
+# define L8 "             				   			   ° <><    \n"
+                                                                             
+//Colors
+
+# define ANSI_COLOR_BLUE		"\x1b[94m"
+# define ANSI_COLOR_LIGHT_YELLOW		"\x1b[93m"
+# define ANSI_COLOR_ORANGE		"\e[1;31m"
+# define ANSI_COLOR_LIGHT_WHITE		"\x1b[97m"
+# define ANSI_COLOR_LIGHT_RED		"\x1b[91m"
+# define ANSI_COLOR_REG_RED	"\e[0;31m"
+# define ANSI_COLOR_BOLD_RED	"\e[1;31m"
+# define ANSI_COLOR_RESET		"\x1b[0m"
+# define ANSI_COLOR_YELLOW	"\033[93m"
+# define ANSI_COLOR_CYAN	"\e[0;36m"
+
 //Characters
 
 # define S_QUOTE '\''
@@ -297,8 +321,12 @@ char	**ft_convertlist(t_env *envlist);
 
 //print_messages.c
 int print_errors(int error);
+void	ft_putstr_fd_color(char *str, int fd, char *color);
 
 //error.c
 int	ft_update_status(int code, t_env *envlist);
+
+//say_hello.c
+void    say_hello(void);
 
 #endif

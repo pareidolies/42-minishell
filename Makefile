@@ -21,6 +21,7 @@ SRCS			=	parser/parse_input.c \
 					exec/get_path.c \
 					exec/child.c \
 					exec/error.c \
+					exec/say_hello.c \
 					builtin/builtin_utils.c \
 					builtin/ft_cd.c \
 					builtin/ft_echo.c \

@@ -12,6 +12,13 @@
 
 #include "minishell.h"
 
+void	ft_putstr_fd_color(char *str, int fd, char *color)
+{
+	ft_putstr_fd(color, fd);
+	ft_putstr_fd(str, fd);
+	ft_putstr_fd(ANSI_COLOR_RESET, fd);
+}
+
 int	print_errors(int error)
 {
 	if (error == QUOTES_ERROR)

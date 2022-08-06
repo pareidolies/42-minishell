@@ -31,7 +31,7 @@ int main(int argc, char **argv, char **envp)
 	/*Une seule fois, on crée la liste d'env en dupliquant envp*/
 	/*liste peut être modifiée une ou + fois par ligne de cmd*/
 	envlist = ft_list_env(envp);
-
+	say_hello();
 	while (flag != 1) 
 	{
 		result = readline("minishell>> ");
