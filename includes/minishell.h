@@ -62,7 +62,7 @@ typedef enum e_mode
 # define L4 "      '.'  /  |  \\  `.'       | | | | | | | | | | \\__ \\ | | |  __/ | |     \n"  
 # define L5 "       `. /   |   \\ .'        |_| |_| |_|_|_| |_|_|___/_| |_|\\___|_|_|     \n" 
 # define L6 "         `-.__|__.-'                                                       \n\n" 
-# define L7 "					     	 	Welcome !  ° .	\n"
+# define L7 "					     	  	 Welcome!  ° .	\n"
 # define L8 "             				   			   ° <><    \n"
                                                                              
 //Colors
