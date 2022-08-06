@@ -31,6 +31,8 @@ int	is_builtin(char *str)
 	return (0);
 }
 
+/* path == NULL à voir avec Léa*/
+
 void	fill_command(t_token *list, t_command *cell, t_env *envlist)
 {
 	t_token		*current;
@@ -79,7 +81,9 @@ void	fill_command(t_token *list, t_command *cell, t_env *envlist)
 		magic_malloc(FREE, 0, tmp);
 		i++;
 	}
-	if (is_builtin(node->args[0]))
+	if (!node->args[0])
+		node->path = NULL;
+	else if (is_builtin(node->args[0]))
 	{
 		node->path = ft_strdup("builtin");
 		magic_malloc(ADD, 0, node->path);

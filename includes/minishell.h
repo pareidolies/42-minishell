@@ -82,9 +82,9 @@ typedef enum e_mode
 
 //Malloc
 
-# define FREE 4597
-# define MALLOC 4598
-# define ADD 4599
+# define FREE 4242
+# define MALLOC 4343
+# define ADD 4444
 # define QUIT 0 //A CHANGER
 
 //GNL
@@ -162,6 +162,12 @@ typedef struct s_malloc
 	struct s_malloc	*next;
 	struct s_malloc	*prev;
 }	t_malloc;
+
+typedef struct s_quotes_nbr
+{
+	int	simple_q;
+	int	double_q;
+}	t_quotes_nbr;
 
 /******************************************************************************
  *                            GLOBAL VARIABLE                                 *

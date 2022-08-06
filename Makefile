@@ -50,7 +50,7 @@ INC		= -I ./includes -I ./libft
 CC		= cc
 RM		= rm -rf
 
-CFLAGS	= -Wall -Wextra -Werror -g
+CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
 
 LIBFLAGS	= -L./libft -lft -lreadline
 
