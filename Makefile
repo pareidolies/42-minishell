@@ -22,6 +22,7 @@ SRCS			=	parser/parse_input.c \
 					exec/child.c \
 					exec/error.c \
 					exec/say_hello.c \
+					exec/signals.c \
 					builtin/builtin_utils.c \
 					builtin/ft_cd.c \
 					builtin/ft_echo.c \
@@ -51,7 +52,7 @@ INC		= -I ./includes -I ./libft
 CC		= cc
 RM		= rm -rf
 
-CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -g
 
 LIBFLAGS	= -L./libft -lft -lreadline
 

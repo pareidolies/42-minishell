@@ -21,8 +21,6 @@ int main(int argc, char **argv, char **envp)
 	t_env	*envlist;
 	int		flag;
 	t_command *commands;
-	int		count = 0;
-	//char	**params;
 	
 	flag = 0;
 	if (argc != 1 || argv[1] != NULL)
@@ -34,12 +32,17 @@ int main(int argc, char **argv, char **envp)
 	say_hello();
 	while (flag != 1) 
 	{
-		result = readline("minishell>> ");
-		printf("User said : [%s]\n", result);
-		if (!result[0])
-			free(result);
+		set_signals_as_prompt();
+		ft_putstr_fd("minishell>> ", 1);
+		result = readline("");
+		if (!result)
+		{
+			ft_putstr_fd("\b\bexit", 2);
+			exit(EXIT_FAILURE);
+		}
 		else
 		{
+			printf("User said : [%s]\n", result);
 			if (ft_strncmp(result, "exit", 5) == 0)
 				flag = 1;
 			add_history(result);
@@ -53,9 +56,6 @@ int main(int argc, char **argv, char **envp)
 				free_commands(commands);
 			}
 		}
-		count++;
-		if (count == 10)
-			break;
 	}
 	clear_history();
 	ft_clean_list(envlist);

@@ -7,6 +7,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <errno.h>
+# include <signal.h>
 
 /******************************************************************************
 *                              ENUMERATIONS                                   *
@@ -328,5 +329,11 @@ int	ft_update_status(int code, t_env *envlist);
 
 //say_hello.c
 void    say_hello(void);
+
+//signals.c
+int	set_signals_as_prompt(void);
+int	set_signals_as_here_doc(void);
+void	signal_handler_as_prompt(int signum);
+void	signal_handler_as_here_doc(int signum);
 
 #endif

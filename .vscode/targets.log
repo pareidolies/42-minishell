@@ -8,11 +8,10 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Sat Aug  6 23:13:10 2022
+# Make data base, printed on Sun Aug  7 12:52:10 2022
 
 # Variables
 
- 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
@@ -29,22 +28,23 @@ VSCODE_LOG_NATIVE = false
 CURDIR := /Users/user/Documents/42/42-minishell
 # makefile
 SHELL = /bin/sh
-# makefile (from `Makefile', line 52)
+# makefile (from `Makefile', line 53)
 RM = rm -rf
+ 
 # environment
 VSCODE_NLS_CONFIG = {"locale":"fr","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
-# makefile (from `Makefile', line 54)
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+# makefile (from `Makefile', line 55)
+CFLAGS = -Wall -Wextra -Werror -g
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
-# makefile (from `Makefile', line 40)
-SOURCES := srcs/parser/parse_input.c srcs/parser/tokens_handler.c srcs/parser/convert_input_to_tokens.c srcs/parser/expander.c srcs/parser/trimmer.c srcs/parser/convert_tokens_to_commands.c srcs/parser/commands_handler.c srcs/parser/check_tokens.c srcs/parser/free_parser.c srcs/parser/splitter.c srcs/parser/check_quotes.c srcs/parser/redirections_handler.c srcs/exec/testmain.c srcs/exec/ft_exec.c srcs/exec/ft_heredoc.c srcs/exec/gnl.c srcs/exec/ft_fork.c srcs/exec/redir_and_pipes.c srcs/exec/handle_fd.c srcs/exec/exec_utils.c srcs/exec/get_path.c srcs/exec/child.c srcs/exec/error.c srcs/exec/say_hello.c srcs/builtin/builtin_utils.c srcs/builtin/ft_cd.c srcs/builtin/ft_echo.c srcs/builtin/ft_env.c srcs/builtin/ft_export.c srcs/builtin/ft_pwd.c srcs/builtin/ft_unset.c srcs/builtin/ft_exit.c srcs/utils/print_messages.c srcs/utils/magic_malloc.c
+# makefile (from `Makefile', line 41)
+SOURCES := srcs/parser/parse_input.c srcs/parser/tokens_handler.c srcs/parser/convert_input_to_tokens.c srcs/parser/expander.c srcs/parser/trimmer.c srcs/parser/convert_tokens_to_commands.c srcs/parser/commands_handler.c srcs/parser/check_tokens.c srcs/parser/free_parser.c srcs/parser/splitter.c srcs/parser/check_quotes.c srcs/parser/redirections_handler.c srcs/exec/testmain.c srcs/exec/ft_exec.c srcs/exec/ft_heredoc.c srcs/exec/gnl.c srcs/exec/ft_fork.c srcs/exec/redir_and_pipes.c srcs/exec/handle_fd.c srcs/exec/exec_utils.c srcs/exec/get_path.c srcs/exec/child.c srcs/exec/error.c srcs/exec/say_hello.c srcs/exec/signals.c srcs/builtin/builtin_utils.c srcs/builtin/ft_cd.c srcs/builtin/ft_echo.c srcs/builtin/ft_env.c srcs/builtin/ft_export.c srcs/builtin/ft_pwd.c srcs/builtin/ft_unset.c srcs/builtin/ft_exit.c srcs/utils/print_messages.c srcs/utils/magic_malloc.c
 # environment
 VSCODE_VERBOSE_LOGGING = true
-# makefile (from `Makefile', line 42)
-OBJS := objs/parser/parse_input.o objs/parser/tokens_handler.o objs/parser/convert_input_to_tokens.o objs/parser/expander.o objs/parser/trimmer.o objs/parser/convert_tokens_to_commands.o objs/parser/commands_handler.o objs/parser/check_tokens.o objs/parser/free_parser.o objs/parser/splitter.o objs/parser/check_quotes.o objs/parser/redirections_handler.o objs/exec/testmain.o objs/exec/ft_exec.o objs/exec/ft_heredoc.o objs/exec/gnl.o objs/exec/ft_fork.o objs/exec/redir_and_pipes.o objs/exec/handle_fd.o objs/exec/exec_utils.o objs/exec/get_path.o objs/exec/child.o objs/exec/error.o objs/exec/say_hello.o objs/builtin/builtin_utils.o objs/builtin/ft_cd.o objs/builtin/ft_echo.o objs/builtin/ft_env.o objs/builtin/ft_export.o objs/builtin/ft_pwd.o objs/builtin/ft_unset.o objs/builtin/ft_exit.o objs/utils/print_messages.o objs/utils/magic_malloc.o
+# makefile (from `Makefile', line 43)
+OBJS := objs/parser/parse_input.o objs/parser/tokens_handler.o objs/parser/convert_input_to_tokens.o objs/parser/expander.o objs/parser/trimmer.o objs/parser/convert_tokens_to_commands.o objs/parser/commands_handler.o objs/parser/check_tokens.o objs/parser/free_parser.o objs/parser/splitter.o objs/parser/check_quotes.o objs/parser/redirections_handler.o objs/exec/testmain.o objs/exec/ft_exec.o objs/exec/ft_heredoc.o objs/exec/gnl.o objs/exec/ft_fork.o objs/exec/redir_and_pipes.o objs/exec/handle_fd.o objs/exec/exec_utils.o objs/exec/get_path.o objs/exec/child.o objs/exec/error.o objs/exec/say_hello.o objs/exec/signals.o objs/builtin/builtin_utils.o objs/builtin/ft_cd.o objs/builtin/ft_echo.o objs/builtin/ft_env.o objs/builtin/ft_export.o objs/builtin/ft_pwd.o objs/builtin/ft_unset.o objs/builtin/ft_exit.o objs/utils/print_messages.o objs/utils/magic_malloc.o
 # environment
 VSCODE_IPC_HOOK_EXTHOST = /var/folders/7_/2w6n1_dn0mv10rzf_ls_bl400000gn/T/vscode-ipc-82265dc6-4c3b-4052-9b35-996096c641ea.sock
 # environment
@@ -53,7 +53,7 @@ VSCODE_CWD = /
 PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
-# makefile (from `Makefile', line 56)
+# makefile (from `Makefile', line 57)
 LIBFLAGS = -L./libft -lft -lreadline
 # environment
 VSCODE_LOG_STACK = false
@@ -63,7 +63,7 @@ ELECTRON_RUN_AS_NODE = 1
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
 SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.XhNs8R4vgx/Listeners
-# makefile (from `Makefile', line 36)
+# makefile (from `Makefile', line 37)
 SRCDIR = srcs
 # automatic
 %F = $(notdir $%)
@@ -98,10 +98,10 @@ MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
 # makefile (from `Makefile', line 1)
-SRCS = parser/parse_input.c parser/tokens_handler.c parser/convert_input_to_tokens.c parser/expander.c parser/trimmer.c parser/convert_tokens_to_commands.c parser/commands_handler.c parser/check_tokens.c parser/free_parser.c parser/splitter.c parser/check_quotes.c parser/redirections_handler.c exec/testmain.c exec/ft_exec.c exec/ft_heredoc.c exec/gnl.c exec/ft_fork.c exec/redir_and_pipes.c exec/handle_fd.c exec/exec_utils.c exec/get_path.c exec/child.c exec/error.c exec/say_hello.c builtin/builtin_utils.c builtin/ft_cd.c builtin/ft_echo.c builtin/ft_env.c builtin/ft_export.c builtin/ft_pwd.c builtin/ft_unset.c builtin/ft_exit.c utils/print_messages.c utils/magic_malloc.c 
+SRCS = parser/parse_input.c parser/tokens_handler.c parser/convert_input_to_tokens.c parser/expander.c parser/trimmer.c parser/convert_tokens_to_commands.c parser/commands_handler.c parser/check_tokens.c parser/free_parser.c parser/splitter.c parser/check_quotes.c parser/redirections_handler.c exec/testmain.c exec/ft_exec.c exec/ft_heredoc.c exec/gnl.c exec/ft_fork.c exec/redir_and_pipes.c exec/handle_fd.c exec/exec_utils.c exec/get_path.c exec/child.c exec/error.c exec/say_hello.c exec/signals.c builtin/builtin_utils.c builtin/ft_cd.c builtin/ft_echo.c builtin/ft_env.c builtin/ft_export.c builtin/ft_pwd.c builtin/ft_unset.c builtin/ft_exit.c utils/print_messages.c utils/magic_malloc.c 
 # environment
 SHLVL = 1
-# makefile (from `Makefile', line 51)
+# makefile (from `Makefile', line 52)
 CC = cc
 # default
 MAKE_VERSION := 3.81
@@ -109,7 +109,7 @@ MAKE_VERSION := 3.81
 USER = user
 # makefile
 .DEFAULT_GOAL := minishell
-# makefile (from `Makefile', line 45)
+# makefile (from `Makefile', line 46)
 NAME = minishell
 # environment
 LESS = -R
@@ -117,7 +117,7 @@ LESS = -R
 %D = $(patsubst %/,%,$(dir $%))
 # default
 MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
-# makefile (from `Makefile', line 49)
+# makefile (from `Makefile', line 50)
 INC = -I ./includes -I ./libft
 # default
 .VARIABLES := 
@@ -145,9 +145,8 @@ __CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x1
 MAKEFILES := 
 # automatic
 <F = $(notdir $<)
-# makefile (from `Makefile', line 38)
+# makefile (from `Makefile', line 39)
 OBJDIR = objs
- 
 # environment
 PAGER = less
 # environment
@@ -156,7 +155,7 @@ LC_ALL = C
 ^F = $(notdir $^)
 # default
 SUFFIXES := 
-# makefile (from `Makefile', line 47)
+# makefile (from `Makefile', line 48)
 LFT = libft/libft.a
 # default
 .INCLUDE_DIRS = /usr/local/include
@@ -185,7 +184,7 @@ VSCODE_PID = 36958
 # Implicit Rules
 
 objs/%.o: srcs/%.c
-#  commands to execute (from `Makefile', line 64):
+#  commands to execute (from `Makefile', line 65):
 	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
 	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
 	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
@@ -247,6 +246,7 @@ srcs/parser/check_quotes.c:
 # Not a target:
 objs/exec/get_path.o:
 #  Implicit rule search has not been done.
+ 
 #  Modification time never checked.
 #  File has not been updated.
 
@@ -279,12 +279,12 @@ objs/builtin/ft_env.o:
 objs/parser/expander.o: srcs/parser/expander.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parser/expander'
-#  Last modified 2022-08-06 22:17:37
+#  Last modified 2022-08-07 00:23:41
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 64):
+#  commands to execute (from `Makefile', line 65):
 	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
 	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
 	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
@@ -320,12 +320,12 @@ objs/utils/magic_malloc.o:
 objs/parser/tokens_handler.o: srcs/parser/tokens_handler.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parser/tokens_handler'
-#  Last modified 2022-08-06 22:17:37
+#  Last modified 2022-08-07 00:23:41
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 64):
+#  commands to execute (from `Makefile', line 65):
 	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
 	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
 	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
@@ -337,7 +337,7 @@ objs/parser/tokens_handler.o: srcs/parser/tokens_handler.c
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-06 23:12:27
+#  Last modified 2022-08-07 12:51:56
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -367,7 +367,7 @@ objs/exec/testmain.o: srcs/exec/testmain.c
 # ? := srcs/exec/testmain.c
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=1/25=4%
-#  commands to execute (from `Makefile', line 64):
+#  commands to execute (from `Makefile', line 65):
 	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
 	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
 	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
@@ -406,38 +406,38 @@ objs/exec/error.o:
 # Not a target:
 srcs/parser/expander.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-06 17:03:27
+#  Last modified 2022-08-07 00:20:01
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
+ 
 objs/parser/commands_handler.o: srcs/parser/commands_handler.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parser/commands_handler'
-#  Last modified 2022-08-06 22:17:37
+#  Last modified 2022-08-07 00:23:42
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 64):
+#  commands to execute (from `Makefile', line 65):
 	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
 	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
- 
 	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
 	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
 	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
 	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
 	
 
-minishell: libft/libft.a objs/parser/parse_input.o objs/parser/tokens_handler.o objs/parser/convert_input_to_tokens.o objs/parser/expander.o objs/parser/trimmer.o objs/parser/convert_tokens_to_commands.o objs/parser/commands_handler.o objs/parser/check_tokens.o objs/parser/free_parser.o objs/parser/splitter.o objs/parser/check_quotes.o objs/parser/redirections_handler.o objs/exec/testmain.o objs/exec/ft_exec.o objs/exec/ft_heredoc.o objs/exec/gnl.o objs/exec/ft_fork.o objs/exec/redir_and_pipes.o objs/exec/handle_fd.o objs/exec/exec_utils.o objs/exec/get_path.o objs/exec/child.o objs/exec/error.o objs/exec/say_hello.o objs/builtin/builtin_utils.o objs/builtin/ft_cd.o objs/builtin/ft_echo.o objs/builtin/ft_env.o objs/builtin/ft_export.o objs/builtin/ft_pwd.o objs/builtin/ft_unset.o objs/builtin/ft_exit.o objs/utils/print_messages.o objs/utils/magic_malloc.o
+minishell: libft/libft.a objs/parser/parse_input.o objs/parser/tokens_handler.o objs/parser/convert_input_to_tokens.o objs/parser/expander.o objs/parser/trimmer.o objs/parser/convert_tokens_to_commands.o objs/parser/commands_handler.o objs/parser/check_tokens.o objs/parser/free_parser.o objs/parser/splitter.o objs/parser/check_quotes.o objs/parser/redirections_handler.o objs/exec/testmain.o objs/exec/ft_exec.o objs/exec/ft_heredoc.o objs/exec/gnl.o objs/exec/ft_fork.o objs/exec/redir_and_pipes.o objs/exec/handle_fd.o objs/exec/exec_utils.o objs/exec/get_path.o objs/exec/child.o objs/exec/error.o objs/exec/say_hello.o objs/exec/signals.o objs/builtin/builtin_utils.o objs/builtin/ft_cd.o objs/builtin/ft_echo.o objs/builtin/ft_env.o objs/builtin/ft_export.o objs/builtin/ft_pwd.o objs/builtin/ft_unset.o objs/builtin/ft_exit.o objs/utils/print_messages.o objs/utils/magic_malloc.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-06 22:17:40
+#  Last modified 2022-08-07 00:23:44
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/15=0%
-#  commands to execute (from `Makefile', line 59):
+#  commands to execute (from `Makefile', line 60):
 	@echo "Created object files."
 	@${CC} ${CFLAGS} ${OBJS} -o ${NAME} ${LIBFLAGS}
 	@echo "Minishell is ready!"
@@ -451,10 +451,10 @@ objs/exec/child.o:
 
 libft/libft.a:
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-06 22:17:36
+#  Last modified 2022-08-07 00:23:41
 #  File has been updated.
 #  Successfully updated.
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@echo " [..] | Compiling libft..."
 	@make -s -C libft
 	@echo " [OK] | Done."
@@ -480,7 +480,7 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 94):
+#  commands to execute (from `Makefile', line 95):
 	@${RM} ${NAME}
 	@${RM} ${NAMEB}
 	@make -s -C libft fclean
@@ -490,7 +490,7 @@ fclean: clean
 # Not a target:
 srcs/exec/testmain.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-06 23:12:11
+#  Last modified 2022-08-07 12:51:07
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -505,12 +505,12 @@ objs/exec/gnl.o:
 objs/parser/free_parser.o: srcs/parser/free_parser.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parser/free_parser'
-#  Last modified 2022-08-06 22:17:37
+#  Last modified 2022-08-07 00:23:42
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 64):
+#  commands to execute (from `Makefile', line 65):
 	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
 	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
 	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
@@ -561,12 +561,12 @@ objs/builtin/ft_cd.o:
 objs/parser/convert_tokens_to_commands.o: srcs/parser/convert_tokens_to_commands.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parser/convert_tokens_to_commands'
-#  Last modified 2022-08-06 22:17:37
+#  Last modified 2022-08-07 00:23:41
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 64):
+#  commands to execute (from `Makefile', line 65):
 	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
 	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
 	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
@@ -581,12 +581,18 @@ re: fclean all
 #  File does not exist.
 #  File has not been updated.
 
+# Not a target:
+objs/exec/signals.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 clean:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 87):
+#  commands to execute (from `Makefile', line 88):
 	@${RM} ${OBJS}
 	@${RM} ${OBJSB}
 	@${RM} ${OBJDIR}
@@ -596,7 +602,6 @@ clean:
 
 # Not a target:
 srcs/parser/free_parser.c:
- 
 #  Implicit rule search has been done.
 #  Last modified 2022-08-06 17:03:27
 #  File has been updated.
@@ -613,12 +618,12 @@ objs/exec/say_hello.o:
 objs/parser/check_tokens.o: srcs/parser/check_tokens.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parser/check_tokens'
-#  Last modified 2022-08-06 22:17:37
+#  Last modified 2022-08-07 00:23:42
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 64):
+#  commands to execute (from `Makefile', line 65):
 	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
 	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
 	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
@@ -636,12 +641,13 @@ objs/exec/redir_and_pipes.o:
 objs/parser/convert_input_to_tokens.o: srcs/parser/convert_input_to_tokens.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parser/convert_input_to_tokens'
-#  Last modified 2022-08-06 22:17:37
+#  Last modified 2022-08-07 00:23:41
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
+ 
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 64):
+#  commands to execute (from `Makefile', line 65):
 	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
 	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
 	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
@@ -655,7 +661,7 @@ sanitize: libft/libft.a
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 81):
+#  commands to execute (from `Makefile', line 82):
 	@${CC} ${CFLAGS} -fsanitize=address -g3 ${INC} ${SOURCES} -o ${NAME} ${LIBFLAGS}
 	@${CC} ${CFLAGS} -fsanitize=address -g3 ${INC} ${SOURCESB} -o ${NAMEB} ${LIBFLAGS}
 	@echo " Compiled with address sanitizer."
@@ -673,12 +679,12 @@ srcs/parser/convert_tokens_to_commands.c:
 objs/parser/redirections_handler.o: srcs/parser/redirections_handler.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parser/redirections_handler'
-#  Last modified 2022-08-06 22:17:38
+#  Last modified 2022-08-07 00:23:42
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 64):
+#  commands to execute (from `Makefile', line 65):
 	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
 	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
 	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
@@ -696,12 +702,12 @@ objs/builtin/ft_echo.o:
 objs/parser/splitter.o: srcs/parser/splitter.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parser/splitter'
-#  Last modified 2022-08-06 22:17:37
+#  Last modified 2022-08-07 00:23:42
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 64):
+#  commands to execute (from `Makefile', line 65):
 	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
 	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
 	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
@@ -719,12 +725,12 @@ objs/builtin/builtin_utils.o:
 objs/parser/trimmer.o: srcs/parser/trimmer.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parser/trimmer'
-#  Last modified 2022-08-06 22:17:37
+#  Last modified 2022-08-07 00:23:41
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 64):
+#  commands to execute (from `Makefile', line 65):
 	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
 	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
 	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
@@ -742,12 +748,12 @@ objs/builtin/ft_export.o:
 objs/parser/check_quotes.o: srcs/parser/check_quotes.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parser/check_quotes'
-#  Last modified 2022-08-06 22:17:38
+#  Last modified 2022-08-07 00:23:42
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 64):
+#  commands to execute (from `Makefile', line 65):
 	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
 	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
 	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
@@ -774,26 +780,22 @@ srcs/parser/check_tokens.c:
 objs/parser/parse_input.o: srcs/parser/parse_input.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parser/parse_input'
-#  Last modified 2022-08-06 22:17:36
+#  Last modified 2022-08-07 00:23:41
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
- 
-#  commands to execute (from `Makefile', line 64):
+#  commands to execute (from `Makefile', line 65):
 	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
 	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
 	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
 	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
 	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
- 
 	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
 	
- 
 
 # files hash-table stats:
- 
-# Load=59/1024=6%, Rehash=0, Collisions=2/157=1%
+# Load=60/1024=6%, Rehash=0, Collisions=2/159=1%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -805,6 +807,6 @@ objs/parser/parse_input.o: srcs/parser/parse_input.c
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sat Aug  6 23:13:10 2022
+# Finished Make data base on Sun Aug  7 12:52:10 2022
 
  
