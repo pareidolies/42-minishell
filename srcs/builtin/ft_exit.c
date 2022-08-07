@@ -36,7 +36,7 @@ int ft_exit(char **params, t_env *envlist)
 
 	if (nb_param(params) > 2)
 	{
-		write(2, "exit : Too many arguments\n", 26);
+		write(2, "exit : too many arguments\n", 26);
 		return (1);
 	}
 	if (nb_param(params) == 2)

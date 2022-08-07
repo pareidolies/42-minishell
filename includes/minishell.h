@@ -135,10 +135,10 @@ typedef enum e_mode
 
 //Error messages
 
-# define QUOTES_ERR_MSSG "Error: Wrong number of quotes\n"
-# define TOKENS_ERR_MSSG "Error: Wrong number of redirections or pipes\n"
-# define HEREDOC_ERR_MSSG "Warning: Here-document delimited by end-of-file wanted "
-# define MALLOC_ERR_MSSG "Error: A malloc error occured\n"
+# define QUOTES_ERR_MSSG "error: wrong number of quotes\n"
+# define TOKENS_ERR_MSSG "error: wrong number of redirections or pipes\n"
+# define HEREDOC_ERR_MSSG "warning: here-document delimited by end-of-file wanted "
+# define MALLOC_ERR_MSSG "error: a malloc error occured\n"
 
 /******************************************************************************
  *                               STRUCTURES                                   *
