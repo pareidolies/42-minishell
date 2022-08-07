@@ -48,9 +48,9 @@ int	check_tokens(t_token *list)
 	while (current)
 	{
 		if (check_tokens_type1(current))
-			return(TOKENS_ERROR);
+			return (TOKENS_ERROR);
 		if (check_tokens_type2(current))
-			return(TOKENS_ERROR);
+			return (TOKENS_ERROR);
 		current = current->next;
 	}
 	return (0);

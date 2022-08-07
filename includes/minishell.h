@@ -226,8 +226,6 @@ void	analyze_tokens_type(t_token *list);
 void	analyze_literals_type(t_token *list);
 
 //expander.c
-int		there_is_a_dollar(char *str);
-void	analyze_tokens_to_expand(t_token *list);
 void	expander(t_token *list, t_env *envlist);
 
 //trim_tokens.c
@@ -245,9 +243,24 @@ t_command	*create_command(t_token *list);
 //check_tokens.c
 int	check_tokens(t_token *list);
 
+//quotes_utils.c
+int	calculate_result(int result, char c);
+int	is_in_quote(char *str, int pos);
+int	is_in_d_quote(char *str, int pos);
+int	is_in_s_quote(char *str, int pos);
+
+//expander_utils.c
+int	get_expansion_start(char *str, char *initial, int pos);
+int	get_expansion_size(char *str);
+
 //redirections.c
 void			add_redirection(t_token *list, t_redirection *first);
 t_redirection	*create_redirection(t_token *list);
+
+//tokens_utils.c
+int	is_pipe_or_redir_or_quote(char c);
+int	is_d_redir(char *str);
+int	is_s_redir(char c);
 
 //free_tokens.c
 void	free_tokens(t_token *list);

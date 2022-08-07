@@ -12,115 +12,18 @@
 
 #include "minishell.h"
 
-int	is_in_d_quote(char *str, int pos)
+char	*add_before_dollar_part(int before_dollar, char *tmp, char *str)
 {
-	int	i;
-	int	result;
+	char	*result;
+	char	*substring;
 
-	result = 0;
-	i = 0;
-	while (str[i] && i < pos)
-	{
-		if (str[i] == S_QUOTE)
-		{
-			if (result == 0)
-				result = 1;
-			else if (result == 1)
-				result = 0;
-			else if (result == 2)
-				result = 2;
-		}
-		if (str[i] == D_QUOTE)
-		{
-			if (result == 0)
-				result = 2;
-			else if (result == 2)
-				result = 0;
-			else if (result == 1)
-				result = 1;
-		}
-		i++;
-	}
-	if (result == 2)
-		return (2);
-	else
-		return (0);
-}
-
-int	is_in_s_quote(char *str, int pos)
-{
-	int	i;
-	int	result;
-
-	result = 0;
-	i = 0;
-	while (str[i] && i < pos)
-	{
-		if (str[i] == S_QUOTE)
-		{
-			if (result == 0)
-				result = 1;
-			else if (result == 1)
-				result = 0;
-			else if (result == 2)
-				result = 2;
-		}
-		if (str[i] == D_QUOTE)
-		{
-			if (result == 0)
-				result = 2;
-			else if (result == 2)
-				result = 0;
-			else if (result == 1)
-				result = 1;
-		}
-		i++;
-	}
-	if (result == 1)
-		return (1);
-	else
-		return (0);
-}
-
-int	get_expanded_token_start(char *str, char *initial, int pos)
-{
-	int	i;
-
-	i = 0;
-	(void)pos;
-	while (str[i])
-	{
-		if (str[i] == DOLLAR && !is_in_s_quote(initial, pos)
-			&& str[i + 1] && (!is_in_d_quote(initial, pos)
-				|| ft_isalpha(str[i + 1]))
-			&& str[i + 1] != SPACE && str[i + 1] != '=')
-			break ;
-		i++;
-		pos++;
-	}
-	return (i);
-}
-
-int	get_expanded_token_size(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str[i])
-		return (1);
-	if (str[i] == S_QUOTE || str[i] == D_QUOTE)
-		return (0);
-	if (ft_isdigit(str[i]))
-		return (1);
-	while (str[i] && str[i] != DOLLAR && str[i] != S_QUOTE
-		&& str[i] != D_QUOTE && str[i] != SPACE
-		&& str[i] != ']' && str[i] != '%' && str[i] != '=') //ajouter caracteres speciaux
-	{
-		if (str[i] == QUESTION)
-			return (1);
-		i++;
-	}
-	return (i);
+	substring = ft_substr(str, 0, before_dollar);
+	magic_malloc(ADD, 0, substring);
+	result = ft_strjoin(tmp, substring);
+	magic_malloc(ADD, 0, result);
+	magic_malloc(FREE, 0, tmp);
+	magic_malloc(FREE, 0, substring);
+	return (result);
 }
 
 char	*get_expanded_key(char *str, int size, t_env *envlist)
@@ -135,6 +38,16 @@ char	*get_expanded_key(char *str, int size, t_env *envlist)
 	return (res);
 }
 
+char	*add_key_part(char *result, char *str, int size, t_env *envlist)
+{
+	char	*tmp;
+
+	tmp = ft_strjoin(result, get_expanded_key(str, size, envlist));
+	magic_malloc(ADD, 0, tmp);
+	magic_malloc(FREE, 0, result);
+	return (tmp);
+}
+
 char	*create_expanded_token(char *str, t_env *envlist)
 {
 	char	*result;
@@ -142,40 +55,22 @@ char	*create_expanded_token(char *str, t_env *envlist)
 	int		size;
 	int		before_dollar;
 	char	*tmp;
-	char	*substring;
 
 	i = 0;
+	tmp = ft_strdup("");
+	magic_malloc(ADD, 0, tmp);
 	while (str[i])
 	{
-		if (str[i] == DOLLAR && !is_in_s_quote(str, i)
-			&& str[i + 1] && (!is_in_d_quote(str, i)
-				|| ft_isalpha(str[i + 1]))
-			&& str[i + 1] != SPACE && str[i + 1] != '=')
-			break ;
-		i++;
-	}
-	result = ft_substr(str, 0, i);
-	magic_malloc(ADD, 0, result);
-	while (str[i])
-	{
-		i++;
-		size = get_expanded_token_size(&str[i]);
-		if (!str[i])
-			break ;
-		tmp = ft_strjoin(result, get_expanded_key(&str[i], size, envlist));
-		magic_malloc(ADD, 0, tmp);
-		magic_malloc(FREE, 0, result);
+		before_dollar = get_expansion_start(&str[i], str, i);
+		result = add_before_dollar_part(before_dollar, tmp, &str[i]);
+		i = i + before_dollar + 1;
+		if (i > (int)ft_strlen(str))
+			return (result);
+		size = get_expansion_size(&str[i]);
+		tmp = add_key_part(result, &str[i], size, envlist);
 		i = i + size;
-		before_dollar = get_expanded_token_start(&str[i], str, i);
-		substring = ft_substr(&str[i], 0, before_dollar);
-		magic_malloc(ADD, 0, substring);
-		result = ft_strjoin(tmp, substring);
-		magic_malloc(ADD, 0, result);
-		magic_malloc(FREE, 0, tmp);
-		magic_malloc(FREE, 0, substring);
-		i = i + before_dollar;
 	}
-	return (result);
+	return (tmp);
 }
 
 void	expander(t_token *list, t_env *envlist)

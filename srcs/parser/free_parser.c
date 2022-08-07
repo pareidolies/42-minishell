@@ -60,7 +60,6 @@ void	free_tokens(t_token *list)
 	while (current)
 	{
 		magic_malloc(FREE, 0, current->token);
-		//magic_malloc(FREE, 0, current->trimmed_token);
 		tmp = current->next;
 		magic_malloc(FREE, 0, current);
 		current = tmp;

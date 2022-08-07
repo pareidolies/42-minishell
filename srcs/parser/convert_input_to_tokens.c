@@ -12,34 +12,6 @@
 
 #include "minishell.h"
 
-int	is_pipe_or_redir_or_quote(char c)
-{
-	if ((c == SPACE) || (c == PIPE)
-		|| (c == GREATER) || (c == LESS)
-		|| (c == S_QUOTE) || (c == D_QUOTE))
-		return (1);
-	return (0);
-}
-
-int	is_d_redir(char *str)
-{
-	int	i;
-
-	i = 0;
-	if ((str[i] == LESS && str[i + 1] == LESS)
-				|| (str[i] == GREATER
-					&& str[i + 1] == GREATER))
-		return (1);
-	return (0);
-}
-
-int	is_s_redir(char c)
-{
-	if (c == LESS || c == GREATER)
-		return (1);
-	return (0);
-}
-
 int	go_before_next_redir_or_pipe_quote_case(int i, char *str, char c)
 {
 	i++;
@@ -112,48 +84,4 @@ t_token	*convert_input_to_tokens(char *str)
 		i += size;
 	}
 	return (list);
-}
-
-void	analyze_tokens_type(t_token *list)
-{
-	t_token	*current;
-	int		len;
-
-	current = list;
-	len = ft_strlen(current->token);
-	while (current != NULL)
-	{
-		if (ft_strncmp(current->token, STR_LESS, len) == 0)
-			current->type = T_LESS;
-		else if (ft_strncmp(current->token, STR_D_LESS, len) == 0)
-			current->type = T_D_LESS;
-		else if (ft_strncmp(current->token, STR_GREATER, len) == 0)
-			current->type = T_GREATER;
-		else if (ft_strncmp(current->token, STR_D_GREATER, len) == 0)
-			current->type = T_D_GREATER;
-		else if (ft_strncmp(current->token, STR_PIPE, len) == 0)
-			current->type = T_PIPE;
-		else
-			current->type = T_LITERAL;
-		current = current->next;
-	}
-}
-
-void	analyze_literals_type(t_token *list)
-{
-	t_token	*current;
-
-	current = list;
-	while (current->next != NULL)
-	{
-		if (current->type == T_LESS && current->next->type == T_LITERAL)
-			current->next->type = T_INPUT;
-		else if (current->type == T_D_LESS)
-			current->next->type = T_DELIMITER;
-		else if (current->type == T_GREATER)
-			current->next->type = T_OUTPUT;
-		else if (current->type == T_D_GREATER)
-			current->next->type = T_APPEND;
-		current = current->next;
-	}
 }
