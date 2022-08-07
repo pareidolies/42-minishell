@@ -63,8 +63,8 @@ typedef enum e_mode
 # define L4 "      '.'  /  |  \\  `.'       | | | | | | | | | | \\__ \\ | | |  __/ | |     \n"  
 # define L5 "       `. /   |   \\ .'        |_| |_| |_|_|_| |_|_|___/_| |_|\\___|_|_|     \n" 
 # define L6 "         `-.__|__.-'                                                       \n\n" 
-# define L7 "					     	  	 Welcome   ° .	\n"
-# define L8 "             				   			   ° <><    \n"
+# define L7 "					     	  		 Welcome   ° .	\n"
+# define L8 "             				   				   ° <><    \n"
                                                                              
 //Colors
 
@@ -78,6 +78,8 @@ typedef enum e_mode
 # define ANSI_COLOR_RESET		"\x1b[0m"
 # define ANSI_COLOR_YELLOW	"\033[93m"
 # define ANSI_COLOR_CYAN	"\e[0;36m"
+# define ANSI_COLOR_GREEN	"\e[0;32m"
+# define ANSI_COLOR_BOLD_CYAN	"\e[1;36m"
 
 //Characters
 
@@ -126,6 +128,7 @@ typedef enum e_mode
 
 # define QUOTES_ERR_MSSG "Error: Wrong number of quotes\n"
 # define TOKENS_ERR_MSSG "Error: Redirections or pipe in a row\n"
+# define HEREDOC_ERR_MSSG "Warning: here-document delimited by end-of-file wanted "
 
 /******************************************************************************
  *                               STRUCTURES                                   *
@@ -205,7 +208,7 @@ extern int g_exit_status;
  *****************************************************************************/
 
 //testmain.c
-
+void	set_line(void);
 
 //main_parser.c
 t_command	*parse_input(char *str, t_env *envlist);

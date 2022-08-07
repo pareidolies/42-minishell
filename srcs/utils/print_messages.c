@@ -22,8 +22,8 @@ void	ft_putstr_fd_color(char *str, int fd, char *color)
 int	print_errors(int error)
 {
 	if (error == QUOTES_ERROR)
-		printf(QUOTES_ERR_MSSG);
+		ft_putstr_fd_color(QUOTES_ERR_MSSG, 2, ANSI_COLOR_LIGHT_RED);
 	if (error == TOKENS_ERROR)
-		printf(TOKENS_ERR_MSSG);
+		ft_putstr_fd_color(TOKENS_ERR_MSSG, 2, ANSI_COLOR_LIGHT_RED);
 	return (error);
 }

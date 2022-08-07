@@ -9,8 +9,8 @@ long long	ft_atoll(const char *str)
 	i = 0;
 	minus = 0;
 	nb = 0;
-	while ((str[i] == ' ' | str[i] == '\t' | str[i] == '\n' | str[i] == '\v'
-			| str[i] == '\f' | str[i] == '\r') && str[i] != '\0')
+	while (((str[i] == ' ') | (str[i] == '\t') | (str[i] == '\n') | (str[i] == '\v')
+			| (str[i] == '\f') | (str[i] == '\r')) && (str[i] != '\0'))
 		i++;
 	if (str[i] == '+' || str[i] == '-')
 	{
