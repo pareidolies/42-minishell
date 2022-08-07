@@ -18,6 +18,8 @@
 
 * absolute / relative path
 
+* cd with env -i
+
 # Comment ignorer leaks de readline :
 
 1. Compiler normalement.
