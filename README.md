@@ -8,6 +8,8 @@
 
 * cat << ok << salut
 
+* si je change la valeur de g_exit_status, cela n'a pas d'impact dans l'env quand je fais echo $?
+
 # Cas pour lesquels il faut faire attention
 
 * cat | cat | ls 
