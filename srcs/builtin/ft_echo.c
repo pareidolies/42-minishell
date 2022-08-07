@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/04 21:17:11 by lmurtin           #+#    #+#             */
+/*   Updated: 2022/08/07 23:18:46 by lmurtin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include "libft.h"
 #include "minishell.h"
 
 /* Return values OK */
 
-int	is_valid_option(char *str)
+static int	is_valid_option(char *str)
 {
 	int	i;
 
@@ -21,6 +33,20 @@ int	is_valid_option(char *str)
 	}
 	else
 		return (1);
+}
+
+static void	echo_print(int i, char **params, int option)
+{
+	while (params[i + 1] != NULL)
+	{
+		printf("%s", params[i]);
+		printf(" ");
+		i++;
+	}
+	if (params[i] != NULL)
+		printf("%s", params[i]);
+	if (option != 1)
+		printf("\n");
 }
 
 /*params[0] = nom commande*/
@@ -44,16 +70,7 @@ int	ft_echo(char **params)
 			if (params[i] == NULL)
 				return (0);
 		}
-		while (params[i + 1] != NULL)
-		{
-			printf("%s", params[i]);
-			printf(" ");
-			i++;
-		}
-		if (params[i] != NULL)
-			printf("%s", params[i]);
-		if (option != 1)
-			printf("\n");
+		echo_print(i, params, option);
 	}
 	return (0);
 }

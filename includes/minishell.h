@@ -239,13 +239,21 @@ void	ft_delenv(t_env *var, t_env *envlist);
 t_env	*ft_new_var_split(char *key, char *value);
 t_env	*ft_getenv_var(char *key, t_env *envlist);
 int		nb_param(char **params);
+//ft_cd.c
 int		ft_cd(char **params, t_env *envlist);
-int		cd_others(char **params, t_env *envlist);
+int		cd_update(char *current, t_env *envlist);
+int		cd_dir_checks(char *pathname, char *current, t_env *envlist);
+int		cd_param_check(char **params, t_env *envlist);
+char	*cd_find_path(char **params, t_env *envlist);
+
 int		ft_echo(char **params);
 int		ft_env(char **params, t_env *envlist);
 int		ft_export(char **params, t_env *envlist);
-char	*find_name(char *str);
+int		export_checks(char **params);
+int		export_value(char *str, char *equal, t_env *envlist);
+char	*export_find_name(char *str);
 int		valid_identifier(char *name);
+
 int		ft_unset(char **params, t_env *envlist);
 int		ft_pwd(char **params);
 int		ft_exit(char **params, t_env *envlist);

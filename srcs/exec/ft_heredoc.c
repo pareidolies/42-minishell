@@ -8,24 +8,30 @@ int	ft_heredoc(t_data *mini)
 	int		        fdgnl;
 	t_redirection   *redir;
 	t_command       *cmd;
+	// pid_t			pid;
 
-	cmd = mini->commands;
-	while (cmd != NULL)
-	{
-		redir = cmd->redirection;
-		while (redir != NULL)
+	// pid = fork();
+	// if (pid == 0)
+	// {
+		cmd = mini->commands;
+		while (cmd != NULL)
 		{
-			if (redir->mode == DELIMITER)
+			redir = cmd->redirection;
+			while (redir != NULL)
 			{
-				fdtmp = open_heretmp(cmd, 1);
-				fdgnl = dup(STDIN_FILENO);
-				ft_tempfile(redir->str, fdgnl, fdtmp);
-				close(fdtmp);
+				if (redir->mode == DELIMITER)
+				{
+					fdtmp = open_heretmp(cmd, 1);
+					fdgnl = dup(STDIN_FILENO);
+					ft_tempfile(redir->str, fdgnl, fdtmp);
+					close(fdtmp);
+				}
+				redir = redir->next;
 			}
-			redir = redir->next;
+			cmd = cmd->next;
 		}
-		cmd = cmd->next;
-	}
+		//exit(0);
+	//}
 	return (0);
 }
 

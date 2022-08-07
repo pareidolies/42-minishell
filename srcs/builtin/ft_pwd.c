@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmurtin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:30:48 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/04 13:30:51 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/07 21:40:32 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_pwd(char **params)
 
 	if (nb_param(params) > 1 && params[1][0] == '-')
 	{
-		write(2, "pwd : Invalid option\n", 21);/*GESTION ERREUR*/
+		write(2, "pwd : Invalid option\n", 21); /*GESTION ERREUR*/
 		return (2);
 	}
 	path = getcwd(NULL, 0);
