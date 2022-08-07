@@ -17,6 +17,8 @@ t_command	*parse_input(char *str, t_env *envlist)
 	t_token		*tokens;
 	t_command	*commands;
 
+	if (!str[0])
+		return (NULL);
 	if (check_quotes(str))
 		return (NULL);
 	tokens = convert_input_to_tokens(str);

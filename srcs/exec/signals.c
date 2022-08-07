@@ -32,7 +32,7 @@ void	signal_handler_as_prompt(int signum)
 {
 	if (signum == SIGINT)
     {
-		g_exit_status = 1;
+		g_exit_status = 130;
 		ft_putstr_fd("\n", 1);
 		set_line();
     }
