@@ -2,11 +2,11 @@
 
 * echo -n "blabla" >> file
 
-* $_
+* OK : $_
 
-* "$USER"$USER'$USER'
+* OK : "$USER"$USER'$USER'
 
-* cat << ok << salut
+* cat << ok << salut (il faut ecrire ok puis salut, or dans le bash il faut juste ecrire salut pour arreter la lecture)
 
 * si je change la valeur de g_exit_status, cela n'a pas d'impact dans l'env quand je fais echo $?
 
