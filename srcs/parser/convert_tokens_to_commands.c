@@ -33,19 +33,10 @@ int	is_builtin(char *str)
 
 /* path == NULL à voir avec Léa*/
 
-void	fill_command(t_token *list, t_command *cell, t_env *envlist)
+void	add_full_cmd_and_redir(t_token *current, t_command *node)
 {
-	t_token		*current;
-	t_command	*node;
-	char		*tmp;
-	int			i;
+	char	*tmp;
 
-	node = cell;
-	while (node->next != NULL)
-		node = node->next;
-	node->full_cmd = ft_strdup(node->cmd);
-	magic_malloc(ADD, 0, node->full_cmd);
-	current = list;
 	while (current && current->type != T_PIPE)
 	{
 		if (current->type == T_LITERAL)
@@ -67,6 +58,13 @@ void	fill_command(t_token *list, t_command *cell, t_env *envlist)
 		}
 		current = current->next;
 	}
+}
+
+void	add_args(t_command *node)
+{
+	char	*tmp;
+	int		i;
+
 	node->args = split_parser(node->full_cmd, SPACE);
 	magic_malloc(ADD, 0, node->args);
 	i = 0;
@@ -81,6 +79,21 @@ void	fill_command(t_token *list, t_command *cell, t_env *envlist)
 		magic_malloc(FREE, 0, tmp);
 		i++;
 	}
+}
+
+void	fill_command(t_token *list, t_command *cell, t_env *envlist)
+{
+	t_token		*current;
+	t_command	*node;
+
+	node = cell;
+	while (node->next != NULL)
+		node = node->next;
+	node->full_cmd = ft_strdup(node->cmd);
+	magic_malloc(ADD, 0, node->full_cmd);
+	current = list;
+	add_full_cmd_and_redir(current, node);
+	add_args(node);
 	if (!node->args[0])
 		node->path = NULL;
 	else if (is_builtin(node->args[0]))
