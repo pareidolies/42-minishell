@@ -57,6 +57,8 @@ typedef enum e_mode
 
 //Ascii Art
 
+# define L10 "▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫\n"
+# define L0 "▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪\n"
 # define L1 "           _.---._                                     _          _ _      \n"  
 # define L2 "       .\'\"\".'/|\\`.\"\"\'.         _ __ ___  _ _ __  _ ___| |__   ___| | |     \n" 
 # define L3 "      :  .' / | \\ `.  :	      | '_ ` _ \\| | '_ \\| / __| '_ \\ / _ \\ | |	   \n"  
@@ -65,7 +67,14 @@ typedef enum e_mode
 # define L6 "         `-.__|__.-'                                                       \n\n" 
 # define L7 "					     	  		 Welcome   ° .	\n"
 # define L8 "             				   				   ° <><    \n"
-                                                                             
+# define L9 "▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪\n\n"
+# define L19 "▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫\n"
+# define L20 ".....................................................................................\n"
+# define L21 "--------------------------------------------------------------------------------------\n"
+# define L22 "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n"
+# define L23 "**************************************************************************************\n"  
+
+
 //Colors
 
 # define ANSI_COLOR_BLUE		"\x1b[94m"
@@ -127,8 +136,9 @@ typedef enum e_mode
 //Error messages
 
 # define QUOTES_ERR_MSSG "Error: Wrong number of quotes\n"
-# define TOKENS_ERR_MSSG "Error: Redirections or pipe in a row\n"
-# define HEREDOC_ERR_MSSG "Warning: here-document delimited by end-of-file wanted "
+# define TOKENS_ERR_MSSG "Error: Wrong number of redirections or pipes\n"
+# define HEREDOC_ERR_MSSG "Warning: Here-document delimited by end-of-file wanted "
+# define MALLOC_ERR_MSSG "Error: A malloc error occured\n"
 
 /******************************************************************************
  *                               STRUCTURES                                   *

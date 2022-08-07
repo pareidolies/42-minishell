@@ -49,7 +49,7 @@ int main(int argc, char **argv, char **envp)
 		{
 			ft_putstr_fd_color("\b exit", 2, ANSI_COLOR_LIGHT_YELLOW);
 			clear_history();
-			magic_malloc(QUIT, 0, NULL);
+			magic_malloc(EXIT_SUCCESS, 0, NULL);
 		}
 		else
 		{

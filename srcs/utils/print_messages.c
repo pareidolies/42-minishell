@@ -25,5 +25,7 @@ int	print_errors(int error)
 		ft_putstr_fd_color(QUOTES_ERR_MSSG, 2, ANSI_COLOR_LIGHT_RED);
 	if (error == TOKENS_ERROR)
 		ft_putstr_fd_color(TOKENS_ERR_MSSG, 2, ANSI_COLOR_LIGHT_RED);
+	if (error == MALLOC_ERROR)
+		ft_putstr_fd_color(MALLOC_ERR_MSSG, 2, ANSI_COLOR_LIGHT_RED);
 	return (error);
 }
