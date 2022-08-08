@@ -1,7 +1,5 @@
 SRCS			=	parser/parse_input.c \
 					parser/tokens_handler.c \
-					parser/convert_input_to_tokens.c \
-					parser/expander.c \
 					parser/trimmer.c \
 					parser/convert_tokens_to_commands.c \
 					parser/commands_handler.c \
@@ -9,11 +7,13 @@ SRCS			=	parser/parse_input.c \
 					parser/free_parser.c \
 					parser/splitter.c \
 					parser/check_quotes.c \
-					parser/expander_utils.c \
 					parser/redirections_handler.c \
 					parser/analyze_tokens.c \
 					parser/tokens_utils.c \
 					parser/quotes_utils.c \
+					expander/expander.c \
+					expander/expander_utils.c \
+					lexer/convert_input_to_tokens.c \
 					exec/testmain.c \
 					exec/ft_exec.c \
 					exec/ft_heredoc.c \
@@ -71,6 +71,8 @@ ${OBJDIR}/%.o : ${SRCDIR}/%.c
 		@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
 		@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
 		@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
+		@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
+		@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
 		@$(CC) $(CFLAGS) -c ${INC} $< -o $@
 
 ${LFT}:
