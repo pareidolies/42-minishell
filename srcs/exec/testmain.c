@@ -22,7 +22,7 @@ void	set_line(void)
 		ft_putstr_fd_color("➜ ", 1, ANSI_COLOR_GREEN);
 	else
 		ft_putstr_fd_color("➜ ", 1, ANSI_COLOR_ORANGE);
-	ft_putstr_fd_color("minishell>> ", 1, ANSI_COLOR_BOLD_CYAN);
+	ft_putstr_fd_color("minishell» ", 1, ANSI_COLOR_BOLD_CYAN);
 }
 
 int main(int argc, char **argv, char **envp)

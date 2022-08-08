@@ -61,7 +61,7 @@ int ft_exit(char **params, t_env *envlist)
 	{
 		code = ft_atoi(ft_getenv("?", envlist));
 	}
-	ft_putstr_fd_color("exit", 2, ANSI_COLOR_LIGHT_YELLOW);
+	ft_putstr_fd_color("exit\n", 2, ANSI_COLOR_LIGHT_YELLOW);
 	magic_malloc(code, 0, NULL);
 	return (0);
 }
