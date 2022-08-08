@@ -43,7 +43,7 @@ void	signal_handler_as_here_doc(int signum)
 	if (signum == SIGINT)
     {
 		g_exit_status = 130;
-		magic_malloc(QUIT, 0, NULL);
+		magic_malloc(130, 0, NULL);
     }
 }
 

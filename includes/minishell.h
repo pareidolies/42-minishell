@@ -129,6 +129,9 @@ typedef enum e_mode
 
 # define BUFFER_SIZE 10
 
+# define MAX 9223372036854775807uLL
+# define MIN 9223372036854775808uLL
+
 //Errors
 
 # define QUOTES_ERROR 1
@@ -354,7 +357,7 @@ int print_errors(int error);
 void	ft_putstr_fd_color(char *str, int fd, char *color);
 
 //error.c
-int	ft_update_status(int code, t_env *envlist);
+int	ft_update_status(t_env *envlist);
 
 //say_hello.c
 void    say_hello(void);

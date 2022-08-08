@@ -3,6 +3,8 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+extern int	g_exit_status;
+
 int ft_exec(t_command *commands, t_env *envlist)
 {
 	t_data	*mini;
@@ -29,20 +31,21 @@ int ft_exec(t_command *commands, t_env *envlist)
 					error = WEXITSTATUS(wstatus); //returns exit status of the child
 				if (WIFSIGNALED(wstatus))
 					error = WTERMSIG(wstatus); //returns number of the signal 
-				ft_update_status(error, envlist);
+				g_exit_status = error;
+				//ft_update_status(envlist);
 				printf("RECUP CODE ERREUR FINAL\n");
 			}
 			i++;
 		}
-		unlink("/tmp/crustacestmp");
+		unlink("/tmp/crustacestmp");////////////////////////////////////////
 	}	
 	else
 	{
 		printf("COMMANDE SEULE\n");
 		mini->pipes = NULL;
 		mini->pid = NULL;
-		error = exec_no_pipeline(mini, mini->commands, mini->envlist);
-		ft_update_status(error, envlist);
+		g_exit_status = exec_no_pipeline(mini, mini->commands, mini->envlist);
+		//ft_update_status(envlist);
 	}
 	close(mini->std_in);
 	close(mini->std_out);
@@ -103,7 +106,9 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 		}
 		redir_close(mini, current_cmd, 1);
 	}
-	ft_update_status(error, envlist);
+	//ft_update_status(envlist);
+	g_exit_status = error;
+	printf("status = %d\n", g_exit_status);
 	return (error);
 }
 

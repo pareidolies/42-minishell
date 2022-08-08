@@ -43,7 +43,7 @@ int main(int argc, char **argv, char **envp)
 	while (flag != 1) 
 	{
 		set_signals_as_prompt();
-		set_line(); //s'affiche avant le resultat de la commande précédente si sur même ligne
+		set_line();
 		result = readline("");
 		if (!result)
 		{
@@ -67,6 +67,7 @@ int main(int argc, char **argv, char **envp)
 				free_commands(commands);
 			}
 		}
+		ft_update_status(envlist);
 	}
 	clear_history();
 	ft_clean_list(envlist);

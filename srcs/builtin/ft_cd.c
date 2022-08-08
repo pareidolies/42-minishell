@@ -191,16 +191,20 @@ int ft_cd(char **params, t_env *envlist)
 
 int	cd_param_check(char **params, t_env *envlist)
 {
-	int		error;
 	t_env	*var;
 
-	error = 0;
 	if (nb_param(params) > 2)
-		error += write(2, "cd : too many arguments\n", 24); /*GESTION ERREUR*/
+	{
+		write(2, "cd : too many arguments\n", 24); /*GESTION ERREUR*/
+		return (1);
+	}
 	var = ft_getenv_var("HOME", envlist);
 	if (nb_param(params) == 1 && (var == NULL || var->value == NULL))
-		error += write(2, "cd : HOME not set\n", 18); /*GESTION ERREUR*/
-	return (error);
+	{
+		write(2, "cd : HOME not set\n", 18); /*GESTION ERREUR*/
+		return (1);
+	}
+	return (0);
 }
 
 char	*cd_find_path(char **params, t_env *envlist)
