@@ -27,7 +27,9 @@ int redir_open(t_command *current_cmd, int fd[2])
 			}
 			else if (redir->mode == APPEND)
 			{
+				printf("mode append\n");
 				redir->fd = open(redir->str, O_WRONLY | O_CREAT | O_APPEND, 0666);
+				printf("redir->fd = %d\n", redir->fd);
 				if (redir->fd < 0)
 					return (perror("redir_open "), 1); /*GESTION ERREUR*/
 			}

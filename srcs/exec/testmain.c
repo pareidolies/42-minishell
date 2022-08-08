@@ -43,7 +43,7 @@ int main(int argc, char **argv, char **envp)
 	while (flag != 1) 
 	{
 		set_signals_as_prompt();
-		set_line();
+		set_line(); //s'affiche avant le resultat de la commande précédente si sur même ligne
 		result = readline("");
 		if (!result)
 		{
