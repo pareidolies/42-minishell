@@ -12,6 +12,8 @@
 
 #include "minishell.h"
 
+extern int g_exit_status;
+
 t_malloc	*add_one_malloc_element(t_malloc **first, t_malloc *new)
 {
 	t_malloc	*head;

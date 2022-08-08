@@ -1,3 +1,29 @@
+# (Derniers) cas qui ne fonctionnent pas
+
+* quand on écrit exit dans le prompt, le programme quitte mais il reste 5 fd ouverts au lieu de 3
+
+* echo -n "blabla" >> file
+
+* OK : $_
+
+* OK : "$USER"$USER'$USER'
+
+* cat << ok << salut (il faut ecrire ok puis salut, or dans le bash il faut juste ecrire salut pour arreter la lecture)
+
+* si je change la valeur de g_exit_status, cela n'a pas d'impact dans l'env quand je fais echo $?
+
+# Cas pour lesquels il faut faire attention
+
+* cat | cat | ls 
+
+* ctrl c avec un cat
+
+* export a+= (avec les concatenations)
+
+* absolute / relative path
+
+* cd with env -i
+
 # Comment ignorer leaks de readline :
 
 1. Compiler normalement.

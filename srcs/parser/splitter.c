@@ -12,38 +12,6 @@
 
 #include "minishell.h"
 
-int	is_in_quote(char *str, int pos)
-{
-	int	i;
-	int	result;
-
-	result = 0;
-	i = 0;
-	while (str[i] && i < pos)
-	{
-		if (str[i] == S_QUOTE)
-		{
-			if (result == 0)
-				result = 1;
-			else if (result == 1)
-				result = 0;
-			else if (result == 2)
-				result = 2;
-		}
-		if (str[i] == D_QUOTE)
-		{
-			if (result == 0)
-				result = 2;
-			else if (result == 2)
-				result = 0;
-			else if (result == 1)
-				result = 1;
-		}
-		i++;
-	}
-	return (result);
-}
-
 static	int	ft_taillemot2(char *str, char c)
 {
 	int	i;

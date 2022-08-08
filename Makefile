@@ -9,7 +9,11 @@ SRCS			=	parser/parse_input.c \
 					parser/free_parser.c \
 					parser/splitter.c \
 					parser/check_quotes.c \
+					parser/expander_utils.c \
 					parser/redirections_handler.c \
+					parser/analyze_tokens.c \
+					parser/tokens_utils.c \
+					parser/quotes_utils.c \
 					exec/testmain.c \
 					exec/ft_exec.c \
 					exec/ft_heredoc.c \
@@ -21,6 +25,8 @@ SRCS			=	parser/parse_input.c \
 					exec/get_path.c \
 					exec/child.c \
 					exec/error.c \
+					exec/say_hello.c \
+					exec/signals.c \
 					builtin/builtin_utils.c \
 					builtin/ft_cd.c \
 					builtin/ft_echo.c \

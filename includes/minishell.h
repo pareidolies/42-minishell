@@ -7,6 +7,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <errno.h>
+# include <signal.h>
 
 /******************************************************************************
 *                              ENUMERATIONS                                   *
@@ -54,6 +55,43 @@ typedef enum e_mode
  *                                 MACROS                                     *
  *****************************************************************************/
 
+//Ascii Art
+
+# define L10 "▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫\n"
+# define L0 "▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪\n"
+# define L1 "           _.---._                                     _          _ _      \n"  
+# define L2 "       .\'\"\".'/|\\`.\"\"\'.         _ __ ___  _ _ __  _ ___| |__   ___| | |     \n" 
+# define L3 "      :  .' / | \\ `.  :	      | '_ ` _ \\| | '_ \\| / __| '_ \\ / _ \\ | |	   \n"  
+# define L4 "      '.'  /  |  \\  `.'       | | | | | | | | | | \\__ \\ | | |  __/ | |     \n"  
+# define L5 "       `. /   |   \\ .'        |_| |_| |_|_|_| |_|_|___/_| |_|\\___|_|_|     \n" 
+# define L6 "         `-.__|__.-'                                                       \n\n" 
+# define L7 "					     	  		 Welcome   ° .	\n"
+# define L8 "             				   				   ° <><    \n"
+# define L9 "▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪\n\n"
+# define L19 "▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫\n"
+# define L20 ".....................................................................................\n"
+# define L21 "--------------------------------------------------------------------------------------\n"
+# define L22 "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n"
+# define L23 "**************************************************************************************\n"
+# define L24 "______________________________________________________________________________________\n\n"  
+# define L44 "   	°  o   ◯  .			\n\n"  
+# define L45 "     				° O   .			\n\n"  
+
+//Colors
+
+# define ANSI_COLOR_BLUE		"\x1b[94m"
+# define ANSI_COLOR_LIGHT_YELLOW		"\x1b[93m"
+# define ANSI_COLOR_ORANGE		"\e[1;31m"
+# define ANSI_COLOR_LIGHT_WHITE		"\x1b[97m"
+# define ANSI_COLOR_LIGHT_RED		"\x1b[91m"
+# define ANSI_COLOR_REG_RED	"\e[0;31m"
+# define ANSI_COLOR_BOLD_RED	"\e[1;31m"
+# define ANSI_COLOR_RESET		"\x1b[0m"
+# define ANSI_COLOR_YELLOW	"\033[93m"
+# define ANSI_COLOR_CYAN	"\e[0;36m"
+# define ANSI_COLOR_GREEN	"\e[0;32m"
+# define ANSI_COLOR_BOLD_CYAN	"\e[1;36m"
+
 //Characters
 
 # define S_QUOTE '\''
@@ -82,9 +120,9 @@ typedef enum e_mode
 
 //Malloc
 
-# define FREE 4597
-# define MALLOC 4598
-# define ADD 4599
+# define FREE 4242
+# define MALLOC 4343
+# define ADD 4444
 # define QUIT 0 //A CHANGER
 
 //GNL
@@ -99,8 +137,10 @@ typedef enum e_mode
 
 //Error messages
 
-# define QUOTES_ERR_MSSG "Error: Wrong number of quotes\n"
-# define TOKENS_ERR_MSSG "Error: Redirections or pipe in a row\n"
+# define QUOTES_ERR_MSSG "error: wrong number of quotes\n"
+# define TOKENS_ERR_MSSG "error: wrong number of redirections or pipes\n"
+# define HEREDOC_ERR_MSSG "warning: here-document delimited by end-of-file wanted "
+# define MALLOC_ERR_MSSG "error: a malloc error occured\n"
 
 /******************************************************************************
  *                               STRUCTURES                                   *
@@ -163,6 +203,12 @@ typedef struct s_malloc
 	struct s_malloc	*prev;
 }	t_malloc;
 
+typedef struct s_quotes_nbr
+{
+	int	simple_q;
+	int	double_q;
+}	t_quotes_nbr;
+
 /******************************************************************************
  *                            GLOBAL VARIABLE                                 *
  *****************************************************************************/
@@ -174,7 +220,7 @@ extern int g_exit_status;
  *****************************************************************************/
 
 //testmain.c
-
+void	set_line(void);
 
 //main_parser.c
 t_command	*parse_input(char *str, t_env *envlist);
@@ -192,8 +238,6 @@ void	analyze_tokens_type(t_token *list);
 void	analyze_literals_type(t_token *list);
 
 //expander.c
-int		there_is_a_dollar(char *str);
-void	analyze_tokens_to_expand(t_token *list);
 void	expander(t_token *list, t_env *envlist);
 
 //trim_tokens.c
@@ -211,9 +255,24 @@ t_command	*create_command(t_token *list);
 //check_tokens.c
 int	check_tokens(t_token *list);
 
+//quotes_utils.c
+int	calculate_result(int result, char c);
+int	is_in_quote(char *str, int pos);
+int	is_in_d_quote(char *str, int pos);
+int	is_in_s_quote(char *str, int pos);
+
+//expander_utils.c
+int	get_expansion_start(char *str, char *initial, int pos);
+int	get_expansion_size(char *str);
+
 //redirections.c
 void			add_redirection(t_token *list, t_redirection *first);
 t_redirection	*create_redirection(t_token *list);
+
+//tokens_utils.c
+int	is_pipe_or_redir_or_quote(char c);
+int	is_d_redir(char *str);
+int	is_s_redir(char c);
 
 //free_tokens.c
 void	free_tokens(t_token *list);
@@ -299,8 +358,18 @@ char	**ft_convertlist(t_env *envlist);
 
 //print_messages.c
 int print_errors(int error);
+void	ft_putstr_fd_color(char *str, int fd, char *color);
 
 //error.c
 int	ft_update_status(int code, t_env *envlist);
+
+//say_hello.c
+void    say_hello(void);
+
+//signals.c
+int	set_signals_as_prompt(void);
+int	set_signals_as_here_doc(void);
+void	signal_handler_as_prompt(int signum);
+void	signal_handler_as_here_doc(int signum);
 
 #endif

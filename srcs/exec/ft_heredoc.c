@@ -10,11 +10,12 @@ int	ft_heredoc(t_data *mini)
 	t_command       *cmd;
 	// pid_t			pid;
 
-	// pid = fork();
-	// if (pid == 0)
-	// {
-		cmd = mini->commands;
-		while (cmd != NULL)
+	set_signals_as_here_doc();
+	cmd = mini->commands;
+	while (cmd != NULL)
+	{
+		redir = cmd->redirection;
+		while (redir != NULL)
 		{
 			redir = cmd->redirection;
 			while (redir != NULL)
@@ -72,7 +73,9 @@ void	ft_tempfile(char *str, int fd, int fdtmp)
 		line = get_next_line(fd);
 		if (line == NULL)
 		{
-			//printf("je sors\n");
+			ft_putstr_fd_color(HEREDOC_ERR_MSSG, 2, ANSI_COLOR_LIGHT_RED);
+			ft_putstr_fd_color(limiter, 2, ANSI_COLOR_LIGHT_RED);
+			//faire une sortie propre car leaks pour ctrl-D
 			break ;
 		}
 		if (ft_strncmp(line, limiter, ft_strlen(limiter) + 1) == 0)
