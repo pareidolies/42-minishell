@@ -1,5 +1,7 @@
 # (Derniers) cas qui ne fonctionnent pas
 
+* quand on écrit exit dans le prompt, le programme quitte mais il reste 5 fd ouverts au lieu de 3
+
 * echo -n "blabla" >> file
 
 * OK : $_
