@@ -14,6 +14,17 @@
 
 * OK : quand on remonte l'historique du shell on perd le prompt : pb d'affichage
 
+* dans bash, les messages d'erreurs ne sont pas les memes pour :
+$skdjhfkjsdhf
+"$skdjhfkjsdhf"
+'$skdjhfkjsdhf'
+or nous avons les memes dans notre minishell
+
+* si on fait export blabla="ls -la"
+puis export gloups="$blabla"
+on a le message d'erreur 'Not a valid identifier'
+tandis que dans bash gloups devient bien ls -la
+
 # Cas pour lesquels il faut faire attention
 
 * cat | cat | ls 
