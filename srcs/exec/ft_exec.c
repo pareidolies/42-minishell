@@ -15,7 +15,7 @@ int ft_exec(t_command *commands, t_env *envlist)
 
 	mini = ft_init_data(commands, envlist);
 	i = 0;
-	ft_heredoc(mini);
+	ft_fork_here(mini);
 	if (mini->nb_pid > 1) //si au moins 2 commandes
 	{
 		printf("COMMANDES MULTIPLES\n");
@@ -108,7 +108,7 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 	}
 	//ft_update_status(envlist);
 	g_exit_status = error;
-	printf("status = %d\n", g_exit_status);
+	//printf("status = %d\n", g_exit_status);
 	return (error);
 }
 
