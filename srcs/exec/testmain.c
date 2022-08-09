@@ -16,13 +16,15 @@ int g_exit_status = 0;
 /*pour l'instant, le prog quitte si on tape "aurevoir" */
 /*PAS ENCORE DE NETTOYAGE COMPLET DONC LEAKS*/
 
-void	set_line(void)
+char	*get_prompt(void)
 {
+	char	*prompt;
+
 	if (g_exit_status == 0)
-		ft_putstr_fd_color("➜ ", 1, ANSI_COLOR_GREEN);
+		prompt = "\e[0;32m➜ \x1b[0m\e[1;36mminishell>> \x1b[0m";
 	else
-		ft_putstr_fd_color("➜ ", 1, ANSI_COLOR_ORANGE);
-	ft_putstr_fd_color("minishell» ", 1, ANSI_COLOR_BOLD_CYAN);
+		prompt = "\e[1;31m➜ \x1b[0m\e[1;36mminishell>> \x1b[0m";
+	return (prompt);
 }
 
 int main(int argc, char **argv, char **envp)
@@ -31,7 +33,8 @@ int main(int argc, char **argv, char **envp)
 	t_env	*envlist;
 	int		flag;
 	t_command *commands;
-	
+	char	*prompt;
+
 	flag = 0;
 	if (argc != 1 || argv[1] != NULL)
 		return(1);
@@ -43,8 +46,8 @@ int main(int argc, char **argv, char **envp)
 	while (flag != 1) 
 	{
 		set_signals_as_prompt();
-		set_line();
-		result = readline("");
+		prompt = get_prompt();
+		result = readline(prompt);
 		if (!result)
 		{
 			ft_putstr_fd_color("\b exit", 2, ANSI_COLOR_LIGHT_YELLOW);
