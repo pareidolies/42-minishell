@@ -34,6 +34,7 @@ pid_t   ft_fork(t_data *mini, t_command *cmd)
 	}
     if (pid == 0)
     {
+		set_signals_as_child();
         error = ft_child(mini, cmd, mini->envlist);
         if (error != 0)
             magic_malloc(error, 0, NULL);

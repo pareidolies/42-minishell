@@ -21,9 +21,16 @@ int	set_signals_as_prompt(void)
 	return (1);
 }
 
-int	set_signals_as_here_doc(void)
+int	set_signals_as_child(void)
 {
-	signal(SIGINT, signal_handler_as_prompt);
+	signal(SIGINT, signal_handler_as_child);
+	signal(SIGQUIT, SIG_IGN);
+	return (1);
+}
+
+int	set_signals_as_parent(void)
+{
+	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 	return (1);
 }
@@ -34,18 +41,18 @@ void	signal_handler_as_prompt(int signum)
 	{
 		g_exit_status = 130;
 		//ft_putstr_fd("\n", 1);
-		ioctl(STDIN_FILENO, TIOCSTI, "\n");
+		write(STDIN_FILENO, "\n", 1);
 		rl_replace_line("", 0);
 		rl_on_new_line();
 	}
 }
 
-void	signal_handler_as_here_doc(int signum)
+void	signal_handler_as_child(int signum)
 {
 	if (signum == SIGINT)
 	{
-		g_exit_status = 130;
-		magic_malloc(130, 0, NULL);
+		g_exit_status = 1;
+		magic_malloc(1, 0, NULL);
 	}
 }
 
