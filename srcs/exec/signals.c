@@ -33,8 +33,10 @@ void	signal_handler_as_prompt(int signum)
 	if (signum == SIGINT)
     {
 		g_exit_status = 130;
-		ft_putstr_fd("\n", 1);
-		set_line();
+		//ft_putstr_fd("\n", 1);
+		ioctl(STDIN_FILENO, TIOCSTI, "\n");
+		rl_replace_line("", 0);
+		rl_on_new_line();
     }
 }
 
