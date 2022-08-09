@@ -1,4 +1,29 @@
+* comportement ctrl-c et ctrl-\ : 
+    dans HEREDOC -> ctrl-c interrompt et ctrl-\ n'a aucun effet,
+    dans PROMPT -> ctrl-c donne un nouveau prompt et ctrl-\ n'a aucun effet,
+    pendant EXEC, par exemple dans cat -> les deux interrompent, retour dépend si dernier child déjà executé ou pas
+    -> cat | ls : affichage ls puis interruption, retour 0
+    -> cat | wc -c : interruption directe, retour 130 pour ctrl-c, 131 pour ctrl-\
 # (Derniers) cas qui ne fonctionnent pas
+
+* dans bash, les messages d'erreurs ne sont pas les memes pour :
+$skdjhfkjsdhf
+"$skdjhfkjsdhf"
+'$skdjhfkjsdhf'
+or nous avons les memes dans notre minishell
+
+* si on fait export blabla="ls -la"
+puis export gloups=$blabla
+on a le message d'erreur 'Not a valid identifier'
+tandis que dans bash gloups devient bien ls -la
+
+* gestion code erreur
+
+* cat | cat : attend à l'infini, ne sort jamais du prompt sauf si interrompu par signal
+
+* ctrl-c affiche ^C mais il manque le \n derrière (au passage, ctrl-\ doit afficher ^Quit)
+
+=================================================================
 
 * OK : quand on écrit exit dans le prompt, le programme quitte mais il reste 5 fd ouverts au lieu de 3
 
@@ -13,19 +38,6 @@
 * OK : si je change la valeur de g_exit_status, cela n'a pas d'impact dans l'env quand je fais echo $?
 
 * OK : quand on remonte l'historique du shell on perd le prompt : pb d'affichage
-
-* dans bash, les messages d'erreurs ne sont pas les memes pour :
-$skdjhfkjsdhf
-"$skdjhfkjsdhf"
-'$skdjhfkjsdhf'
-or nous avons les memes dans notre minishell
-
-* si on fait export blabla="ls -la"
-puis export gloups=$blabla
-on a le message d'erreur 'Not a valid identifier'
-tandis que dans bash gloups devient bien ls -la
-
-* gestion code erreur
 
 # Cas pour lesquels il faut faire attention
 

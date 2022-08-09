@@ -321,7 +321,9 @@ void	ft_free_tab(char **tab);
 //ft_exec.c
 int 	ft_exec(t_command *commands, t_env *envlist);
 t_data	*ft_init_data(t_command *commands, t_env *envlist);
+int		exec_pipeline(t_data *mini);
 int		exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist);
+int		child_status(int wstatus);
 int		which_builtin(t_data *mini, char **args, t_env *envlist);
 
 //ft_fork.c
