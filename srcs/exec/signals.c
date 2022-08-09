@@ -28,6 +28,13 @@ int	set_signals_as_child(void)
 	return (1);
 }
 
+int	set_signals_as_heredoc(void)
+{
+	signal(SIGINT, signal_handler_as_heredoc);
+	signal(SIGQUIT, SIG_IGN);
+	return (1);
+}
+
 int	set_signals_as_parent(void)
 {
 	signal(SIGINT, SIG_IGN);
@@ -44,6 +51,17 @@ void	signal_handler_as_prompt(int signum)
 		write(STDIN_FILENO, "\n", 1);
 		rl_replace_line("", 0);
 		rl_on_new_line();
+	}
+}
+
+void	signal_handler_as_heredoc(int signum)
+{
+	if (signum == SIGINT)
+	{
+		//printf("\n\ncoucou\n\n");
+		g_exit_status = 130;
+		close(60);
+		printf("%d\n", g_exit_status);
 	}
 }
 

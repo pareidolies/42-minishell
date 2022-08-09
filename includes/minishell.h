@@ -365,8 +365,10 @@ void    say_hello(void);
 //signals.c
 int	set_signals_as_prompt(void);
 int	set_signals_as_child(void);
+int	set_signals_as_heredoc(void);
+int		set_signals_as_parent(void);
 void	signal_handler_as_prompt(int signum);
 void	signal_handler_as_child(int signum);
-int		set_signals_as_parent(void);
+void	signal_handler_as_heredoc(int signum);
 
 #endif

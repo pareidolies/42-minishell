@@ -4,6 +4,8 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+extern int	g_exit_status;
+
 int	ft_fork_here(t_data *mini)
 {
 	pid_t	pid;
@@ -19,18 +21,16 @@ int	ft_fork_here(t_data *mini)
 	}
     if (pid == 0)
     {
-		set_signals_as_child();
+		set_signals_as_heredoc();
         error = ft_heredoc(mini);
 		close(mini->std_in);
 		close(mini->std_out);
-		magic_malloc(error, 0, NULL); /*GESTION ERREUR*/
+		magic_malloc(g_exit_status, 0, NULL); /*GESTION ERREUR*/
 	}
 	waitpid(pid, &wstatus, 0);
-	if (WIFEXITED(wstatus))
-	{
-		printf("\n\ncoucou\n\n");
-	}
-	return (0);
+	g_exit_status = WEXITSTATUS(wstatus);
+	printf("exit status : %d\n", g_exit_status);
+	return (g_exit_status);
 }
 
 int	ft_heredoc(t_data *mini)
@@ -49,7 +49,7 @@ int	ft_heredoc(t_data *mini)
 			if (redir->mode == DELIMITER)
 			{
 				fdtmp = open_heretmp(cmd, 1);
-				fdgnl = dup(STDIN_FILENO);
+				fdgnl = dup2(STDIN_FILENO, 60);
 				ft_tempfile(redir->str, fdgnl, fdtmp);
 				close(fdtmp);
 			}
@@ -126,8 +126,13 @@ void	ft_tempfile(char *str, int fd, int fdtmp)
 		magic_malloc(ADD, 0, line);
 		if (line == NULL)
 		{
-			ft_putstr_fd_color(HEREDOC_ERR_MSSG, 2, ANSI_COLOR_LIGHT_RED);
-			ft_putstr_fd_color(limiter, 2, ANSI_COLOR_LIGHT_RED);
+			//!\ ce message s'affiche aussi en cas de sortie normale
+			if (g_exit_status != 130)
+			{
+				ft_putstr_fd_color(HEREDOC_ERR_MSSG, 2, ANSI_COLOR_LIGHT_RED);
+				ft_putstr_fd_color(limiter, 2, ANSI_COLOR_LIGHT_RED);
+			}
+			//faire une sortie propre car leaks pour ctrl-D
 			close (fd);
 			break ;
 		}
@@ -138,7 +143,7 @@ void	ft_tempfile(char *str, int fd, int fdtmp)
 		}
 		else
 			write(fdtmp, line, ft_strlen(line));
-		free(line);
+		//free(line);
 		magic_malloc(FREE, 0, line);
 	}
 	get_next_line(fd);
