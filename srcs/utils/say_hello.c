@@ -6,13 +6,13 @@
 /*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 15:53:13 by smostefa          #+#    #+#             */
-/*   Updated: 2022/08/07 15:53:14 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/08/09 11:21:36 by smostefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    say_hello(void)
+void	say_hello(void)
 {
 	ft_putstr_fd("\e[1;1H\e[2J", 1);
 	ft_putstr_fd_color(L24, 1, ANSI_COLOR_LIGHT_YELLOW);
@@ -28,4 +28,3 @@ void    say_hello(void)
 	ft_putstr_fd_color("\n\n", 1, ANSI_COLOR_CYAN);
 	ft_putstr_fd_color(L24, 1, ANSI_COLOR_LIGHT_YELLOW);
 }
-

@@ -21,7 +21,7 @@ int	ft_fork_here(t_data *mini)
     {
 		set_signals_as_here_doc();
         error = ft_heredoc(mini);
-		exit(error); /*GESTION ERREUR*/
+		magic_malloc(error, 0, NULL); /*GESTION ERREUR*/
 	}
 	waitpid(pid, &wstatus, 0);
 	return (0);
@@ -87,18 +87,20 @@ void	ft_tempfile(char *str, int fd, int fdtmp)
 	stop = 0;
 	limiter = ft_strjoin(str, "\n");
 	magic_malloc(ADD, 0, limiter);
-	while (1)
+	while (stop != 1)
 	{
-		if (stop != 1)
-			write(1, "> ", 2);
+		//if (stop != 1)
+		write(1, "> ", 2);
 		line = get_next_line(fd);
+		//magic_malloc(ADD, 0, line);
 		if (line == NULL)
 		{
 			//!\Attention ce message s'affiche aussi en cas de sortie normale
 			ft_putstr_fd_color(HEREDOC_ERR_MSSG, 2, ANSI_COLOR_LIGHT_RED);
 			ft_putstr_fd_color(limiter, 2, ANSI_COLOR_LIGHT_RED);
 			//faire une sortie propre car leaks pour ctrl-D
-			break ;
+			magic_malloc(0, 0, NULL);
+			//break ;
 		}
 		if (ft_strncmp(line, limiter, ft_strlen(limiter) + 1) == 0)
 		{
@@ -108,6 +110,7 @@ void	ft_tempfile(char *str, int fd, int fdtmp)
 		else
 			write(fdtmp, line, ft_strlen(line));
 		free(line);
+		//magic_malloc(FREE, 0, line);
 	}
 	magic_malloc(FREE, 0, limiter);
 }

@@ -1,15 +1,15 @@
-SRCS			=	parser/parse_input.c \
-					parser/tokens_handler.c \
+SRCS			=	lexer/parse_input.c \
+					lexer/tokens_handler.c \
 					parser/trimmer.c \
 					parser/convert_tokens_to_commands.c \
 					parser/commands_handler.c \
-					parser/check_tokens.c \
+					lexer/check_tokens.c \
 					parser/free_parser.c \
 					parser/splitter.c \
-					parser/check_quotes.c \
+					lexer/check_quotes.c \
 					parser/redirections_handler.c \
-					parser/analyze_tokens.c \
-					parser/tokens_utils.c \
+					lexer/analyze_tokens.c \
+					lexer/tokens_utils.c \
 					parser/quotes_utils.c \
 					expander/expander.c \
 					expander/expander_utils.c \
@@ -25,7 +25,7 @@ SRCS			=	parser/parse_input.c \
 					exec/get_path.c \
 					exec/child.c \
 					exec/error.c \
-					exec/say_hello.c \
+					utils/say_hello.c \
 					exec/signals.c \
 					builtin/builtin_utils.c \
 					builtin/ft_cd.c \
