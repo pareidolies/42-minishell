@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmurtin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:34:25 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/04 13:34:28 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/09 12:11:39 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,6 @@ void	ft_delenv(t_env *var, t_env *envlist)
 	magic_malloc(FREE, 0, var->key);
 	magic_malloc(FREE, 0, var->value);
 	magic_malloc(FREE, 0, var);
-	// free(var->key);
-	// free(var->value);
-	// free(var);
 }
 
 int	update_env(char *key, char *newvalue, t_env	*envlist)
@@ -49,7 +46,7 @@ int	update_env(char *key, char *newvalue, t_env	*envlist)
 	if (var == NULL)
 	{
 		var = ft_new_var_split(key, newvalue);
-		if (var == NULL) /*GESTION ERREUR*/
+		if (var == NULL)
 			return (perror("update_env (ft_new_var_split) "), 1);
 		ft_lstaddback(&envlist, var);
 	}

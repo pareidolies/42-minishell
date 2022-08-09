@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmurtin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/09 12:09:27 by lmurtin           #+#    #+#             */
+/*   Updated: 2022/08/09 12:09:29 by lmurtin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 #include "limits.h"
 
@@ -30,8 +42,8 @@ long long	ft_atoll(char *str)
 	printf("sign = %d\n", sign);
 	while (str[i] >= '0' && str[i] <= '9' && str[i] != '\0')
 	{
-		if (i == 18 && ((str[i] > '8') 
-			|| (sign != -1 && str[i] > '7' && str[i] <= '9')))
+		if (i == 18 && ((str[i] > '8')
+				|| (sign != -1 && str[i] > '7' && str[i] <= '9')))
 		{
 			write(2, "exit: numeric argument required\n", 32);
 			magic_malloc(2, 0, NULL);
@@ -77,11 +89,13 @@ int	exit_checks(char **params)
 	return (0);
 }
 
-int ft_exit(char **params, t_env *envlist)
+int	ft_exit(t_data *mini, char **params, t_env *envlist)
 {
 	long long	value;
 	int			code;
 
+	close(mini->std_in);
+	close(mini->std_out);
 	ft_update_status(envlist);
 	if (exit_checks(params) == 1)
 		return (1);
