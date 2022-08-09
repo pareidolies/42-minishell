@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_messages.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 12:58:07 by smostefa          #+#    #+#             */
-/*   Updated: 2022/08/04 12:58:23 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/08/09 16:00:22 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ int	print_errors(int error)
 		ft_putstr_fd_color(TOKENS_ERR_MSSG, 2, ANSI_COLOR_LIGHT_RED);
 	if (error == MALLOC_ERROR)
 		ft_putstr_fd_color(MALLOC_ERR_MSSG, 2, ANSI_COLOR_LIGHT_RED);
+	if (error == COMMAND_ERROR)
+		ft_putstr_fd_color(COMMAND_ERR_MSSG, 2, ANSI_COLOR_LIGHT_RED);
 	return (error);
 }

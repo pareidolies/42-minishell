@@ -1,45 +1,56 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_fork.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/09 16:35:37 by lmurtin           #+#    #+#             */
+/*   Updated: 2022/08/09 16:36:05 by lmurtin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <sys/types.h>
 #include <unistd.h>
 #include "minishell.h"
 
-
-pid_t   *multi_fork(t_data *mini)
+pid_t	*multi_fork(t_data *mini)
 {
 	int			nb;
-	pid_t		*pid;
+	pid_t		*pid_tab;
 	t_command	*cmd;
 
 	nb = mini->nb_pid;
 	cmd = mini->commands;
-	pid = magic_malloc(MALLOC, sizeof(pid_t) * nb, NULL);
+	pid_tab = magic_malloc(MALLOC, sizeof(pid_t) * nb, NULL);
 	while (cmd != NULL)
 	{
-		pid[cmd->index] = ft_fork(mini, cmd);
+		pid_tab[cmd->index] = ft_fork(mini, cmd);
 		cmd = cmd->next;
 	}
-    return (pid);
+	return (pid_tab);
 }
 
-pid_t   ft_fork(t_data *mini, t_command *cmd)
+pid_t	ft_fork(t_data *mini, t_command *cmd)
 {
-    pid_t   pid;
-    int     error;
+	pid_t	pid;
+	int		error;
 
-    pid = fork();
-    if (pid < 0)
+	pid = fork();
+	if (pid < 0)
 	{
-		perror("Fork : "); /*GESTION ERREUR*/
+		perror("Fork : ");
 		error = errno;
 		return (error);
 	}
-    if (pid == 0)
-    {
+	if (pid == 0)
+	{
 		set_signals_as_child();
-        error = ft_child(mini, cmd, mini->envlist);
-        if (error != 0)
-            exit(1); /*GESTION ERREUR*/
-        else
-            exit(0);
-    }
-    return (pid);
+		error = ft_child(mini, cmd, mini->envlist);
+		if (error != 0)
+			magic_malloc(error, 0, NULL);
+		else
+			magic_malloc(0, 0, NULL);
+	}
+	return (pid);
 }

@@ -132,6 +132,7 @@ typedef enum e_mode
 # define QUOTES_ERROR 1
 # define TOKENS_ERROR 2
 # define MALLOC_ERROR 3
+# define COMMAND_ERROR 127
 
 //Error messages
 
@@ -139,6 +140,7 @@ typedef enum e_mode
 # define TOKENS_ERR_MSSG "error: wrong number of redirections or pipes\n"
 # define HEREDOC_ERR_MSSG "warning: here-document delimited by end-of-file wanted "
 # define MALLOC_ERR_MSSG "error: a malloc error occured\n"
+# define COMMAND_ERR_MSG "command not found : \n"
 
 /******************************************************************************
  *                               STRUCTURES                                   *
@@ -288,6 +290,7 @@ t_env	*ft_list_env(char **envp); //pour dupliquer env au début du prog
 t_env	*ft_new_var(char *keyvalue);
 void	ft_lstaddback(t_env **alst, t_env *new);
 void	ft_clean_list(t_env	*envlist);
+void	ft_free_tab(char **tab);
 
 //builtins
 char	*ft_getenv(char *key, t_env *envlist);
