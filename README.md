@@ -1,6 +1,6 @@
 # (Derniers) cas qui ne fonctionnent pas
 
-* quand on écrit exit dans le prompt, le programme quitte mais il reste 5 fd ouverts au lieu de 3
+* OK : quand on écrit exit dans le prompt, le programme quitte mais il reste 5 fd ouverts au lieu de 3
 
 * OK : echo -n "blabla" >> file (réglé en utilisant putstr au lieu de printf)
 
@@ -8,11 +8,11 @@
 
 * OK : "$USER"$USER'$USER'
 
-* cat << ok << salut (il faut ecrire ok puis salut, or dans le bash il faut juste ecrire salut pour arreter la lecture)
+* OK : cat << ok << salut (il faut ecrire ok puis salut, or dans le bash il faut juste ecrire salut pour arreter la lecture)
 
-* si je change la valeur de g_exit_status, cela n'a pas d'impact dans l'env quand je fais echo $?
+* OK : si je change la valeur de g_exit_status, cela n'a pas d'impact dans l'env quand je fais echo $?
 
-* quand on remonte l'historique du shell on perd le prompt : pb d'affichage
+* OK : quand on remonte l'historique du shell on perd le prompt : pb d'affichage
 
 # Cas pour lesquels il faut faire attention
 
