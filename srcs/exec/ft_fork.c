@@ -6,18 +6,18 @@
 pid_t   *multi_fork(t_data *mini)
 {
 	int			nb;
-	pid_t		*pid;
+	pid_t		*pid_tab;
 	t_command	*cmd;
 
 	nb = mini->nb_pid;
 	cmd = mini->commands;
-	pid = magic_malloc(MALLOC, sizeof(pid_t) * nb, NULL);
+	pid_tab = magic_malloc(MALLOC, sizeof(pid_t) * nb, NULL);
 	while (cmd != NULL)
 	{
-		pid[cmd->index] = ft_fork(mini, cmd);
+		pid_tab[cmd->index] = ft_fork(mini, cmd);
 		cmd = cmd->next;
 	}
-    return (pid);
+    return (pid_tab);
 }
 
 pid_t   ft_fork(t_data *mini, t_command *cmd)
@@ -28,7 +28,7 @@ pid_t   ft_fork(t_data *mini, t_command *cmd)
     pid = fork();
     if (pid < 0)
 	{
-		perror("Fork : "); /*GESTION ERREUR*/
+		perror("Fork : ");
 		error = errno;
 		return (error);
 	}
@@ -36,9 +36,9 @@ pid_t   ft_fork(t_data *mini, t_command *cmd)
     {
         error = ft_child(mini, cmd, mini->envlist);
         if (error != 0)
-            exit(1); /*GESTION ERREUR*/
+            magic_malloc(error, 0, NULL);
         else
-            exit(0);
+            magic_malloc(0, 0, NULL);
     }
     return (pid);
 }
