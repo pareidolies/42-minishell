@@ -21,9 +21,11 @@ $skdjhfkjsdhf
 or nous avons les memes dans notre minishell
 
 * si on fait export blabla="ls -la"
-puis export gloups="$blabla"
+puis export gloups=$blabla
 on a le message d'erreur 'Not a valid identifier'
 tandis que dans bash gloups devient bien ls -la
+
+* gestion code erreur
 
 # Cas pour lesquels il faut faire attention
 

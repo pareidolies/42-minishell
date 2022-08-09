@@ -14,6 +14,7 @@ SRCS			=	lexer/parse_input.c \
 					expander/expander.c \
 					expander/expander_utils.c \
 					lexer/convert_input_to_tokens.c \
+					exec/env_utils.c \
 					exec/testmain.c \
 					exec/ft_exec.c \
 					exec/ft_heredoc.c \
@@ -24,7 +25,6 @@ SRCS			=	lexer/parse_input.c \
 					exec/exec_utils.c \
 					exec/get_path.c \
 					exec/child.c \
-					exec/error.c \
 					exec/signals.c \
 					utils/say_hello.c \
 					builtin/builtin_utils.c \

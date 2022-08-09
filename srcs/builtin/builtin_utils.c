@@ -6,12 +6,14 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:34:25 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/09 12:11:39 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/09 16:23:45 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stddef.h>
+
+extern int	g_exit_status;
 
 int	nb_param(char **params)
 {
@@ -78,4 +80,15 @@ t_env	*ft_new_var_split(char *key, char *value)
 		var->value = NULL;
 	var->next = NULL;
 	return (var);
+}
+
+
+int	ft_update_status(t_env *envlist)
+{
+	char	*newvalue;
+
+	newvalue = ft_itoa(g_exit_status);
+	magic_malloc(ADD, 0, newvalue);
+	update_env("?", newvalue, envlist);
+	return (0);
 }
