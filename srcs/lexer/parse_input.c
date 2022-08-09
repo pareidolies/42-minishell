@@ -22,13 +22,14 @@ t_command	*parse_input(char *str, t_env *envlist)
 	if (check_quotes(str))
 		return (NULL);
 	tokens = convert_input_to_tokens(str);
-	analyze_tokens_type(tokens);
+	if (analyze_tokens_type(tokens))
+		return (NULL);
 	if (check_tokens(tokens))
 		return (NULL);
 	analyze_literals_type(tokens);
 	expander(tokens, envlist);
 	commands = convert_tokens_to_commands(tokens, envlist);
 	free_tokens(tokens);
-	print_command(commands);
+	//print_command(commands);
 	return (commands);
 }

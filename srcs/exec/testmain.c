@@ -48,7 +48,7 @@ int main(int argc, char **argv, char **envp)
 		}
 		else
 		{
-			printf("User said : [%s]\n", result);
+			//printf("User said : [%s]\n", result);
 			if (ft_strncmp(result, "exit", 5) == 0) //dans ce cas il reste 5 file descriptors ouverts
 				flag = 1;
 			add_history(result);
