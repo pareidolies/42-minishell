@@ -1,30 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_fd.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/09 18:03:45 by lmurtin           #+#    #+#             */
+/*   Updated: 2022/08/09 18:10:29 by lmurtin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 #include <unistd.h>
 #include <stdio.h>
 
 int	dup_close_in(t_data *mini, t_command *current_cmd, int fd[2])
 {
-    int i;
+	int	i;
 
-    i = current_cmd->index;
-	printf("DUPING ACCORDING TO REDIR/PIPE\n");
-	//printf("commande numero %d : fd[0] = %d (no redir if -1)\n", i, fd[0]);
-	if (fd[0] != -1) //redir IN
+	i = current_cmd->index;
+	if (fd[0] != -1)
 	{
 		if (dup2(fd[0], STDIN_FILENO) != STDIN_FILENO)
 		{
-			perror("dup_close_in 1 ");
-			return (1); /*GESTION ERREUR*/
+			perror("dup_close_in ");
+			return (1);
 		}
 	}
-	else if (fd[0] == -1) //pas de redir IN
+	else if (fd[0] == -1)
 	{
-		if (current_cmd->prev != NULL) // pipe entrant
+		if (current_cmd->prev != NULL)
 		{
 			if (dup2(mini->pipes[(i * 2) - 2], STDIN_FILENO) != STDIN_FILENO)
 			{
-				perror("dup_close_in 2 ");
-				return (1); /*GESTION ERREUR*/
+				perror("dup_close_in ");
+				return (1);
 			}
 		}
 	}
@@ -33,26 +43,25 @@ int	dup_close_in(t_data *mini, t_command *current_cmd, int fd[2])
 
 int	dup_close_out(t_data *mini, t_command *current_cmd, int fd[2])
 {
-    int i;
+	int	i;
 
-    i = current_cmd->index;
-	//printf("commande numero %d : fd[1] = %d (no redir if -1)\n", i, fd[1]);
-	if (fd[1] != -1) //redir OUT
+	i = current_cmd->index;
+	if (fd[1] != -1)
 	{
 		if (dup2(fd[1], STDOUT_FILENO) != STDOUT_FILENO)
 		{
 			perror("dup_close_out 1 ");
-			return (1); /*GESTION ERREUR*/
+			return (1);
 		}
 	}
-	else if (fd[1] == -1) //pas de redir OUT
+	else if (fd[1] == -1)
 	{
-		if (current_cmd->next != NULL) // pipe sortant
+		if (current_cmd->next != NULL)
 		{
 			if (dup2(mini->pipes[(i * 2) + 1], STDOUT_FILENO) != STDOUT_FILENO)
 			{
 				perror("dup_close_out 2 ");
-				return (1); /*GESTION ERREUR*/
+				return (1);
 			}
 		}
 	}

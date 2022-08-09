@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 15:53:05 by smostefa          #+#    #+#             */
-/*   Updated: 2022/08/09 15:40:39 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/09 18:03:31 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,3 @@ void	signal_handler_as_child(int signum)
 		magic_malloc(1, 0, NULL);
 	}
 }
-
-//ajouter signal handler as parent and children ?
