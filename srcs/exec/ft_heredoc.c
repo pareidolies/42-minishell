@@ -92,6 +92,7 @@ void	ft_tempfile(char *str, int fd, int fdtmp)
 		//if (stop != 1)
 		write(1, "> ", 2);
 		line = get_next_line(fd);
+		//magic_malloc(ADD, 0, line);
 		if (line == NULL)
 		{
 			//!\Attention ce message s'affiche aussi en cas de sortie normale
@@ -109,6 +110,7 @@ void	ft_tempfile(char *str, int fd, int fdtmp)
 		else
 			write(fdtmp, line, ft_strlen(line));
 		free(line);
+		//magic_malloc(FREE, 0, line);
 	}
 	magic_malloc(FREE, 0, limiter);
 }
