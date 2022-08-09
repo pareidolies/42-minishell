@@ -18,7 +18,7 @@ static void	ft_read(int fd, char *buf, char **str)
 			else
 			{
 				tmp = ft_strjoin(*str, buf);
-				magic_malloc(FREE, 0, *str);
+				free(*str);
 				*str = tmp;
 			}
 			if (ft_strchr(buf, '\n'))
@@ -47,7 +47,7 @@ static char	*ft_returnline(char **str)
 	n = ft_strlen(ft_strchr(*str, '\n'));
 	ret = ft_substr(*str, 0, end - n + 1);
 	tmp = ft_substr(ft_strchr(*str, '\n'), 1, n - 1);
-	magic_malloc(ADD, 0, tmp);
+	//magic_malloc(ADD, 0, tmp);
 	free(*str);
 	*str = tmp;
 	return (ret);
