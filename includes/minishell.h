@@ -234,7 +234,7 @@ t_token	*create_token(char *str, int flag);
 int		check_quotes(char *str);
 int		get_token_size(char *str);
 t_token	*convert_input_to_tokens(char *str);
-void	analyze_tokens_type(t_token *list);
+int	analyze_tokens_type(t_token *list);
 void	analyze_literals_type(t_token *list);
 
 //expander.c

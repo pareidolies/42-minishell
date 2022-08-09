@@ -12,12 +12,14 @@
 
 #include "minishell.h"
 
-void	analyze_tokens_type(t_token *list)
+int	analyze_tokens_type(t_token *list)
 {
 	t_token	*current;
 	int		len;
 
 	current = list;
+	if (!current)
+		return (1);
 	len = ft_strlen(current->token);
 	while (current != NULL)
 	{
@@ -35,6 +37,7 @@ void	analyze_tokens_type(t_token *list)
 			current->type = T_LITERAL;
 		current = current->next;
 	}
+	return (0);
 }
 
 void	analyze_literals_type(t_token *list)
