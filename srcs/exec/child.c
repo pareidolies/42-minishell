@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmurtin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 16:21:17 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/09 16:21:30 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/09 17:52:46 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_child(t_data *mini, t_command *cmd, t_env *envlist)
 	if (cmd->path == NULL)
 	{
 		redir_close(mini, cmd, 0);
-		return (print_error(127));
+		return (print_errors(127));
 	}
 	if (ft_strncmp(cmd->path, "builtin", 8) == 0)
 	{
@@ -37,9 +37,8 @@ int	ft_child(t_data *mini, t_command *cmd, t_env *envlist)
 	}
 	envtab = ft_convertlist(envlist);
 	if (execve(cmd->path, cmd->args, envtab) == -1)
-		error = errno;
-	redir_close(mini, cmd, 0);
-	return (perror("execve \n"), error);
+		redir_close(mini, cmd, 0);
+	return (perror("execve \n"), 126);
 }
 
 int	ft_env_size(t_env *envlist)
@@ -47,6 +46,7 @@ int	ft_env_size(t_env *envlist)
 	int		i;
 	t_env	*var;
 
+	i = 0;
 	var = envlist;
 	while (var != NULL)
 	{

@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 16:37:02 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/09 17:37:22 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/09 17:46:54 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,10 @@ char	*get_command_path(char *command, t_env *envlist)
 	return (path);
 }
 
-char	*craft_path(char *path)
+char	*craft_path(char *path, char *command)
 {
 	char	*tmp;
+	char	*cmd_path;
 
 	tmp = path;
 	path = ft_strjoin(path, "/");
@@ -75,7 +76,7 @@ char	*environment_path(char *command, char *path_var)
 	i = 0;
 	while (paths[i] != NULL)
 	{
-		cmd_path = craft_path(path[i]);
+		cmd_path = craft_path(paths[i], command);
 		if (access(cmd_path, F_OK | X_OK) == 0)
 		{
 			ft_free_tab(paths);

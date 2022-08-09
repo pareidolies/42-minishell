@@ -140,7 +140,7 @@ typedef enum e_mode
 # define TOKENS_ERR_MSSG "error: wrong number of redirections or pipes\n"
 # define HEREDOC_ERR_MSSG "warning: here-document delimited by end-of-file wanted "
 # define MALLOC_ERR_MSSG "error: a malloc error occured\n"
-# define COMMAND_ERR_MSG "command not found : \n"
+# define COMMAND_ERR_MSSG "command not found : \n"
 
 /******************************************************************************
  *                               STRUCTURES                                   *
