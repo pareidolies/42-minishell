@@ -11,7 +11,7 @@ int	ft_fork_here(t_data *mini)
 	int		wstatus;
 
 	pid = fork();
-	 if (pid < 0)
+	if (pid < 0)
 	{
 		perror("Fork : "); /*GESTION ERREUR*/
 		error = errno;
@@ -19,13 +19,17 @@ int	ft_fork_here(t_data *mini)
 	}
     if (pid == 0)
     {
-		set_signals_as_here_doc();
+		set_signals_as_child();
         error = ft_heredoc(mini);
 		close(mini->std_in);
 		close(mini->std_out);
 		magic_malloc(error, 0, NULL); /*GESTION ERREUR*/
 	}
 	waitpid(pid, &wstatus, 0);
+	if (WIFEXITED(wstatus))
+	{
+		printf("\n\ncoucou\n\n");
+	}
 	return (0);
 }
 

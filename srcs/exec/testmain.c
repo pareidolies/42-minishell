@@ -65,6 +65,7 @@ int main(int argc, char **argv, char **envp)
 				free(result);
 			else
 			{
+				set_signals_as_parent();
 				ft_exec(commands, envlist);
 				free(result);
 				free_commands(commands);

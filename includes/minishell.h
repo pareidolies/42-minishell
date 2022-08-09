@@ -369,8 +369,9 @@ void    say_hello(void);
 
 //signals.c
 int	set_signals_as_prompt(void);
-int	set_signals_as_here_doc(void);
+int	set_signals_as_child(void);
 void	signal_handler_as_prompt(int signum);
-void	signal_handler_as_here_doc(int signum);
+void	signal_handler_as_child(int signum);
+int		set_signals_as_parent(void);
 
 #endif

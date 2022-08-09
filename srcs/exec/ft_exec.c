@@ -28,7 +28,9 @@ int ft_exec(t_command *commands, t_env *envlist)
 			if (wpid == mini->pid[mini->nb_pid - 1])
 			{
 				if (WIFEXITED(wstatus))
+				{
 					error = WEXITSTATUS(wstatus); //returns exit status of the child
+				}
 				if (WIFSIGNALED(wstatus))
 					error = WTERMSIG(wstatus); //returns number of the signal 
 				g_exit_status = error;
