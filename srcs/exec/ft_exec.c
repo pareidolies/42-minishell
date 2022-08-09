@@ -15,7 +15,7 @@ int ft_exec(t_command *commands, t_env *envlist)
 
 	mini = ft_init_data(commands, envlist);
 	i = 0;
-	ft_fork_here(mini);
+	//ft_fork_here(mini);
 	if (mini->nb_pid > 1) //si au moins 2 commandes
 	{
 		printf("COMMANDES MULTIPLES\n");
@@ -37,7 +37,6 @@ int ft_exec(t_command *commands, t_env *envlist)
 			}
 			i++;
 		}
-		unlink("/tmp/crustacestmp");////////////////////////////////////////
 	}	
 	else
 	{
@@ -49,6 +48,7 @@ int ft_exec(t_command *commands, t_env *envlist)
 	}
 	close(mini->std_in);
 	close(mini->std_out);
+	clean_tmpfiles(commands);
 	return (0);
 }
 
@@ -102,7 +102,7 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 		if (redir_open(current_cmd, fdinout) == 0)
 		{
 			dup_close_in(mini, current_cmd, fdinout);
-			error = which_builtin(current_cmd->args, envlist);
+			error = which_builtin(mini, current_cmd->args, envlist);
 		}
 		redir_close(mini, current_cmd, 1);
 	}
@@ -112,7 +112,7 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 	return (error);
 }
 
-int	which_builtin(char **args, t_env *envlist)
+int	which_builtin(t_data *mini, char **args, t_env *envlist)
 {
 	if (ft_strncmp(args[0], "cd", 3) == 0)
 		return (ft_cd(args, envlist));
@@ -127,6 +127,6 @@ int	which_builtin(char **args, t_env *envlist)
 	else if (ft_strncmp(args[0], "pwd", 4) == 0)
 		return (ft_pwd(args));
 	else if (ft_strncmp(args[0], "exit", 5) == 0)
-		return (ft_exit(args, envlist));
+		return (ft_exit(mini, args, envlist));
 	return (0);
 }

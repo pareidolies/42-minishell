@@ -19,7 +19,7 @@ int	ft_child(t_data *mini, t_command *cmd, t_env *envlist)
 	}
 	if (ft_strncmp(cmd->path, "builtin", 8) == 0)
 	{
-		error = which_builtin(cmd->args, envlist);
+		error = which_builtin(mini, cmd->args, envlist);
 		redir_close(mini, cmd, 1);
 		close(mini->std_in);
 		close(mini->std_out);

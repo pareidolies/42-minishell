@@ -314,7 +314,7 @@ char	*export_find_name(char *str);
 int		valid_identifier(char *name);
 int		ft_unset(char **params, t_env *envlist);
 int		ft_pwd(char **params);
-int		ft_exit(char **params, t_env *envlist);
+int		ft_exit(t_data *mini, char **params, t_env *envlist);
 
 
 //get_path.c
@@ -327,7 +327,7 @@ void	ft_free_tab(char **tab);
 int 	ft_exec(t_command *commands, t_env *envlist);
 t_data	*ft_init_data(t_command *commands, t_env *envlist);
 int		exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist);
-int		which_builtin(char **args, t_env *envlist);
+int		which_builtin(t_data *mini, char **args, t_env *envlist);
 
 //ft_fork.c
 pid_t   *multi_fork(t_data *mini);
@@ -338,6 +338,7 @@ int		ft_fork_here(t_data *mini);
 int		ft_heredoc(t_data *mini);
 int		open_heretmp(t_command *cmd, int flag);
 void	ft_tempfile(char *str, int fd, int fdtmp);
+int		clean_tmpfiles(t_command *commands);
 
 //gnl.c
 char	*get_next_line(int fd);
