@@ -60,12 +60,15 @@ int	open_heretmp(t_command *cmd, int flag)
 	char	*index;
 	char	*pathname;
 	
+	fdtmp = 0;
 	index = ft_itoa(cmd->index);
 	magic_malloc(ADD, 0, index);
 	pathname = ft_strjoin("/tmp/crustacestmp", index);
 	magic_malloc(ADD, 0, pathname);
 	if (flag == 1)
 		fdtmp = open(pathname, O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	else if (flag == 3)
+		unlink(pathname);
 	else
 		fdtmp = open(pathname, O_RDONLY);
 	if (fdtmp < 0)
@@ -76,6 +79,28 @@ int	open_heretmp(t_command *cmd, int flag)
 	magic_malloc(FREE, 0, index);
 	magic_malloc(FREE, 0, pathname);
 	return (fdtmp);
+}
+
+int	clean_tmpfiles(t_command *commands)
+{
+	t_command		*cmd;
+	t_redirection	*redir;
+
+	cmd = commands;
+	while (cmd != NULL)
+	{
+		redir = cmd->redirection;
+		while (redir != NULL)
+		{
+			if (redir->mode == DELIMITER)
+			{
+				open_heretmp(cmd, 3);
+			}
+			redir = redir->next;
+		}
+		cmd = cmd->next;
+	}
+	return (0);
 }
 
 void	ft_tempfile(char *str, int fd, int fdtmp)

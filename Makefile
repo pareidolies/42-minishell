@@ -25,8 +25,8 @@ SRCS			=	lexer/parse_input.c \
 					exec/get_path.c \
 					exec/child.c \
 					exec/error.c \
-					utils/say_hello.c \
 					exec/signals.c \
+					utils/say_hello.c \
 					builtin/builtin_utils.c \
 					builtin/ft_cd.c \
 					builtin/ft_echo.c \
