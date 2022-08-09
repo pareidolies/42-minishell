@@ -29,7 +29,8 @@ pid_t   ft_fork(t_data *mini, t_command *cmd)
     if (pid < 0)
 	{
 		perror("Fork : "); /*GESTION ERREUR*/
-		return (1);
+		error = errno;
+		return (error);
 	}
     if (pid == 0)
     {

@@ -334,6 +334,7 @@ pid_t   *multi_fork(t_data *mini);
 pid_t   ft_fork(t_data *mini, t_command *cmd);
 
 //ft_heredoc.c
+int		ft_fork_here(t_data *mini);
 int		ft_heredoc(t_data *mini);
 int		open_heretmp(t_command *cmd, int flag);
 void	ft_tempfile(char *str, int fd, int fdtmp);

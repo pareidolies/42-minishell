@@ -1,6 +1,31 @@
 #include "minishell.h"
 #include "libft.h"
 #include <fcntl.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+int	ft_fork_here(t_data *mini)
+{
+	pid_t	pid;
+	int		error;
+	int		wstatus;
+
+	pid = fork();
+	 if (pid < 0)
+	{
+		perror("Fork : "); /*GESTION ERREUR*/
+		error = errno;
+		return (error);
+	}
+    if (pid == 0)
+    {
+		set_signals_as_here_doc();
+        error = ft_heredoc(mini);
+		exit(error); /*GESTION ERREUR*/
+	}
+	waitpid(pid, &wstatus, 0);
+	return (0);
+}
 
 int	ft_heredoc(t_data *mini)
 {
@@ -9,7 +34,6 @@ int	ft_heredoc(t_data *mini)
 	t_redirection   *redir;
 	t_command       *cmd;
 
-	set_signals_as_here_doc();
 	cmd = mini->commands;
 	while (cmd != NULL)
 	{
@@ -39,15 +63,18 @@ int	open_heretmp(t_command *cmd, int flag)
 	index = ft_itoa(cmd->index);
 	magic_malloc(ADD, 0, index);
 	pathname = ft_strjoin("/tmp/crustacestmp", index);
-	//printf("pathname = %s\n", pathname);
 	magic_malloc(ADD, 0, pathname);
 	if (flag == 1)
 		fdtmp = open(pathname, O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	else
 		fdtmp = open(pathname, O_RDONLY);
+	if (fdtmp < 0)
+	{
+		perror("open_heretmp ");
+		magic_malloc(1, 0, NULL);
+	}
 	magic_malloc(FREE, 0, index);
 	magic_malloc(FREE, 0, pathname);
-	//printf("tmp est ouvert\n");
 	return (fdtmp);
 }
 
@@ -67,6 +94,7 @@ void	ft_tempfile(char *str, int fd, int fdtmp)
 		line = get_next_line(fd);
 		if (line == NULL)
 		{
+			//!\Attention ce message s'affiche aussi en cas de sortie normale
 			ft_putstr_fd_color(HEREDOC_ERR_MSSG, 2, ANSI_COLOR_LIGHT_RED);
 			ft_putstr_fd_color(limiter, 2, ANSI_COLOR_LIGHT_RED);
 			//faire une sortie propre car leaks pour ctrl-D
