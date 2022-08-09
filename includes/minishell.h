@@ -11,6 +11,8 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/ioctl.h>
+# include <limits.h>
+# include <string.h>
 
 /******************************************************************************
 *                              ENUMERATIONS                                   *
@@ -34,15 +36,6 @@ typedef enum e_type
 	T_AND,
 	T_OR,
 }	t_type;
-
-//Files
-
-/*typedef enum e_file
-{
-	INFILE,
-	OUTFILE,
-	ERROR,
-}   t_file;*/
 
 //Redirection modes
 
@@ -82,14 +75,14 @@ typedef enum e_mode
 
 //Colors
 
-# define ANSI_COLOR_BLUE		"\x1b[94m"
-# define ANSI_COLOR_LIGHT_YELLOW		"\x1b[93m"
-# define ANSI_COLOR_ORANGE		"\e[1;31m"
-# define ANSI_COLOR_LIGHT_WHITE		"\x1b[97m"
-# define ANSI_COLOR_LIGHT_RED		"\x1b[91m"
+# define ANSI_COLOR_BLUE	"\x1b[94m"
+# define ANSI_COLOR_LIGHT_YELLOW	"\x1b[93m"
+# define ANSI_COLOR_ORANGE	"\e[1;31m"
+# define ANSI_COLOR_LIGHT_WHITE	"\x1b[97m"
+# define ANSI_COLOR_LIGHT_RED	"\x1b[91m"
 # define ANSI_COLOR_REG_RED	"\e[0;31m"
 # define ANSI_COLOR_BOLD_RED	"\e[1;31m"
-# define ANSI_COLOR_RESET		"\x1b[0m"
+# define ANSI_COLOR_RESET	"\x1b[0m"
 # define ANSI_COLOR_YELLOW	"\033[93m"
 # define ANSI_COLOR_CYAN	"\e[0;36m"
 # define ANSI_COLOR_GREEN	"\e[0;32m"
@@ -131,7 +124,6 @@ typedef enum e_mode
 //GNL
 
 # define BUFFER_SIZE 10
-
 # define MAX 9223372036854775807uLL
 # define MIN 9223372036854775808uLL
 

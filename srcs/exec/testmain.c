@@ -1,12 +1,4 @@
 #include "minishell.h"
-#include "libft.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
-#include <unistd.h>
-#include <string.h>
-#include <readline/readline.h>
-#include <readline/history.h>
 
 /*Defining and initializing global variable*/
 /*only once in the program*/
