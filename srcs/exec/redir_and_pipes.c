@@ -8,7 +8,6 @@ int redir_open(t_command *current_cmd, int fd[2])
 {
 	int				fdin;
 	int				fdout;
-	int				error;
 	t_redirection	*redir;
 
 	fdin = -1;
