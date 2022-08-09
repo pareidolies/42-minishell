@@ -21,6 +21,8 @@ int	ft_fork_here(t_data *mini)
     {
 		set_signals_as_here_doc();
         error = ft_heredoc(mini);
+		close(mini->std_in);
+		close(mini->std_out);
 		magic_malloc(error, 0, NULL); /*GESTION ERREUR*/
 	}
 	waitpid(pid, &wstatus, 0);
@@ -65,10 +67,10 @@ int	open_heretmp(t_command *cmd, int flag)
 	magic_malloc(ADD, 0, index);
 	pathname = ft_strjoin("/tmp/crustacestmp", index);
 	magic_malloc(ADD, 0, pathname);
-	if (flag == 1)
-		fdtmp = open(pathname, O_CREAT | O_WRONLY | O_TRUNC, 0664);
-	else if (flag == 3)
+	if (flag == 3)
 		unlink(pathname);
+	else if (flag == 1)
+		fdtmp = open(pathname, O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	else
 		fdtmp = open(pathname, O_RDONLY);
 	if (fdtmp < 0)
@@ -124,8 +126,10 @@ void	ft_tempfile(char *str, int fd, int fdtmp)
 			ft_putstr_fd_color(HEREDOC_ERR_MSSG, 2, ANSI_COLOR_LIGHT_RED);
 			ft_putstr_fd_color(limiter, 2, ANSI_COLOR_LIGHT_RED);
 			//faire une sortie propre car leaks pour ctrl-D
-			magic_malloc(0, 0, NULL);
-			//break ;
+			close (fd);
+			//stop = 1;
+			//magic_malloc(0, 0, NULL);
+			break ;
 		}
 		if (ft_strncmp(line, limiter, ft_strlen(limiter) + 1) == 0)
 		{
@@ -137,5 +141,6 @@ void	ft_tempfile(char *str, int fd, int fdtmp)
 		free(line);
 		//magic_malloc(FREE, 0, line);
 	}
+	get_next_line(fd);
 	magic_malloc(FREE, 0, limiter);
 }

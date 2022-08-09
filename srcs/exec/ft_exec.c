@@ -15,7 +15,7 @@ int ft_exec(t_command *commands, t_env *envlist)
 
 	mini = ft_init_data(commands, envlist);
 	i = 0;
-	//ft_fork_here(mini);
+	ft_fork_here(mini);
 	if (mini->nb_pid > 1) //si au moins 2 commandes
 	{
 		printf("COMMANDES MULTIPLES\n");
