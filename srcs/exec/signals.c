@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 15:53:05 by smostefa          #+#    #+#             */
-/*   Updated: 2022/08/09 18:03:31 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/10 15:25:22 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	signal_handler_as_heredoc(int signum)
 		//printf("\n\ncoucou\n\n");
 		g_exit_status = 130;
 		close(60);
-		printf("%d\n", g_exit_status);
+		write(STDOUT_FILENO, "\n", 1);
 	}
 }
 

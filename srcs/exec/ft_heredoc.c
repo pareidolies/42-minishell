@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 18:01:14 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/09 19:07:46 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/10 18:24:29 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-extern int	g_exit_status;
+int	scan_cmd(t_data *mini);
 
 int	ft_fork_here(t_data *mini)
 {
@@ -27,30 +27,28 @@ int	ft_fork_here(t_data *mini)
 	pid = fork();
 	if (pid < 0)
 	{
-		perror("Fork : "); /*GESTION ERREUR*/
 		error = errno;
+		print_errors_2(FORK_ERROR, strerror(error));
 		return (error);
 	}
-    if (pid == 0)
-    {
+	if (pid == 0)
+	{
 		set_signals_as_heredoc();
-        error = ft_heredoc(mini);
+		error = scan_cmd(mini);
 		close(mini->std_in);
 		close(mini->std_out);
-		magic_malloc(g_exit_status, 0, NULL); /*GESTION ERREUR*/
+		magic_malloc(error, 0, NULL);
 	}
 	waitpid(pid, &wstatus, 0);
-	g_exit_status = WEXITSTATUS(wstatus);
-	printf("exit status : %d\n", g_exit_status);
-	return (g_exit_status);
+	error = child_status(wstatus);
+	return (error);
 }
 
-int	ft_heredoc(t_data *mini)
+int	scan_cmd(t_data *mini)
 {
-	int		        fdtmp;
-	int		        fdgnl;
-	t_redirection   *redir;
-	t_command       *cmd;
+	t_redirection	*redir;
+	t_command		*cmd;
+	int				error;
 
 	cmd = mini->commands;
 	while (cmd != NULL)
@@ -60,10 +58,9 @@ int	ft_heredoc(t_data *mini)
 		{
 			if (redir->mode == DELIMITER)
 			{
-				fdtmp = open_heretmp(cmd, 1);
-				fdgnl = dup2(STDIN_FILENO, 60);
-				ft_tempfile(redir->str, fdgnl, fdtmp);
-				close(fdtmp);
+				error = ft_heredoc(mini, cmd, redir);
+				if (error != 0)
+					return (error);
 			}
 			redir = redir->next;
 		}
@@ -72,18 +69,38 @@ int	ft_heredoc(t_data *mini)
 	return (0);
 }
 
+int	ft_heredoc(t_data *mini, t_command *cmd, t_redirection *redir)
+{
+	int				fdtmp;
+	int				fdgnl;
+	int				error;
+
+	fdtmp = open_heretmp(cmd, 1);
+	if (fdtmp < 0)
+	{
+		ft_close_all(mini->pipes, mini->nb_fd_pipes);
+		return (1);
+	}
+	fdgnl = dup2(STDIN_FILENO, 60);
+	error = ft_tempfile(redir->str, fdgnl, fdtmp);
+	close(fdtmp);
+	if (error != 0)
+		return (error);
+	return (0);
+}
+
 int	open_heretmp(t_command *cmd, int flag)
 {
-	int 	fdtmp;
+	int		fdtmp;
 	char	*index;
 	char	*pathname;
-	
+
 	fdtmp = 0;
 	index = ft_itoa(cmd->index);
 	magic_malloc(ADD, 0, index);
 	pathname = ft_strjoin("/tmp/crustacestmp", index);
 	magic_malloc(ADD, 0, pathname);
-	if (flag == 3)
+	if (flag == 2)
 		unlink(pathname);
 	else if (flag == 1)
 		fdtmp = open(pathname, O_CREAT | O_WRONLY | O_TRUNC, 0664);
@@ -91,12 +108,41 @@ int	open_heretmp(t_command *cmd, int flag)
 		fdtmp = open(pathname, O_RDONLY);
 	if (fdtmp < 0)
 	{
-		perror("open_heretmp ");
-		magic_malloc(1, 0, NULL);
+		print_errors_2(OPEN_ERROR, strerror(errno));
+		return (-1);
 	}
 	magic_malloc(FREE, 0, index);
 	magic_malloc(FREE, 0, pathname);
 	return (fdtmp);
+}
+
+int	ft_tempfile(char *str, int fd, int fdtmp)
+{
+	char	*line;
+	char	*limiter;
+
+	limiter = ft_strjoin(str, "\n");
+	magic_malloc(ADD, 0, limiter);
+	while (1)
+	{
+		write(1, "> ", 2);
+		line = get_next_line(fd);
+		if (line == NULL
+			|| (ft_strncmp(line, limiter, ft_strlen(limiter) + 1) == 0))
+		{
+			close(fd);
+			if (g_exit_status == 130)
+				return (130);
+			if (line == NULL)
+				print_errors_3(HEREDOC_WARNING, limiter);
+			break ;
+		}
+		else
+			write(fdtmp, line, ft_strlen(line));
+	}
+	get_next_line(fd);
+	magic_malloc(FREE, 0, limiter);
+	return (0);
 }
 
 int	clean_tmpfiles(t_command *commands)
@@ -112,52 +158,11 @@ int	clean_tmpfiles(t_command *commands)
 		{
 			if (redir->mode == DELIMITER)
 			{
-				open_heretmp(cmd, 3);
+				open_heretmp(cmd, 2);
 			}
 			redir = redir->next;
 		}
 		cmd = cmd->next;
 	}
 	return (0);
-}
-
-void	ft_tempfile(char *str, int fd, int fdtmp)
-{
-	char	*line;
-	int		stop;
-	char	*limiter;
-
-	stop = 0;
-	limiter = ft_strjoin(str, "\n");
-	magic_malloc(ADD, 0, limiter);
-	while (stop != 1)
-	{
-		//if (stop != 1)
-		write(1, "> ", 2);
-		line = get_next_line(fd);
-		//magic_malloc(ADD, 0, line);
-		if (line == NULL)
-		{
-			//!\ ce message s'affiche aussi en cas de sortie normale
-			if (g_exit_status != 130)
-			{
-				ft_putstr_fd_color(HEREDOC_ERR_MSSG, 2, ANSI_COLOR_LIGHT_RED);
-				ft_putstr_fd_color(limiter, 2, ANSI_COLOR_LIGHT_RED);
-			}
-			//faire une sortie propre car leaks pour ctrl-D
-			close (fd);
-			break ;
-		}
-		if (ft_strncmp(line, limiter, ft_strlen(limiter) + 1) == 0)
-		{
-			stop = 1;
-			close(fd);
-		}
-		else
-			write(fdtmp, line, ft_strlen(line));
-		//free(line);
-		//magic_malloc(FREE, 0, line);
-	}
-	get_next_line(fd);
-	magic_malloc(FREE, 0, limiter);
 }

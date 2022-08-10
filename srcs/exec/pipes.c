@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmurtin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 12:04:02 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/10 12:04:46 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/10 14:12:03 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	*open_pipes(t_data *mini)
 		{
 			ft_close_all(fd_tab, i);
 			free(fd_tab);
-			print_errors(PIPE_ERROR);
-			return (perror(""), NULL);
+			print_errors_2(PIPE_ERROR, strerror(errno));
+			return (NULL);
 		}
 		fd_tab[i] = pip[0];
 		fd_tab[i + 1] = pip[1];

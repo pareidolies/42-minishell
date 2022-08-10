@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 18:01:45 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/10 12:09:40 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/10 14:11:55 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int	redir_open_in(t_redirection *redir, t_command *current_cmd)
 		redir->fd = open(redir->str, O_RDONLY);
 		if (redir->fd < 0)
 		{
-			print_errors(OPEN_ERROR);
-			return (perror(""), -2);
+			print_errors_2(OPEN_ERROR, strerror(errno));
+			return (-2);
 		}
 	}
 	else if (redir->mode == DELIMITER)
@@ -63,8 +63,8 @@ int	redir_open_in(t_redirection *redir, t_command *current_cmd)
 		redir->fd = open_heretmp(current_cmd, 0);
 		if (redir->fd < 0)
 		{
-			print_errors(OPEN_ERROR);
-			return (perror(""), -2);
+			print_errors_2(OPEN_ERROR, strerror(errno));
+			return (-2);
 		}
 	}
 	return (redir->fd);
@@ -77,8 +77,8 @@ int	redir_open_out(t_redirection *redir)
 		redir->fd = open(redir->str, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 		if (redir->fd < 0)
 		{
-			print_errors(OPEN_ERROR);
-			return (perror(""), -2);
+			print_errors_2(OPEN_ERROR, strerror(errno));
+			return (-2);
 		}
 	}
 	else if (redir->mode == APPEND)
@@ -86,8 +86,8 @@ int	redir_open_out(t_redirection *redir)
 		redir->fd = open(redir->str, O_WRONLY | O_CREAT | O_APPEND, 0666);
 		if (redir->fd < 0)
 		{
-			print_errors(OPEN_ERROR);
-			return (perror(""), -2);
+			print_errors_2(OPEN_ERROR, strerror(errno));
+			return (-2);
 		}
 	}
 	return (redir->fd);

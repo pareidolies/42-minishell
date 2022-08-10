@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/10 18:03:45 by lmurtin           #+#    #+#             */
+/*   Updated: 2022/08/10 18:20:58 by lmurtin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 
 # define MINISHELL_H
@@ -41,11 +53,11 @@ typedef enum e_type
 
 typedef enum e_mode
 {
-	TRUNC, //0 '>'
-	APPEND, //1 '>>'
-	INFILE, //2 '<'
-	DELIMITER, //3 '<<'
-}   t_mode;
+	TRUNC,
+	APPEND,
+	INFILE,
+	DELIMITER,
+}	t_mode;
 
 /******************************************************************************
  *                                 MACROS                                     *
@@ -124,8 +136,6 @@ typedef enum e_mode
 //GNL
 
 # define BUFFER_SIZE 10
-# define MAX 9223372036854775807uLL
-# define MIN 9223372036854775808uLL
 
 //Errors
 
@@ -135,22 +145,25 @@ typedef enum e_mode
 # define COMMAND_ERROR 127
 # define OPEN_ERROR 4
 # define PIPE_ERROR 5
+# define FORK_ERROR 6
+# define HEREDOC_WARNING 7
 
 //Error messages
 
 # define QUOTES_ERR_MSSG "error: wrong number of quotes\n"
 # define TOKENS_ERR_MSSG "error: wrong number of redirections or pipes\n"
-# define HEREDOC_ERR_MSSG "warning: here-document delimited by end-of-file wanted "
+# define HD_ERR_MSG "warning: here-document delimited by end-of-file, wanted "
 # define MALLOC_ERR_MSSG "error: a malloc error occured\n"
-# define COMMAND_ERR_MSSG "command not found\n"
-# define OPEN_ERR_MSSG "cannot open file "
-# define PIPE_ERR_MSSG "cannot open pipe "
+# define COMMAND_ERR_MSSG "command not found: "
+# define OPEN_ERR_MSSG "cannot open file: "
+# define PIPE_ERR_MSSG "cannot open pipe: "
+# define FORK_ERR_MSSG "cannot fork: "
 
 /******************************************************************************
  *                               STRUCTURES                                   *
  *****************************************************************************/
 
-typedef struct	s_env
+typedef struct s_env
 {
 	char			*key;
 	char			*value;
@@ -159,46 +172,46 @@ typedef struct	s_env
 
 typedef struct s_redirection
 {
-	char	*str;
-	t_mode	mode;
-	int		fd;
-	struct s_redirection *next;
-	struct s_redirection *prev;
-}   t_redirection;
+	char					*str;
+	t_mode					mode;
+	int						fd;
+	struct s_redirection	*next;
+	struct s_redirection	*prev;
+}				t_redirection;
 
 typedef struct s_data
 {
-	struct s_command    *commands;
-	struct s_env        *envlist;
+	struct s_command	*commands;
+	struct s_env		*envlist;
 	int					nb_fd_pipes;
 	int					nb_pid;
 	int					std_in;
 	int					std_out;
 	int					*pipes;
-	pid_t	            *pid;
-}   t_data;
+	pid_t				*pid;
+}			t_data;
 
 typedef struct s_command
 {
-	char	*cmd;
-	char    *full_cmd;
-	char	*path; //"builtin" if its a builtin
-	char	**args;
-	int		index;
-	t_redirection   *redirection;
-	struct s_command *next;
-	struct s_command *prev;
-}   t_command;
+	char				*cmd;
+	char				*full_cmd;
+	char				*path;
+	char				**args;
+	int					index;
+	t_redirection		*redirection;
+	struct s_command	*next;
+	struct s_command	*prev;
+}				t_command;
 
 typedef struct s_token
 {
-	char    *token;
-	char    *expanded_token;
-	t_type     type;
-	int         to_expand;
-	struct s_token *next;
-	struct s_token *prev;
-}   t_token;
+	char			*token;
+	char			*expanded_token;
+	t_type			type;
+	int				to_expand;
+	struct s_token	*next;
+	struct s_token	*prev;
+}				t_token;
 
 typedef struct s_malloc
 {
@@ -217,164 +230,165 @@ typedef struct s_quotes_nbr
  *                            GLOBAL VARIABLE                                 *
  *****************************************************************************/
 
-extern int g_exit_status;
+extern int	g_exit_status;
 
 /******************************************************************************
  *                               FUNCTIONS                                    *
  *****************************************************************************/
 
 //testmain.c
-void	set_line(void);
+void			set_line(void);
 
 //main_parser.c
-t_command	*parse_input(char *str, t_env *envlist);
+t_command		*parse_input(char *str, t_env *envlist);
 
 //token_handler.c
-void	print_tokens(t_token *token);
-void	add_token(t_token *list, char *str, int flag);
-t_token	*create_token(char *str, int flag);
+void			print_tokens(t_token *token);
+void			add_token(t_token *list, char *str, int flag);
+t_token			*create_token(char *str, int flag);
 
 //tokenization.c
-int		check_quotes(char *str);
-int		get_token_size(char *str);
-t_token	*convert_input_to_tokens(char *str);
-int	analyze_tokens_type(t_token *list);
-void	analyze_literals_type(t_token *list);
+int				check_quotes(char *str);
+int				get_token_size(char *str);
+t_token			*convert_input_to_tokens(char *str);
+int				analyze_tokens_type(t_token *list);
+void			analyze_literals_type(t_token *list);
 
 //expander.c
-void	expander(t_token *list, t_env *envlist);
+void			expander(t_token *list, t_env *envlist);
 
 //trim_tokens.c
-void	trim_tokens(t_token *list);
-char	*withdraw_quotes(char   *str);
+void			trim_tokens(t_token *list);
+char			*withdraw_quotes(char *str);
 
 //parser.c
-t_command	*convert_tokens_to_commands(t_token *list, t_env *envlist);
+t_command		*convert_tokens_to_commands(t_token *list, t_env *envlist);
 
 //commands_handler.c
-void		print_command(t_command *node);
-void		add_command(t_token *list, t_command *first);
-t_command	*create_command(t_token *list);
+void			print_command(t_command *node);
+void			add_command(t_token *list, t_command *first);
+t_command		*create_command(t_token *list);
 
 //check_tokens.c
-int	check_tokens(t_token *list);
+int				check_tokens(t_token *list);
 
 //quotes_utils.c
-int	calculate_result(int result, char c);
-int	is_in_quote(char *str, int pos);
-int	is_in_d_quote(char *str, int pos);
-int	is_in_s_quote(char *str, int pos);
+int				calculate_result(int result, char c);
+int				is_in_quote(char *str, int pos);
+int				is_in_d_quote(char *str, int pos);
+int				is_in_s_quote(char *str, int pos);
 
 //expander_utils.c
-int	get_expansion_start(char *str, char *initial, int pos);
-int	get_expansion_size(char *str);
+int				get_expansion_start(char *str, char *initial, int pos);
+int				get_expansion_size(char *str);
 
 //redirections.c
 void			add_redirection(t_token *list, t_redirection *first);
 t_redirection	*create_redirection(t_token *list);
 
 //tokens_utils.c
-int	is_pipe_or_redir_or_quote(char c);
-int	is_d_redir(char *str);
-int	is_s_redir(char c);
+int				is_pipe_or_redir_or_quote(char c);
+int				is_d_redir(char *str);
+int				is_s_redir(char c);
 
 //free_tokens.c
-void	free_tokens(t_token *list);
-void	free_commands(t_command *list);
+void			free_tokens(t_token *list);
+void			free_commands(t_command *list);
 
 //magic_malloc.c
-void	*magic_malloc(int choice, size_t size, void *addr);
+void			*magic_malloc(int choice, size_t size, void *addr);
 
 //split_parser.c
-int		is_in_quote(char *str, int pos);
-char	**split_parser(char *str, char c);
+int				is_in_quote(char *str, int pos);
+char			**split_parser(char *str, char c);
 
 //exec_utils.c
-t_env	*ft_list_env(char **envp); //pour dupliquer env au début du prog
-t_env	*ft_new_var(char *keyvalue);
-void	ft_lstaddback(t_env **alst, t_env *new);
-void	ft_clean_list(t_env	*envlist);
-void	ft_free_tab(char **tab);
+t_env			*ft_list_env(char **envp);
+t_env			*ft_new_var(char *keyvalue);
+void			ft_lstaddback(t_env **alst, t_env *new);
+void			ft_clean_list(t_env	*envlist);
+void			ft_free_tab(char **tab);
 
 //builtins
-char	*ft_getenv(char *key, t_env *envlist);
-int		update_env(char *key, char *newvalue, t_env	*envlist);
-void	ft_delenv(t_env *var, t_env *envlist);
-t_env	*ft_new_var_split(char *key, char *value);
-t_env	*ft_getenv_var(char *key, t_env *envlist);
-int		nb_param(char **params);
-int		ft_cd(char **params, t_env *envlist);
-int		cd_others(char **params, t_env *envlist);
-int		ft_echo(char **params);
-int		ft_env(char **params, t_env *envlist);
-int		ft_export(char **params, t_env *envlist);
-int		export_checks(char **params);
-char	*export_find_name(char *str);
-int		valid_identifier(char *name);
-int		ft_unset(char **params, t_env *envlist);
-int		ft_pwd(char **params);
-int		ft_exit(t_data *mini, char **params, t_env *envlist);
-
+char			*ft_getenv(char *key, t_env *envlist);
+int				update_env(char *key, char *newvalue, t_env	*envlist);
+void			ft_delenv(t_env *var, t_env *envlist);
+t_env			*ft_new_var_split(char *key, char *value);
+t_env			*ft_getenv_var(char *key, t_env *envlist);
+int				nb_param(char **params);
+int				ft_cd(char **params, t_env *envlist);
+int				cd_others(char **params, t_env *envlist);
+int				ft_echo(char **params);
+int				ft_env(char **params, t_env *envlist);
+int				ft_export(char **params, t_env *envlist);
+int				export_checks(char **params);
+char			*export_find_name(char *str);
+int				valid_identifier(char *name);
+int				ft_unset(char **params, t_env *envlist);
+int				ft_pwd(char **params);
+int				ft_exit(t_data *mini, char **params, t_env *envlist);
 
 //get_path.c
-char	*get_command_path(char *command, t_env *envlist);
-char	*environment_path(char *command, char *path_var);
-char	*absolute_relative_path(char *command);
-void	ft_free_tab(char **tab);
+char			*get_command_path(char *command, t_env *envlist);
+char			*environment_path(char *command, char *path_var);
+char			*absolute_relative_path(char *command);
+void			ft_free_tab(char **tab);
 
 //ft_exec.c
-int 	ft_exec(t_command *commands, t_env *envlist);
-t_data	*ft_init_data(t_command *commands, t_env *envlist);
-int		exec_pipeline(t_data *mini);
-int		exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist);
-int		child_status(int wstatus);
-int		which_builtin(t_data *mini, char **args, t_env *envlist);
+int				ft_exec(t_command *commands, t_env *envlist);
+t_data			*ft_init_data(t_command *commands, t_env *envlist);
+int				exec_pipeline(t_data *mini);
+int				exec_no_pipeline(t_data *mini, t_command *cmd, t_env *envlist);
+int				child_status(int wstatus);
+int				which_builtin(t_data *mini, char **args, t_env *envlist);
 
 //ft_fork.c
-pid_t   *multi_fork(t_data *mini);
-pid_t   ft_fork(t_data *mini, t_command *cmd);
+pid_t			*multi_fork(t_data *mini);
+pid_t			ft_fork(t_data *mini, t_command *cmd);
 
 //ft_heredoc.c
-int		ft_fork_here(t_data *mini);
-int		ft_heredoc(t_data *mini);
-int		open_heretmp(t_command *cmd, int flag);
-void	ft_tempfile(char *str, int fd, int fdtmp);
-int		clean_tmpfiles(t_command *commands);
+int				ft_fork_here(t_data *mini);
+int				ft_heredoc(t_data *mini, t_command *cmd, t_redirection *redir);
+int				open_heretmp(t_command *cmd, int flag);
+int				ft_tempfile(char *str, int fd, int fdtmp);
+int				clean_tmpfiles(t_command *commands);
 
 //gnl.c
-char	*get_next_line(int fd);
+char			*get_next_line(int fd);
 
 //redir_and_pipes.c
-int redir_open(t_command *current_cmd, int fd[2]);
-int redir_close(t_data *mini, t_command *current_cmd, int flag);
-int	*open_pipes(t_data *mini);
-int	ft_close_all(int *fd, int nb);
+int				redir_open(t_command *current_cmd, int fd[2]);
+int				redir_close(t_data *mini, t_command *current_cmd, int flag);
+int				*open_pipes(t_data *mini);
+int				ft_close_all(int *fd, int nb);
 
 //handle_fd.c
-int	dup_close_in(t_data *mini, t_command *current_cmd, int fd[2]);
-int	dup_close_out(t_data *mini, t_command *current_cmd, int fd[2]);
+int				dup_close_in(t_data *mini, t_command *current_cmd, int fd[2]);
+int				dup_close_out(t_data *mini, t_command *current_cmd, int fd[2]);
 
 //child.c
-int		ft_child(t_data *mini, t_command *cmd, t_env *envlist);
-char	**ft_convertlist(t_env *envlist);
+int				ft_child(t_data *mini, t_command *cmd, t_env *envlist);
+char			**ft_convertlist(t_env *envlist);
 
 //print_messages.c
-int print_errors(int error);
-void	ft_putstr_fd_color(char *str, int fd, char *color);
+int				print_errors(int error);
+int				print_errors_2(int error, char *str);
+int				print_errors_3(int error, char *str);
+void			ft_putstr_fd_color(char *str, int fd, char *color);
 
 //error.c
-int	ft_update_status(t_env *envlist);
+int				ft_update_status(t_env *envlist);
 
 //say_hello.c
-void    say_hello(void);
+void			say_hello(void);
 
 //signals.c
-int	set_signals_as_prompt(void);
-int	set_signals_as_child(void);
-int	set_signals_as_heredoc(void);
-int		set_signals_as_parent(void);
-void	signal_handler_as_prompt(int signum);
-void	signal_handler_as_child(int signum);
-void	signal_handler_as_heredoc(int signum);
+int				set_signals_as_prompt(void);
+int				set_signals_as_child(void);
+int				set_signals_as_heredoc(void);
+int				set_signals_as_parent(void);
+void			signal_handler_as_prompt(int signum);
+void			signal_handler_as_child(int signum);
+void			signal_handler_as_heredoc(int signum);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 16:21:17 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/10 11:22:50 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/10 14:08:07 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_child(t_data *mini, t_command *cmd, t_env *envlist)
 	if (cmd->path == NULL)
 	{
 		redir_close(mini, cmd, 0);
-		return (print_errors(127));
+		return (print_errors_2(127, cmd->args[0]));
 	}
 	if (ft_strncmp(cmd->path, "builtin", 8) == 0)
 	{

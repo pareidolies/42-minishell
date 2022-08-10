@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 18:00:10 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/10 12:05:58 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/10 17:29:31 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,19 @@ extern int	g_exit_status;
 int	ft_exec(t_command *commands, t_env *envlist)
 {
 	t_data	*mini;
+	int		error;
 
 	mini = ft_init_data(commands, envlist);
-	ft_fork_here(mini);
-	if (mini->nb_pid > 1)
+	error = ft_fork_here(mini);
+	if (error != 0)
 	{
+		close(mini->std_in);
+		close(mini->std_out);
+		clean_tmpfiles(commands);
+		return (error);
+	}
+	if (mini->nb_pid > 1)
 		g_exit_status = exec_pipeline(mini);
-	}	
 	else
 	{
 		mini->pipes = NULL;
@@ -95,7 +101,7 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 	int		fdinout[2];
 
 	if (current_cmd->path == NULL)
-		return (print_errors(127));
+		return (print_errors_2(127, current_cmd->args[0]));
 	if (ft_strncmp(current_cmd->path, "builtin", 8) != 0)
 	{
 		pid = ft_fork(mini, current_cmd);
