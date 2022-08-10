@@ -6,9 +6,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
- 
 
-# Make data base, printed on Wed Aug 10 22:12:09 2022
+# Make data base, printed on Wed Aug 10 22:20:02 2022
 
 # Variables
 
@@ -45,7 +44,7 @@ VSCODE_VERBOSE_LOGGING = true
 # makefile (from `Makefile', line 48)
 OBJS := objs/lexer/parse_input.o objs/lexer/tokens_handler.o objs/parser/trimmer.o objs/parser/convert_tokens_to_commands.o objs/parser/commands_handler.o objs/lexer/check_tokens.o objs/parser/free_parser.o objs/parser/splitter.o objs/lexer/check_quotes.o objs/parser/redirections_handler.o objs/lexer/analyze_tokens.o objs/lexer/tokens_utils.o objs/parser/quotes_utils.o objs/expander/expander.o objs/expander/expander_utils.o objs/lexer/convert_input_to_tokens.o objs/exec/env_utils.o objs/exec/testmain.o objs/exec/ft_exec.o objs/exec/ft_heredoc.o objs/exec/gnl.o objs/exec/ft_fork.o objs/exec/redir.o objs/exec/pipes.o objs/exec/handle_fd.o objs/exec/exec_utils.o objs/exec/get_path.o objs/exec/child.o objs/exec/signals.o objs/utils/say_hello.o objs/builtin/builtin_utils.o objs/builtin/ft_cd.o objs/builtin/ft_echo.o objs/builtin/ft_env.o objs/builtin/ft_export.o objs/builtin/ft_pwd.o objs/builtin/ft_unset.o objs/builtin/ft_exit.o objs/utils/print_messages.o objs/utils/magic_malloc.o
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/7_/2w6n1_dn0mv10rzf_ls_bl400000gn/T/vscode-ipc-0d487331-1ff3-451a-9212-0323ec0600d7.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/7_/2w6n1_dn0mv10rzf_ls_bl400000gn/T/vscode-ipc-f22641a4-313e-425d-b62a-455863209a8f.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -173,14 +172,12 @@ VSCODE_PID = 36958
 
 # Directories
 
-# srcs/expander (device 16777220, inode 12888781628): 4 files, no impossibilities so far.
-# . (device 16777220, inode 12888781484): 13 files, no impossibilities.
-# srcs/exec (device 16777220, inode 12888781614): 15 files, no impossibilities so far.
+# . (device 16777220, inode 12888781484): 14 files, no impossibilities.
 # srcs (device 16777220, inode 12888781604): No files, no impossibilities so far.
 # srcs/lexer (device 16777220, inode 12888781631): 9 files, no impossibilities so far.
-# srcs/parser (device 16777220, inode 12888781639): 9 files, no impossibilities so far.
+# srcs/parser (device 16777220, inode 12888781639): 8 files, no impossibilities so far.
 
-# 50 files, no impossibilities in 6 directories.
+# 31 files, no impossibilities in 4 directories.
 
 # Implicit Rules
 
@@ -201,51 +198,11 @@ objs/%.o: srcs/%.c
 # Files
 
 # Not a target:
-srcs/parser/redirections_handler.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
+objs/exec/pipes.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
  
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-srcs/exec/redir.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-srcs/parser/splitter.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objs/exec/pipes.o: srcs/exec/pipes.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `exec/pipes'
-#  Last modified 2022-08-10 22:11:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
+#  File has not been updated.
 
 # Not a target:
 srcs/parser/trimmer.c:
@@ -267,32 +224,10 @@ all: minishell
 # Load=0/32=0%, Rehash=0, Collisions=0/19=0%
 
 # Not a target:
-srcs/exec/ft_exec.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objs/exec/get_path.o: srcs/exec/get_path.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `exec/get_path'
-#  Last modified 2022-08-10 22:11:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
+objs/exec/get_path.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 .PHONY: all clean sanitize fclean re bonus
 #  Implicit rule search has not been done.
@@ -300,50 +235,10 @@ objs/exec/get_path.o: srcs/exec/get_path.c
 #  File has not been updated.
 
 # Not a target:
-srcs/lexer/analyze_tokens.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-srcs/lexer/tokens_utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-srcs/expander/expander.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objs/lexer/check_quotes.o: srcs/lexer/check_quotes.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `lexer/check_quotes'
-#  Last modified 2022-08-10 22:11:51
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
+objs/lexer/check_quotes.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 objs/utils/print_messages.o:
@@ -358,15 +253,6 @@ objs/builtin/ft_env.o:
 #  File has not been updated.
 
 # Not a target:
-srcs/lexer/check_tokens.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
 objs/builtin/ft_exit.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -375,26 +261,7 @@ objs/builtin/ft_exit.o:
 objs/lexer/parse_input.o: srcs/lexer/parse_input.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `lexer/parse_input'
-#  Last modified 2022-08-10 22:11:50
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
-
-objs/exec/handle_fd.o: srcs/exec/handle_fd.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `exec/handle_fd'
-#  Last modified 2022-08-10 22:11:53
+#  Last modified 2022-08-10 22:12:17
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -411,13 +278,10 @@ objs/exec/handle_fd.o: srcs/exec/handle_fd.c
 	
 
 # Not a target:
-srcs/exec/signals.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:43:16
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+objs/exec/handle_fd.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 objs/utils/magic_malloc.o:
@@ -432,15 +296,6 @@ objs/utils/magic_malloc.o:
 #  File has not been updated.
 
 # Not a target:
-srcs/exec/pipes.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
 Makefile:
 #  Implicit rule search has been done.
 #  Last modified 2022-08-10 22:11:45
@@ -449,25 +304,11 @@ Makefile:
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
- 
-objs/exec/testmain.o: srcs/exec/testmain.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `exec/testmain'
-#  Last modified 2022-08-10 22:11:52
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
+# Not a target:
+objs/exec/testmain.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 objs/builtin/ft_pwd.o:
@@ -475,33 +316,11 @@ objs/builtin/ft_pwd.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-objs/parser/quotes_utils.o: srcs/parser/quotes_utils.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `parser/quotes_utils'
-#  Last modified 2022-08-10 22:11:52
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
-
 # Not a target:
-srcs/exec/get_path.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+objs/parser/quotes_utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 objs/builtin/ft_unset.o:
@@ -509,52 +328,17 @@ objs/builtin/ft_unset.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-objs/lexer/convert_input_to_tokens.o: srcs/lexer/convert_input_to_tokens.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `lexer/convert_input_to_tokens'
-#  Last modified 2022-08-10 22:11:52
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
+# Not a target:
+objs/lexer/convert_input_to_tokens.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
-srcs/lexer/check_quotes.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objs/exec/redir.o: srcs/exec/redir.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `exec/redir'
-#  Last modified 2022-08-10 22:11:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
+objs/exec/redir.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 srcs/lexer/parse_input.c:
@@ -566,36 +350,14 @@ srcs/lexer/parse_input.c:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
-srcs/exec/handle_fd.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objs/parser/commands_handler.o: srcs/parser/commands_handler.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `parser/commands_handler'
-#  Last modified 2022-08-10 22:11:51
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
+objs/parser/commands_handler.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 minishell: libft/libft.a objs/lexer/parse_input.o objs/lexer/tokens_handler.o objs/parser/trimmer.o objs/parser/convert_tokens_to_commands.o objs/parser/commands_handler.o objs/lexer/check_tokens.o objs/parser/free_parser.o objs/parser/splitter.o objs/lexer/check_quotes.o objs/parser/redirections_handler.o objs/lexer/analyze_tokens.o objs/lexer/tokens_utils.o objs/parser/quotes_utils.o objs/expander/expander.o objs/expander/expander_utils.o objs/lexer/convert_input_to_tokens.o objs/exec/env_utils.o objs/exec/testmain.o objs/exec/ft_exec.o objs/exec/ft_heredoc.o objs/exec/gnl.o objs/exec/ft_fork.o objs/exec/redir.o objs/exec/pipes.o objs/exec/handle_fd.o objs/exec/exec_utils.o objs/exec/get_path.o objs/exec/child.o objs/exec/signals.o objs/utils/say_hello.o objs/builtin/builtin_utils.o objs/builtin/ft_cd.o objs/builtin/ft_echo.o objs/builtin/ft_env.o objs/builtin/ft_export.o objs/builtin/ft_pwd.o objs/builtin/ft_unset.o objs/builtin/ft_exit.o objs/utils/print_messages.o objs/utils/magic_malloc.o
 #  Implicit rule search has not been done.
-#  File does not exist.
+#  Last modified 2022-08-10 22:12:22
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
@@ -606,28 +368,15 @@ minishell: libft/libft.a objs/lexer/parse_input.o objs/lexer/tokens_handler.o ob
 	@echo "Minishell is ready!"
 	
 
-objs/exec/child.o: srcs/exec/child.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `exec/child'
-#  Last modified 2022-08-10 22:11:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
+# Not a target:
+objs/exec/child.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 libft/libft.a:
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-10 22:11:50
+#  Last modified 2022-08-10 22:12:16
 #  File has been updated.
 #  Successfully updated.
 #  commands to execute (from `Makefile', line 80):
@@ -639,7 +388,6 @@ libft/libft.a:
 bonus:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
- 
 #  File does not exist.
 #  File has not been updated.
 
@@ -656,103 +404,21 @@ fclean: clean
 	
 
 # Not a target:
-srcs/exec/testmain.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objs/exec/gnl.o: srcs/exec/gnl.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `exec/gnl'
-#  Last modified 2022-08-10 22:11:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
+objs/exec/gnl.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
-srcs/parser/quotes_utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objs/parser/free_parser.o: srcs/parser/free_parser.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `parser/free_parser'
-#  Last modified 2022-08-10 22:11:51
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
+objs/parser/free_parser.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 objs/lexer/tokens_handler.o: srcs/lexer/tokens_handler.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `lexer/tokens_handler'
-#  Last modified 2022-08-10 22:11:50
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
-
-objs/exec/exec_utils.o: srcs/exec/exec_utils.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `exec/exec_utils'
-#  Last modified 2022-08-10 22:11:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
-
-objs/exec/ft_fork.o: srcs/exec/ft_fork.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `exec/ft_fork'
-#  Last modified 2022-08-10 22:11:53
+#  Last modified 2022-08-10 22:12:17
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -769,57 +435,35 @@ objs/exec/ft_fork.o: srcs/exec/ft_fork.c
 	
 
 # Not a target:
-srcs/lexer/convert_input_to_tokens.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+objs/exec/exec_utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
-objs/exec/ft_heredoc.o: srcs/exec/ft_heredoc.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `exec/ft_heredoc'
-#  Last modified 2022-08-10 22:11:52
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
+# Not a target:
+objs/exec/ft_fork.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
+# Not a target:
+objs/exec/ft_heredoc.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+ 
 # Not a target:
 .DEFAULT:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
-objs/expander/expander_utils.o: srcs/expander/expander_utils.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `expander/expander_utils'
-#  Last modified 2022-08-10 22:11:52
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
+# Not a target:
+objs/expander/expander_utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 objs/utils/say_hello.o:
@@ -827,34 +471,11 @@ objs/utils/say_hello.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-objs/exec/env_utils.o: srcs/exec/env_utils.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `exec/env_utils'
-#  Last modified 2022-08-10 22:11:52
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
- 
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
-
 # Not a target:
-srcs/parser/commands_handler.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+objs/exec/env_utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 objs/builtin/ft_cd.o:
@@ -865,60 +486,25 @@ objs/builtin/ft_cd.o:
 objs/parser/convert_tokens_to_commands.o: srcs/parser/convert_tokens_to_commands.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parser/convert_tokens_to_commands'
-#  Last modified 2022-08-10 22:11:51
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
-
-# Not a target:
-srcs/exec/child.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-re: fclean all
-#  Phony target (prerequisite of .PHONY).
-#  Implicit rule search has not been done.
-#  File does not exist.
-#  File has not been updated.
-
-objs/exec/signals.o: srcs/exec/signals.c
-#  Implicit rule search has been done.
- 
-#  Implicit/static pattern stem: `exec/signals'
-#  File does not exist.
+#  Last modified 2022-08-10 22:12:17
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # automatic
-# @ := objs/exec/signals.o
+# @ := objs/parser/convert_tokens_to_commands.o
 # automatic
 # % := 
 # automatic
-# * := exec/signals
+# * := parser/convert_tokens_to_commands
 # automatic
-# + := srcs/exec/signals.c
+# + := srcs/parser/convert_tokens_to_commands.c
 # automatic
 # | := 
 # automatic
-# < := srcs/exec/signals.c
+# < := srcs/parser/convert_tokens_to_commands.c
 # automatic
-# ^ := srcs/exec/signals.c
+# ^ := srcs/parser/convert_tokens_to_commands.c
 # automatic
-# ? := srcs/exec/signals.c
+# ? := srcs/parser/convert_tokens_to_commands.c
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=1/29=3%
 #  commands to execute (from `Makefile', line 70):
@@ -931,6 +517,18 @@ objs/exec/signals.o: srcs/exec/signals.c
 	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
 	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
 	
+
+re: fclean all
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+objs/exec/signals.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 clean:
 #  Phony target (prerequisite of .PHONY).
@@ -946,68 +544,10 @@ clean:
 	
 
 # Not a target:
-srcs/exec/gnl.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-srcs/parser/free_parser.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objs/lexer/tokens_utils.o: srcs/lexer/tokens_utils.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `lexer/tokens_utils'
-#  Last modified 2022-08-10 22:11:52
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
-
-# Not a target:
-srcs/exec/exec_utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-srcs/exec/ft_fork.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-srcs/exec/ft_heredoc.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+objs/lexer/tokens_utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 sanitize: libft/libft.a
 #  Phony target (prerequisite of .PHONY).
@@ -1030,50 +570,19 @@ srcs/lexer/tokens_handler.c:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
-srcs/expander/expander_utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-srcs/exec/env_utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
 srcs/parser/convert_tokens_to_commands.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:22:28
+#  Last modified 2022-08-10 22:18:49
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-objs/parser/redirections_handler.o: srcs/parser/redirections_handler.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `parser/redirections_handler'
-#  Last modified 2022-08-10 22:11:51
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
+# Not a target:
+objs/parser/redirections_handler.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 objs/builtin/ft_echo.o:
@@ -1081,24 +590,11 @@ objs/builtin/ft_echo.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-objs/parser/splitter.o: srcs/parser/splitter.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `parser/splitter'
-#  Last modified 2022-08-10 22:11:51
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
+# Not a target:
+objs/parser/splitter.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 objs/builtin/builtin_utils.o:
@@ -1109,7 +605,7 @@ objs/builtin/builtin_utils.o:
 objs/parser/trimmer.o: srcs/parser/trimmer.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parser/trimmer'
-#  Last modified 2022-08-10 22:11:50
+#  Last modified 2022-08-10 22:12:17
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1131,85 +627,32 @@ objs/builtin/ft_export.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-objs/exec/ft_exec.o: srcs/exec/ft_exec.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `exec/ft_exec'
- 
-#  Last modified 2022-08-10 22:11:52
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
+# Not a target:
+objs/exec/ft_exec.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
-objs/lexer/analyze_tokens.o: srcs/lexer/analyze_tokens.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `lexer/analyze_tokens'
-#  Last modified 2022-08-10 22:11:51
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
+# Not a target:
+objs/lexer/analyze_tokens.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
-objs/expander/expander.o: srcs/expander/expander.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `expander/expander'
-#  Last modified 2022-08-10 22:11:52
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
+# Not a target:
+objs/expander/expander.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
-objs/lexer/check_tokens.o: srcs/lexer/check_tokens.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `lexer/check_tokens'
-#  Last modified 2022-08-10 22:11:51
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
-	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
-	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
-	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
-	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
-	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
-	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
-	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
-	
+# Not a target:
+objs/lexer/check_tokens.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # files hash-table stats:
-# Load=81/1024=8%, Rehash=0, Collisions=12/233=5%
+# Load=56/1024=5%, Rehash=0, Collisions=3/133=2%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -1221,6 +664,6 @@ objs/lexer/check_tokens.o: srcs/lexer/check_tokens.c
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Wed Aug 10 22:12:09 2022
+# Finished Make data base on Wed Aug 10 22:20:02 2022
 
  

@@ -51,7 +51,7 @@ void	signal_handler_as_prompt(int signum)
 		g_exit_status = 130;
 		//ft_putstr_fd("\n", 1);
 		write(STDIN_FILENO, "\n", 1);
-		//rl_replace_line("", 0);
+		rl_replace_line("", 0);
 		rl_on_new_line();
 	}
 }

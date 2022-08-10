@@ -1,5 +1,8 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/user/Documents/42/42-minishell'
+echo " [..] | Compiling libft..."
+make -s -C libft
+echo " [OK] | Done."
 [ ! -d objs ] && mkdir -p  objs || true
 [ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
 [ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
@@ -7,7 +10,246 @@ make: Entering directory `/Users/user/Documents/42/42-minishell'
 [ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
 [ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
 [ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/lexer/parse_input.c -o objs/lexer/parse_input.o
+ 
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/lexer/tokens_handler.c -o objs/lexer/tokens_handler.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/parser/trimmer.c -o objs/parser/trimmer.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/parser/convert_tokens_to_commands.c -o objs/parser/convert_tokens_to_commands.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/parser/commands_handler.c -o objs/parser/commands_handler.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+ 
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/lexer/check_tokens.c -o objs/lexer/check_tokens.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/parser/free_parser.c -o objs/parser/free_parser.o
+ 
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/parser/splitter.c -o objs/parser/splitter.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/lexer/check_quotes.c -o objs/lexer/check_quotes.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/parser/redirections_handler.c -o objs/parser/redirections_handler.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/lexer/analyze_tokens.c -o objs/lexer/analyze_tokens.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/lexer/tokens_utils.c -o objs/lexer/tokens_utils.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/parser/quotes_utils.c -o objs/parser/quotes_utils.o
+ 
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/expander/expander.c -o objs/expander/expander.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/expander/expander_utils.c -o objs/expander/expander_utils.o
+ 
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/lexer/convert_input_to_tokens.c -o objs/lexer/convert_input_to_tokens.o
+ 
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/exec/env_utils.c -o objs/exec/env_utils.o
+ 
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/exec/testmain.c -o objs/exec/testmain.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/exec/ft_exec.c -o objs/exec/ft_exec.o
+ 
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/exec/ft_heredoc.c -o objs/exec/ft_heredoc.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/exec/gnl.c -o objs/exec/gnl.o
+ 
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/exec/ft_fork.c -o objs/exec/ft_fork.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+ 
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/exec/redir.c -o objs/exec/redir.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/exec/pipes.c -o objs/exec/pipes.o
+ 
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/exec/handle_fd.c -o objs/exec/handle_fd.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+ 
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/exec/exec_utils.c -o objs/exec/exec_utils.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/exec/get_path.c -o objs/exec/get_path.o
+ 
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/exec/child.c -o objs/exec/child.o
+[ ! -d objs ] && mkdir -p  objs || true
+ 
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
 cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/exec/signals.c -o objs/exec/signals.o
+ 
 [ ! -d objs ] && mkdir -p  objs || true
 [ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
 [ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
@@ -42,6 +284,7 @@ cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/builtin/ft_cd.c -o 
 [ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
 [ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
 cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/builtin/ft_echo.c -o objs/builtin/ft_echo.o
+ 
 [ ! -d objs ] && mkdir -p  objs || true
 [ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
 [ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
@@ -68,6 +311,7 @@ cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/builtin/ft_export.c
 cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/builtin/ft_pwd.c -o objs/builtin/ft_pwd.o
 [ ! -d objs ] && mkdir -p  objs || true
 [ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+ 
 [ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
 [ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
 [ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
@@ -87,6 +331,7 @@ cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/builtin/ft_exit.c -
 [ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
 [ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
 [ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+ 
 [ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
 [ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
 cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/utils/print_messages.c -o objs/utils/print_messages.o
@@ -98,6 +343,7 @@ cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/utils/print_message
 [ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
 [ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
 cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/utils/magic_malloc.c -o objs/utils/magic_malloc.o
+ 
 echo "Created object files."
 cc -Wall -Wextra -Werror -g objs/lexer/parse_input.o objs/lexer/tokens_handler.o objs/parser/trimmer.o objs/parser/convert_tokens_to_commands.o objs/parser/commands_handler.o objs/lexer/check_tokens.o objs/parser/free_parser.o objs/parser/splitter.o objs/lexer/check_quotes.o objs/parser/redirections_handler.o objs/lexer/analyze_tokens.o objs/lexer/tokens_utils.o objs/parser/quotes_utils.o objs/expander/expander.o objs/expander/expander_utils.o objs/lexer/convert_input_to_tokens.o objs/exec/env_utils.o objs/exec/testmain.o objs/exec/ft_exec.o objs/exec/ft_heredoc.o objs/exec/gnl.o objs/exec/ft_fork.o objs/exec/redir.o objs/exec/pipes.o objs/exec/handle_fd.o objs/exec/exec_utils.o objs/exec/get_path.o objs/exec/child.o objs/exec/signals.o objs/utils/say_hello.o objs/builtin/builtin_utils.o objs/builtin/ft_cd.o objs/builtin/ft_echo.o objs/builtin/ft_env.o objs/builtin/ft_export.o objs/builtin/ft_pwd.o objs/builtin/ft_unset.o objs/builtin/ft_exit.o objs/utils/print_messages.o objs/utils/magic_malloc.o -o minishell -L./libft -lft -lreadline -L .brew/opt/readline/lib -I .brew/opt/readline/include
 echo "Minishell is ready!"
