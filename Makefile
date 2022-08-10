@@ -59,7 +59,7 @@ RM		= rm -rf
 
 CFLAGS	= -Wall -Wextra -Werror -g
 
-LIBFLAGS	= -L./libft -lft -lreadline
+LIBFLAGS	= -L./libft -lft -lreadline -L .brew/opt/readline/lib -I .brew/opt/readline/include
 
 ${NAME}:	${LFT} ${OBJS}
 			@echo "Created object files."

@@ -81,6 +81,8 @@ void	add_args(t_command *node)
 	}
 }
 
+//node->path == NULL à voir avec Léa
+
 void	fill_command(t_token *list, t_command *cell, t_env *envlist)
 {
 	t_token		*current;

@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Wed Aug 10 21:48:45 2022
+# Make data base, printed on Wed Aug 10 22:12:09 2022
 
 # Variables
 
@@ -45,7 +45,7 @@ VSCODE_VERBOSE_LOGGING = true
 # makefile (from `Makefile', line 48)
 OBJS := objs/lexer/parse_input.o objs/lexer/tokens_handler.o objs/parser/trimmer.o objs/parser/convert_tokens_to_commands.o objs/parser/commands_handler.o objs/lexer/check_tokens.o objs/parser/free_parser.o objs/parser/splitter.o objs/lexer/check_quotes.o objs/parser/redirections_handler.o objs/lexer/analyze_tokens.o objs/lexer/tokens_utils.o objs/parser/quotes_utils.o objs/expander/expander.o objs/expander/expander_utils.o objs/lexer/convert_input_to_tokens.o objs/exec/env_utils.o objs/exec/testmain.o objs/exec/ft_exec.o objs/exec/ft_heredoc.o objs/exec/gnl.o objs/exec/ft_fork.o objs/exec/redir.o objs/exec/pipes.o objs/exec/handle_fd.o objs/exec/exec_utils.o objs/exec/get_path.o objs/exec/child.o objs/exec/signals.o objs/utils/say_hello.o objs/builtin/builtin_utils.o objs/builtin/ft_cd.o objs/builtin/ft_echo.o objs/builtin/ft_env.o objs/builtin/ft_export.o objs/builtin/ft_pwd.o objs/builtin/ft_unset.o objs/builtin/ft_exit.o objs/utils/print_messages.o objs/utils/magic_malloc.o
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/7_/2w6n1_dn0mv10rzf_ls_bl400000gn/T/vscode-ipc-4d81a8cd-4b50-451e-9bec-bc4b437f48c7.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/7_/2w6n1_dn0mv10rzf_ls_bl400000gn/T/vscode-ipc-0d487331-1ff3-451a-9212-0323ec0600d7.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -53,7 +53,7 @@ PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # makefile (from `Makefile', line 62)
-LIBFLAGS = -L./libft -lft -lreadline
+LIBFLAGS = -L./libft -lft -lreadline -L .brew/opt/readline/lib -I .brew/opt/readline/include
 # environment
 VSCODE_LOG_STACK = false
 # environment
@@ -207,11 +207,11 @@ srcs/parser/redirections_handler.c:
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
+ 
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 srcs/exec/redir.c:
- 
 #  Implicit rule search has been done.
 #  Last modified 2022-08-10 21:22:28
 #  File has been updated.
@@ -231,7 +231,7 @@ srcs/parser/splitter.c:
 objs/exec/pipes.o: srcs/exec/pipes.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `exec/pipes'
-#  Last modified 2022-08-10 21:48:26
+#  Last modified 2022-08-10 22:11:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -278,7 +278,7 @@ srcs/exec/ft_exec.c:
 objs/exec/get_path.o: srcs/exec/get_path.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `exec/get_path'
-#  Last modified 2022-08-10 21:48:26
+#  Last modified 2022-08-10 22:11:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -329,7 +329,7 @@ srcs/expander/expander.c:
 objs/lexer/check_quotes.o: srcs/lexer/check_quotes.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `lexer/check_quotes'
-#  Last modified 2022-08-10 21:48:25
+#  Last modified 2022-08-10 22:11:51
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -375,7 +375,7 @@ objs/builtin/ft_exit.o:
 objs/lexer/parse_input.o: srcs/lexer/parse_input.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `lexer/parse_input'
-#  Last modified 2022-08-10 21:48:24
+#  Last modified 2022-08-10 22:11:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -394,7 +394,7 @@ objs/lexer/parse_input.o: srcs/lexer/parse_input.c
 objs/exec/handle_fd.o: srcs/exec/handle_fd.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `exec/handle_fd'
-#  Last modified 2022-08-10 21:48:26
+#  Last modified 2022-08-10 22:11:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -443,17 +443,17 @@ srcs/exec/pipes.c:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-10 21:48:38
+#  Last modified 2022-08-10 22:11:45
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
+ 
 objs/exec/testmain.o: srcs/exec/testmain.c
 #  Implicit rule search has been done.
- 
 #  Implicit/static pattern stem: `exec/testmain'
-#  Last modified 2022-08-10 21:48:26
+#  Last modified 2022-08-10 22:11:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -478,7 +478,7 @@ objs/builtin/ft_pwd.o:
 objs/parser/quotes_utils.o: srcs/parser/quotes_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parser/quotes_utils'
-#  Last modified 2022-08-10 21:48:25
+#  Last modified 2022-08-10 22:11:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -512,7 +512,7 @@ objs/builtin/ft_unset.o:
 objs/lexer/convert_input_to_tokens.o: srcs/lexer/convert_input_to_tokens.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `lexer/convert_input_to_tokens'
-#  Last modified 2022-08-10 21:48:25
+#  Last modified 2022-08-10 22:11:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -540,7 +540,7 @@ srcs/lexer/check_quotes.c:
 objs/exec/redir.o: srcs/exec/redir.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `exec/redir'
-#  Last modified 2022-08-10 21:48:26
+#  Last modified 2022-08-10 22:11:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -577,7 +577,7 @@ srcs/exec/handle_fd.c:
 objs/parser/commands_handler.o: srcs/parser/commands_handler.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parser/commands_handler'
-#  Last modified 2022-08-10 21:48:24
+#  Last modified 2022-08-10 22:11:51
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -609,7 +609,7 @@ minishell: libft/libft.a objs/lexer/parse_input.o objs/lexer/tokens_handler.o ob
 objs/exec/child.o: srcs/exec/child.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `exec/child'
-#  Last modified 2022-08-10 21:48:27
+#  Last modified 2022-08-10 22:11:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -627,7 +627,7 @@ objs/exec/child.o: srcs/exec/child.c
 
 libft/libft.a:
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-10 21:48:24
+#  Last modified 2022-08-10 22:11:50
 #  File has been updated.
 #  Successfully updated.
 #  commands to execute (from `Makefile', line 80):
@@ -639,11 +639,11 @@ libft/libft.a:
 bonus:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
+ 
 #  File does not exist.
 #  File has not been updated.
 
 fclean: clean
- 
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
@@ -653,7 +653,6 @@ fclean: clean
 	@${RM} ${NAMEB}
 	@make -s -C libft fclean
 	@echo "Binary files removed."
- 
 	
 
 # Not a target:
@@ -668,7 +667,7 @@ srcs/exec/testmain.c:
 objs/exec/gnl.o: srcs/exec/gnl.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `exec/gnl'
-#  Last modified 2022-08-10 21:48:26
+#  Last modified 2022-08-10 22:11:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -696,7 +695,7 @@ srcs/parser/quotes_utils.c:
 objs/parser/free_parser.o: srcs/parser/free_parser.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parser/free_parser'
-#  Last modified 2022-08-10 21:48:24
+#  Last modified 2022-08-10 22:11:51
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -715,7 +714,7 @@ objs/parser/free_parser.o: srcs/parser/free_parser.c
 objs/lexer/tokens_handler.o: srcs/lexer/tokens_handler.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `lexer/tokens_handler'
-#  Last modified 2022-08-10 21:48:24
+#  Last modified 2022-08-10 22:11:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -734,7 +733,7 @@ objs/lexer/tokens_handler.o: srcs/lexer/tokens_handler.c
 objs/exec/exec_utils.o: srcs/exec/exec_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `exec/exec_utils'
-#  Last modified 2022-08-10 21:48:26
+#  Last modified 2022-08-10 22:11:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -747,14 +746,13 @@ objs/exec/exec_utils.o: srcs/exec/exec_utils.c
 	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
 	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
 	@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
- 
 	@$(CC) $(CFLAGS) -c ${INC} $< -o $@
 	
 
 objs/exec/ft_fork.o: srcs/exec/ft_fork.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `exec/ft_fork'
-#  Last modified 2022-08-10 21:48:26
+#  Last modified 2022-08-10 22:11:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -782,7 +780,7 @@ srcs/lexer/convert_input_to_tokens.c:
 objs/exec/ft_heredoc.o: srcs/exec/ft_heredoc.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `exec/ft_heredoc'
-#  Last modified 2022-08-10 21:48:26
+#  Last modified 2022-08-10 22:11:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -807,7 +805,7 @@ objs/exec/ft_heredoc.o: srcs/exec/ft_heredoc.c
 objs/expander/expander_utils.o: srcs/expander/expander_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `expander/expander_utils'
-#  Last modified 2022-08-10 21:48:25
+#  Last modified 2022-08-10 22:11:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -832,12 +830,13 @@ objs/utils/say_hello.o:
 objs/exec/env_utils.o: srcs/exec/env_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `exec/env_utils'
-#  Last modified 2022-08-10 21:48:25
+#  Last modified 2022-08-10 22:11:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 #  commands to execute (from `Makefile', line 70):
+ 
 	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
 	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
 	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
@@ -866,7 +865,7 @@ objs/builtin/ft_cd.o:
 objs/parser/convert_tokens_to_commands.o: srcs/parser/convert_tokens_to_commands.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parser/convert_tokens_to_commands'
-#  Last modified 2022-08-10 21:48:24
+#  Last modified 2022-08-10 22:11:51
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -875,7 +874,6 @@ objs/parser/convert_tokens_to_commands.o: srcs/parser/convert_tokens_to_commands
 	@[ ! -d ${OBJDIR} ] && mkdir -p  ${OBJDIR} || true
 	@[ ! -d ${OBJDIR}/exec/ ] && mkdir -p  ${OBJDIR}/exec/ || true
 	@[ ! -d ${OBJDIR}/parser/ ] && mkdir -p  ${OBJDIR}/parser/ || true
- 
 	@[ ! -d ${OBJDIR}/builtin/ ] && mkdir -p  ${OBJDIR}/builtin/ || true
 	@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
 	@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
@@ -900,6 +898,7 @@ re: fclean all
 
 objs/exec/signals.o: srcs/exec/signals.c
 #  Implicit rule search has been done.
+ 
 #  Implicit/static pattern stem: `exec/signals'
 #  File does not exist.
 #  File has been updated.
@@ -967,7 +966,7 @@ srcs/parser/free_parser.c:
 objs/lexer/tokens_utils.o: srcs/lexer/tokens_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `lexer/tokens_utils'
-#  Last modified 2022-08-10 21:48:25
+#  Last modified 2022-08-10 22:11:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1001,7 +1000,6 @@ srcs/exec/ft_fork.c:
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
- 
 # Not a target:
 srcs/exec/ft_heredoc.c:
 #  Implicit rule search has been done.
@@ -1061,7 +1059,7 @@ srcs/parser/convert_tokens_to_commands.c:
 objs/parser/redirections_handler.o: srcs/parser/redirections_handler.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parser/redirections_handler'
-#  Last modified 2022-08-10 21:48:25
+#  Last modified 2022-08-10 22:11:51
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1086,7 +1084,7 @@ objs/builtin/ft_echo.o:
 objs/parser/splitter.o: srcs/parser/splitter.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parser/splitter'
-#  Last modified 2022-08-10 21:48:24
+#  Last modified 2022-08-10 22:11:51
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1111,7 +1109,7 @@ objs/builtin/builtin_utils.o:
 objs/parser/trimmer.o: srcs/parser/trimmer.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parser/trimmer'
-#  Last modified 2022-08-10 21:48:24
+#  Last modified 2022-08-10 22:11:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1136,7 +1134,8 @@ objs/builtin/ft_export.o:
 objs/exec/ft_exec.o: srcs/exec/ft_exec.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `exec/ft_exec'
-#  Last modified 2022-08-10 21:48:26
+ 
+#  Last modified 2022-08-10 22:11:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1155,8 +1154,7 @@ objs/exec/ft_exec.o: srcs/exec/ft_exec.c
 objs/lexer/analyze_tokens.o: srcs/lexer/analyze_tokens.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `lexer/analyze_tokens'
-#  Last modified 2022-08-10 21:48:25
- 
+#  Last modified 2022-08-10 22:11:51
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1175,7 +1173,7 @@ objs/lexer/analyze_tokens.o: srcs/lexer/analyze_tokens.c
 objs/expander/expander.o: srcs/expander/expander.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `expander/expander'
-#  Last modified 2022-08-10 21:48:25
+#  Last modified 2022-08-10 22:11:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1194,7 +1192,7 @@ objs/expander/expander.o: srcs/expander/expander.c
 objs/lexer/check_tokens.o: srcs/lexer/check_tokens.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `lexer/check_tokens'
-#  Last modified 2022-08-10 21:48:24
+#  Last modified 2022-08-10 22:11:51
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1223,6 +1221,6 @@ objs/lexer/check_tokens.o: srcs/lexer/check_tokens.c
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Wed Aug 10 21:48:45 2022
+# Finished Make data base on Wed Aug 10 22:12:09 2022
 
  
