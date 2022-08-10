@@ -1,14 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   gnl.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/10 12:34:45 by lmurtin           #+#    #+#             */
+/*   Updated: 2022/08/10 12:44:08 by lmurtin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 #include "libft.h"
 
 extern int	g_exit_status;
+
+char	*replace_str(char **str, char *buf)
+{
+	char	*tmp;
+
+	tmp = ft_strjoin(*str, buf);
+	magic_malloc(ADD, 0, tmp);
+	magic_malloc(FREE, 0, *str);
+	return (tmp);
+}
 
 static void	ft_read(int fd, char *buf, char **str)
 {
 	int		r;
 	char	*tmp;
 
-	//printf("in ft_read\n");
 	if (!*str || !ft_strchr(*str, '\n'))
 	{
 		r = read(fd, buf, BUFFER_SIZE);
@@ -22,10 +43,7 @@ static void	ft_read(int fd, char *buf, char **str)
 			}
 			else
 			{
-				tmp = ft_strjoin(*str, buf);
-				magic_malloc(ADD, 0, tmp);
-				magic_malloc(FREE, 0, *str);
-				//free(*str);
+				tmp = replace_str(str, buf);
 				*str = tmp;
 			}
 			if (ft_strchr(buf, '\n'))
@@ -34,7 +52,6 @@ static void	ft_read(int fd, char *buf, char **str)
 		}
 	}
 	magic_malloc(FREE, 0, buf);
-	//free(buf);
 }
 
 static char	*ft_returnline(char **str)
@@ -48,7 +65,6 @@ static char	*ft_returnline(char **str)
 	{
 		ret = ft_substr(*str, 0, ft_strlen(*str));
 		magic_malloc(ADD, 0, ret);
-		//free(*str);
 		magic_malloc(FREE, 0, *str);
 		*str = NULL;
 		return (ret);
@@ -59,7 +75,6 @@ static char	*ft_returnline(char **str)
 	magic_malloc(ADD, 0, ret);
 	tmp = ft_substr(ft_strchr(*str, '\n'), 1, n - 1);
 	magic_malloc(ADD, 0, tmp);
-	//free(*str);
 	magic_malloc(FREE, 0, *str);
 	*str = tmp;
 	return (ret);
@@ -70,18 +85,10 @@ char	*get_next_line(int fd)
 	char		*buf;
 	static char	*str;
 
-	// if (flag == 1 && str != NULL)
-	// {
-	// 	free(str);
-	// 	return (NULL);
-	// }
 	buf = magic_malloc(MALLOC, sizeof(char) * (BUFFER_SIZE + 1), NULL);
-	//printf("str = [%s]\n", str);
 	if (BUFFER_SIZE < 1 || fd < 0 || read(fd, buf, 0) < 0)
 	{
-		//printf("coucou\n");
 		magic_malloc(FREE, 0, buf);
-		//free(buf);
 		return (NULL);
 	}
 	ft_read(fd, buf, &str);

@@ -21,7 +21,7 @@ tandis que dans bash gloups devient bien ls -la
 
 * cat | cat : attend à l'infini, ne sort jamais du prompt sauf si interrompu par signal
 
-* ctrl-c affiche ^C mais il manque le \n derrière (au passage, ctrl-\ doit afficher ^Quit)
+* ctrl-c affiche ^C mais il manque le \n derrière (au passage, ctrl-\ doit afficher ^\Quit\n)
 
 =================================================================
 
