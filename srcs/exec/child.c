@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 16:21:17 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/09 17:52:46 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/10 11:22:50 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,17 @@ char	**ft_convertlist(t_env *envlist)
 		var = var->next;
 	}
 	return (envtab);
+}
+
+int	child_status(int wstatus)
+{
+	int	error;
+
+	if (WIFEXITED(wstatus))
+		error = WEXITSTATUS(wstatus);
+	if (WIFSIGNALED(wstatus))
+	{
+		error = WTERMSIG(wstatus) + 128;
+	}
+	return (error);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmurtin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 18:00:10 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/09 18:00:22 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/10 12:05:58 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,19 +65,6 @@ int	exec_pipeline(t_data *mini)
 	return (error);
 }
 
-int	child_status(int wstatus)
-{
-	int	error;
-
-	if (WIFEXITED(wstatus))
-		error = WEXITSTATUS(wstatus);
-	if (WIFSIGNALED(wstatus))
-	{
-		error = WTERMSIG(wstatus) + 128;
-	}
-	return (error);
-}
-
 t_data	*ft_init_data(t_command *commands, t_env *envlist)
 {
 	t_data	*mini;
@@ -107,20 +94,13 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 	int		wstatus;
 	int		fdinout[2];
 
-	error = 0;
 	if (current_cmd->path == NULL)
-	{
-		write(2, "Command not found\n", 18); /*GESTION ERREUR*/
-		return (127);
-	}
+		return (print_errors(127));
 	if (ft_strncmp(current_cmd->path, "builtin", 8) != 0)
 	{
 		pid = ft_fork(mini, current_cmd);
 		waitpid(pid, &wstatus, 0);
-		if (WIFEXITED(wstatus))
-			error = WEXITSTATUS(wstatus);
-		if (WIFSIGNALED(wstatus))
-			error = WTERMSIG(wstatus);
+		error = child_status(wstatus);
 	}
 	else
 	{
@@ -129,9 +109,10 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 			dup_close_in(mini, current_cmd, fdinout);
 			error = which_builtin(mini, current_cmd->args, envlist);
 		}
+		else
+			error = 1;
 		redir_close(mini, current_cmd, 1);
 	}
-	g_exit_status = error;
 	return (error);
 }
 

@@ -133,6 +133,8 @@ typedef enum e_mode
 # define TOKENS_ERROR 2
 # define MALLOC_ERROR 3
 # define COMMAND_ERROR 127
+# define OPEN_ERROR 4
+# define PIPE_ERROR 5
 
 //Error messages
 
@@ -140,7 +142,9 @@ typedef enum e_mode
 # define TOKENS_ERR_MSSG "error: wrong number of redirections or pipes\n"
 # define HEREDOC_ERR_MSSG "warning: here-document delimited by end-of-file wanted "
 # define MALLOC_ERR_MSSG "error: a malloc error occured\n"
-# define COMMAND_ERR_MSSG "command not found : \n"
+# define COMMAND_ERR_MSSG "command not found\n"
+# define OPEN_ERR_MSSG "cannot open file "
+# define PIPE_ERR_MSSG "cannot open pipe "
 
 /******************************************************************************
  *                               STRUCTURES                                   *

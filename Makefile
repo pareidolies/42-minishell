@@ -20,7 +20,8 @@ SRCS			=	lexer/parse_input.c \
 					exec/ft_heredoc.c \
 					exec/gnl.c \
 					exec/ft_fork.c \
-					exec/redir_and_pipes.c \
+					exec/redir.c \
+					exec/pipes.c \
 					exec/handle_fd.c \
 					exec/exec_utils.c \
 					exec/get_path.c \
