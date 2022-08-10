@@ -14,11 +14,7 @@
 
 /*Defining and initializing global variable*/
 /*only once in the program*/
-int g_exit_status = 0; 
-
-/*test affichage du prompt et recup de la ligne*/
-/*pour l'instant, le prog quitte si on tape "aurevoir" */
-/*PAS ENCORE DE NETTOYAGE COMPLET DONC LEAKS*/
+int g_exit_status = 0;
 
 char	*get_prompt(void)
 {
@@ -33,18 +29,15 @@ char	*get_prompt(void)
 
 int main(int argc, char **argv, char **envp)
 {
-	char	*result;
-	t_env	*envlist;
-	int		flag;
-	t_command *commands;
-	char	*prompt;
+	char		*result;
+	t_env		*envlist;
+	int			flag;
+	t_command	*commands;
+	char		*prompt;
 
 	flag = 0;
 	if (argc != 1 || argv[1] != NULL)
 		return(1);
-	
-	/*Une seule fois, on crée la liste d'env en dupliquant envp*/
-	/*liste peut être modifiée une ou + fois par ligne de cmd*/
 	envlist = ft_list_env(envp);
 	say_hello();
 	while (flag != 1) 
@@ -54,14 +47,13 @@ int main(int argc, char **argv, char **envp)
 		result = readline(prompt);
 		if (!result)
 		{
-			ft_putstr_fd_color("\b exit", 2, ANSI_COLOR_LIGHT_YELLOW);
+			ft_putstr_fd_color("\b exit\n", 2, ANSI_COLOR_LIGHT_YELLOW);
 			clear_history();
 			magic_malloc(EXIT_SUCCESS, 0, NULL);
 		}
 		else
 		{
-			//printf("User said : [%s]\n", result);
-			if (ft_strncmp(result, "exit", 5) == 0) //dans ce cas il reste 5 file descriptors ouverts
+			if (ft_strncmp(result, "exit", 5) == 0)
 				flag = 1;
 			add_history(result);
 			commands = parse_input(result, envlist);

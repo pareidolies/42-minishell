@@ -20,16 +20,22 @@ t_command	*parse_input(char *str, t_env *envlist)
 	if (!str[0])
 		return (NULL);
 	if (check_quotes(str))
+	{
+		g_exit_status = 2;
 		return (NULL);
+	}
 	tokens = convert_input_to_tokens(str);
 	if (analyze_tokens_type(tokens))
 		return (NULL);
 	if (check_tokens(tokens))
+	{
+		free_tokens(tokens);
+		g_exit_status = 2;
 		return (NULL);
+	}
 	analyze_literals_type(tokens);
 	expander(tokens, envlist);
 	commands = convert_tokens_to_commands(tokens, envlist);
 	free_tokens(tokens);
-	//print_command(commands);
 	return (commands);
 }

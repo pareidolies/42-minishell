@@ -139,9 +139,9 @@ typedef enum e_mode
 
 //Errors
 
-# define QUOTES_ERROR 1
-# define TOKENS_ERROR 2
-# define MALLOC_ERROR 3
+# define MALLOC_ERROR 1
+# define QUOTES_ERROR 2
+# define TOKENS_ERROR 3
 # define COMMAND_ERROR 127
 # define OPEN_ERROR 4
 # define PIPE_ERROR 5
