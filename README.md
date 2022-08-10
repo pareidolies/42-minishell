@@ -19,15 +19,12 @@ tandis que dans bash gloups devient bien ls -la
 
 * gestion code erreur
 
-* cat | cat : attend à l'infini, ne sort jamais du prompt sauf si interrompu par signal
-
 * ctrl-c affiche ^C mais il manque le \n derrière (au passage, ctrl-\ doit afficher ^\Quit\n)
-
-* les erreurs de syntaxe (exemple, wrong number of redirections or pipes) renvoient un code d'erreur 0 au lieu de 2
 
 * norme de minishell.h : lignes trop longues pour le dessin au demarrage du programme
 
 =================================================================
+* OK :les erreurs de syntaxe (exemple, wrong number of redirections or pipes) renvoient un code d'erreur 0 au lieu de 2
 
 * OK : quand on écrit exit dans le prompt, le programme quitte mais il reste 5 fd ouverts au lieu de 3
 

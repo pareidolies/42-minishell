@@ -144,25 +144,3 @@ int	ft_tempfile(char *str, int fd, int fdtmp)
 	magic_malloc(FREE, 0, limiter);
 	return (0);
 }
-
-int	clean_tmpfiles(t_command *commands)
-{
-	t_command		*cmd;
-	t_redirection	*redir;
-
-	cmd = commands;
-	while (cmd != NULL)
-	{
-		redir = cmd->redirection;
-		while (redir != NULL)
-		{
-			if (redir->mode == DELIMITER)
-			{
-				open_heretmp(cmd, 2);
-			}
-			redir = redir->next;
-		}
-		cmd = cmd->next;
-	}
-	return (0);
-}

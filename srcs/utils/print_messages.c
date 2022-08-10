@@ -65,7 +65,6 @@ int	print_errors_3(int error, char *str)
 	{
 		ft_putstr_fd_color(HD_ERR_MSG, 2, ANSI_COLOR_YELLOW);
 		ft_putstr_fd_color(str, 2, ANSI_COLOR_YELLOW);
-		//ft_putstr_fd("\n", 2);
 	}
 	return (error);
 }
