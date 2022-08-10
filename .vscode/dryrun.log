@@ -1,20 +1,116 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/user/Documents/42/42-minishell'
 [ ! -d objs ] && mkdir -p  objs || true
+ 
 [ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
 [ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
 [ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
 [ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
-cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/exec/testmain.c -o objs/exec/testmain.o
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/exec/signals.c -o objs/exec/signals.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+ 
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/utils/say_hello.c -o objs/utils/say_hello.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/builtin/builtin_utils.c -o objs/builtin/builtin_utils.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/builtin/ft_cd.c -o objs/builtin/ft_cd.o
+[ ! -d objs ] && mkdir -p  objs || true
+ 
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/builtin/ft_echo.c -o objs/builtin/ft_echo.o
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+ 
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/builtin/ft_env.c -o objs/builtin/ft_env.o
  
 [ ! -d objs ] && mkdir -p  objs || true
 [ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
 [ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
 [ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
 [ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
-cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/exec/signals.c -o objs/exec/signals.o
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/builtin/ft_export.c -o objs/builtin/ft_export.o
+ 
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/builtin/ft_pwd.c -o objs/builtin/ft_pwd.o
+ 
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/builtin/ft_unset.c -o objs/builtin/ft_unset.o
+ 
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/builtin/ft_exit.c -o objs/builtin/ft_exit.o
+ 
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/utils/print_messages.c -o objs/utils/print_messages.o
+ 
+[ ! -d objs ] && mkdir -p  objs || true
+[ ! -d objs/exec/ ] && mkdir -p  objs/exec/ || true
+[ ! -d objs/parser/ ] && mkdir -p  objs/parser/ || true
+ 
+[ ! -d objs/builtin/ ] && mkdir -p  objs/builtin/ || true
+[ ! -d objs/utils/ ] && mkdir -p  objs/utils/ || true
+ 
+[ ! -d objs/lexer/ ] && mkdir -p  objs/lexer/ || true
+[ ! -d objs/expander/ ] && mkdir -p  objs/expander/ || true
+ 
+cc -Wall -Wextra -Werror -g -c -I ./includes -I ./libft srcs/utils/magic_malloc.c -o objs/utils/magic_malloc.o
 echo "Created object files."
-cc -Wall -Wextra -Werror -g objs/parser/parse_input.o objs/parser/tokens_handler.o objs/parser/convert_input_to_tokens.o objs/parser/expander.o objs/parser/trimmer.o objs/parser/convert_tokens_to_commands.o objs/parser/commands_handler.o objs/parser/check_tokens.o objs/parser/free_parser.o objs/parser/splitter.o objs/parser/check_quotes.o objs/parser/redirections_handler.o objs/exec/testmain.o objs/exec/ft_exec.o objs/exec/ft_heredoc.o objs/exec/gnl.o objs/exec/ft_fork.o objs/exec/redir_and_pipes.o objs/exec/handle_fd.o objs/exec/exec_utils.o objs/exec/get_path.o objs/exec/child.o objs/exec/error.o objs/exec/say_hello.o objs/exec/signals.o objs/builtin/builtin_utils.o objs/builtin/ft_cd.o objs/builtin/ft_echo.o objs/builtin/ft_env.o objs/builtin/ft_export.o objs/builtin/ft_pwd.o objs/builtin/ft_unset.o objs/builtin/ft_exit.o objs/utils/print_messages.o objs/utils/magic_malloc.o -o minishell -L./libft -lft -lreadline
+cc -Wall -Wextra -Werror -g objs/lexer/parse_input.o objs/lexer/tokens_handler.o objs/parser/trimmer.o objs/parser/convert_tokens_to_commands.o objs/parser/commands_handler.o objs/lexer/check_tokens.o objs/parser/free_parser.o objs/parser/splitter.o objs/lexer/check_quotes.o objs/parser/redirections_handler.o objs/lexer/analyze_tokens.o objs/lexer/tokens_utils.o objs/parser/quotes_utils.o objs/expander/expander.o objs/expander/expander_utils.o objs/lexer/convert_input_to_tokens.o objs/exec/env_utils.o objs/exec/testmain.o objs/exec/ft_exec.o objs/exec/ft_heredoc.o objs/exec/gnl.o objs/exec/ft_fork.o objs/exec/redir.o objs/exec/pipes.o objs/exec/handle_fd.o objs/exec/exec_utils.o objs/exec/get_path.o objs/exec/child.o objs/exec/signals.o objs/utils/say_hello.o objs/builtin/builtin_utils.o objs/builtin/ft_cd.o objs/builtin/ft_echo.o objs/builtin/ft_env.o objs/builtin/ft_export.o objs/builtin/ft_pwd.o objs/builtin/ft_unset.o objs/builtin/ft_exit.o objs/utils/print_messages.o objs/utils/magic_malloc.o -o minishell -L./libft -lft -lreadline
 echo "Minishell is ready!"
 make: Leaving directory `/Users/user/Documents/42/42-minishell'
  

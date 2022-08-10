@@ -24,7 +24,7 @@ int	set_signals_as_prompt(void)
 int	set_signals_as_child(void)
 {
 	signal(SIGINT, signal_handler_as_child);
-	signal(SIGQUIT, SIG_IGN);
+	signal(SIGQUIT, signal_handler_as_child);
 	return (1);
 }
 
@@ -34,6 +34,8 @@ int	set_signals_as_heredoc(void)
 	signal(SIGQUIT, SIG_IGN);
 	return (1);
 }
+
+//SIGTERM ?
 
 int	set_signals_as_parent(void)
 {
@@ -69,7 +71,12 @@ void	signal_handler_as_child(int signum)
 {
 	if (signum == SIGINT)
 	{
-		g_exit_status = 1;
-		magic_malloc(1, 0, NULL);
+		g_exit_status = 130;
+		magic_malloc(130, 0, NULL);
+	}
+	if (signum == SIGQUIT)
+	{
+		g_exit_status = 131;	
+		magic_malloc(131, 0, NULL);
 	}
 }
