@@ -20,10 +20,7 @@ static	int	ft_taillemot2(char *str, char c)
 	while (str[i])
 	{
 		if (str[i] == c && !is_in_quote(str, i))
-		{
-			printf("%c : %d\n", str[i], is_in_quote(str, i));
 			break ;
-		}
 		i++;
 	}
 	return (i);
@@ -46,7 +43,6 @@ static	int	ft_nbrmots2(char *str, char c)
 			mots++;
 		i = i + j;
 	}
-	printf("nbr mts : %d\n", mots);
 	return (mots);
 }
 
