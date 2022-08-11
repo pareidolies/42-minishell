@@ -53,6 +53,7 @@ void	signal_handler_as_prompt(int signum)
 		write(STDIN_FILENO, "\n", 1);
 		rl_replace_line("", 0);
 		rl_on_new_line();
+		rl_redisplay();
 	}
 }
 
@@ -72,11 +73,13 @@ void	signal_handler_as_child(int signum)
 	if (signum == SIGINT)
 	{
 		g_exit_status = 130;
+		write(STDIN_FILENO, "\n", 1);
 		magic_malloc(130, 0, NULL);
 	}
 	if (signum == SIGQUIT)
 	{
-		g_exit_status = 131;	
+		g_exit_status = 131;
+		write(STDIN_FILENO, "\n", 1);
 		magic_malloc(131, 0, NULL);
 	}
 }
