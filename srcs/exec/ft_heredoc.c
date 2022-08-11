@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 18:01:14 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/10 18:24:29 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/11 12:20:43 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,14 @@ int	ft_fork_here(t_data *mini)
 	{
 		set_signals_as_heredoc();
 		error = scan_cmd(mini);
+		printf("error : %d\n", error);
 		close(mini->std_in);
 		close(mini->std_out);
 		magic_malloc(error, 0, NULL);
 	}
 	waitpid(pid, &wstatus, 0);
 	error = child_status(wstatus);
+	printf("error : %d\n", error);
 	return (error);
 }
 
@@ -83,6 +85,7 @@ int	ft_heredoc(t_data *mini, t_command *cmd, t_redirection *redir)
 	}
 	fdgnl = dup2(STDIN_FILENO, 60);
 	error = ft_tempfile(redir->str, fdgnl, fdtmp);
+	printf("error : %d\n", error);
 	close(fdtmp);
 	if (error != 0)
 		return (error);
@@ -121,15 +124,18 @@ int	ft_tempfile(char *str, int fd, int fdtmp)
 	char	*line;
 	char	*limiter;
 
+	line = NULL;
 	limiter = ft_strjoin(str, "\n");
 	magic_malloc(ADD, 0, limiter);
 	while (1)
 	{
 		write(1, "> ", 2);
 		line = get_next_line(fd);
+		printf("line : %s\n", line);
 		if (line == NULL
 			|| (ft_strncmp(line, limiter, ft_strlen(limiter) + 1) == 0))
 		{
+			printf("couocu\n");
 			close(fd);
 			if (g_exit_status == 130)
 				return (130);

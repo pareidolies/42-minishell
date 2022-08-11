@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 18:00:10 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/10 17:29:31 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/11 12:59:23 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	ft_exec(t_command *commands, t_env *envlist)
 {
 	t_data	*mini;
 	int		error;
-
+	
+	g_exit_status = 0;
 	mini = ft_init_data(commands, envlist);
 	error = ft_fork_here(mini);
 	if (error != 0)
@@ -29,6 +30,7 @@ int	ft_exec(t_command *commands, t_env *envlist)
 		close(mini->std_in);
 		close(mini->std_out);
 		clean_tmpfiles(commands);
+		g_exit_status = error;
 		return (error);
 	}
 	if (mini->nb_pid > 1)
@@ -104,6 +106,7 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 		return (print_errors_2(127, current_cmd->args[0]));
 	if (ft_strncmp(current_cmd->path, "builtin", 8) != 0)
 	{
+		printf("cat\n");
 		pid = ft_fork(mini, current_cmd);
 		waitpid(pid, &wstatus, 0);
 		error = child_status(wstatus);
