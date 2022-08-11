@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 16:21:17 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/11 12:44:57 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/11 14:29:33 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,5 @@ int	child_status(int wstatus)
 	{
 		error = WTERMSIG(wstatus) + 128;
 	}
-	printf("error : %d\n", error);
 	return (error);
 }

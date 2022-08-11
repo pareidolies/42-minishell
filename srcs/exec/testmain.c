@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 18:02:12 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/11 13:04:20 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/11 13:42:47 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int main(int argc, char **argv, char **envp)
 			else
 			{
 				set_signals_as_parent();
+				g_exit_status = 0;
 				ft_exec(commands, envlist);
 				free(result);
 				free_commands(commands);

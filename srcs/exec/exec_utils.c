@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 16:31:46 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/09 18:02:51 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/11 14:42:07 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,13 @@ int	clean_tmpfiles(t_command *commands)
 		}
 		cmd = cmd->next;
 	}
+	return (0);
+}
+
+int	clean_exec(t_data *mini)
+{
+	close(mini->std_in);
+	close(mini->std_out);
+	clean_tmpfiles(mini->commands);
 	return (0);
 }

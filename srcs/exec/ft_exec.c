@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 18:00:10 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/11 12:59:23 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/11 14:43:19 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,11 @@ int	ft_exec(t_command *commands, t_env *envlist)
 	t_data	*mini;
 	int		error;
 	
-	g_exit_status = 0;
 	mini = ft_init_data(commands, envlist);
 	error = ft_fork_here(mini);
 	if (error != 0)
 	{
-		close(mini->std_in);
-		close(mini->std_out);
-		clean_tmpfiles(commands);
+		clean_exec(mini);
 		g_exit_status = error;
 		return (error);
 	}
@@ -40,10 +37,12 @@ int	ft_exec(t_command *commands, t_env *envlist)
 		mini->pipes = NULL;
 		mini->pid = NULL;
 		g_exit_status = exec_no_pipeline(mini, mini->commands, mini->envlist);
+		if (g_exit_status == 130)
+		ft_putstr_fd("\n", 2);
+		if (g_exit_status == 131)
+		ft_putstr_fd("Quit\n", 2);
 	}
-	close(mini->std_in);
-	close(mini->std_out);
-	clean_tmpfiles(commands);
+	clean_exec(mini);
 	return (0);
 }
 
@@ -55,12 +54,12 @@ int	exec_pipeline(t_data *mini)
 	int		error;
 	int		tmp;
 
-	i = 0;
+	i = -1;
 	error = -1;
 	mini->pipes = open_pipes(mini);
 	mini->pid = multi_fork(mini);
 	ft_close_all(mini->pipes, mini->nb_fd_pipes);
-	while (i < mini->nb_pid)
+	while (++i < mini->nb_pid)
 	{
 		wpid = wait(&wstatus);
 		tmp = child_status(wstatus);
@@ -68,8 +67,11 @@ int	exec_pipeline(t_data *mini)
 			error = tmp;
 		if ((tmp == 130 || tmp == 131) && error == -1)
 			error = tmp;
-		i++;
 	}
+	if (error == 130)
+		ft_putstr_fd("\n", 2);
+	if (error == 131)
+		ft_putstr_fd("Quit\n", 2);
 	return (error);
 }
 
@@ -106,7 +108,6 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 		return (print_errors_2(127, current_cmd->args[0]));
 	if (ft_strncmp(current_cmd->path, "builtin", 8) != 0)
 	{
-		printf("cat\n");
 		pid = ft_fork(mini, current_cmd);
 		waitpid(pid, &wstatus, 0);
 		error = child_status(wstatus);

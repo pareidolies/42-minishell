@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 18:03:45 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/10 18:20:58 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/11 14:44:02 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,6 +308,7 @@ t_env			*ft_new_var(char *keyvalue);
 void			ft_lstaddback(t_env **alst, t_env *new);
 void			ft_clean_list(t_env	*envlist);
 void			ft_free_tab(char **tab);
+int				clean_exec(t_data *mini);
 
 //builtins
 char			*ft_getenv(char *key, t_env *envlist);
