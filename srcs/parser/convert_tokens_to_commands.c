@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 12:15:58 by smostefa          #+#    #+#             */
-/*   Updated: 2022/08/11 18:04:10 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/11 18:18:32 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	is_builtin(char *str)
 {
-	printf("str = [%s]\n", str);
 	if (!str)
 		return (0);
 	if (str[0] == '\0')

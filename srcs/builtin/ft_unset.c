@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 12:04:51 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/09 12:14:57 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/11 19:46:08 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	ft_unset(char **params, t_env *envlist)
 	t_env	*var;
 
 	i = 1;
-	error = 0;
-	if (export_checks(params) != 0)
-		return (export_checks(params));
+	error = export_checks(params);
+	if (error != 0)
+		return (error);
 	while (params[i] != NULL)
 	{
 		if (valid_identifier(params[i]) != 0)

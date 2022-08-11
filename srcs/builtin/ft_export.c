@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 22:08:49 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/09 12:14:36 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/11 19:47:22 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ int	export_checks(char **params)
 {
 	if (nb_param(params) < 2)
 	{
-		write(2, "export : Too few arguments\n", 27);
+		write(2, "export/unset : Too few arguments\n", 33);
 		return (1);
 	}
 	if (params[1][0] == '-')
 	{
-		write(2, "export : Invalid option\n", 24);
+		write(2, "export/unset : Invalid option\n", 30);
 		return (2);
 	}
 	return (0);
