@@ -26,7 +26,10 @@ t_command	*parse_input(char *str, t_env *envlist)
 	}
 	tokens = convert_input_to_tokens(str);
 	if (analyze_tokens_type(tokens))
+	{
+		free_tokens(tokens);
 		return (NULL);
+	}
 	if (check_tokens(tokens))
 	{
 		free_tokens(tokens);
