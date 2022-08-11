@@ -6,12 +6,15 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 16:21:17 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/11 14:29:33 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/11 15:37:41 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <unistd.h>
+
+int	child_builtin(t_data *mini, t_command *cmd);
+int	is_a_dir(char *path);
 
 int	ft_child(t_data *mini, t_command *cmd, t_env *envlist)
 {
@@ -27,18 +30,43 @@ int	ft_child(t_data *mini, t_command *cmd, t_env *envlist)
 		redir_close(mini, cmd, 0);
 		return (print_errors_2(127, cmd->args[0]));
 	}
+	if (is_a_dir(cmd->path) == 0)
+		return(print_errors_3(126, cmd->path));
 	if (ft_strncmp(cmd->path, "builtin", 8) == 0)
 	{
-		error = which_builtin(mini, cmd->args, envlist);
-		redir_close(mini, cmd, 1);
-		close(mini->std_in);
-		close(mini->std_out);
+		error = child_builtin(mini, cmd);
 		return (error);
 	}
 	envtab = ft_convertlist(envlist);
 	if (execve(cmd->path, cmd->args, envtab) == -1)
 		redir_close(mini, cmd, 0);
-	return (perror("execve \n"), 126);
+	return (perror("execve"), 126);
+}
+
+int	is_a_dir(char *path)
+{
+	int	i;
+
+	i = 0;
+	while (path[i + 1] != '\0')
+	{
+		i++;
+	}
+	if (path[i] == '/' || (path[i] == '.' && i != 0))
+		return (0);
+	else
+		return (1);
+}
+
+int	child_builtin(t_data *mini, t_command *cmd)
+{
+	int	error;
+
+	error = which_builtin(mini, cmd->args, mini->envlist);
+	redir_close(mini, cmd, 1);
+	close(mini->std_in);
+	close(mini->std_out);
+	return (error);
 }
 
 int	ft_env_size(t_env *envlist)
