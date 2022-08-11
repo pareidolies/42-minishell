@@ -45,6 +45,8 @@ int	check_tokens(t_token *list)
 	t_token	*current;
 
 	current = list;
+	if (current->type == T_PIPE)
+		return (print_errors(TOKENS_ERROR));
 	while (current)
 	{
 		if (check_tokens_type1(current))
