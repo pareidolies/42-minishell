@@ -39,6 +39,7 @@ int main(int argc, char **argv, char **envp)
 	if (argc != 1 || argv[1] != NULL)
 		return(1);
 	envlist = ft_list_env(envp);
+	printf("  \" ");
 	say_hello();
 	while (flag != 1) 
 	{
