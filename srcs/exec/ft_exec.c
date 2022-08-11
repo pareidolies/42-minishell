@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 18:00:10 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/11 14:43:19 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/11 17:43:17 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,11 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 	int		fdinout[2];
 
 	if (current_cmd->path == NULL)
+	{
+		if (current_cmd->full_cmd[0] == '\0')
+			return (0);
 		return (print_errors_2(127, current_cmd->args[0]));
+	}
 	if (ft_strncmp(current_cmd->path, "builtin", 8) != 0)
 	{
 		pid = ft_fork(mini, current_cmd);

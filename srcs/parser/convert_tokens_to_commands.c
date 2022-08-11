@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_tokens_to_commands.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 12:15:58 by smostefa          #+#    #+#             */
-/*   Updated: 2022/08/04 13:13:02 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/08/11 18:04:10 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 int	is_builtin(char *str)
 {
+	printf("str = [%s]\n", str);
 	if (!str)
 		return (0);
+	if (str[0] == '\0')
+		return (2);
 	if (!ft_strncmp(str, "echo", ft_strlen(str)))
 		return (1);
 	if (!ft_strncmp(str, "cd", ft_strlen(str)))
@@ -98,9 +101,9 @@ void	fill_command(t_token *list, t_command *cell, t_env *envlist)
 	current = list;
 	add_full_cmd_and_redir(current, node);
 	add_args(node);
-	if (!node->args[0])
+	if (!node->args[0] || is_builtin(node->args[0]) == 2)
 		node->path = NULL;
-	else if (is_builtin(node->args[0]))
+	else if (is_builtin(node->args[0]) == 1)
 	{
 		node->path = ft_strdup("builtin");
 		magic_malloc(ADD, 0, node->path);
