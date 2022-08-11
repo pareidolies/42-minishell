@@ -43,7 +43,6 @@ static	int	ft_nbrmots2(char *str, char c)
 			mots++;
 		i = i + j;
 	}
-	printf("mots : %d\n", mots);
 	return (mots);
 }
 
