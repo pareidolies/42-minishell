@@ -17,12 +17,10 @@ int	get_expansion_start(char *str, char *initial, int pos)
 	int	i;
 
 	i = 0;
-	(void)pos;
 	while (str[i])
 	{
 		if (str[i] == DOLLAR && !is_in_s_quote(initial, pos)
-			&& str[i + 1] && (!is_in_d_quote(initial, pos)
-				|| ft_isalnum(str[i + 1]) || str[i + 1] == '_')
+			&& str[i + 1] && (ft_isalnum(str[i + 1]) || str[i + 1] == '_' || str[i + 1] == '?')
 			&& str[i + 1] != SPACE && str[i + 1] != '=')
 			break ;
 		i++;
