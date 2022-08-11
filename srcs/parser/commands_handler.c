@@ -16,7 +16,6 @@ t_command	*create_command(t_token *list)
 {
 	t_command	*result;
 	t_token		*current;
-	char		*tmp;
 
 	result = magic_malloc(MALLOC, sizeof(t_command), NULL);
 	current = list;
@@ -25,14 +24,9 @@ t_command	*create_command(t_token *list)
 	current->type = T_CMD;
 	result->prev = NULL;
 	result->next = NULL;
-	tmp = ft_strdup(current->expanded_token);
-	magic_malloc(ADD, 0, tmp);
-	result->cmd = withdraw_quotes(tmp);
+	result->cmd = ft_strdup(current->expanded_token);
 	magic_malloc(ADD, 0, result->cmd);
 	magic_malloc(FREE, 0, current->expanded_token);
-	magic_malloc(FREE, 0, tmp);
-	if (!(result->cmd))
-		return (NULL);
 	result->redirection = NULL;
 	result->path = NULL;
 	result->index = 0;

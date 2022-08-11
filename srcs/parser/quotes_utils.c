@@ -44,10 +44,13 @@ int	is_in_quote(char *str, int pos)
 	i = 0;
 	while (str[i] && i < pos)
 	{
+		printf("caractere: %c\n", str[i]);
 		if (str[i] == S_QUOTE || str[i] == D_QUOTE)
 			result = calculate_result(result, str[i]);
+		printf("result : %d\n", result);
 		i++;
 	}
+	printf("final result : %d\n", result);
 	return (result);
 }
 
