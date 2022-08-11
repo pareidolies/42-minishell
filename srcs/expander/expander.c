@@ -34,7 +34,6 @@ char	*get_expanded_key(char *str, int size, t_env *envlist)
 	key = ft_substr(str, 0, size);
 	magic_malloc(ADD, 0, key);
 	res = ft_getenv(key, envlist);
-	printf("key : %s\n", res);
 	magic_malloc(FREE, 0, key);
 	return (res);
 }

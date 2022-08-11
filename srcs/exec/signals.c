@@ -19,6 +19,8 @@ int	set_signals_as_prompt(void)
 	// ft_putstr_fd("coucou prompt\n", 2);
 	signal(SIGINT, signal_handler_as_prompt);
 	signal(SIGQUIT, SIG_IGN);
+	signal(SIGSEGV, SIG_IGN);
+	signal(SIGTSTP, SIG_IGN);
 	return (1);
 }
 

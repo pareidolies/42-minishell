@@ -14,6 +14,8 @@
 
 int	is_builtin(char *str)
 {
+	if (!str)
+		return (0);
 	if (!ft_strncmp(str, "echo", ft_strlen(str)))
 		return (1);
 	if (!ft_strncmp(str, "cd", ft_strlen(str)))
