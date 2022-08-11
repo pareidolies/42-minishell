@@ -151,7 +151,7 @@ typedef enum e_mode
 //Error messages
 
 # define QUOTES_ERR_MSSG "error: wrong number of quotes\n"
-# define TOKENS_ERR_MSSG "error: wrong number of redirections or pipes\n"
+# define TOKENS_ERR_MSSG "error: wrong number or position of redirections or pipes\n"
 # define HD_ERR_MSG "warning: here-document delimited by end-of-file, wanted "
 # define MALLOC_ERR_MSSG "error: a malloc error occured\n"
 # define COMMAND_ERR_MSSG "command not found: "
