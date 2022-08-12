@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-extern int g_exit_status;
+extern int	g_exit_status;
 
 t_malloc	*add_one_malloc_element(t_malloc **first, t_malloc *new)
 {
@@ -37,60 +37,11 @@ t_malloc	*add_one_malloc_element(t_malloc **first, t_malloc *new)
 	}
 }
 
-void	ft_free(t_malloc *node)
+void	magic_malloc_case_malloc(size_t size, t_malloc *first, t_malloc *node)
 {
-	if (!node)
-		return ;
-	if (node->addr)
-		free(node->addr);
-	node->addr = NULL;
-	free(node);
-	node = NULL;
-}
-
-void	free_all_and_quit(t_malloc *first, int error)
-{
-	t_malloc	*tmp;
-
-	while (first)
-	{
-		tmp = first;
-		first = first->next;
-		ft_free(tmp);
-	}
-	exit (error);
-}
-
-/* Tres important : si l'element n'a pas ete malloc,
-current == NULL et donc on sort*/
-
-void	free_one_element(t_malloc **first, void *addr)
-{
-	t_malloc	*current;
-
-	current = *first;
-	while (current && current->addr != addr)
-		current = current->next;
-	if (current == NULL)
-		return ;
-	if (current == (*first))
-	{
-		if (current->next == NULL)
-			return (ft_free(current));
-		else
-		{
-			(*first) = current->next;
-			current->next->prev = NULL;
-		}
-	}
-	else if (current->next)
-	{
-		current->prev->next = current->next;
-		current->next->prev = current->prev;
-	}
-	else if (!current->next)
-		current->prev->next = NULL;
-	ft_free(current);
+	node->addr = malloc(size);
+	if (!node->addr)
+		free_all_and_quit(first, MALLOC_ERROR);
 }
 
 void	*magic_malloc(int choice, size_t size, void *addr)
@@ -102,17 +53,13 @@ void	*magic_malloc(int choice, size_t size, void *addr)
 		free_one_element(&first, addr);
 	else if (choice >= 0 && choice <= 255)
 		free_all_and_quit(first, choice);
-	else if (choice == MALLOC || choice == ADD)
+	else
 	{
 		node = malloc(sizeof(*node));
 		if (!node)
 			free_all_and_quit(first, MALLOC_ERROR);
 		if (choice == MALLOC)
-		{
-			node->addr = malloc(size);
-			if (!node->addr)
-				free_all_and_quit(first, MALLOC_ERROR);
-		}
+			magic_malloc_case_malloc(size, first, node);
 		if (choice == ADD)
 		{
 			if (!addr)

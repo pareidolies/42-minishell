@@ -12,6 +12,19 @@
 
 #include "minishell.h"
 
+t_command	*parse_input2(t_token *tokens, t_env *envlist)
+{
+	t_command	*commands;
+
+	analyze_literals_type(tokens);
+	analyze_export(tokens);
+	expander(tokens, envlist);
+	commands = convert_tokens_to_commands(tokens, envlist);
+	print_command(commands);
+	free_tokens(tokens);
+	return (commands);
+}
+
 t_command	*parse_input(char *str, t_env *envlist)
 {
 	t_token		*tokens;
@@ -36,11 +49,6 @@ t_command	*parse_input(char *str, t_env *envlist)
 		g_exit_status = 2;
 		return (NULL);
 	}
-	analyze_literals_type(tokens);
-	analyze_export(tokens);
-	expander(tokens, envlist);
-	commands = convert_tokens_to_commands(tokens, envlist);
-	print_command(commands);
-	//free_tokens(tokens);
+	commands = parse_input2(tokens, envlist);
 	return (commands);
 }

@@ -66,25 +66,22 @@ typedef enum e_mode
 
 //Ascii Art
 
-# define L10 "▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫\n"
-# define L0 "▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪\n"
-# define L1 "           _.---._                                     _          _ _      \n"  
-# define L2 "       .\'\"\".'/|\\`.\"\"\'.         _ __ ___  _ _ __  _ ___| |__   ___| | |     \n" 
-# define L3 "      :  .' / | \\ `.  :	      | '_ ` _ \\| | '_ \\| / __| '_ \\ / _ \\ | |	   \n"  
-# define L4 "      '.'  /  |  \\  `.'       | | | | | | | | | | \\__ \\ | | |  __/ | |     \n"  
-# define L5 "       `. /   |   \\ .'        |_| |_| |_|_|_| |_|_|___/_| |_|\\___|_|_|     \n" 
-# define L6 "         `-.__|__.-'                                                       \n\n" 
+# define L1 "           _.---._                                   \
+  _          _ _      \n"  
+# define L2 "       .\'\"\".'/|\\`.\"\"\'.         _ __ ___  _ _ __ \
+ _ ___| |__   ___| | |     \n" 
+# define L3 "      :  .' / | \\ `.  :	      | '_ ` _ \\| | '_ \\| /\
+ __| '_ \\ / _ \\ | |	   \n"  
+# define L4 "      '.'  /  |  \\  `.'       | | | | | | | | | | \\__ \
+\\ | | |  __/ | |     \n"  
+# define L5 "       `. /   |   \\ .'        |_| |_| |_|_|_| |_|_|___/\
+_| |_|\\___|_|_|     \n" 
+# define L6 "         `-.__|__.-'                                      \
+                 \n\n" 
 # define L7 "					     	  		 Welcome   ° .	\n"
 # define L8 "             				   				   ° <><    \n"
-# define L9 "▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪\n\n"
-# define L19 "▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫\n"
-# define L20 ".....................................................................................\n"
-# define L21 "--------------------------------------------------------------------------------------\n"
-# define L22 "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n"
-# define L23 "**************************************************************************************\n"
-# define L24 "______________________________________________________________________________________\n\n"  
-# define L44 "   	°  o   ◯  .			\n\n"  
-# define L45 "     				° O   .			\n\n"  
+# define L24 "________________________________________________________________\
+______________________\n\n"  
 
 //Colors
 
@@ -153,7 +150,8 @@ typedef enum e_mode
 //Error messages
 
 # define QUOTES_ERR_MSSG "error: wrong number of quotes\n"
-# define TOKENS_ERR_MSSG "error: wrong number or position of redirections or pipes\n"
+# define TOKENS_ERR_MSSG "error: wrong number or position of \
+redirections or pipes\n"
 # define HD_ERR_MSG "warning: here-document delimited by end-of-file, wanted "
 # define MALLOC_ERR_MSSG "error: a malloc error occured\n"
 # define EX_ERR_MSSG "permission denied: "
@@ -271,6 +269,7 @@ t_command		*convert_tokens_to_commands(t_token *list, t_env *envlist);
 void			print_command(t_command *node);
 void			add_command(t_token *list, t_command *first);
 t_command		*create_command(t_token *list);
+int				is_builtin(char *str);
 
 //check_tokens.c
 int				check_tokens(t_token *list);
@@ -303,6 +302,9 @@ void			free_commands(t_command *list);
 
 //magic_malloc.c
 void			*magic_malloc(int choice, size_t size, void *addr);
+void			ft_free(t_malloc *node);
+void			free_all_and_quit(t_malloc *first, int error);
+void			free_one_element(t_malloc **first, void *addr);
 
 //split_parser.c
 int				is_in_quote(char *str, int pos);
