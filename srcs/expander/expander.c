@@ -73,6 +73,28 @@ char	*create_expanded_token(char *str, t_env *envlist)
 	return (tmp);
 }
 
+int		is_export_expand(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] != SPACE)
+	{
+		if (str[i] == '=')
+		{
+			i++;
+			while (str[i] && str[i] != SPACE)
+			{
+				if (str[i] == DOLLAR)
+					return (1);
+				i++;
+			}
+		}
+		i++;
+	}
+	return (0);
+}
+
 void	expander(t_token *list, t_env *envlist)
 {
 	t_token	*current;
@@ -80,8 +102,16 @@ void	expander(t_token *list, t_env *envlist)
 	current = list;
 	while (current != NULL)
 	{
-		current->expanded_token = create_expanded_token(current->token, \
+		if (current->type == T_EXPORT && is_export_expand(current->token))
+		{
+			current->expanded_token = ft_strdup(current->token);
+			magic_malloc(ADD, 0, current->expanded_token);
+		}
+		else
+		{
+			current->expanded_token = create_expanded_token(current->token, \
 		envlist);
+		}
 		current = current->next;
 	}
 }

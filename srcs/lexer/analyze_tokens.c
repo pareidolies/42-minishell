@@ -58,3 +58,22 @@ void	analyze_literals_type(t_token *list)
 		current = current->next;
 	}
 }
+
+void	analyze_export(t_token *list)
+{
+	t_token	*current;
+	int		export;
+
+	export = 0;
+	current = list;
+	while (current != NULL)
+	{
+		if (ft_strncmp(current->token, "export", 7) == 0)
+			export = 1;
+		else if (export == 1 && current->type == T_LITERAL)
+			current->type = T_EXPORT;
+		else if (current->type == T_PIPE)
+			export = 0;
+		current = current->next;
+	}
+}
