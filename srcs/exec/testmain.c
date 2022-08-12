@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 18:02:12 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/11 13:42:47 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 19:24:38 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,13 @@ int main(int argc, char **argv, char **envp)
 			{
 				set_signals_as_parent();
 				g_exit_status = 0;
+				printf("cerise1\n");
 				ft_exec(commands, envlist);
+				printf("cerise2\n");
 				free(result);
-				free_commands(commands);
+				printf("cerise3\n");
+				//free_commands(commands);
+				printf("cerise4\n");
 			}
 		}
 		ft_update_status(envlist);

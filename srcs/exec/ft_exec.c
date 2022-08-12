@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 18:00:10 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/12 17:40:58 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 19:14:09 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ int	ft_exec(t_command *commands, t_env *envlist)
 	
 	mini = ft_init_data(commands, envlist);
 	error = ft_fork_here(mini);
+	printf("banane1\n");
 	if (error != 0)
 	{
 		clean_exec(mini);
 		g_exit_status = error;
 		return (error);
 	}
+	printf("banane2\n");
 	if (mini->nb_pid > 1)
 		g_exit_status = exec_pipeline(mini);
 	else
@@ -42,7 +44,9 @@ int	ft_exec(t_command *commands, t_env *envlist)
 		if (g_exit_status == 131)
 		ft_putstr_fd("Quit\n", 2);
 	}
+	printf("banane3\n");
 	clean_exec(mini);
+	printf("banane4\n");
 	return (0);
 }
 
@@ -99,12 +103,23 @@ t_data	*ft_init_data(t_command *commands, t_env *envlist)
 
 int	path_error(t_command *cmd)
 {
-	if (cmd->full_cmd[0] == '\0' || cmd->cmd == NULL)
+	if (cmd->cmd == NULL)
+	{
+		printf("pomme1\n");
 		return (0);
+	}
+	if (cmd->full_cmd[0] == '\0')
+	{
+		printf("pomme2\n");
+		return (0);
+	}
+	printf("pomme3\n");
 	if (access(cmd->cmd, F_OK) == 0 && access(cmd->cmd, X_OK) != 0)
-	{	
+	{
+		printf("pomme4\n");
 		return (print_errors_3(EX_ERROR, cmd->cmd));
 	}
+	printf("pomme5\n");
 	return (print_errors_2(127, cmd->args[0]));
 }
 
@@ -117,16 +132,19 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 
 	if (current_cmd->path == NULL)
 	{
+		printf("fraise1\n");
 		return (path_error(current_cmd));
 	}
 	if (ft_strncmp(current_cmd->path, "builtin", 8) != 0)
 	{
+		printf("fraise2\n");
 		pid = ft_fork(mini, current_cmd);
 		waitpid(pid, &wstatus, 0);
 		error = child_status(wstatus);
 	}
 	else
 	{
+		printf("fraise3\n");
 		if (redir_open(current_cmd, fdinout) == 0)
 		{
 			dup_close_in(mini, current_cmd, fdinout);

@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 12:15:58 by smostefa          #+#    #+#             */
-/*   Updated: 2022/08/11 18:18:32 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 19:22:11 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,18 @@ void	add_args(t_command *node, t_env *envlist)
 	char	*tmp;
 	int		i;
 
-	node->args = split_parser(node->full_cmd, SPACE);
-	magic_malloc(ADD, 0, node->args);
+	printf("ciao1\n");
+	node->args = split_parser(node->full_cmd, SPACE);///////////
+	if (node != NULL)
+		magic_malloc(ADD, 0, node->args);
+	printf("ciao2\n");
 	i = 0;
 	while (node->args[i])
 	{
+		printf("dans boucle add_args\n");
 		magic_malloc(ADD, 0, node->args[i]);
 		tmp = withdraw_quotes(node->args[i]);
+		printf("piou1\n");
 		magic_malloc(ADD, 0, tmp);
 		magic_malloc(FREE, 0, node->args[i]);
 		node->args[i] = ft_strdup(tmp);
@@ -79,6 +84,7 @@ void	add_args(t_command *node, t_env *envlist)
 		i++;
 	}
 	add_args2(node, envlist);
+	printf("ciao3\n");
 }
 
 void	fill_command(t_token *list, t_command *cell, t_env *envlist)
@@ -86,24 +92,24 @@ void	fill_command(t_token *list, t_command *cell, t_env *envlist)
 	t_token		*current;
 	t_command	*node;
 
+	printf("bonsoir1\n");
 	node = cell;
+	printf("bonsoir2\n");
 	while (node->next != NULL)
 		node = node->next;
-	if (node->cmd)
+	printf("bonsoir3\n");
+	if (node->cmd != NULL)
 	{
-		node->full_cmd = ft_strdup(node->cmd);
+		node->full_cmd = ft_strdup(node->cmd);////////
 		magic_malloc(ADD, 0, node->full_cmd);
 	}
-	else
-		node->full_cmd = NULL;
+	printf("bonsoir4\n");
 	current = list;
+	printf("bonsoir5\n");
 	add_full_cmd_and_redir(current, node);
-	if (!node->full_cmd)
-	{
-		node->path = NULL;
-		return;
-	}
-	add_args(node, envlist);
+	printf("bonsoir6\n");
+	add_args(node, envlist);//////////////////////////////////
+	printf("bonsoir7\n");
 	if (!node->args[0] || is_builtin(node->args[0]) == 2)
 		node->path = NULL;
 	else if (is_builtin(node->args[0]) == 1)
@@ -113,6 +119,7 @@ void	fill_command(t_token *list, t_command *cell, t_env *envlist)
 	}
 	else
 		node->path = get_command_path(node->args[0], envlist);
+	printf("bonsoir8\n");
 }
 
 t_command	*convert_tokens_to_commands(t_token *list, t_env *envlist)
@@ -120,18 +127,27 @@ t_command	*convert_tokens_to_commands(t_token *list, t_env *envlist)
 	t_command	*result;
 	t_token		*current;
 
+	printf("salut1\n");
 	current = list;
+	printf("salut2\n");
 	result = create_command(current);
-	fill_command(current, result, envlist);
-	while (current->next && current->next->next)
+	printf("salut3\n");
+	fill_command(current, result, envlist);///////
+	printf("salut4\n");
+	while (current->next)
 	{
+		// printf("dans boucle\n");
 		if ((ft_strncmp(current->next->token, STR_PIPE, \
 			ft_strlen(current->next->token)) == 0))
 		{
-			add_command(current->next->next, result);
+			printf("plop1\n");
+			add_command(current->next, result);
+			printf("plop2\n");
 			fill_command(current->next->next, result, envlist);
+			printf("plop3\n");
 		}
 		current = current->next;
 	}
+	printf("salut5\n");
 	return (result);
 }
