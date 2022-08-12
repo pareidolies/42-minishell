@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 18:03:45 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/12 12:45:16 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 22:20:41 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ ______________________\n\n"
 # define FREE 4242
 # define MALLOC 4343
 # define ADD 4444
-# define QUIT 0 //A CHANGER
+# define QUIT 0
 
 //GNL
 
@@ -316,7 +316,7 @@ t_env			*ft_new_var(char *keyvalue);
 void			ft_lstaddback(t_env **alst, t_env *new);
 void			ft_clean_list(t_env	*envlist);
 void			ft_free_tab(char **tab);
-int				clean_exec(t_data *mini);
+int				clean_exec(t_data *mini, char *input);
 
 //builtins
 char			*ft_getenv(char *key, t_env *envlist);
@@ -344,7 +344,7 @@ char			*absolute_relative_path(char *command);
 void			ft_free_tab(char **tab);
 
 //ft_exec.c
-int				ft_exec(t_command *commands, t_env *envlist);
+int				ft_exec(t_command *commands, t_env *envlist, char *input);
 t_data			*ft_init_data(t_command *commands, t_env *envlist);
 int				exec_pipeline(t_data *mini);
 int				exec_no_pipeline(t_data *mini, t_command *cmd, t_env *envlist);

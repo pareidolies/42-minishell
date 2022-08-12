@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 18:00:10 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/12 19:14:09 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 22:17:13 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,19 @@
 
 extern int	g_exit_status;
 
-int	ft_exec(t_command *commands, t_env *envlist)
+int	ft_exec(t_command *commands, t_env *envlist, char *input)
 {
 	t_data	*mini;
 	int		error;
 	
 	mini = ft_init_data(commands, envlist);
 	error = ft_fork_here(mini);
-	printf("banane1\n");
 	if (error != 0)
 	{
-		clean_exec(mini);
+		clean_exec(mini, input);
 		g_exit_status = error;
 		return (error);
 	}
-	printf("banane2\n");
 	if (mini->nb_pid > 1)
 		g_exit_status = exec_pipeline(mini);
 	else
@@ -44,9 +42,7 @@ int	ft_exec(t_command *commands, t_env *envlist)
 		if (g_exit_status == 131)
 		ft_putstr_fd("Quit\n", 2);
 	}
-	printf("banane3\n");
-	clean_exec(mini);
-	printf("banane4\n");
+	clean_exec(mini, input);
 	return (0);
 }
 

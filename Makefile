@@ -93,6 +93,9 @@ sanitize:	${LFT}
 		@${CC} ${CFLAGS} -fsanitize=address -g3 ${INC} ${SOURCESB} -o ${NAMEB} ${LIBFLAGS}
 		@echo " Compiled with address sanitizer."
 
+leaks: 
+		@echo " Launching Minishell with valgrind in full mode."
+		@valgrind --leak-check=full --track-fds=yes --show-leak-kinds=all --suppressions=.ignore_readline ./minishell
 
 clean:		
 		@${RM} ${OBJS}

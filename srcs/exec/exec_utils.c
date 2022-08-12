@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 16:31:46 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/11 14:42:07 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 22:18:55 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,15 @@ int	clean_tmpfiles(t_command *commands)
 	return (0);
 }
 
-int	clean_exec(t_data *mini)
+int	clean_exec(t_data *mini, char *input)
 {
 	close(mini->std_in);
 	close(mini->std_out);
 	clean_tmpfiles(mini->commands);
+	magic_malloc(FREE, 0, mini->pipes);
+	magic_malloc(FREE, 0, mini->pid);
+	free_commands(mini->commands);
+	magic_malloc(FREE, 0, mini);
+	free(input);
 	return (0);
 }
