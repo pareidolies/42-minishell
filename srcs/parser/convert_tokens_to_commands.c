@@ -65,6 +65,7 @@ void	add_args(t_command *node, t_env *envlist)
 	int		i;
 
 	printf("ciao1\n");
+	printf("FULL CMD : %s\n", node->full_cmd);
 	node->args = split_parser(node->full_cmd, SPACE);///////////
 	if (node != NULL)
 		magic_malloc(ADD, 0, node->args);
@@ -108,6 +109,11 @@ void	fill_command(t_token *list, t_command *cell, t_env *envlist)
 	printf("bonsoir5\n");
 	add_full_cmd_and_redir(current, node);
 	printf("bonsoir6\n");
+	if (node->cmd == NULL)
+	{
+		node->path = NULL;
+		return;
+	}
 	add_args(node, envlist);//////////////////////////////////
 	printf("bonsoir7\n");
 	if (!node->args[0] || is_builtin(node->args[0]) == 2)

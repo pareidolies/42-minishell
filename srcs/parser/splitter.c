@@ -12,21 +12,21 @@
 
 #include "minishell.h"
 
-static	int	ft_taillemot2(char *str, char c)
+static	int	ft_taillemot2(const char *str, char c)
 {
 	int	i;
 
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == c && !is_in_quote(str, i))
+		if (str[i] == c && !is_in_quote((char *)str, i))
 			break ;
 		i++;
 	}
 	return (i);
 }
 
-static	int	ft_nbrmots2(char *str, char c)
+static	int	ft_nbrmots2(const char *str, char c)
 {
 	int	i;
 	int	j;
@@ -35,14 +35,17 @@ static	int	ft_nbrmots2(char *str, char c)
 	mots = 0;
 	i = 0;
 	printf("patate\n");
-	while (str[i]) ///////////BOUCLE INFINIE///////////
+	while (i < (int)ft_strlen(str)) ///////////BOUCLE INFINIE///////////
 	{
-		printf("patateboucle1\n");
-		while (str[i] && str[i] == c && !is_in_quote(str, i))
-			str++;
-		printf("patateboucle2\n");
+		//printf("patateboucle1\n");
+		printf("1 : %c\n", str[i]);
+		while (str[i] && str[i] == c && !is_in_quote((char *)str, i))
+			i++;
+		//printf("patateboucle2\n");
+		printf("2 : %c\n", str[i]);
 		j = ft_taillemot2(&str[i], c);
-		printf("patateboucle3\n");
+		//printf("patateboucle3\n");
+		printf("3 : %c\n", str[i]);
 		if (j > 0)
 			mots++;
 		i = i + j;
@@ -51,7 +54,7 @@ static	int	ft_nbrmots2(char *str, char c)
 	return (mots);
 }
 
-static	char	*ft_cpymot2(char *src, int n)
+static	char	*ft_cpymot2(const char *src, int n)
 {
 	char	*dest;
 
@@ -64,7 +67,7 @@ static	char	*ft_cpymot2(char *src, int n)
 	return (dest);
 }
 
-char	**ft_boucle2(int tailletab, char *str, char c, char **res)
+char	**ft_boucle2(int tailletab, const char *str, char c, char **res)
 {
 	int	i;
 	int	j;
@@ -74,7 +77,7 @@ char	**ft_boucle2(int tailletab, char *str, char c, char **res)
 	j = 0;
 	while (++i < tailletab)
 	{
-		while (str[j] && str[j] == c && !is_in_quote(str, j))
+		while (str[j] && str[j] == c && !is_in_quote((char *)str, j))
 			j++;
 		lenmot = ft_taillemot2(&str[j], c);
 		res[i] = ft_cpymot2(&str[j], lenmot);
@@ -93,7 +96,7 @@ char	**ft_boucle2(int tailletab, char *str, char c, char **res)
 	return (res);
 }
 
-char	**split_parser(char *str, char c)
+char	**split_parser(const char *str, char c)
 {
 	char	**res;
 	int		tailletab;

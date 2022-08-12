@@ -30,6 +30,7 @@ t_command	*create_command(t_token *list)
 	}
 	else
 		result->cmd = NULL;
+	result->full_cmd = NULL;
 	result->prev = NULL;
 	result->next = NULL;
 	result->redirection = NULL;

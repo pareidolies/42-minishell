@@ -308,7 +308,7 @@ void			free_one_element(t_malloc **first, void *addr);
 
 //split_parser.c
 int				is_in_quote(char *str, int pos);
-char			**split_parser(char *str, char c);
+char			**split_parser(const char *str, char c);
 
 //exec_utils.c
 t_env			*ft_list_env(char **envp);
