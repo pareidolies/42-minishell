@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:00:41 by smostefa          #+#    #+#             */
-/*   Updated: 2022/08/12 19:03:37 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 22:41:41 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,15 @@ static	int	ft_nbrmots2(const char *str, char c)
 
 	mots = 0;
 	i = 0;
-	printf("patate\n");
 	while (i < (int)ft_strlen(str)) ///////////BOUCLE INFINIE///////////
 	{
-		//printf("patateboucle1\n");
-		printf("1 : %c\n", str[i]);
 		while (str[i] && str[i] == c && !is_in_quote((char *)str, i))
 			i++;
-		//printf("patateboucle2\n");
-		printf("2 : %c\n", str[i]);
 		j = ft_taillemot2(&str[i], c);
-		//printf("patateboucle3\n");
-		printf("3 : %c\n", str[i]);
 		if (j > 0)
 			mots++;
 		i = i + j;
 	}
-	printf("nbre de mots: %d\n", mots);
 	return (mots);
 }
 
@@ -101,20 +93,14 @@ char	**split_parser(const char *str, char c)
 	char	**res;
 	int		tailletab;
 
-	printf("motrandom1\n");
 	if (!str)
 		return (NULL);
-	printf("motrandom2\n");
 	tailletab = ft_nbrmots2(str, c);//////////
-	printf("motrandom3\n");
 	res = malloc((tailletab + 1) * sizeof(char *));
 	if (!(res))
 		return (NULL);
-	printf("motrandom4\n");
 	res = ft_boucle2(tailletab, str, c, res);
-	printf("motrandom5\n");
 	res[tailletab] = 0;
-	printf("motrandom6\n");
 	return (res);
 }
 

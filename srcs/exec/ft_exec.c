@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 18:00:10 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/12 22:17:13 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 22:38:45 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,21 +101,16 @@ int	path_error(t_command *cmd)
 {
 	if (cmd->cmd == NULL)
 	{
-		printf("pomme1\n");
 		return (0);
 	}
 	if (cmd->full_cmd[0] == '\0')
 	{
-		printf("pomme2\n");
 		return (0);
 	}
-	printf("pomme3\n");
 	if (access(cmd->cmd, F_OK) == 0 && access(cmd->cmd, X_OK) != 0)
 	{
-		printf("pomme4\n");
 		return (print_errors_3(EX_ERROR, cmd->cmd));
 	}
-	printf("pomme5\n");
 	return (print_errors_2(127, cmd->args[0]));
 }
 
@@ -128,19 +123,16 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 
 	if (current_cmd->path == NULL)
 	{
-		printf("fraise1\n");
 		return (path_error(current_cmd));
 	}
 	if (ft_strncmp(current_cmd->path, "builtin", 8) != 0)
 	{
-		printf("fraise2\n");
 		pid = ft_fork(mini, current_cmd);
 		waitpid(pid, &wstatus, 0);
 		error = child_status(wstatus);
 	}
 	else
 	{
-		printf("fraise3\n");
 		if (redir_open(current_cmd, fdinout) == 0)
 		{
 			dup_close_in(mini, current_cmd, fdinout);

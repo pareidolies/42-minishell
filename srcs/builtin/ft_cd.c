@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 12:09:12 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/12 21:29:44 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 22:45:44 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	ft_cd(char **params, t_env *envlist)
 	{
 		current = ft_strdup(ft_getenv("PWD", envlist));
 		if (current == NULL)
-		return (perror("cd: "), 1);
+			return (perror("cd: "), 1);
 	}
 	path = cd_find_path(params, envlist);
 	if (access(path, F_OK) == 0)

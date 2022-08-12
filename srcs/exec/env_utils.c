@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 16:31:23 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/12 13:24:41 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 22:46:56 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void init_empty_env(t_env **head);
+void	init_empty_env(t_env **head);
 
 char	*ft_getenv(char *key, t_env *envlist)
 {
@@ -96,7 +96,7 @@ t_env	*ft_list_env(char **envp)
 	return (head);
 }
 
-void init_empty_env(t_env **head)
+void	init_empty_env(t_env **head)
 {
 	t_env	*var;
 	char	*pwd;

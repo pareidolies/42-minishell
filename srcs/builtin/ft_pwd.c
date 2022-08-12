@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:30:48 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/12 10:37:05 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 22:45:55 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_pwd(char **params, t_env *envlist)
 	{
 		path = ft_strdup(ft_getenv("PWD", envlist));
 		if (path == NULL)
-		return (perror("pwd: "), 1);
+			return (perror("pwd: "), 1);
 	}
 	printf("%s\n", path);
 	free(path);
