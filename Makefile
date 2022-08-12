@@ -1,22 +1,22 @@
-SRCS			=	lexer/parse_input.c \
+SRCS			=	main.c \
+					lexer/parse_input.c \
 					lexer/tokens_handler.c \
+					lexer/check_tokens.c \
+					lexer/check_quotes.c \
+					lexer/analyze_tokens.c \
+					lexer/tokens_utils.c \
+					lexer/convert_input_to_tokens.c \
 					parser/trimmer.c \
 					parser/convert_tokens_to_commands.c \
 					parser/commands_handler.c \
 					parser/commands_utils.c \
-					lexer/check_tokens.c \
 					parser/free_parser.c \
 					parser/splitter.c \
-					lexer/check_quotes.c \
 					parser/redirections_handler.c \
-					lexer/analyze_tokens.c \
-					lexer/tokens_utils.c \
 					parser/quotes_utils.c \
 					expander/expander.c \
 					expander/expander_utils.c \
-					lexer/convert_input_to_tokens.c \
 					exec/env_utils.c \
-					exec/testmain.c \
 					exec/ft_exec.c \
 					exec/ft_heredoc.c \
 					exec/gnl.c \
@@ -27,8 +27,7 @@ SRCS			=	lexer/parse_input.c \
 					exec/exec_utils.c \
 					exec/get_path.c \
 					exec/child.c \
-					exec/signals.c \
-					utils/say_hello.c \
+					signals/signals.c \
 					builtin/builtin_utils.c \
 					builtin/ft_cd.c \
 					builtin/ft_echo.c \
@@ -37,6 +36,7 @@ SRCS			=	lexer/parse_input.c \
 					builtin/ft_pwd.c \
 					builtin/ft_unset.c \
 					builtin/ft_exit.c \
+					utils/say_hello.c \
 					utils/print_messages.c \
 					utils/magic_malloc.c \
 					utils/magic_malloc_free.c \
@@ -76,6 +76,7 @@ ${OBJDIR}/%.o : ${SRCDIR}/%.c
 		@[ ! -d ${OBJDIR}/utils/ ] && mkdir -p  ${OBJDIR}/utils/ || true
 		@[ ! -d ${OBJDIR}/lexer/ ] && mkdir -p  ${OBJDIR}/lexer/ || true
 		@[ ! -d ${OBJDIR}/expander/ ] && mkdir -p  ${OBJDIR}/expander/ || true
+		@[ ! -d ${OBJDIR}/signals/ ] && mkdir -p  ${OBJDIR}/signals/ || true
 		@$(CC) $(CFLAGS) -c ${INC} $< -o $@
 
 ${LFT}:
@@ -109,65 +110,3 @@ fclean:		clean
 re:		fclean all
 
 .PHONY: all clean sanitize fclean re bonus
-
-# SRCS			=	parser/main_parser.c \
-# 					parser/tokens_handler.c \
-# 					parser/tokenization.c \
-# 					parser/expander.c \
-# 					parser/trim_tokens.c \
-# 					parser/parser.c \
-# 					parser/commands_handler.c \
-# 					parser/check_tokens.c \
-# 					parser/redirections.c \
-# 					exec/testmain.c \
-# 					exec/exec_utils.c \
-
-# BONUS			= 
-
-# SRCS_DIR		= srcs/
-
-# BONUS_DIR		= srcs_bonus/
-
-# SRCS_PATH	 	= $(SRCS:%=$(SRCS_DIR)%)
-
-# SRCS_B_PATH 	= $(BONUS:%=$(BONUS_DIR)%)
-
-# OBJS		 	= $(SRCS_PATH:%.c=%.o)
-
-# OBJS_BONUS		= $(SRCS_B_PATH:%.c=%.o)
-
-# NAME		 	= minishell
-
-# NAME_BONUS		= minishell
-
-# PATH_LIBFT		= -C libft --no-print-directory
-
-# LIBRARY			= ./libft/libft.a
-
-# INCS			= includes
-
-# RM		 		= rm -f
-
-# CC				= cc -Wall -Wextra -Werror -fsanitize=address
-
-# all:			${NAME}
-
-# $(NAME):		${OBJS}
-# 			$(MAKE) $(PATH_LIBFT)
-# 			$(CC) -I $(INCS) $(SRCS_PATH) $(LIBRARY) -o $(NAME) -lreadline
-
-# clean:
-# 			${RM} ${OBJS} ${OBJS_BONUS}
-# 			$(MAKE) clean $(PATH_LIBFT)
-
-# fclean:			clean
-# 			${RM} ${NAME} ${NAME_BONUS}
-# 			$(MAKE) fclean $(PATH_LIBFT)
-
-# re:			fclean ${NAME}
-
-# bonus:			${OBJS_BONUS}
-# 			$(MAKE) $(PATH_LIBFT)
-# 			$(CC) -I $(INCS) $(SRCS_B_PATH) $(LIBRARY) -o $(NAME_BONUS)
-
-# .PHONY:			all clean fclean re bonus
