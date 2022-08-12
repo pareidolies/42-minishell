@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 12:09:12 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/09 12:10:57 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 10:43:28 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	cd_dir_checks(char *pathname, char *current, t_env *envlist)
 		else
 		{
 			perror("cd: ");
-			error = errno;
+			error = 1;
 		}
 		if (error != 0)
 			return (error);
@@ -76,16 +76,16 @@ int	ft_cd(char **params, t_env *envlist)
 	current = getcwd(NULL, 0);
 	if (current == NULL)
 	{
-		perror("cd (getcwd) ");
-		error = errno;
-		return (error);
+		current = ft_strdup(ft_getenv("PWD", envlist));
+		if (current == NULL)
+		return (perror("cd: "), 1);
 	}
 	path = cd_find_path(params, envlist);
 	if (access(path, F_OK) == 0)
 		error = cd_dir_checks(path, current, envlist);
 	else
 	{
-		write(2, "No such file or directory\n", 26);
+		write(2, "cd: No such file or directory\n", 30);
 		error = 1;
 		free(current);
 	}

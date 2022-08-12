@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 18:00:10 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/11 17:43:17 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 10:36:26 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ int	which_builtin(t_data *mini, char **args, t_env *envlist)
 	else if (ft_strncmp(args[0], "unset", 6) == 0)
 		return (ft_unset(args, envlist));
 	else if (ft_strncmp(args[0], "pwd", 4) == 0)
-		return (ft_pwd(args));
+		return (ft_pwd(args, envlist));
 	else if (ft_strncmp(args[0], "exit", 5) == 0)
 		return (ft_exit(mini, args, envlist));
 	return (0);

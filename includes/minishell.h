@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 18:03:45 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/11 14:44:02 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 10:36:40 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -326,7 +326,7 @@ int				export_checks(char **params);
 char			*export_find_name(char *str);
 int				valid_identifier(char *name);
 int				ft_unset(char **params, t_env *envlist);
-int				ft_pwd(char **params);
+int				ft_pwd(char **params, t_env *envlist);
 int				ft_exit(t_data *mini, char **params, t_env *envlist);
 
 //get_path.c
