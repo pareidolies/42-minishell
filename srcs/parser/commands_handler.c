@@ -19,7 +19,7 @@ t_command	*create_command(t_token *list)
 
 	result = magic_malloc(MALLOC, sizeof(t_command), NULL);
 	current = list;
-	while (current->next && current->type != T_LITERAL && current->type != T_PIPE)
+	while (current && current->type != T_LITERAL && current->type != T_PIPE)
 		current = current->next;
 	if (current->type == T_LITERAL)
 	{
