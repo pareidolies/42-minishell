@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 16:21:17 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/12 12:40:28 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 15:59:43 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ int	ft_child(t_data *mini, t_command *cmd, t_env *envlist)
 	int		error;
 
 	if (redir_open(cmd, fdinout) == 1)
+	{
+		ft_close_all(mini->pipes, mini->nb_fd_pipes);
+		redir_close(mini, cmd, 0);
 		return (1);
+	}
 	dup_close_in(mini, cmd, fdinout);
 	if (cmd->path == NULL)
 	{
@@ -39,9 +43,7 @@ int	ft_child(t_data *mini, t_command *cmd, t_env *envlist)
 	}
 	envtab = ft_convertlist(envlist);
 	if (execve(cmd->path, cmd->args, envtab) == -1)
-	{
 		redir_close(mini, cmd, 0);
-	}
 	return (perror("execve"), 126);
 }
 

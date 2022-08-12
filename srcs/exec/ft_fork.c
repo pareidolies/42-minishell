@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 16:35:37 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/12 12:37:56 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 16:03:41 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,11 @@ pid_t	ft_fork(t_data *mini, t_command *cmd)
 		set_signals_as_child();
 		error = ft_child(mini, cmd, mini->envlist);
 		if (error != 0)
+		{
+			close(mini->std_in);
+			close(mini->std_out);
 			magic_malloc(error, 0, NULL);
+		}
 		else
 			magic_malloc(0, 0, NULL);
 	}
