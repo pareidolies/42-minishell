@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 12:09:12 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/12 10:43:28 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 21:29:44 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,8 @@ char	*cd_find_path(char **params, t_env *envlist)
 		else
 			path = var->value;
 	}
+	else if (params[1][0] == '\0')
+		path = ".";
 	else
 		path = params[1];
 	return (path);
