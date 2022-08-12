@@ -20,6 +20,7 @@ t_command	*parse_input2(t_token *tokens, t_env *envlist)
 	analyze_literals_type(tokens);
 	// printf("hello2\n");
 	analyze_export(tokens);
+	analyze_echo(tokens);
 	// printf("hello3\n");
 	expander(tokens, envlist);
 	// printf("hello4\n");

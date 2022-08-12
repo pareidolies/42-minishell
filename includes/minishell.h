@@ -209,7 +209,6 @@ typedef struct s_token
 	char			*token;
 	char			*expanded_token;
 	t_type			type;
-	int				to_expand;
 	struct s_token	*next;
 	struct s_token	*prev;
 }				t_token;
@@ -295,6 +294,7 @@ int				is_pipe_or_redir_or_quote(char c);
 int				is_d_redir(char *str);
 int				is_s_redir(char c);
 void			analyze_export(t_token *list);
+void			analyze_echo(t_token *list);
 
 //free_tokens.c
 void			free_tokens(t_token *list);
