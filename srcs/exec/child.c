@@ -38,8 +38,12 @@ int	ft_child(t_data *mini, t_command *cmd, t_env *envlist)
 		return (error);
 	}
 	envtab = ft_convertlist(envlist);
+	printf("avant execve\n");
 	if (execve(cmd->path, cmd->args, envtab) == -1)
+	{
+		printf("apres execve\n");
 		redir_close(mini, cmd, 0);
+	}
 	return (perror("execve"), 126);
 }
 

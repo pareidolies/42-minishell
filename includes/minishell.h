@@ -47,6 +47,7 @@ typedef enum e_type
 	T_PIPE,
 	T_AND,
 	T_OR,
+	T_EXPORT,
 }	t_type;
 
 //Redirection modes
@@ -281,6 +282,8 @@ int				is_in_s_quote(char *str, int pos);
 //expander_utils.c
 int				get_expansion_start(char *str, char *initial, int pos);
 int				get_expansion_size(char *str);
+int				is_export_expand(char *str);
+char			*create_expanded_token(char *str, t_env *envlist);
 
 //redirections.c
 void			add_redirection(t_token *list, t_redirection *first);
@@ -290,6 +293,7 @@ t_redirection	*create_redirection(t_token *list);
 int				is_pipe_or_redir_or_quote(char c);
 int				is_d_redir(char *str);
 int				is_s_redir(char c);
+void			analyze_export(t_token *list);
 
 //free_tokens.c
 void			free_tokens(t_token *list);

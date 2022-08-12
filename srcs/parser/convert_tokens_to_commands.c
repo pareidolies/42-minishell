@@ -43,7 +43,7 @@ void	add_full_cmd_and_redir(t_token *current, t_command *node)
 
 	while (current && current->type != T_PIPE)
 	{
-		if (current->type == T_LITERAL)
+		if (current->type == T_LITERAL || current->type == T_EXPORT)
 		{
 			tmp = ft_strjoin(node->full_cmd, STR_SPACE);
 			magic_malloc(ADD, 0, tmp);
@@ -64,9 +64,10 @@ void	add_full_cmd_and_redir(t_token *current, t_command *node)
 	}
 }
 
-void	add_args(t_command *node)
+void	add_args(t_command *node, t_env *envlist)
 {
 	char	*tmp;
+	char	*str;
 	int		i;
 
 	node->args = split_parser(node->full_cmd, SPACE);
@@ -82,6 +83,21 @@ void	add_args(t_command *node)
 		magic_malloc(ADD, 0, node->args[i]);
 		magic_malloc(FREE, 0, tmp);
 		i++;
+	}
+	if (ft_strncmp(node->args[0], "export", 7) == 0)
+	{
+		i = 1;
+		while(node->args[i])
+		{
+			if (is_export_expand(node->args[i]))
+			{
+				str = node->args[i];
+				magic_malloc(FREE, 0, node->args[i]);
+				node->args[i] = create_expanded_token(str, envlist);
+				magic_malloc(FREE, 0, str);
+			}
+			i++;
+		}
 	}
 }
 
@@ -99,7 +115,7 @@ void	fill_command(t_token *list, t_command *cell, t_env *envlist)
 	magic_malloc(ADD, 0, node->full_cmd);
 	current = list;
 	add_full_cmd_and_redir(current, node);
-	add_args(node);
+	add_args(node, envlist);
 	if (!node->args[0] || is_builtin(node->args[0]) == 2)
 		node->path = NULL;
 	else if (is_builtin(node->args[0]) == 1)
