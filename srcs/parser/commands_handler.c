@@ -21,10 +21,10 @@ t_command	*create_command(t_token *list)
 	current = list;
 	while (current->next && current->type != T_LITERAL)
 		current = current->next;
+	result->cmd = ft_strdup(current->expanded_token);
 	current->type = T_CMD;
 	result->prev = NULL;
 	result->next = NULL;
-	result->cmd = ft_strdup(current->expanded_token);
 	magic_malloc(ADD, 0, result->cmd);
 	magic_malloc(FREE, 0, current->expanded_token);
 	result->redirection = NULL;

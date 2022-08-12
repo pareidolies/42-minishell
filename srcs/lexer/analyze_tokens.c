@@ -20,9 +20,9 @@ int	analyze_tokens_type(t_token *list)
 	current = list;
 	if (!current)
 		return (1);
-	len = ft_strlen(current->token);
 	while (current != NULL)
 	{
+		len = ft_strlen(current->token);
 		if (ft_strncmp(current->token, STR_LESS, len) == 0)
 			current->type = T_LESS;
 		else if (ft_strncmp(current->token, STR_D_LESS, len) == 0)
