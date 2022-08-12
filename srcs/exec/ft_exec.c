@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 18:00:10 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/12 10:36:26 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 11:09:33 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,18 @@ t_data	*ft_init_data(t_command *commands, t_env *envlist)
 	return (mini);
 }
 
+int	path_error(t_command *cmd)
+{
+	if (cmd->full_cmd[0] == '\0')
+		return (0);
+	if (access(cmd->cmd, F_OK) == 0 && access(cmd->cmd, X_OK) != 0)
+	{	
+		ft_putstr_fd("Permission denied\n", 2);
+		return (126);
+	}
+	return (print_errors_2(127, cmd->args[0]));
+}
+
 int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 {
 	pid_t	pid;
@@ -106,9 +118,7 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 
 	if (current_cmd->path == NULL)
 	{
-		if (current_cmd->full_cmd[0] == '\0')
-			return (0);
-		return (print_errors_2(127, current_cmd->args[0]));
+		return (path_error(current_cmd));
 	}
 	if (ft_strncmp(current_cmd->path, "builtin", 8) != 0)
 	{
