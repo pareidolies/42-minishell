@@ -41,6 +41,6 @@ t_command	*parse_input(char *str, t_env *envlist)
 	expander(tokens, envlist);
 	commands = convert_tokens_to_commands(tokens, envlist);
 	print_command(commands);
-	free_tokens(tokens);
+	//free_tokens(tokens);
 	return (commands);
 }

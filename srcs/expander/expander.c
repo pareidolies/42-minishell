@@ -73,28 +73,6 @@ char	*create_expanded_token(char *str, t_env *envlist)
 	return (tmp);
 }
 
-int		is_export_expand(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] && str[i] != SPACE)
-	{
-		if (str[i] == '=')
-		{
-			i++;
-			while (str[i] && str[i] != SPACE)
-			{
-				if (str[i] == DOLLAR)
-					return (1);
-				i++;
-			}
-		}
-		i++;
-	}
-	return (0);
-}
-
 void	expander(t_token *list, t_env *envlist)
 {
 	t_token	*current;

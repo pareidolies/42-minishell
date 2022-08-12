@@ -53,3 +53,25 @@ int	get_expansion_size(char *str)
 	}
 	return (i);
 }
+
+int		is_export_expand(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] != SPACE)
+	{
+		if (str[i] == '=')
+		{
+			i++;
+			while (str[i] && str[i] != SPACE)
+			{
+				if (str[i] == DOLLAR)
+					return (1);
+				i++;
+			}
+		}
+		i++;
+	}
+	return (0);
+}

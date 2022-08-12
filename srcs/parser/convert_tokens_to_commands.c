@@ -92,9 +92,9 @@ void	add_args(t_command *node, t_env *envlist)
 			if (is_export_expand(node->args[i]))
 			{
 				str = node->args[i];
-				magic_malloc(FREE, 0, node->args[i]);
+				//magic_malloc(FREE, 0, node->args[i]);
 				node->args[i] = create_expanded_token(str, envlist);
-				magic_malloc(FREE, 0, str);
+				//magic_malloc(FREE, 0, str);
 			}
 			i++;
 		}
