@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 12:09:27 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/11 20:10:31 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 13:08:09 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ int	ft_exit(t_data *mini, char **params, t_env *envlist)
 
 	close(mini->std_in);
 	close(mini->std_out);
-	ft_putstr_fd_color("exit\n", 2, ANSI_COLOR_LIGHT_YELLOW);
+	if (mini->nb_pid == 1)
+		ft_putstr_fd_color("exit\n", 2, ANSI_COLOR_LIGHT_YELLOW);
 	ft_update_status(envlist);
 	if (exit_checks(params) == 1)
 		return (1);
