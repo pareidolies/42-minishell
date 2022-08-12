@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 18:00:10 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/12 12:47:39 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 17:40:58 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ t_data	*ft_init_data(t_command *commands, t_env *envlist)
 
 int	path_error(t_command *cmd)
 {
-	if (cmd->full_cmd[0] == '\0')
+	if (cmd->full_cmd[0] == '\0' || cmd->cmd == NULL)
 		return (0);
 	if (access(cmd->cmd, F_OK) == 0 && access(cmd->cmd, X_OK) != 0)
 	{	
@@ -141,6 +141,8 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 
 int	which_builtin(t_data *mini, char **args, t_env *envlist)
 {
+	if (args == NULL)
+		return (0);
 	if (ft_strncmp(args[0], "cd", 3) == 0)
 		return (ft_cd(args, envlist));
 	else if (ft_strncmp(args[0], "echo", 5) == 0)
