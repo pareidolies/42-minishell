@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 16:21:17 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/11 15:37:41 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 12:40:28 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_child(t_data *mini, t_command *cmd, t_env *envlist)
 	if (cmd->path == NULL)
 	{
 		redir_close(mini, cmd, 0);
-		return (print_errors_2(127, cmd->args[0]));
+		return (path_error(cmd));
 	}
 	if (is_a_dir(cmd->path) == 0)
 		return(print_errors_3(126, cmd->path));
@@ -38,10 +38,8 @@ int	ft_child(t_data *mini, t_command *cmd, t_env *envlist)
 		return (error);
 	}
 	envtab = ft_convertlist(envlist);
-	printf("avant execve\n");
 	if (execve(cmd->path, cmd->args, envtab) == -1)
 	{
-		printf("apres execve\n");
 		redir_close(mini, cmd, 0);
 	}
 	return (perror("execve"), 126);
@@ -82,7 +80,10 @@ int	ft_env_size(t_env *envlist)
 	var = envlist;
 	while (var != NULL)
 	{
-		i++;
+		if (var->value != NULL)
+		{
+			i++;
+		}
 		var = var->next;
 	}
 	return (i);
@@ -102,12 +103,15 @@ char	**ft_convertlist(t_env *envlist)
 	var = envlist;
 	while (var != NULL)
 	{
-		i--;
-		tmp = ft_strjoin(var->key, "=");
-		magic_malloc(ADD, 0, tmp);
-		envtab[i] = ft_strjoin(tmp, var->value);
-		magic_malloc(ADD, 0, envtab[i]);
-		magic_malloc(FREE, 0, tmp);
+		if (var->value != NULL)
+		{
+			i--;
+			tmp = ft_strjoin(var->key, "=");
+			magic_malloc(ADD, 0, tmp);
+			envtab[i] = ft_strjoin(tmp, var->value);
+			magic_malloc(ADD, 0, envtab[i]);
+			magic_malloc(FREE, 0, tmp);
+		}
 		var = var->next;
 	}
 	return (envtab);

@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 18:00:10 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/12 11:09:33 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 12:47:39 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,7 @@ int	path_error(t_command *cmd)
 		return (0);
 	if (access(cmd->cmd, F_OK) == 0 && access(cmd->cmd, X_OK) != 0)
 	{	
-		ft_putstr_fd("Permission denied\n", 2);
-		return (126);
+		return (print_errors_3(EX_ERROR, cmd->cmd));
 	}
 	return (print_errors_2(127, cmd->args[0]));
 }

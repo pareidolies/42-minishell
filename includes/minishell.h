@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 18:03:45 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/12 10:36:40 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 12:45:16 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ typedef enum e_mode
 # define MALLOC_ERROR 1
 # define QUOTES_ERROR 2
 # define TOKENS_ERROR 3
+# define EX_ERROR 1266
 # define COMMAND_ERROR 127
 # define OPEN_ERROR 4
 # define PIPE_ERROR 5
@@ -155,6 +156,7 @@ typedef enum e_mode
 # define TOKENS_ERR_MSSG "error: wrong number or position of redirections or pipes\n"
 # define HD_ERR_MSG "warning: here-document delimited by end-of-file, wanted "
 # define MALLOC_ERR_MSSG "error: a malloc error occured\n"
+# define EX_ERR_MSSG "permission denied: "
 # define COMMAND_ERR_MSSG "command not found: "
 # define OPEN_ERR_MSSG "cannot open file: "
 # define PIPE_ERR_MSSG "cannot open pipe: "
@@ -346,6 +348,7 @@ int				exec_pipeline(t_data *mini);
 int				exec_no_pipeline(t_data *mini, t_command *cmd, t_env *envlist);
 int				child_status(int wstatus);
 int				which_builtin(t_data *mini, char **args, t_env *envlist);
+int				path_error(t_command *cmd);
 
 //ft_fork.c
 pid_t			*multi_fork(t_data *mini);

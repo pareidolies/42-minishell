@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 12:58:07 by smostefa          #+#    #+#             */
-/*   Updated: 2022/08/11 15:17:55 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 12:52:14 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,13 @@ int	print_errors_3(int error, char *str)
 		ft_putstr_fd_color("Is a directory: ", 2, ANSI_COLOR_LIGHT_RED);
 		ft_putstr_fd_color(str, 2, ANSI_COLOR_LIGHT_RED);
 		ft_putstr_fd("\n", 2);
+	}
+	if (error == EX_ERROR)
+	{
+		ft_putstr_fd_color(EX_ERR_MSSG, 2, ANSI_COLOR_LIGHT_RED);
+		ft_putstr_fd_color(str, 2, ANSI_COLOR_LIGHT_RED);
+		ft_putstr_fd("\n", 2);
+		return (126);
 	}
 	return (error);
 }
