@@ -21,7 +21,9 @@ int	get_expansion_start(char *str, char *initial, int pos)
 	{
 		if (str[i] == DOLLAR && !is_in_s_quote(initial, pos)
 			&& str[i + 1]
-			&& (ft_isalnum(str[i + 1]) || str[i + 1] == '_' || str[i + 1] == '?' || str[i + 1] == S_QUOTE || (str[i + 1] == D_QUOTE && !is_in_d_quote(initial, pos)))
+			&& (ft_isalnum(str[i + 1]) || str[i + 1] == '_'
+				|| str[i + 1] == '?' || str[i + 1] == S_QUOTE
+				|| (str[i + 1] == D_QUOTE && !is_in_d_quote(initial, pos)))
 			&& str[i + 1] != SPACE && str[i + 1] != '=')
 			break ;
 		i++;
@@ -54,7 +56,7 @@ int	get_expansion_size(char *str)
 	return (i);
 }
 
-int		is_export_expand(char *str)
+int	is_export_expand(char *str)
 {
 	int	i;
 

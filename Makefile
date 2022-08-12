@@ -3,6 +3,7 @@ SRCS			=	lexer/parse_input.c \
 					parser/trimmer.c \
 					parser/convert_tokens_to_commands.c \
 					parser/commands_handler.c \
+					parser/commands_utils.c \
 					lexer/check_tokens.c \
 					parser/free_parser.c \
 					parser/splitter.c \
@@ -38,6 +39,7 @@ SRCS			=	lexer/parse_input.c \
 					builtin/ft_exit.c \
 					utils/print_messages.c \
 					utils/magic_malloc.c \
+					utils/magic_malloc_free.c \
 
 SRCDIR = srcs
 
