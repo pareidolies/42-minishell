@@ -68,7 +68,7 @@ int main(int argc, char **argv, char **envp)
 				printf("cerise2\n");
 				free(result);
 				printf("cerise3\n");
-				//free_commands(commands);
+				free_commands(commands);
 				printf("cerise4\n");
 			}
 		}
