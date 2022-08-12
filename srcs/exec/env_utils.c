@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 16:31:23 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/09 16:33:40 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/12 13:24:41 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "libft.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+void init_empty_env(t_env **head);
 
 char	*ft_getenv(char *key, t_env *envlist)
 {
@@ -80,7 +82,10 @@ t_env	*ft_list_env(char **envp)
 	magic_malloc(ADD, 0, head->value);
 	head->next = NULL;
 	if (envp == NULL || envp[0] == NULL)
+	{
+		init_empty_env(&head);
 		return (head);
+	}
 	i = 0;
 	while (envp[i] != NULL)
 	{
@@ -89,4 +94,19 @@ t_env	*ft_list_env(char **envp)
 		i++;
 	}
 	return (head);
+}
+
+void init_empty_env(t_env **head)
+{
+	t_env	*var;
+	char	*pwd;
+
+	pwd = getcwd(NULL, 0);
+	var = ft_new_var_split("PWD", pwd);
+	ft_lstaddback(head, var);
+	var = ft_new_var_split("SHLVL", "1");
+	ft_lstaddback(head, var);
+	var = ft_new_var_split("_", "/usr/bin/env");
+	ft_lstaddback(head, var);
+	free(pwd);
 }
