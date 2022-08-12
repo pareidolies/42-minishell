@@ -89,10 +89,20 @@ void	fill_command(t_token *list, t_command *cell, t_env *envlist)
 	node = cell;
 	while (node->next != NULL)
 		node = node->next;
-	node->full_cmd = ft_strdup(node->cmd);
-	magic_malloc(ADD, 0, node->full_cmd);
+	if (node->cmd)
+	{
+		node->full_cmd = ft_strdup(node->cmd);
+		magic_malloc(ADD, 0, node->full_cmd);
+	}
+	else
+		node->full_cmd = NULL;
 	current = list;
 	add_full_cmd_and_redir(current, node);
+	if (!node->full_cmd)
+	{
+		node->path = NULL;
+		return;
+	}
 	add_args(node, envlist);
 	if (!node->args[0] || is_builtin(node->args[0]) == 2)
 		node->path = NULL;
@@ -113,12 +123,12 @@ t_command	*convert_tokens_to_commands(t_token *list, t_env *envlist)
 	current = list;
 	result = create_command(current);
 	fill_command(current, result, envlist);
-	while (current->next)
+	while (current->next && current->next->next)
 	{
 		if ((ft_strncmp(current->next->token, STR_PIPE, \
 			ft_strlen(current->next->token)) == 0))
 		{
-			add_command(current->next, result);
+			add_command(current->next->next, result);
 			fill_command(current->next->next, result, envlist);
 		}
 		current = current->next;

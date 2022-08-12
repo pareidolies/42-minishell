@@ -19,15 +19,21 @@ t_command	*create_command(t_token *list)
 
 	result = magic_malloc(MALLOC, sizeof(t_command), NULL);
 	current = list;
-	while (current->next && current->type != T_LITERAL)
+	while (current->next && current->type != T_LITERAL && current->type != T_PIPE)
 		current = current->next;
-	result->cmd = ft_strdup(current->expanded_token);
-	current->type = T_CMD;
+	if (current->type == T_LITERAL)
+	{
+		result->cmd = ft_strdup(current->expanded_token);
+		current->type = T_CMD;
+		magic_malloc(ADD, 0, result->cmd);
+		magic_malloc(FREE, 0, current->expanded_token);
+	}
+	else
+		result->cmd = NULL;
 	result->prev = NULL;
 	result->next = NULL;
-	magic_malloc(ADD, 0, result->cmd);
-	magic_malloc(FREE, 0, current->expanded_token);
 	result->redirection = NULL;
+	result->args = NULL;
 	result->path = NULL;
 	result->index = 0;
 	return (result);
@@ -68,11 +74,14 @@ void	print_command(t_command *node)
 			current = current->next;
 		}
 		j = 0;
-		printf("--> details of the final arguments :\n");
-		while (node->args[j])
+		if (node->cmd)
 		{
-			printf("--> arg %d : %s\n", j, node->args[j]);
-			j++;
+			printf("--> details of the final arguments :\n");
+			while (node->args[j])
+			{
+				printf("--> arg %d : %s\n", j, node->args[j]);
+				j++;
+			}
 		}
 		printf("path : %s\n", node->path);
 		printf("********\n");

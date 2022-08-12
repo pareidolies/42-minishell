@@ -55,7 +55,7 @@ void	print_tokens(t_token *node)
 		printf("str : %s\n", node->token);
 		printf("len : %d\n", (int)ft_strlen(node->token));
 		printf("type : %i\n", (int)node->type);
-		printf("to expand : %d\n", node->to_expand);
+		//printf("to expand : %d\n", node->to_expand);
 		printf("expanded token: %s\n", node->expanded_token);
 		printf("********\n");
 		node = node->next;

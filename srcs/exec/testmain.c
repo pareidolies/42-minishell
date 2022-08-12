@@ -72,6 +72,7 @@ int main(int argc, char **argv, char **envp)
 	}
 	clear_history();
 	ft_clean_list(envlist);
+	printf("sortie");
 	magic_malloc(QUIT, 0, NULL);
 	return (0);
 }
