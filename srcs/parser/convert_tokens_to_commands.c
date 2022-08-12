@@ -140,14 +140,14 @@ t_command	*convert_tokens_to_commands(t_token *list, t_env *envlist)
 	printf("salut3\n");
 	fill_command(current, result, envlist);///////
 	printf("salut4\n");
-	while (current->next)
+	while (current->next && current->next->next)
 	{
 		// printf("dans boucle\n");
 		if ((ft_strncmp(current->next->token, STR_PIPE, \
 			ft_strlen(current->next->token)) == 0))
 		{
 			printf("plop1\n");
-			add_command(current->next, result);
+			add_command(current->next->next, result);
 			printf("plop2\n");
 			fill_command(current->next->next, result, envlist);
 			printf("plop3\n");
