@@ -6,16 +6,14 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 12:09:27 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/12 13:08:09 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/13 13:43:14 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "limits.h"
 
-extern int	g_exit_status;
-
-int	find_sign(char *str)
+static int	find_sign(char *str)
 {
 	int	sign;
 
@@ -28,7 +26,7 @@ int	find_sign(char *str)
 	return (sign);
 }
 
-long long	ft_atoll(char *str)
+static long long	ft_atoll(char *str)
 {
 	int					i;
 	int					sign;
@@ -55,7 +53,7 @@ long long	ft_atoll(char *str)
 	return (nb);
 }
 
-int	is_full_digits(char *str)
+static int	is_full_digits(char *str)
 {
 	int	i;
 
@@ -71,7 +69,7 @@ int	is_full_digits(char *str)
 	return (1);
 }
 
-int	exit_checks(char **params)
+static int	exit_checks(char **params)
 {
 	if (nb_param(params) == 1)
 		return (0);
