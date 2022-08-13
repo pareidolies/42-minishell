@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 18:00:10 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/12 22:38:45 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/13 11:58:25 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,11 +121,7 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 	int		wstatus;
 	int		fdinout[2];
 
-	if (current_cmd->path == NULL)
-	{
-		return (path_error(current_cmd));
-	}
-	if (ft_strncmp(current_cmd->path, "builtin", 8) != 0)
+	if (current_cmd->path && ft_strncmp(current_cmd->path, "builtin", 8) != 0)
 	{
 		pid = ft_fork(mini, current_cmd);
 		waitpid(pid, &wstatus, 0);
@@ -136,7 +132,10 @@ int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 		if (redir_open(current_cmd, fdinout) == 0)
 		{
 			dup_close_in(mini, current_cmd, fdinout);
-			error = which_builtin(mini, current_cmd->args, envlist);
+			if (current_cmd->path == NULL)
+				error = path_error(current_cmd);
+			else
+				error = which_builtin(mini, current_cmd->args, envlist);
 		}
 		else
 			error = 1;
