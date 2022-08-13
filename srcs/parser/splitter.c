@@ -34,7 +34,7 @@ static	int	ft_nbrmots2(const char *str, char c)
 
 	mots = 0;
 	i = 0;
-	while (i < (int)ft_strlen(str)) ///////////BOUCLE INFINIE///////////
+	while (i < (int)ft_strlen(str))
 	{
 		while (str[i] && str[i] == c && !is_in_quote((char *)str, i))
 			i++;
@@ -95,7 +95,7 @@ char	**split_parser(const char *str, char c)
 
 	if (!str)
 		return (NULL);
-	tailletab = ft_nbrmots2(str, c);//////////
+	tailletab = ft_nbrmots2(str, c);
 	res = malloc((tailletab + 1) * sizeof(char *));
 	if (!(res))
 		return (NULL);

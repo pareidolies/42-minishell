@@ -18,10 +18,8 @@ t_command	*parse_input2(t_token *tokens, t_env *envlist)
 
 	analyze_literals_type(tokens);
 	analyze_export(tokens);
-	//analyze_echo(tokens);
 	expander(tokens, envlist);
 	commands = convert_tokens_to_commands(tokens, envlist);
-	//print_command(commands);
 	free_tokens(tokens);
 	return (commands);
 }

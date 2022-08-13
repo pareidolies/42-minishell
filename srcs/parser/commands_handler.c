@@ -19,7 +19,8 @@ t_command	*create_command(t_token *list)
 
 	result = magic_malloc(MALLOC, sizeof(t_command), NULL);
 	current = list;
-	while (current->next && current->type != T_LITERAL && current->type != T_PIPE)
+	while (current->next && current->type != T_LITERAL
+		&& current->type != T_PIPE)
 		current = current->next;
 	if (current->type == T_LITERAL)
 	{
@@ -53,7 +54,7 @@ void	add_command(t_token *list, t_command *first)
 	new->prev = current;
 }
 
-void	print_command(t_command *node)
+/*void	print_command(t_command *node)
 {
 	int				i;
 	int				j;
@@ -89,4 +90,4 @@ void	print_command(t_command *node)
 		node = node->next;
 		i++;
 	}
-}
+}*/

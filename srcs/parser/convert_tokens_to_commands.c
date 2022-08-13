@@ -64,7 +64,7 @@ void	add_args(t_command *node, t_env *envlist)
 	char	*tmp;
 	int		i;
 
-	node->args = split_parser(node->full_cmd, SPACE);///////////
+	node->args = split_parser(node->full_cmd, SPACE);
 	if (node != NULL)
 		magic_malloc(ADD, 0, node->args);
 	i = 0;
@@ -92,17 +92,14 @@ void	fill_command(t_token *list, t_command *cell, t_env *envlist)
 		node = node->next;
 	if (node->cmd != NULL)
 	{
-		node->full_cmd = ft_strdup(node->cmd);////////
+		node->full_cmd = ft_strdup(node->cmd);
 		magic_malloc(ADD, 0, node->full_cmd);
 	}
 	current = list;
 	add_full_cmd_and_redir(current, node);
 	if (node->cmd == NULL)
-	{
-		node->path = NULL;
-		return;
-	}
-	add_args(node, envlist);//////////////////////////////////
+		return ;
+	add_args(node, envlist);
 	if (!node->args[0] || is_builtin(node->args[0]) == 2)
 		node->path = NULL;
 	else if (is_builtin(node->args[0]) == 1)
@@ -121,7 +118,7 @@ t_command	*convert_tokens_to_commands(t_token *list, t_env *envlist)
 
 	current = list;
 	result = create_command(current);
-	fill_command(current, result, envlist);///////
+	fill_command(current, result, envlist);
 	while (current->next && current->next->next)
 	{
 		if ((ft_strncmp(current->next->token, STR_PIPE, \
