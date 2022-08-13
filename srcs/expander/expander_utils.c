@@ -85,7 +85,8 @@ int	is_export_expand(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == DOLLAR && str[i + 1] && (ft_isalnum(str[i + 1]) || str[i + 1] == '_'))
+		if (str[i] == DOLLAR && str[i + 1]
+			&& (ft_isalnum(str[i + 1]) || str[i + 1] == '_'))
 			return (1);
 		i++;
 
