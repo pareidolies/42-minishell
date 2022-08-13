@@ -2,7 +2,7 @@
 a.out
 *.a
 minishell
-.vscode
+.vscode*
 .sh
 test/
 .nfs*

@@ -6,12 +6,14 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 16:21:17 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/12 15:59:43 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/13 10:45:03 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <unistd.h>
+#include <sys/types.h>
+#include <dirent.h>
 
 int	child_builtin(t_data *mini, t_command *cmd);
 int	is_a_dir(char *path);
@@ -34,7 +36,7 @@ int	ft_child(t_data *mini, t_command *cmd, t_env *envlist)
 		redir_close(mini, cmd, 0);
 		return (path_error(cmd));
 	}
-	if (is_a_dir(cmd->path) == 0)
+	if (is_a_dir(cmd->path) == 1)
 		return(print_errors_3(126, cmd->path));
 	if (ft_strncmp(cmd->path, "builtin", 8) == 0)
 	{
@@ -50,16 +52,25 @@ int	ft_child(t_data *mini, t_command *cmd, t_env *envlist)
 int	is_a_dir(char *path)
 {
 	int	i;
+	DIR	*directory;
 
 	i = 0;
-	while (path[i + 1] != '\0')
+	directory = opendir(path);
+	if (directory != NULL)
 	{
-		i++;
-	}
-	if (path[i] == '/' || (path[i] == '.' && i != 0))
-		return (0);
-	else
+		closedir(directory);
 		return (1);
+	}
+	else
+		return (0);
+	// while (path[i + 1] != '\0')
+	// {
+	// 	i++;
+	// }
+	// if (path[i] == '/' || (path[i] == '.' && i != 0))
+	// 	return (0);
+	// else
+	// 	return (1);
 }
 
 int	child_builtin(t_data *mini, t_command *cmd)
