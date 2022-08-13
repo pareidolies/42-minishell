@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 18:03:45 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/13 13:05:52 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/13 13:46:30 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,9 +236,10 @@ extern int	g_exit_status;
  *                               FUNCTIONS                                    *
  *****************************************************************************/
 
-//testmain.c
-void			set_line(void);
+//main.c
+char			*get_prompt(void);
 
+/*PARSING FUNCTIONS*/
 //main_parser.c
 t_command		*parse_input(char *str, t_env *envlist);
 
@@ -300,19 +301,11 @@ void			analyze_echo(t_token *list);
 void			free_tokens(t_token *list);
 void			free_commands(t_command *list);
 
-//magic_malloc.c
-void			*magic_malloc(int choice, size_t size, void *addr);
-void			ft_free(t_malloc *node);
-void			free_all_and_quit(t_malloc *first, int error);
-void			free_one_element(t_malloc **first, void *addr);
-
 //split_parser.c
 int				is_in_quote(char *str, int pos);
 char			**split_parser(const char *str, char c);
 
-
 /*BUILTIN FUNCTIONS*/
-
 //builtin_utils.c
 int				nb_param(char **params);
 void			ft_delenv(t_env *var, t_env *envlist);
@@ -339,14 +332,16 @@ int				export_value(char *str, char *equal, t_env *envlist);
 char			*export_find_name(char *str);
 int				valid_identifier(char *name);
 
-
+//ft_unset.c
 int				ft_unset(char **params, t_env *envlist);
+
+//ft_pwd.c
 int				ft_pwd(char **params, t_env *envlist);
+
+//ft_exit.c
 int				ft_exit(t_data *mini, char **params, t_env *envlist);
 
-
 /* EXEC FUNCTIONS */
-
 //child.c
 int				ft_child(t_data *mini, t_command *cmd, t_env *envlist);
 int				child_status(int wstatus);
@@ -406,9 +401,7 @@ int				ft_close_all(int *fd, int nb);
 int				redir_open(t_command *current_cmd, int fd[2]);
 int				redir_close(t_data *mini, t_command *current_cmd, int flag);
 
-
 /* SIGNALS FUNCTIONS */
-
 //signals.c
 int				set_signals_as_prompt(void);
 int				set_signals_as_child(void);
@@ -420,11 +413,15 @@ void			signal_handler_as_prompt(int signum);
 void			signal_handler_as_child(int signum);
 void			signal_handler_as_heredoc(int signum);
 
-
 /* UTILS */
-
 //gnl.c
 char			*get_next_line(int fd);
+
+//magic_malloc.c
+void			*magic_malloc(int choice, size_t size, void *addr);
+void			ft_free(t_malloc *node);
+void			free_all_and_quit(t_malloc *first, int error);
+void			free_one_element(t_malloc **first, void *addr);
 
 //print_messages.c
 int				print_errors(int error);
@@ -434,6 +431,5 @@ void			ft_putstr_fd_color(char *str, int fd, char *color);
 
 //say_hello.c
 void			say_hello(void);
-
 
 #endif
