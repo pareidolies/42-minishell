@@ -28,6 +28,7 @@ SRCS			=	main.c \
 					exec/get_path.c \
 					exec/child.c \
 					signals/signals.c \
+					signals/signals_handler.c \
 					builtin/builtin_utils.c \
 					builtin/ft_cd.c \
 					builtin/ft_echo.c \

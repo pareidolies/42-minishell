@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 18:00:10 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/13 12:47:31 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/13 12:50:23 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int	exec_one_child(t_data *mini, t_command *current_cmd)
 int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 {
 	int		error;
-	int		wstatus;
 	int		fdinout[2];
 
 	if (current_cmd->path && ft_strncmp(current_cmd->path, "builtin", 8) != 0)

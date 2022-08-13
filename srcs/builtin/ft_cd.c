@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 12:09:12 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/12 22:45:44 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/13 13:02:46 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 #include <dirent.h>
 #include "libft.h"
 #include "minishell.h"
-
-char	*cd_find_path(char **params, t_env *envlist);
-int		cd_param_check(char **params, t_env *envlist);
 
 int	cd_update(char *current, t_env *envlist)
 {

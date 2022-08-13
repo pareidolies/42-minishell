@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 16:21:17 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/13 12:16:02 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/13 13:38:06 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ static int	child_builtin(t_data *mini, t_command *cmd)
 {
 	int	error;
 
+	signal(SIGPIPE, SIG_IGN);
 	error = which_builtin(mini, cmd->args, mini->envlist);
 	redir_close(mini, cmd, 1);
 	close(mini->std_in);

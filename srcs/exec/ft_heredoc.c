@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 18:01:14 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/13 12:39:13 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/13 12:50:48 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-int	scan_cmd(t_data *mini);
+static int	scan_cmd(t_data *mini);
 
 int	ft_fork_here(t_data *mini)
 {

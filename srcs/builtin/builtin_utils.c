@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:34:25 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/13 12:30:24 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/13 12:56:58 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,3 @@ t_env	*ft_new_var_split(char *key, char *value)
 	var->next = NULL;
 	return (var);
 }
-
-

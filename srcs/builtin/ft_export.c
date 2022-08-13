@@ -6,14 +6,11 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 22:08:49 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/12 12:37:42 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/13 13:05:49 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	export_checks(char **params);
-int	export_value(char *str, char *equal, t_env *envlist);
 
 /*In manual : "When no arguments are given, the results are unspecified." */
 /*We then choose to treat this case as a syntax error. */

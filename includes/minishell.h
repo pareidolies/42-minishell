@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 18:03:45 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/13 12:35:03 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/13 13:05:52 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -311,24 +311,41 @@ int				is_in_quote(char *str, int pos);
 char			**split_parser(const char *str, char c);
 
 
-//builtins
-int				update_env(char *key, char *newvalue, t_env	*envlist);
-void			ft_delenv(t_env *var, t_env *envlist);
-t_env			*ft_new_var_split(char *key, char *value);
+/*BUILTIN FUNCTIONS*/
+
+//builtin_utils.c
 int				nb_param(char **params);
+void			ft_delenv(t_env *var, t_env *envlist);
+int				update_env(char *key, char *newvalue, t_env	*envlist);
+t_env			*ft_new_var_split(char *key, char *value);
+
+//ft_cd.c
 int				ft_cd(char **params, t_env *envlist);
-int				cd_others(char **params, t_env *envlist);
+int				cd_update(char *current, t_env *envlist);
+int				cd_dir_checks(char *pathname, char *current, t_env *envlist);
+int				cd_param_check(char **params, t_env *envlist);
+char			*cd_find_path(char **params, t_env *envlist);
+
+//ft_echo.c
 int				ft_echo(char **params);
+
+//ft_env.c
 int				ft_env(char **params, t_env *envlist);
+
+//ft_export.c
 int				ft_export(char **params, t_env *envlist);
 int				export_checks(char **params);
+int				export_value(char *str, char *equal, t_env *envlist);
 char			*export_find_name(char *str);
 int				valid_identifier(char *name);
+
+
 int				ft_unset(char **params, t_env *envlist);
 int				ft_pwd(char **params, t_env *envlist);
 int				ft_exit(t_data *mini, char **params, t_env *envlist);
 
-/*EXEC FUNCTIONS*/
+
+/* EXEC FUNCTIONS */
 
 //child.c
 int				ft_child(t_data *mini, t_command *cmd, t_env *envlist);
@@ -349,13 +366,13 @@ int				clean_tmpfiles(t_command *commands);
 int				clean_exec(t_data *mini, char *input);
 
 //exec_utils2.c
+t_data			*ft_init_data(t_command *commands, t_env *envlist);
 char			**ft_convertlist(t_env *envlist);
 int				ft_update_status(t_env *envlist);
 int				path_error(t_command *cmd);
 
 //ft_exec.c
 int				ft_exec(t_command *commands, t_env *envlist, char *input);
-t_data			*ft_init_data(t_command *commands, t_env *envlist);
 int				exec_pipeline(t_data *mini);
 int				exec_no_pipeline(t_data *mini, t_command *cmd, t_env *envlist);
 int				which_builtin(t_data *mini, char **args, t_env *envlist);
@@ -390,6 +407,22 @@ int				redir_open(t_command *current_cmd, int fd[2]);
 int				redir_close(t_data *mini, t_command *current_cmd, int flag);
 
 
+/* SIGNALS FUNCTIONS */
+
+//signals.c
+int				set_signals_as_prompt(void);
+int				set_signals_as_child(void);
+int				set_signals_as_heredoc(void);
+int				set_signals_as_parent(void);
+
+//signal_handler.c
+void			signal_handler_as_prompt(int signum);
+void			signal_handler_as_child(int signum);
+void			signal_handler_as_heredoc(int signum);
+
+
+/* UTILS */
+
 //gnl.c
 char			*get_next_line(int fd);
 
@@ -399,18 +432,8 @@ int				print_errors_2(int error, char *str);
 int				print_errors_3(int error, char *str);
 void			ft_putstr_fd_color(char *str, int fd, char *color);
 
-//error.c
-
 //say_hello.c
 void			say_hello(void);
 
-//signals.c
-int				set_signals_as_prompt(void);
-int				set_signals_as_child(void);
-int				set_signals_as_heredoc(void);
-int				set_signals_as_parent(void);
-void			signal_handler_as_prompt(int signum);
-void			signal_handler_as_child(int signum);
-void			signal_handler_as_heredoc(int signum);
 
 #endif

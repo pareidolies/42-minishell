@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 21:17:11 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/09 12:12:01 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/13 13:03:24 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "minishell.h"
 
-int	is_valid_option(char *str)
+static int	is_valid_option(char *str)
 {
 	int	i;
 
