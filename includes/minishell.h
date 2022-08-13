@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 18:03:45 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/12 22:20:41 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/13 12:35:03 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -310,20 +310,11 @@ void			free_one_element(t_malloc **first, void *addr);
 int				is_in_quote(char *str, int pos);
 char			**split_parser(const char *str, char c);
 
-//exec_utils.c
-t_env			*ft_list_env(char **envp);
-t_env			*ft_new_var(char *keyvalue);
-void			ft_lstaddback(t_env **alst, t_env *new);
-void			ft_clean_list(t_env	*envlist);
-void			ft_free_tab(char **tab);
-int				clean_exec(t_data *mini, char *input);
 
 //builtins
-char			*ft_getenv(char *key, t_env *envlist);
 int				update_env(char *key, char *newvalue, t_env	*envlist);
 void			ft_delenv(t_env *var, t_env *envlist);
 t_env			*ft_new_var_split(char *key, char *value);
-t_env			*ft_getenv_var(char *key, t_env *envlist);
 int				nb_param(char **params);
 int				ft_cd(char **params, t_env *envlist);
 int				cd_others(char **params, t_env *envlist);
@@ -337,20 +328,37 @@ int				ft_unset(char **params, t_env *envlist);
 int				ft_pwd(char **params, t_env *envlist);
 int				ft_exit(t_data *mini, char **params, t_env *envlist);
 
-//get_path.c
-char			*get_command_path(char *command, t_env *envlist);
-char			*environment_path(char *command, char *path_var);
-char			*absolute_relative_path(char *command);
+/*EXEC FUNCTIONS*/
+
+//child.c
+int				ft_child(t_data *mini, t_command *cmd, t_env *envlist);
+int				child_status(int wstatus);
+
+//env_utils.c
+char			*ft_getenv(char *key, t_env *envlist);
+t_env			*ft_getenv_var(char *key, t_env *envlist);
+t_env			*ft_list_env(char **envp);
+t_env			*ft_new_var(char *keyvalue);
+void			init_empty_env(t_env **head);
+
+//exec_utils.c
+void			ft_lstaddback(t_env **alst, t_env *new);
+void			ft_clean_list(t_env	*envlist);
 void			ft_free_tab(char **tab);
+int				clean_tmpfiles(t_command *commands);
+int				clean_exec(t_data *mini, char *input);
+
+//exec_utils2.c
+char			**ft_convertlist(t_env *envlist);
+int				ft_update_status(t_env *envlist);
+int				path_error(t_command *cmd);
 
 //ft_exec.c
 int				ft_exec(t_command *commands, t_env *envlist, char *input);
 t_data			*ft_init_data(t_command *commands, t_env *envlist);
 int				exec_pipeline(t_data *mini);
 int				exec_no_pipeline(t_data *mini, t_command *cmd, t_env *envlist);
-int				child_status(int wstatus);
 int				which_builtin(t_data *mini, char **args, t_env *envlist);
-int				path_error(t_command *cmd);
 
 //ft_fork.c
 pid_t			*multi_fork(t_data *mini);
@@ -361,24 +369,29 @@ int				ft_fork_here(t_data *mini);
 int				ft_heredoc(t_data *mini, t_command *cmd, t_redirection *redir);
 int				open_heretmp(t_command *cmd, int flag);
 int				ft_tempfile(char *str, int fd, int fdtmp);
-int				clean_tmpfiles(t_command *commands);
 
-//gnl.c
-char			*get_next_line(int fd);
-
-//redir_and_pipes.c
-int				redir_open(t_command *current_cmd, int fd[2]);
-int				redir_close(t_data *mini, t_command *current_cmd, int flag);
-int				*open_pipes(t_data *mini);
-int				ft_close_all(int *fd, int nb);
+//get_path.c
+char			*get_command_path(char *command, t_env *envlist);
+char			*craft_path(char *path, char *command);
+char			**magic_split(char *path_var);
+char			*environment_path(char *command, char *path_var);
+char			*absolute_relative_path(char *command);
 
 //handle_fd.c
 int				dup_close_in(t_data *mini, t_command *current_cmd, int fd[2]);
 int				dup_close_out(t_data *mini, t_command *current_cmd, int fd[2]);
 
-//child.c
-int				ft_child(t_data *mini, t_command *cmd, t_env *envlist);
-char			**ft_convertlist(t_env *envlist);
+//pipes.c
+int				*open_pipes(t_data *mini);
+int				ft_close_all(int *fd, int nb);
+
+//redir.c
+int				redir_open(t_command *current_cmd, int fd[2]);
+int				redir_close(t_data *mini, t_command *current_cmd, int flag);
+
+
+//gnl.c
+char			*get_next_line(int fd);
 
 //print_messages.c
 int				print_errors(int error);
@@ -387,7 +400,6 @@ int				print_errors_3(int error, char *str);
 void			ft_putstr_fd_color(char *str, int fd, char *color);
 
 //error.c
-int				ft_update_status(t_env *envlist);
 
 //say_hello.c
 void			say_hello(void);

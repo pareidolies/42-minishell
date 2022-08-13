@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 18:00:10 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/13 11:58:25 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/13 12:47:31 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-extern int	g_exit_status;
-
 int	ft_exec(t_command *commands, t_env *envlist, char *input)
 {
 	t_data	*mini;
 	int		error;
-	
+
 	mini = ft_init_data(commands, envlist);
 	error = ft_fork_here(mini);
 	if (error != 0)
@@ -38,9 +36,9 @@ int	ft_exec(t_command *commands, t_env *envlist, char *input)
 		mini->pid = NULL;
 		g_exit_status = exec_no_pipeline(mini, mini->commands, mini->envlist);
 		if (g_exit_status == 130)
-		ft_putstr_fd("\n", 2);
+			ft_putstr_fd("\n", 2);
 		if (g_exit_status == 131)
-		ft_putstr_fd("Quit\n", 2);
+			ft_putstr_fd("Quit\n", 2);
 	}
 	clean_exec(mini, input);
 	return (0);
@@ -75,58 +73,26 @@ int	exec_pipeline(t_data *mini)
 	return (error);
 }
 
-t_data	*ft_init_data(t_command *commands, t_env *envlist)
+int	exec_one_child(t_data *mini, t_command *current_cmd)
 {
-	t_data	*mini;
-	int		nb_fd;
+	pid_t	pid;
+	int		wstatus;
+	int		error;
 
-	mini = magic_malloc(MALLOC, sizeof(t_data), NULL);
-	mini->commands = commands;
-	mini->envlist = envlist;
-	nb_fd = 0;
-	while (commands != NULL)
-	{
-		commands->index = nb_fd;
-		nb_fd++;
-		commands = commands->next;
-	}
-	mini->nb_fd_pipes = (nb_fd - 1) * 2;
-	mini->nb_pid = nb_fd;
-	mini->std_in = dup(STDIN_FILENO);
-	mini->std_out = dup(STDOUT_FILENO);
-	return (mini);
-}
-
-int	path_error(t_command *cmd)
-{
-	if (cmd->cmd == NULL)
-	{
-		return (0);
-	}
-	if (cmd->full_cmd[0] == '\0')
-	{
-		return (0);
-	}
-	if (access(cmd->cmd, F_OK) == 0 && access(cmd->cmd, X_OK) != 0)
-	{
-		return (print_errors_3(EX_ERROR, cmd->cmd));
-	}
-	return (print_errors_2(127, cmd->args[0]));
+	pid = ft_fork(mini, current_cmd);
+	waitpid(pid, &wstatus, 0);
+	error = child_status(wstatus);
+	return (error);
 }
 
 int	exec_no_pipeline(t_data *mini, t_command *current_cmd, t_env *envlist)
 {
-	pid_t	pid;
 	int		error;
 	int		wstatus;
 	int		fdinout[2];
 
 	if (current_cmd->path && ft_strncmp(current_cmd->path, "builtin", 8) != 0)
-	{
-		pid = ft_fork(mini, current_cmd);
-		waitpid(pid, &wstatus, 0);
-		error = child_status(wstatus);
-	}
+		error = exec_one_child(mini, current_cmd);
 	else
 	{
 		if (redir_open(current_cmd, fdinout) == 0)

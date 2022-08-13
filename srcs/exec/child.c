@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 16:21:17 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/13 10:45:03 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/13 12:16:02 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 #include <sys/types.h>
 #include <dirent.h>
 
-int	child_builtin(t_data *mini, t_command *cmd);
-int	is_a_dir(char *path);
+static int	redir_error(t_data *mini, t_command *cmd);
+static int	is_a_dir(char *path);
+static int	child_builtin(t_data *mini, t_command *cmd);
 
 int	ft_child(t_data *mini, t_command *cmd, t_env *envlist)
 {
@@ -25,11 +26,7 @@ int	ft_child(t_data *mini, t_command *cmd, t_env *envlist)
 	int		error;
 
 	if (redir_open(cmd, fdinout) == 1)
-	{
-		ft_close_all(mini->pipes, mini->nb_fd_pipes);
-		redir_close(mini, cmd, 0);
-		return (1);
-	}
+		return (redir_error(mini, cmd));
 	dup_close_in(mini, cmd, fdinout);
 	if (cmd->path == NULL)
 	{
@@ -37,7 +34,7 @@ int	ft_child(t_data *mini, t_command *cmd, t_env *envlist)
 		return (path_error(cmd));
 	}
 	if (is_a_dir(cmd->path) == 1)
-		return(print_errors_3(126, cmd->path));
+		return (print_errors_3(126, cmd->path));
 	if (ft_strncmp(cmd->path, "builtin", 8) == 0)
 	{
 		error = child_builtin(mini, cmd);
@@ -49,7 +46,7 @@ int	ft_child(t_data *mini, t_command *cmd, t_env *envlist)
 	return (perror("execve"), 126);
 }
 
-int	is_a_dir(char *path)
+static int	is_a_dir(char *path)
 {
 	int	i;
 	DIR	*directory;
@@ -63,17 +60,9 @@ int	is_a_dir(char *path)
 	}
 	else
 		return (0);
-	// while (path[i + 1] != '\0')
-	// {
-	// 	i++;
-	// }
-	// if (path[i] == '/' || (path[i] == '.' && i != 0))
-	// 	return (0);
-	// else
-	// 	return (1);
 }
 
-int	child_builtin(t_data *mini, t_command *cmd)
+static int	child_builtin(t_data *mini, t_command *cmd)
 {
 	int	error;
 
@@ -84,50 +73,11 @@ int	child_builtin(t_data *mini, t_command *cmd)
 	return (error);
 }
 
-int	ft_env_size(t_env *envlist)
+static int	redir_error(t_data *mini, t_command *cmd)
 {
-	int		i;
-	t_env	*var;
-
-	i = 0;
-	var = envlist;
-	while (var != NULL)
-	{
-		if (var->value != NULL)
-		{
-			i++;
-		}
-		var = var->next;
-	}
-	return (i);
-}
-
-char	**ft_convertlist(t_env *envlist)
-{
-	int		i;
-	t_env	*var;
-	char	**envtab;
-	char	*tmp;
-
-	var = envlist;
-	i = ft_env_size(envlist);
-	envtab = magic_malloc(MALLOC, sizeof(char *) * (i + 1), NULL);
-	envtab[i] = NULL;
-	var = envlist;
-	while (var != NULL)
-	{
-		if (var->value != NULL)
-		{
-			i--;
-			tmp = ft_strjoin(var->key, "=");
-			magic_malloc(ADD, 0, tmp);
-			envtab[i] = ft_strjoin(tmp, var->value);
-			magic_malloc(ADD, 0, envtab[i]);
-			magic_malloc(FREE, 0, tmp);
-		}
-		var = var->next;
-	}
-	return (envtab);
+	ft_close_all(mini->pipes, mini->nb_fd_pipes);
+	redir_close(mini, cmd, 0);
+	return (1);
 }
 
 int	child_status(int wstatus)

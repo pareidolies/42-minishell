@@ -19,12 +19,12 @@ SRCS			=	main.c \
 					exec/env_utils.c \
 					exec/ft_exec.c \
 					exec/ft_heredoc.c \
-					exec/gnl.c \
 					exec/ft_fork.c \
 					exec/redir.c \
 					exec/pipes.c \
 					exec/handle_fd.c \
 					exec/exec_utils.c \
+					exec/exec_utils2.c \
 					exec/get_path.c \
 					exec/child.c \
 					signals/signals.c \
@@ -37,6 +37,7 @@ SRCS			=	main.c \
 					builtin/ft_unset.c \
 					builtin/ft_exit.c \
 					utils/say_hello.c \
+					utils/gnl.c \
 					utils/print_messages.c \
 					utils/magic_malloc.c \
 					utils/magic_malloc_free.c \

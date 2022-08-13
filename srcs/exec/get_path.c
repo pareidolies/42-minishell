@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 16:37:02 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/12 22:39:01 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/13 12:40:24 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,9 @@ char	*absolute_relative_path(char *command)
 	if (command[0] == '/' || (command[0] == '.' && command[1] == '/'))
 	{
 		if (access(command, F_OK | X_OK) == 0)
-		{
 			return (command);
-		}
 		else
-		{
 			return (NULL);
-		}
 	}
 	else
 	{

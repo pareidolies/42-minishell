@@ -6,7 +6,7 @@
 /*   By: lmurtin <lmurtin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 18:01:14 by lmurtin           #+#    #+#             */
-/*   Updated: 2022/08/11 13:41:11 by lmurtin          ###   ########.fr       */
+/*   Updated: 2022/08/13 12:39:13 by lmurtin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ft_fork_here(t_data *mini)
 	return (error);
 }
 
-int	scan_cmd(t_data *mini)
+static int	scan_cmd(t_data *mini)
 {
 	t_redirection	*redir;
 	t_command		*cmd;
@@ -142,6 +142,5 @@ int	ft_tempfile(char *str, int fd, int fdtmp)
 			write(fdtmp, line, ft_strlen(line));
 	}
 	get_next_line(fd);
-	magic_malloc(FREE, 0, limiter);
 	return (0);
 }
