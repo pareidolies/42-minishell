@@ -56,7 +56,7 @@ int	get_expansion_size(char *str)
 	return (i);
 }
 
-/*int	is_export_expand(char *str)
+int	is_export_expand(char *str)
 {
 	int	i;
 
@@ -76,9 +76,9 @@ int	get_expansion_size(char *str)
 		i++;
 	}
 	return (0);
-}*/
+}
 
-int	is_export_expand(char *str)
+/*int	is_export_expand(char *str)
 {
 	int	i;
 
@@ -91,4 +91,4 @@ int	is_export_expand(char *str)
 
 	}
 	return (0);
-}
+}*/

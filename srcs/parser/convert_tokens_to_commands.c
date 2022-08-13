@@ -44,7 +44,7 @@ void	add_args2(t_command *node, t_env *envlist)
 	char	*str;
 	int		i;
 
-	if (node->args[0] && (ft_strncmp(node->args[0], "export", 7) == 0 || ft_strncmp(node->args[0], "echo", 5) == 0))
+	if (node->args[0] && (ft_strncmp(node->args[0], "export", 7) == 0))
 	{
 		i = 1;
 		while (node->args[i])
