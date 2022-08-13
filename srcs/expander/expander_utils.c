@@ -61,7 +61,7 @@ int	is_export_expand(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] && str[i] != SPACE)
+	while (i < (int)ft_strlen(str) && str[i] != SPACE)
 	{
 		if (str[i] == '=')
 		{
