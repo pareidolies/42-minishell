@@ -1,64 +1,14 @@
-* comportement ctrl-c et ctrl-\ : 
-    dans HEREDOC -> ctrl-c interrompt et ctrl-\ n'a aucun effet,
-    dans PROMPT -> ctrl-c donne un nouveau prompt et ctrl-\ n'a aucun effet,
-    pendant EXEC, par exemple dans cat -> les deux interrompent, retour dépend si dernier child déjà executé ou pas
-    -> cat | ls : affichage ls puis interruption, retour 0
-    -> cat | wc -c : interruption directe, retour 130 pour ctrl-c, 131 pour ctrl-\
-# (Derniers) cas qui ne fonctionnent pas
+# 42-minishell
 
-* dans bash, les messages d'erreurs ne sont pas les memes pour :
-$skdjhfkjsdhf
-"$skdjhfkjsdhf"
-'$skdjhfkjsdhf'
-or nous avons les memes dans notre minishell
+![mini50](https://user-images.githubusercontent.com/96736158/226124203-36537df4-dd8f-481d-9b2f-00160c651c22.png)
 
-* si on fait export blabla="ls -la"
-puis export gloups=$blabla
-on a le message d'erreur 'Not a valid identifier'
-tandis que dans bash gloups devient bien ls -la
-
-* gestion code erreur
-
-* ctrl-c affiche ^C mais il manque le \n derrière (au passage, ctrl-\ doit afficher ^\Quit\n)
-
-* norme de minishell.h : lignes trop longues pour le dessin au demarrage du programme
-
-=================================================================
-* OK :les erreurs de syntaxe (exemple, wrong number of redirections or pipes) renvoient un code d'erreur 0 au lieu de 2
-
-* OK : quand on écrit exit dans le prompt, le programme quitte mais il reste 5 fd ouverts au lieu de 3
-
-* OK : echo -n "blabla" >> file (réglé en utilisant putstr au lieu de printf)
-
-* OK : $_
-
-* OK : "$USER"$USER'$USER'
-
-* OK : cat << ok << salut (il faut ecrire ok puis salut, or dans le bash il faut juste ecrire salut pour arreter la lecture)
-
-* OK : si je change la valeur de g_exit_status, cela n'a pas d'impact dans l'env quand je fais echo $?
-
-* OK : quand on remonte l'historique du shell on perd le prompt : pb d'affichage
-
-# Cas pour lesquels il faut faire attention
-
-* cat | cat | ls 
-
-* ctrl c avec un cat
-
-* export a+= (avec les concatenations)
-
-* absolute / relative path
-
-* cd with env -i
-
-# Comment ignorer leaks de readline :
+## Comment ignorer leaks de readline :
 
 1. Compiler normalement.
 2. Au lieu d'appeler `valgrind ./minishell`, il faut exécuter leakscheck.sh.
 3. Enjoy :D
 
-# Tutoriel Magic Malloc
+## Tutoriel Magic Malloc
 
 * MALLOC : Si tu souhaites effectuer un malloc, cela tient en une ligne (il faut juste indiquer la size) :
 
@@ -77,61 +27,7 @@ magic_malloc(FREE, 0, tmp);
 * QUIT : Si tu souhaites free tout ce que tu as malloc depuis le debut de ton programme et quitter, c'est cette ligne :
 
 magic_malloc(QUIT, 0, NULL);
-# 42-minishell
+
+## Les tests
 
 https://docs.google.com/spreadsheets/d/1fFFHGhm2F-ofMvUcIhZnBonpcASGL8954YFBUODmQy0/edit#gid=0
-
-(entre parenthèses = ligne correspondante du gdoc)
-
-General problems :
-- OK : empty prompt => segfault.
-- OK : " " " ==> "Wrong number of quotes" puis segfault.
-- OK : erreurs syntaxe comme > < ou ||| (par exemple) exit le shell au lieu de redonner le prompt après avoir affiché le message d'erreur.
-- export sans argument --> choisi de suivre le man et de considérer comme une erreur.
-- [je pense que c'était en effet dû à l'absence totale de gestion des leaks haha] : eu un segfault très inattendu au niveau du parser en testant export, ça faisait un moment que je testais des trucs sans exit le programme, peut-être dû aux leaks ? pas réussi à le reproduire en tout cas mais j'ai gardé le screen dans un coin au cas où.
-
-ECHO : 
-- OK : echo " bonjour " ==> attendu: - bonjour -, obtenu -bonjour-
-- (90 : OK) echo $ ==> attendu: $, obtenu: (empty)
-- (92 : OK) echo $?$ ==> attendu: 0$, obtenu: 0
-- (99 : OK) echo login is [$USER] ==> 
-    attendu: login is [lmurtin]
-    obtenu: login is [
-- (101 : OK) echo non existing variable [$TOTO] ==> 
-    attendu: non existing variable []
-    obtenu: non existing variable [
-- (104 : OK) echo $9HOME ==> attendu: HOME, obtenu: (empty)
-- (105 : OK) echo $HOME% ==> attendu: /mnt/nfs/homes/lmurtin%
-                        obtenu: (empty)
-- (131 : OK) echo "$""" ==> attendu: $, obtenu: (empty)
-- (133/135 : OK) echo $"HOME" et echo $""HOME et echo $''HOME ==> 
-    attendu: HOME, obtenu: (empty)
-- (143 : OK) echo ''$HOME ==> attendu: /mnt/nfs/homes/lmurtin
-                    obtenu: $HOME
-- (145 à 151 : OK) echo $ suivi de diverse combinaisons de lettres et quotes => obtenu: (empty) pour diverses attendus
-
-EXPORT :
-- (218 : OK a reverifier avec toi) export "" ==> attendu: "Not a valid identifier"
-                        obtenu: "Too few arguments" (la commande export ne recoit pas la chaine vide en tant qu'argument)
-- (267 : OK) export TEST$USER=bonjour (+ env) ==>
-    attendu: TESTlmurtin=bonjour
-    obtenu: TEST
-- (272 + 280 : OK) même pb que précédent: export $USER=bonjour (+env) ==>
-    attendu: lmurtin=bonjour
-    obtenu: "Too few arguments" (cause probable : l'expander ne s'arrête pas au `=`)
-- (274 : OK) export TEST="       -n bonjour     " (+ echo $TEST) ==>
-    attendu: bonjourminishell>
-    obtenu: "Invalid option" (export recoit séparément le contenu entre double quotes)
-- (275 : OK) export HOLA="bonjour   "/ (+ echo $HOLA) ==>
-    attendu: bonjour /
-    obtenu: "/ not a valid identifier"
-- (276 : OK a reverifier avec toi) export TEST='"' (+ echo " $TEST ") ==>
-    attendu:  " (avec espace avant et après)
-    obtenu: (empty) (variable TEST bien set à " mais impossible de l'afficher)
-- (278 : OK a reverifier avec toi) export "" TEST=test ==>
-    attendu: " '"' not a valid identifier" + TEST=test
-    obtenu: TEST=test (export recoit une chaine vide au lieu des quotes et ne détecte donc pas de symbole invalide)
-- (310) export A=1 B=2 C=3 D=4 E=5 F=6 G=7 H=8
-        + echo "$A'$B"'$C"$D'$E'"$F'"'$G'$H"
-    attendu: 1'2$C"$D5"$F'7'8
-    obtenu: 1'23"45"6'7'8
